@@ -1,7 +1,7 @@
 # NewGine
 a videogame engine programmed in C
 
-Instructions
+#Instructions
 You are able to drag and drop any FBX model to our engine. If there is a texture separated, you are able to drop it the same way to be applied. The navigation is simple:
 
 W A S D to rotate the camera FPS like.
