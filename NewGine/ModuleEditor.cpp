@@ -18,8 +18,10 @@ bool ModuleEditor::Start()
 	bool ret = true;
 
 	//Set Camera Position
-	App->camera->Move(vec(10.0f, 6.0f, 30.0f));
-	App->camera->LookAt(vec(-10, 10, 0));
+	App->camera->Move(vec(10.0f, 25.0f, -30.0f));
+	App->camera->LookAt(vec(-10, -2, 0));
+
+	//App->camera->Look(vec(50.0f, 50.0f, 50.0f), vec(0.0f, 0.0f, 0.0f));
 
 	return ret;
 };

@@ -8,7 +8,6 @@ Application::Application()
 	scene_intro = new ModuleSceneIntro(this);
 	renderer3D = new ModuleRenderer3D(this);
 	camera = new ModuleCamera3D(this);
-	physics = new ModulePhysics3D(this);
 	editor = new ModuleEditor(this);
 	fbx_loader = new ModuleFBXLoader(this);
 	go_manager = new ModuleGOManager(this);
@@ -22,7 +21,6 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);
 	//AddModule(audio);
-	AddModule(physics);
 	AddModule(editor);
 	AddModule(fbx_loader);
 	AddModule(go_manager);

@@ -1,6 +1,5 @@
 #include "Globals.h"
 #include "Application.h"
-#include "PhysBody3D.h"
 #include "ModuleCamera3D.h"
 
 #include "SDL\include\SDL_opengl.h"
@@ -27,7 +26,6 @@ bool ModuleCamera3D::Start()
 {
 	LOG("Setting up the camera");
 	bool ret = true;
-
 	return ret;
 }
 

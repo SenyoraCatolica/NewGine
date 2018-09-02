@@ -2,7 +2,6 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
-#include "PhysBody3D.h"
 #include "SDL\include\SDL.h"
 
 #include "Imgui\imgui.h"
@@ -28,6 +27,10 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
+	//Create World
+	grid = new Plane_P(0, 1, 0, 0);
+	grid->axis = true;
+
 	App->fbx_loader->LoadFBX("Models/BakerHouse.fbx");
 
 	return ret;
@@ -44,6 +47,8 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
+	grid->Render();
+
 	return UPDATE_CONTINUE;
 }
 

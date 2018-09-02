@@ -113,7 +113,6 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT, 60);
 
 	ImGui_ImplSdlGL3_Init(App->window->window);
-	App->camera->Look(vec(100.0f, 100.0f, 50.0f), vec(0.0f, 0.0f, 0.0f));
 
 	return ret;
 }

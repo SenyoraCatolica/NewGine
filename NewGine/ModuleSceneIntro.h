@@ -14,14 +14,9 @@ public:
 	bool Start();
 	update_status Update(float dt);
 	bool CleanUp();
-
-	void CreateCubePrimitive();
-
-	uint lenna_id;
-
 	
 
 public:
-	Cube_P cube;
+	Plane_P* grid;
 	
 };
