@@ -76,13 +76,6 @@ bool ModuleRenderer3D::Init()
 		//Initialize clear color
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 
-		//Check for error
-		error = glGetError();
-		if (error != GL_NO_ERROR)
-		{
-			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
-			ret = false;
-		}
 
 		GLfloat LightModelAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
@@ -106,7 +99,14 @@ bool ModuleRenderer3D::Init()
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
 
-
+		bool draw_normals = true;
+		bool draw_wireframe = false;
+		bool draw_meshes = true;
+		bool enable_textures = true;
+		bool enable_color_material = true;
+		bool enable_depth = true;
+		bool enable_face_culling = false;
+		bool enable_lighting = true;
 	}
 
 	// Projection matrix for
@@ -115,15 +115,13 @@ bool ModuleRenderer3D::Init()
 	ImGui_ImplSdlGL3_Init(App->window->window);
 	App->camera->Look(vec(100.0f, 100.0f, 50.0f), vec(0.0f, 0.0f, 0.0f));
 
-	LOG("OpenGL version: %s", glGetString(GL_VERSION));
-	LOG("Glew version: %s", glewGetString(GLEW_VERSION));
-
 	return ret;
 }
 
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
+	ImGui_ImplSdlGL3_NewFrame(App->window->window);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
