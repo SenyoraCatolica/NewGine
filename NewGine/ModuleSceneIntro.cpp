@@ -28,7 +28,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	//App->go_manager->LoadGameObject("Models/Town.fbx");
+	App->fbx_loader->LoadFBX("Models/BakerHouse.fbx");
 
 	return ret;
 }

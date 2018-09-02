@@ -22,6 +22,14 @@ bool ModuleGOManager::Init()
 
 update_status ModuleGOManager::Update(float dt)
 {
+	std::list<GameObject*>::const_iterator it = all_gameobjects.begin();
+	while (it != all_gameobjects.end())
+	{
+		//TODO GameObjects Update should be called here
+		App->renderer3D->DrawMesh((*it)->GetMesh());
+		it++;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 

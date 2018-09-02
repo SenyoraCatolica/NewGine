@@ -137,41 +137,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
-	/*{
-		if (App->editor->depth == true)
-			glEnable(GL_DEPTH_TEST);
-		else
-			glDisable(GL_DEPTH_TEST);
-//-------------------------------------------------
-		if (App->editor->cull == true)
-			glEnable(GL_CULL_FACE);
-		else
-			glDisable(GL_CULL_FACE);
-//-------------------------------------------------
-		if (App->editor->light == true)
-		{
-			lights[0].Active(true);
-			glEnable(GL_LIGHTING);
-		}
-		else
-			glEnable(GL_LIGHTING);
-//-------------------------------------------------
-		if(App->editor->color == true)
-			glEnable(GL_COLOR_MATERIAL);
-		else
-			glDisable(GL_COLOR_MATERIAL);
-//--------------------------------------------------
-		if (App->editor->texture == true)
-			glEnable(GL_TEXTURE_2D);
-		else
-			glDisable(GL_TEXTURE_2D);
-
-		
-
-
-
-	}*/
-
 
 	return UPDATE_CONTINUE;
 }
@@ -224,3 +189,67 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 	glLoadIdentity();
 }
 
+
+void ModuleRenderer3D::DrawMesh(MyMesh m)
+{
+	if (m.num_vertices > 0 && m.num_indices > 0)
+	{
+		//wireframe should be enabled here
+		if (draw_wireframe)
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+		if (m.texture_coords == nullptr)
+		{
+			glColor4f(1, 1, 1, 1);
+		}
+
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+		//Texture should be drawn here
+		if (enable_textures)
+		{
+			if (m.id_texture_coords > 0)
+			{
+				glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D, 0);
+				
+				//bind textures
+				for (int i = 0; i < m.textures.size(); i++)
+				{
+					glBindTexture(GL_TEXTURE_2D, m.textures[i]->id);
+				}
+
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+				glBindBuffer(GL_ARRAY_BUFFER, m.id_texture_coords);
+				glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+			}
+		}
+
+		glBindBuffer(GL_ARRAY_BUFFER, m.id_vertices);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m.id_indices);
+		glVertexPointer(3, GL_FLOAT, 0, NULL);
+		glDrawElements(GL_TRIANGLES, m.num_indices, GL_UNSIGNED_INT, NULL);
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+
+		//normals should be drwan here
+		if (draw_normals)
+		{
+			if (m.normals > 0)
+			{
+				glEnableClientState(GL_NORMAL_ARRAY);
+				//Setting Normals
+				glBindBuffer(GL_ARRAY_BUFFER, m.id_normals);
+				glNormalPointer(GL_FLOAT, 0, NULL);
+			}
+		}
+
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+
+		//wireframe should be disabled here
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+}
