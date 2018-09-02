@@ -1,158 +1,48 @@
-#pragma once
 #include "GameObject.h"
-#include "TransformComponent.h"
-#include "MeshComponent.h"
-#include "MaterialComponent.h"
+#include "Globals.h"
+#include "Glew\include\glew.h"
 
-using namespace std;
 
-GameObject::GameObject() : name("Empty GameObject")
+GameObject::GameObject() {}
+GameObject::~GameObject() {}
+
+void GameObject::InitBuffer()
 {
+	//Vertices Buffer
+	glGenBuffers(1, (GLuint*) &(mesh.id_vertices));
+	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 3, mesh.vertices, GL_STATIC_DRAW);
 
-}
 
-GameObject::GameObject(GameObject* Parent, string Name) : parent(Parent), name(Name)
-{
+	//Indices Buffer
+	glGenBuffers(1, (GLuint*) &(mesh.id_indices));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
 
-}
-
-GameObject::~GameObject()
-{
-	for (std::vector<Component*>::iterator component = components.begin(); component != components.end(); ++component)
+	//Texture  Coords Buffer
+	if (mesh.tex_coords != nullptr) // If the mesh has a texture, save it in the buffer
 	{
-		delete (*component);
-		(*component) = nullptr;
+		glGenBuffers(1, (GLuint*) &(mesh.id_texture));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_texture);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 2, mesh.tex_coords, GL_STATIC_DRAW);
 	}
 
-	components.clear();
-}
-
-void GameObject::Update(float dt)
-{
-
-	vector<Component*>::iterator it = components.begin();
-	while (it != components.end())
+	//Normals Buffer
+	if (mesh.normals != nullptr) // If the mesh has normals, save them in the buffer
 	{
-		(*it)->Update(dt);
-		it++;
-	}
-
-}
-
-void GameObject::AddComponent(Component* component)
-{
-	if (component->type == COMPONENT_TRANSFORM)
-		transform = component;
-	if (component->type == COMPONENT_MATERIAL)
-		material = component;
-	if (component->type == COMPONENT_MESH)
-		mesh = component;
-
-	components.push_back(component);
-}
-
-Component* GameObject::CreateComponent(component_type type, uint id_num)
-{
-
-	if (type == COMPONENT_TRANSFORM)
-	{
-		transform = new TransfomComponent(type, this);
-		components.push_back(transform);
-		return transform;
-	}
-
-	if (type == COMPONENT_MATERIAL)
-	{
-		material = new MaterialComponent(type, this);
-		components.push_back(material);
-		return material;
-	}
-
-	if (type == COMPONENT_MESH)
-	{
-		mesh = new MeshComponent(type, this);
-		components.push_back(mesh);
-		return mesh;
-	}
-
-}
-
-bool GameObject::DeleteComponent(Component* ComponentToDelete)
-{
-	bool ret = true;
-	for (uint i = 0; i < components.size(); i++)
-	{
-		if (components[i] == ComponentToDelete)
-		{
-			components.erase(components.begin() + i);
-		}
-	}
-	ret = false;
-	return ret;
-}
-
-Component* GameObject::GetById(uint id)
-{
-	for (uint i = 0; i < components.size(); i++)
-	{
-		if (components[i]->id == id)
-			return components[i];
-	}
-
-	return NULL;
-}
-
-GameObject* GameObject::Duplicate(const GameObject GO_to_duplicate)
-{
-	return (new GameObject(GO_to_duplicate.parent));
-}
-
-void GameObject::SetParent(GameObject* Parent)
-{
-	parent = Parent;
-}
-
-void GameObject::AddChild(GameObject* child)
-{
-	childs.push_back(child);
-	//child->parent = this;
-}
-
-void GameObject::RemoveChild(GameObject* child)
-{
-	list<GameObject*>::const_iterator it = childs.begin();
-	while (it != childs.end())
-	{
-		if (*it == child)
-			childs.erase(it);
-		it++;
+		glGenBuffers(1, (GLuint*) &(mesh.id_normals));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_normals);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 3, mesh.normals, GL_STATIC_DRAW);
 	}
 }
-bool GameObject::HasComponent(component_type type)
+
+
+MyMesh GameObject::GetMesh()
 {
-	std::vector<Component*>::iterator it = components.begin();
-	while (it != components.end())
-	{
-		if ((*it)->type == type)
-		{
-			return true;
-		}
-		it++;
-	}
-	return false;
+	return mesh;
 }
 
-Component* GameObject::GetComponent(component_type type)
+void GameObject::SetMesh(MyMesh m)
 {
-	std::vector<Component*>::iterator it = components.begin();
-	while (it != components.end())
-	{
-		if ((*it)->type == type)
-		{
-			return (*it);
-		}
-
-		it++;
-	}
-	return nullptr;
+	mesh = m;
 }

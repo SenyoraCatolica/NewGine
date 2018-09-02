@@ -76,11 +76,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="MaterialComponent.h" />
-    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="ModuleGOManager.h" />
-    <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Imgui\imconfig.h" />
@@ -173,11 +169,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="MaterialComponent.cpp" />
-    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
-    <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
     <ClCompile Include="Imgui\imgui_demo.cpp" />

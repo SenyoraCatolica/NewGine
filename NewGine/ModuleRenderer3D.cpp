@@ -3,9 +3,7 @@
 #include "ModuleRenderer3D.h"
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
-#include "TransformComponent.h"
-#include "MaterialComponent.h"
-#include "MeshComponent.h"
+
 #include "ModuleEditor.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -139,7 +137,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
-{
+	/*{
 		if (App->editor->depth == true)
 			glEnable(GL_DEPTH_TEST);
 		else
@@ -172,7 +170,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 
 
-}
+	}*/
 
 
 	return UPDATE_CONTINUE;

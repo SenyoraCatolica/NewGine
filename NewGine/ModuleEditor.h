@@ -15,13 +15,4 @@ public:
 
 
 	bool CleanUp();
-
-	bool ShowTestWindow = false;
-	bool AboutWindow = false;
-	bool ShowGameObjects = true;
-
-	bool depth, cull, light, color, texture, wireframe;
-
-	GameObject* SelectedObject = NULL;
-
 };

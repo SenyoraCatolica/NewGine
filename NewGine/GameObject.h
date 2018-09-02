@@ -1,52 +1,58 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#pragma once
 
 #include "Globals.h"
-#include "Component.h"
-#include "Module.h"
-#include <stdlib.h>
-#include <list>
 #include <vector>
 
-class GameObject 
+
+
+struct MyMesh
+{
+	// VERTICES ---------------------
+	uint id_vertices = 0;
+	uint num_vertices = 0;
+	float* vertices = nullptr;
+
+	// INDICES -----------------
+	uint id_indices = 0;
+	uint num_indices = 0;
+	uint* indices = nullptr;
+
+	// TEXTUTE COORDS -----------------
+	uint id_image = 0;
+	std::string tex_name;
+	std::string tex_path;
+
+	uint id_texture = 0;
+	float* tex_coords = nullptr;
+
+	//NORMALS COORDS --------------
+	uint id_normals = 0;
+	float* normals = nullptr;
+
+	/*~MyMesh()
+	{
+	delete[] indices;
+	delete[] vertices;
+	delete[] tex_coords;
+	delete[] normals;
+	}*/
+};
+
+class GameObject
 {
 public:
 
 	GameObject();
-	GameObject(GameObject* Parent = NULL, std::string Name = "Empty GameObject");
 	~GameObject();
 
-	void Update(float dt);
+	void InitBuffer();
 
-	void AddComponent(Component* component);
-	Component* CreateComponent(component_type type, uint id_num);
-	bool DeleteComponent(Component* ComponentToDelete);
-	Component* GetById(uint id);
+	MyMesh GetMesh();
+	void SetMesh(MyMesh m);
 
-	bool HasComponent(component_type type);
-	Component* GetComponent(component_type type);
-
-	
-
-	GameObject* Duplicate(const GameObject GO_to_duplicate);
-	void SetParent(GameObject* parent);
-
-	void AddChild(GameObject* child);
-	void RemoveChild(GameObject* child);
-
-
+private:
+	bool wireframe;
 
 public:
-	
-	Component* transform = nullptr;
-	Component* material = nullptr;
-	Component* mesh = nullptr;
-
-	std::vector<Component*> components;
-	GameObject* parent;
-	std::list<GameObject*> childs;
-	
-	std::string name;
+	MyMesh mesh;
 };
-
-#endif // GAMEOBJECT_H

@@ -5,6 +5,8 @@
 #include "Globals.h"
 #include "Module.h"
 #include "GameObject.h"
+#include <list>
+
 
 class ModuleGOManager : public Module
 {
