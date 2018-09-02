@@ -36,5 +36,5 @@ enum update_status
 #define TITLE "NEWGINE"
 
 // Folder directories--------
-#define TEXTURE_FOLDER "Textures/"
+#define TEXTURE_FOLDER "Game/Textures/"
 #define MODELS_FOLDER "MODELS/"
