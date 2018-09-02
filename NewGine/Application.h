@@ -13,6 +13,7 @@
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
 #include "ModuleGOManager.h"
+#include "ModuleFBXLoader.h"
 
 using namespace std; 
 
@@ -28,6 +29,7 @@ public:
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
 	ModuleGOManager* go_manager;
+	ModuleFBXLoader* fbx_loader;
 
 private:
 

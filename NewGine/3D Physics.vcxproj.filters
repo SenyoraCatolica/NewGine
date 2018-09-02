@@ -312,6 +312,9 @@
     <ClInclude Include="ModuleGOManager.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFBXLoader.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -492,6 +495,9 @@
       <Filter>Sources\GameObject System</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGOManager.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFBXLoader.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>

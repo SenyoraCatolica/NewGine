@@ -20,11 +20,11 @@ void GameObject::InitBuffer()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
 
 	//Texture  Coords Buffer
-	if (mesh.tex_coords != nullptr) // If the mesh has a texture, save it in the buffer
+	if (mesh.texture_coords != nullptr) // If the mesh has a texture, save it in the buffer
 	{
-		glGenBuffers(1, (GLuint*) &(mesh.id_texture));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_texture);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 2, mesh.tex_coords, GL_STATIC_DRAW);
+		glGenBuffers(1, (GLuint*) &(mesh.id_texture_coords));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_texture_coords);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float2) * mesh.num_vertices, mesh.texture_coords, GL_STATIC_DRAW);
 	}
 
 	//Normals Buffer

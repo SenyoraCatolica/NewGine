@@ -2,40 +2,41 @@
 
 #include "Globals.h"
 #include <vector>
+#include "MathGeoLib\include\MathGeoLib.h"
 
 
+
+struct MyTexture
+{
+	uint id;
+	std::string path;
+	uint width, height;
+};
 
 struct MyMesh
 {
-	// VERTICES ---------------------
+	//Vertices
 	uint id_vertices = 0;
 	uint num_vertices = 0;
 	float* vertices = nullptr;
 
-	// INDICES -----------------
+	//Indices
 	uint id_indices = 0;
 	uint num_indices = 0;
 	uint* indices = nullptr;
 
-	// TEXTUTE COORDS -----------------
-	uint id_image = 0;
-	std::string tex_name;
-	std::string tex_path;
-
-	uint id_texture = 0;
-	float* tex_coords = nullptr;
-
-	//NORMALS COORDS --------------
+	//Normals
 	uint id_normals = 0;
+	uint num_normals = 0;
 	float* normals = nullptr;
 
-	/*~MyMesh()
-	{
-	delete[] indices;
-	delete[] vertices;
-	delete[] tex_coords;
-	delete[] normals;
-	}*/
+	//Texture
+	uint id_texture_coords = 0;
+	uint num_texture_coords = 0;
+	float2* texture_coords;
+	std::vector<MyTexture*> textures;
+
+	float3 pos, rot, scale;
 };
 
 class GameObject

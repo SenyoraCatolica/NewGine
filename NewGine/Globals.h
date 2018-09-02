@@ -33,4 +33,8 @@ enum update_status
 #define WIN_BORDERLESS false
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
-#define TITLE "3D Motor"
+#define TITLE "NEWGINE"
+
+// Folder directories--------
+#define TEXTURE_FOLDER "Textures/"
+#define MODELS_FOLDER "MODELS/"

@@ -10,6 +10,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	physics = new ModulePhysics3D(this);
 	editor = new ModuleEditor(this);
+	fbx_loader = new ModuleFBXLoader(this);
 	go_manager = new ModuleGOManager(this);
 
 	// The order of calls is very important!
@@ -23,6 +24,7 @@ Application::Application()
 	//AddModule(audio);
 	AddModule(physics);
 	AddModule(editor);
+	AddModule(fbx_loader);
 	AddModule(go_manager);
 
 	
@@ -30,7 +32,6 @@ Application::Application()
 	AddModule(scene_intro);
 
 	// Renderer last!
-	
 	AddModule(renderer3D);
 }
 
