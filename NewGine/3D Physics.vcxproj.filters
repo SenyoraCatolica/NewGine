@@ -312,9 +312,6 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\GameObject System</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleLoad.h">
-      <Filter>Sources\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="MeshComponent.h">
       <Filter>Sources\GameObject System</Filter>
     </ClInclude>
@@ -508,9 +505,6 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Sources\GameObject System</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleLoad.cpp">
-      <Filter>Sources\Modules</Filter>
     </ClCompile>
     <ClCompile Include="MeshComponent.cpp">
       <Filter>Sources\GameObject System</Filter>

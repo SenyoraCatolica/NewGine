@@ -3,7 +3,6 @@
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
 #include "Light.h"
-#include "ModuleLoad.h"
 #include "MaterialComponent.h"
 #include "MeshComponent.h"
 #include "TransformComponent.h"

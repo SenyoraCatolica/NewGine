@@ -11,7 +11,6 @@ Application::Application()
 	physics = new ModulePhysics3D(this);
 	editor = new ModuleEditor(this);
 	go_manager = new ModuleGOManager(this);
-	load = new ModuleLoad(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -25,7 +24,6 @@ Application::Application()
 	AddModule(physics);
 	AddModule(editor);
 	AddModule(go_manager);
-	AddModule(load);
 
 	
 	// Scenes

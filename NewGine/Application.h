@@ -12,7 +12,6 @@
 #include "ModuleCamera3D.h"
 #include "ModulePhysics3D.h"
 #include "ModuleEditor.h"
-#include "ModuleLoad.h"
 #include "ModuleGOManager.h"
 
 using namespace std; 
@@ -28,7 +27,6 @@ public:
 	ModuleCamera3D* camera;
 	ModulePhysics3D* physics;
 	ModuleEditor* editor;
-	ModuleLoad* load;
 	ModuleGOManager* go_manager;
 
 private:

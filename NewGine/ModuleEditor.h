@@ -13,12 +13,6 @@ public:
 
 	update_status Update(float dt);
 
-	void AttributeEditor();
-	void Outliner();
-
-	void ChildHierarchy(GameObject* parent);
-	void CreateHierarchy();
-
 
 	bool CleanUp();
 
