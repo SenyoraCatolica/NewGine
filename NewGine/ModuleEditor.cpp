@@ -41,6 +41,14 @@ update_status ModuleEditor::Update(float dt)
 {
 	HandleMainMenu();
 
+
+	vector<Window*>::iterator it = windows.begin();
+	while (it != windows.end())
+	{
+		(*it)->DrawOnEditor();
+		++it;
+	}
+
 	ImGui::Render();
 	return UPDATE_CONTINUE;
 };

@@ -21,7 +21,6 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);
 	//AddModule(audio);
-	AddModule(editor);
 	AddModule(fbx_loader);
 	AddModule(go_manager);
 
@@ -31,6 +30,8 @@ Application::Application()
 
 	// Renderer last!
 	AddModule(renderer3D);
+	AddModule(editor);
+
 }
 
 Application::~Application()

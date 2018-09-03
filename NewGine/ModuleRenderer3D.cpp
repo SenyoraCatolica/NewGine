@@ -3,16 +3,16 @@
 #include "ModuleRenderer3D.h"
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
-
-#include "ModuleEditor.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
+
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 #pragma comment (lib, "Glew/libx86/glew32.lib") 
 
 #include "Imgui\imgui.h"
+#include "Imgui\imgui_impl_sdl.h"
 #include "Imgui\imgui_impl_sdl_gl3.h"
 
 
@@ -76,6 +76,13 @@ bool ModuleRenderer3D::Init()
 		//Initialize clear color
 		glClearColor(0.f, 0.f, 0.f, 1.f);
 
+		//Check for error
+		error = glGetError();
+		if (error != GL_NO_ERROR)
+		{
+			LOG("Error initializing OpenGL! %s\n", gluErrorString(error));
+			ret = false;
+		}
 
 		GLfloat LightModelAmbient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		glLightModelfv(GL_LIGHT_MODEL_AMBIENT, LightModelAmbient);
@@ -92,35 +99,33 @@ bool ModuleRenderer3D::Init()
 		GLfloat MaterialDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
 		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MaterialDiffuse);
 
-
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_CULL_FACE);
 		lights[0].Active(true);
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
-
-		bool draw_normals = true;
-		bool draw_wireframe = false;
-		bool draw_meshes = true;
-		bool enable_textures = true;
-		bool enable_color_material = true;
-		bool enable_depth = true;
-		bool enable_face_culling = false;
-		bool enable_lighting = true;
 	}
 
+
+	bool draw_normals = true;
+	bool draw_wireframe = false;
+	bool draw_meshes = true;
+	bool enable_textures = true;
+	bool enable_color_material = true;
+	bool enable_depth = true;
+	bool enable_face_culling = false;
+	bool enable_lighting = true;
+
 	// Projection matrix for
-	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT, 60);
+	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT,60);
 
 	ImGui_ImplSdlGL3_Init(App->window->window);
-
 	return ret;
 }
 
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-	ImGui_ImplSdlGL3_NewFrame(App->window->window);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -130,9 +135,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
-	for(uint i = 0; i < MAX_LIGHTS; ++i)
+	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
-
 
 	return UPDATE_CONTINUE;
 }
@@ -141,7 +145,17 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	ImGuiIO& io = ImGui::GetIO();
+
 	SDL_GL_SwapWindow(App->window->window);
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
+	{
+		lights[0].Active(false);
+	}
+	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_UP)
+	{
+		lights[0].Active(true);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
@@ -149,7 +163,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
-	ImGui_ImplSdlGL3_Shutdown();
+
 	SDL_GL_DeleteContext(context);
 
 	return true;
@@ -186,6 +200,7 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 }
 
 
+
 void ModuleRenderer3D::DrawMesh(MyMesh m)
 {
 	if (m.num_vertices > 0 && m.num_indices > 0)
@@ -209,8 +224,8 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 			{
 				glEnable(GL_TEXTURE_2D);
 				glBindTexture(GL_TEXTURE_2D, 0);
+
 				
-				//bind textures
 				for (int i = 0; i < m.textures.size(); i++)
 				{
 					glBindTexture(GL_TEXTURE_2D, m.textures[i]->id);
@@ -322,3 +337,4 @@ void ModuleRenderer3D::SetEnableLight(const bool active)
 	else
 		glDisable(GL_LIGHTING);
 }
+
