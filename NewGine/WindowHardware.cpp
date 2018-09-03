@@ -34,8 +34,11 @@ void WindowHardware::DrawOnEditor()
 	if (active == false)
 		return;
 
-	if (ImGui::CollapsingHeader("HARDWARE"))
-	{
+		ImGui::Begin("HARDWARE");
+
+		ImGui::SetWindowSize(ImVec2(400, 300));
+		ImGui::SetWindowPos(ImVec2(1000, 250));
+	
 		ImGui::Text("SDL Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%i.%i.%i", sdl_vers.major, sdl_vers.minor, sdl_vers.patch);
 		ImGui::Separator();
 		ImGui::Text("CPU's:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%i, (Cache: %ikb)", cpu_numbers, cpu_cache);
@@ -46,5 +49,7 @@ void WindowHardware::DrawOnEditor()
 		ImGui::Text("GPU Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_VERSION));
 		ImGui::Text("OpenGL Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_SHADING_LANGUAGE_VERSION));
 		ImGui::Text("Glew Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glewGetString(GLEW_VERSION));
-	}
+	
+		ImGui::End();
+
 }

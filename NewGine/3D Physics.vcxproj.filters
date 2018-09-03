@@ -318,6 +318,9 @@
     <ClInclude Include="WindowConfig.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="WindowAtributeEditor.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -501,6 +504,9 @@
       <Filter>Sources\Windows</Filter>
     </ClCompile>
     <ClCompile Include="WindowConfig.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowAtributeEditor.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
   </ItemGroup>

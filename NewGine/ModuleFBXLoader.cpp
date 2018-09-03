@@ -117,6 +117,7 @@ MyMesh ModuleFBXLoader::LoadMesh(const aiMesh* mesh, const aiScene* scene, const
 		{
 			m.normals = new float[m.num_vertices * 3];
 			memcpy(m.normals, mesh->mNormals, sizeof(float)*m.num_vertices * 3);
+			m.num_normals = mesh->mNormals->Length();
 		}
 
 		if (scene->HasMaterials())
@@ -136,6 +137,17 @@ MyMesh ModuleFBXLoader::LoadMesh(const aiMesh* mesh, const aiScene* scene, const
 
 			m.textures.push_back(tex);
 		}
+
+		aiQuaternion rotation;
+		aiVector3D position;
+		aiVector3D scale;
+
+		scene->mRootNode->mTransformation.Decompose(scale, rotation, position);
+
+		m.rot.x = rotation.x; m.rot.y = rotation.y; m.rot.z = rotation.z;
+		m.pos.x = position.x; m.pos.y = position.y; m.pos.z = position.z;
+		m.scale.x = scale.x; m.scale.y = scale.y; m.scale.z = scale.z;
+
 	}
 
 	return m;

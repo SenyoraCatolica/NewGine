@@ -48,9 +48,11 @@ void WindowConfig::DrawOnEditor()
 
 	if (active)
 	{
+
 		ImGui::Begin("Configuration", &active);
 
-		ImGui::PushItemWidth(-140);
+		ImGui::SetWindowSize(ImVec2(400, 300));
+		ImGui::SetWindowPos(ImVec2(1000, 550));
 
 		ApplicationUI();
 		WindowUI();

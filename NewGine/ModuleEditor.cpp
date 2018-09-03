@@ -23,9 +23,11 @@ bool ModuleEditor::Start()
 
 	windows.push_back(configwindow = new WindowConfig(App));
 	windows.push_back(hardwarewindow = new WindowHardware(App));
+	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
 
 	configwindow->SetActive(config_active);
 	hardwarewindow->SetActive(hardware_active);
+	atributeeditorwindow->SetActive(atributeeditor_active);
 
 	return ret;
 };

@@ -6,6 +6,7 @@
 #include "Window.h"
 #include "WindowConfig.h"
 #include "WindowHardware.h"
+#include "WindowAtributeEditor.h"
 
 class ModuleEditor : public Module
 {
@@ -25,9 +26,10 @@ private:
 	vector<Window*> windows;
 	WindowConfig* configwindow;
 	WindowHardware* hardwarewindow;
+	WindowAtributeEditor* atributeeditorwindow;
 
 	bool config_active = true;
 	bool hardware_active = true;
-
+	bool atributeeditor_active = true;
 
 };
