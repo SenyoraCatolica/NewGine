@@ -34,6 +34,11 @@ private:
 	Timer	ms_timer;
 	float	dt;
 	list<Module*> list_modules;
+	int fps = 60;
+	int capped_ms = -1;
+	int frame_count = 0;
+	int last_sec_frame_count = 0;
+	Timer last_sec_frame_time;
 
 public:
 
@@ -45,6 +50,9 @@ public:
 	bool CleanUp();
 	void RequestBrowser(const char* link);
 
+	void SetMaxFPS(int max_fps);
+	int GetFPS();
+
 private:
 
 	void AddModule(Module* mod);
@@ -52,3 +60,5 @@ private:
 	void FinishUpdate();
 	
 };
+
+extern Application* App;

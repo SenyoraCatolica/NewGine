@@ -27,6 +27,18 @@ public:
 
 	void DrawMesh(MyMesh m);
 
+	bool GetEnableTextures() const;
+	bool GetEnableColorMaterial() const;
+	bool GetEnableDepth() const;
+	bool GetEnableCullFace() const;
+	bool GetEnableLight() const;
+
+	void SetEnableDepth(const bool active);
+	void SetEnableCullFace(const bool active);
+	void SetEnableLight(const bool active);
+	void SetEnableTextures(const bool active);
+	void SetEnableColorMaterial(const bool active);
+
 public:
 
 	Light lights[MAX_LIGHTS];

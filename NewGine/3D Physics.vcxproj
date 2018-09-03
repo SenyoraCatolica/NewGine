@@ -166,6 +166,9 @@
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="WindowConfig.h" />
+    <ClInclude Include="WindowHardware.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -226,6 +229,9 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WindowConfig.cpp" />
+    <ClCompile Include="WindowHardware.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ListIterator.snippet" />

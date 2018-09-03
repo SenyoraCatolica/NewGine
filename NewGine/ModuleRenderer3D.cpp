@@ -140,7 +140,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-	ImGui::Render();
+	ImGuiIO& io = ImGui::GetIO();
 	SDL_GL_SwapWindow(App->window->window);
 	return UPDATE_CONTINUE;
 }
@@ -248,4 +248,77 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 		//wireframe should be disabled here
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
+}
+
+//Getters
+bool ModuleRenderer3D::GetEnableTextures() const
+{
+	return enable_textures;
+}
+bool ModuleRenderer3D::GetEnableColorMaterial() const
+{
+	return enable_color_material;
+}
+bool ModuleRenderer3D::GetEnableDepth() const
+{
+	return enable_depth;
+}
+bool ModuleRenderer3D::GetEnableCullFace() const
+{
+	return enable_face_culling;
+}
+bool ModuleRenderer3D::GetEnableLight() const
+{
+	return enable_lighting;
+}
+
+//Setters
+void ModuleRenderer3D::SetEnableTextures(const bool active)
+{
+	enable_textures = active;
+
+	if (enable_textures)
+		glEnable(GL_TEXTURE_2D);
+	else
+		glDisable(GL_TEXTURE_2D);
+}
+
+void ModuleRenderer3D::SetEnableColorMaterial(const bool active)
+{
+	enable_color_material = active;
+
+	if (enable_color_material)
+		glEnable(GL_COLOR_MATERIAL);
+	else
+		glDisable(GL_COLOR_MATERIAL);
+}
+
+void ModuleRenderer3D::SetEnableDepth(const bool active)
+{
+	enable_depth = active;
+
+	if (enable_depth)
+		glEnable(GL_DEPTH);
+	else
+		glDisable(GL_DEPTH);
+}
+
+void ModuleRenderer3D::SetEnableCullFace(const bool active)
+{
+	enable_face_culling = active;
+
+	if (enable_face_culling)
+		glEnable(GL_CULL_FACE);
+	else
+		glDisable(GL_CULL_FACE);
+}
+
+void ModuleRenderer3D::SetEnableLight(const bool active)
+{
+	enable_lighting = active;
+
+	if (enable_lighting)
+		glEnable(GL_LIGHTING);
+	else
+		glDisable(GL_LIGHTING);
 }

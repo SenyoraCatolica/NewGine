@@ -37,6 +37,8 @@ public:
 
 	void Rotate(float x, float y);
 
+	vec GetPosition();
+	vec GetReference();
 
 	//Transform a 3D point to a point of the screen
 	void From3Dto2D(vec point, int& x, int& y); 
@@ -48,6 +50,7 @@ private:
 public:
 	
 	vec X, Y, Z, Position, Reference;
+	float speed;
 
 private:
 

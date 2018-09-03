@@ -62,19 +62,24 @@ bool Application::Init()
 	LOG("Application Start --------------");
 	i = list_modules.begin();
 
-	while(i != list_modules.end() && ret == true)
+	while (i != list_modules.end() && ret == true)
 	{
 		ret = (*i)->Start();
 		++i;
 	}
-	
+
+	capped_ms = 1000 / fps;
+
 	ms_timer.Start();
+	last_sec_frame_time.Start();
+
 	return ret;
 }
 
 // ---------------------------------------------
 void Application::PrepareUpdate()
 {
+	frame_count++;
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
 }
@@ -82,6 +87,18 @@ void Application::PrepareUpdate()
 // ---------------------------------------------
 void Application::FinishUpdate()
 {
+	if (last_sec_frame_time.Read() > 1000)
+	{
+		last_sec_frame_time.Start();
+		last_sec_frame_count = frame_count;
+		frame_count = 0;
+	}
+
+	uint32_t last_frame_ms = ms_timer.Read();
+	if (capped_ms > 0 && last_frame_ms < capped_ms)
+	{
+		SDL_Delay(capped_ms - last_frame_ms);
+	}
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules
@@ -89,7 +106,7 @@ update_status Application::Update()
 {
 	update_status ret = UPDATE_CONTINUE;
 	PrepareUpdate();
-	
+
 	list<Module*>::iterator i = list_modules.begin();
 
 	while (i != list_modules.end() && ret == UPDATE_CONTINUE)
@@ -100,7 +117,7 @@ update_status Application::Update()
 
 	i = list_modules.begin();
 
-	while(i != list_modules.end() && ret == UPDATE_CONTINUE)
+	while (i != list_modules.end() && ret == UPDATE_CONTINUE)
 	{
 		ret = (*i)->Update(dt);
 		++i;
@@ -113,6 +130,7 @@ update_status Application::Update()
 		ret = (*i)->PostUpdate(dt);
 		i++;
 	}
+
 
 	FinishUpdate();
 	return ret;
@@ -142,4 +160,16 @@ void Application::AddModule(Module* mod)
 void Application::RequestBrowser(const char* link)
 {
 	ShellExecute(0, 0, link, 0, 0, SW_SHOW);
+}
+
+void Application::SetMaxFPS(int max_fps)
+{
+	fps = max_fps;
+	if (fps == 0) fps = -1;
+	capped_ms = 1000 / fps;
+}
+
+int Application::GetFPS()
+{
+	return last_sec_frame_count;
 }

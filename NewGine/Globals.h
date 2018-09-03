@@ -38,3 +38,6 @@ enum update_status
 // Folder directories--------
 #define TEXTURE_FOLDER "Game/Textures/"
 #define MODELS_FOLDER "MODELS/"
+
+#define GPU_TOTAL_AVAILABLE_MEM 0x9048
+#define GPU_CURRENT_AVAILABLE_MEM 0x9049

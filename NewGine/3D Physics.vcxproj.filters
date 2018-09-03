@@ -37,6 +37,9 @@
     <Filter Include="Sources\GameObject System">
       <UniqueIdentifier>{4e43d7d5-b0ba-45a9-ae18-eec5a3aec82d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Windows">
+      <UniqueIdentifier>{3f1de6bc-e176-42ae-bb34-8d5267764d41}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -306,6 +309,15 @@
     <ClInclude Include="ModuleFBXLoader.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowHardware.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowConfig.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -481,6 +493,15 @@
     </ClCompile>
     <ClCompile Include="ModuleFBXLoader.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowHardware.cpp">
+      <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowConfig.cpp">
+      <Filter>Sources\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
