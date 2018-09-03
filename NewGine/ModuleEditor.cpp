@@ -18,15 +18,13 @@ bool ModuleEditor::Start()
 	bool ret = true;
 
 	//Set Camera Position
-	App->camera->Move(vec(10.0f, 25.0f, -30.0f));
-	App->camera->LookAt(vec(-10, -2, 0));
+	App->camera->Move(vec(18.0f, 23.0f, -27.0f));
+	App->camera->LookAt(vec(-2, -1.5, 1.3));
 
 	windows.push_back(configwindow = new WindowConfig(App));
-	windows.push_back(hardwarewindow = new WindowHardware(App));
 	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
 
 	configwindow->SetActive(config_active);
-	hardwarewindow->SetActive(hardware_active);
 	atributeeditorwindow->SetActive(atributeeditor_active);
 
 	return ret;
@@ -88,7 +86,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		ImGui::Separator();
 
-		if (ImGui::MenuItem("Hardware"))
+		if (ImGui::MenuItem("Atribute Editor"))
 		{
 			hardwarewindow->SetActive(!hardware_active);
 		}

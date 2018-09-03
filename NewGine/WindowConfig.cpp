@@ -6,6 +6,10 @@
 #include "ModuleCamera3D.h"
 #include "ModuleInput.h"
 
+#include "Glew\include\glew.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
 
 #include "Imgui/imgui.h"
 #include "Glew\include\glew.h"
@@ -16,6 +20,10 @@ WindowConfig::WindowConfig(Application* app) : Window(app)
 {
 	//FPS Graphs
 	App->SetMaxFPS(max_fps);
+	SDL_GetVersion(&sdl_vers);
+	cpu_numbers = SDL_GetCPUCount();
+	cpu_cache = SDL_GetCPUCacheLineSize();
+	system_ram = SDL_GetSystemRAM() / 1024;
 }
 
 WindowConfig::~WindowConfig()
@@ -41,11 +49,6 @@ void WindowConfig::DrawOnEditor()
 		fps.push_back(frames);
 	}
 
-
-	glGetIntegerv(GPU_CURRENT_AVAILABLE_MEM, &available_vram);
-	available_vram /= 1000;
-	usage_vram = initial_available_vram - available_vram;
-
 	if (active)
 	{
 
@@ -55,6 +58,7 @@ void WindowConfig::DrawOnEditor()
 		ImGui::SetWindowPos(ImVec2(1000, 550));
 
 		ApplicationUI();
+		Hardware();
 		WindowUI();
 		Renderer();
 		Camera();
@@ -88,6 +92,23 @@ void WindowConfig::ApplicationUI()
 
 		sprintf_s(title, 25, "Milliseconds %.1f", ms[ms.size() - 1]);
 		ImGui::PlotHistogram("##framerate", &ms[0], ms.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
+	}
+}
+
+void WindowConfig::Hardware()
+{
+	if (ImGui::CollapsingHeader("Hardware"))
+	{
+		ImGui::Text("SDL Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%i.%i.%i", sdl_vers.major, sdl_vers.minor, sdl_vers.patch);
+		ImGui::Separator();
+		ImGui::Text("CPU's:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%i, (Cache: %ikb)", cpu_numbers, cpu_cache);
+		ImGui::Text("System RAM:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%i Gb", system_ram);
+		ImGui::Separator();
+		ImGui::Text("GPU Vendor:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_VENDOR));
+		ImGui::Text("GPU:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_RENDERER));
+		ImGui::Text("GPU Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_VERSION));
+		ImGui::Text("OpenGL Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glGetString(GL_SHADING_LANGUAGE_VERSION));
+		ImGui::Text("Glew Version:"); ImGui::SameLine(); ImGui::TextColored(ImVec4(1.0f, 1.0f, 0.0f, 1.0f), "%s", glewGetString(GLEW_VERSION));
 	}
 }
 

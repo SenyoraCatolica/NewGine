@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "SDL\include\SDL.h"
 #include <vector>
 
 
@@ -19,6 +20,7 @@ private:
 	void ApplicationUI();
 	void Renderer();
 	void WindowUI();
+	void Hardware();
 
 
 private:
@@ -28,11 +30,10 @@ private:
 	std::vector<float> ms;
 
 	//Hardware specs
-	std::string caps;
-	int total_vram;
-	int initial_available_vram;
-	int available_vram;
-	int usage_vram;
+	SDL_version sdl_vers;
+	int cpu_numbers = 0;
+	int cpu_cache = 0;
+	int system_ram = 0;
 
 public:
 	int max_fps = 60;
