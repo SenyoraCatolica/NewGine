@@ -39,6 +39,9 @@ public:
 	void SetEnableTextures(const bool active);
 	void SetEnableColorMaterial(const bool active);
 
+	bool LoadConfig(JSON_Object* data);
+	bool SaveConfig(JSON_Object* data)const;
+
 public:
 
 	Light lights[MAX_LIGHTS];

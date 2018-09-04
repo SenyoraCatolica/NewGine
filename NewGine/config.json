@@ -6,9 +6,9 @@
         },
         "camera": {
             "pos": {
-                "x": 24.567438125610352,
-                "y": 15.480230331420898,
-                "z": -26.285966873168945
+                "x": 22.33885383605957,
+                "y": 13.54820442199707,
+                "z": 31.707426071166992
             },
             "reference": {
                 "x": -2,
@@ -24,6 +24,16 @@
             "window_mode": 0,
             "vsync": true,
             "title": "NEWGINE"
+        },
+        "renderer": {
+            "draw_normals": false,
+            "draw_wireframe": false,
+            "draw_meshes": true,
+            "enable_textures": true,
+            "enable_color": true,
+            "enable_depth": true,
+            "enable_face_culling": true,
+            "enable_lighting": true
         }
     },
     "name": "",

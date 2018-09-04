@@ -338,3 +338,34 @@ void ModuleRenderer3D::SetEnableLight(const bool active)
 		glDisable(GL_LIGHTING);
 }
 
+bool ModuleRenderer3D::LoadConfig(JSON_Object* data)
+{
+	bool ret = true;
+
+	draw_normals = json_object_get_boolean(data, "draw_normals");
+	draw_wireframe = json_object_get_boolean(data, "draw_wireframe");
+	draw_meshes = json_object_get_boolean(data, "draw_meshes");
+	enable_depth = json_object_get_boolean(data, "enable_depth");
+	enable_face_culling = json_object_get_boolean(data, "enable_face_culling");
+	enable_lighting = json_object_get_boolean(data, "enable_lighting");
+	enable_color_material = json_object_get_boolean(data, "enable_color");
+	enable_textures = json_object_get_boolean(data, "enable_textures");
+
+	return ret;
+}
+
+bool ModuleRenderer3D::SaveConfig(JSON_Object* data) const
+{
+	bool ret = true;
+
+	json_object_set_boolean(data, "draw_normals", draw_normals);
+	json_object_set_boolean(data, "draw_wireframe", draw_wireframe);
+	json_object_set_boolean(data, "draw_meshes", draw_meshes);
+	json_object_set_boolean(data, "enable_depth", enable_depth);
+	json_object_set_boolean(data, "enable_face_culling", enable_face_culling);
+	json_object_set_boolean(data, "enable_lighting", enable_lighting);
+	json_object_set_boolean(data, "enable_color", enable_color_material);
+	json_object_set_boolean(data, "enable_textures", enable_textures);
+
+	return ret;
+}
