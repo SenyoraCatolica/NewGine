@@ -8,3 +8,8 @@ void Window::SetActive(bool value)
 {
 	active = value;
 }
+
+bool Window::GetActive()
+{
+	return active;
+}

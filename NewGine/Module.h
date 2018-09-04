@@ -1,4 +1,7 @@
 #pragma once
+#include "JSON\parson.h"
+#include <string>
+
 
 class Application;
 struct PhysBody3D;
@@ -9,6 +12,7 @@ private :
 	bool enabled;
 
 public:
+	
 	std::string name;
 
 

@@ -4,9 +4,12 @@
 #include "Imgui\imgui.h"
 #include "Glew\include\glew.h"
 #include "glut\glut.h"
+#include "JSON\parson.h"
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
-{};
+{
+	name = "editor";
+};
 
 ModuleEditor::~ModuleEditor()
 {
@@ -18,14 +21,10 @@ bool ModuleEditor::Start()
 	bool ret = true;
 
 	//Set Camera Position
-	App->camera->Move(vec(18.0f, 23.0f, -27.0f));
-	App->camera->LookAt(vec(-2, -1.5, 1.3));
+	//App->camera->Move(vec(18.0f, 23.0f, -27.0f));
+	//App->camera->LookAt(vec(-2, -1.5, 1.3));
 
-	windows.push_back(configwindow = new WindowConfig(App));
-	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
-
-	configwindow->SetActive(config_active);
-	atributeeditorwindow->SetActive(atributeeditor_active);
+	InitWindows();
 
 	return ret;
 };
@@ -88,7 +87,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::MenuItem("Atribute Editor"))
 		{
-			hardwarewindow->SetActive(!hardware_active);
+			//hardwarewindow->SetActive(!hardware_active);
 		}
 
 		ImGui::EndMenu();
@@ -141,4 +140,42 @@ bool ModuleEditor::HandleMainMenu()
 	ImGui::EndMainMenuBar();
 
 	return true;
+}
+
+void ModuleEditor::InitWindows()
+{
+	windows.push_back(configwindow = new WindowConfig(App));
+	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
+	
+	config_active = configwindow->active;
+	atributeeditor_active = atributeeditorwindow->active;
+	//configwindow->SetActive(config_active);
+	//atributeeditorwindow->SetActive(atributeeditor_active);
+}
+
+bool ModuleEditor::LoadConfig(JSON_Object* data)
+{
+	bool ret = true;
+
+	//This shouldn't be here, but it's needed to load "is_open" booleans
+	InitWindows();
+
+	configwindow->active = json_object_get_boolean(data, "configuration_active");
+	atributeeditorwindow->active = json_object_get_boolean(data, "atributeeditor_active");
+	//demo
+	//console
+
+	return ret;
+}
+
+bool ModuleEditor::SaveConfig(JSON_Object* data) const
+{
+	bool ret = true;
+
+	json_object_set_boolean(data, "configuration_active", configwindow->active);
+	json_object_set_boolean(data, "atributeeditor_active", atributeeditorwindow->active);
+	//demo
+	//console
+
+	return ret;
 }

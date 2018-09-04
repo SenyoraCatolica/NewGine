@@ -52,6 +52,9 @@ bool Application::Init()
 {
 	bool ret = true;
 
+	LoadConfig();
+
+
 	// Call Init() in all modules
 	list<Module*>::iterator i = list_modules.begin();
 
@@ -143,6 +146,8 @@ update_status Application::Update()
 bool Application::CleanUp()
 {
 	bool ret = true;
+
+	SaveConfig();
 
 	list<Module*>::reverse_iterator i = list_modules.rbegin();
 

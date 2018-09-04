@@ -145,3 +145,32 @@ void ModuleWindow::SetHeight(int height)
 	this->height = height;
 	SDL_SetWindowSize(window, width, height);
 }
+
+bool ModuleWindow::LoadConfig(JSON_Object* data)
+{
+	bool ret = true;
+
+	title = json_object_get_string(data, "title");
+	width = json_object_get_number(data, "width");
+	height = json_object_get_number(data, "height");
+
+	switch ((int)json_object_get_number(data, "window_mode"))
+	{
+	case WINDOW_MODE::RESIZABLE: win_mode = RESIZABLE; break;
+	case WINDOW_MODE::FULL_DESKTOP: win_mode = FULL_DESKTOP; break;
+	case WINDOW_MODE::FULLSCREEN: win_mode = FULLSCREEN; break;
+	}
+	return ret;
+}
+
+bool ModuleWindow::SaveConfig(JSON_Object* data) const
+{
+	bool ret = true;
+
+	json_object_set_number(data, "width", width);
+	json_object_set_number(data, "height", height);
+	json_object_set_number(data, "window_mode", (int)win_mode);
+	json_object_set_string(data, "title", title);
+
+	return ret;
+}

@@ -43,6 +43,9 @@ public:
 	//Transform a 3D point to a point of the screen
 	void From3Dto2D(vec point, int& x, int& y); 
 
+	bool LoadConfig(JSON_Object* data);
+	bool SaveConfig(JSON_Object* data) const;
+
 private:
 
 	void CalculateViewMatrix();

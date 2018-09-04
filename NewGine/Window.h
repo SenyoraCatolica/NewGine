@@ -16,9 +16,9 @@ public:
 
 	virtual void DrawOnEditor() {};
 	void SetActive(bool value);
-
-protected:
+	bool GetActive();
 
 	bool active = false;
+
 };
 #endif

@@ -20,6 +20,10 @@ public:
 
 
 	bool HandleMainMenu();
+	void InitWindows();
+
+	bool LoadConfig(JSON_Object* data);
+	bool SaveConfig(JSON_Object* data) const;
 
 private:
 

@@ -33,6 +33,9 @@ public:
 	int GetHeight();
 	void SetHeight(int height);
 
+	bool LoadConfig(JSON_Object* data);
+	bool SaveConfig(JSON_Object* data)const;
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
@@ -44,6 +47,7 @@ private:
 	int width;
 	int height;
 	WINDOW_MODE win_mode;
+	const char* title = TITLE;
 };
 
 #endif // __ModuleWindow_H__

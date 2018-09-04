@@ -321,6 +321,9 @@
     <ClInclude Include="WindowAtributeEditor.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="JSON\parson.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -508,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="WindowAtributeEditor.cpp">
       <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="JSON\parson.c">
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

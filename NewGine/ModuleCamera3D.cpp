@@ -8,6 +8,8 @@
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	name = "camera";
+
 	CalculateViewMatrix();
 
 	X = vec(1.0f, 0.0f, 0.0f);
@@ -275,4 +277,41 @@ vec ModuleCamera3D::GetPosition()
 vec ModuleCamera3D::GetReference()
 {
 	return Reference;
+}
+
+//--------------------------------------------------------------------
+bool ModuleCamera3D::LoadConfig(JSON_Object* data)
+{
+	bool ret = true;
+
+	JSON_Object* pos = json_object_get_object(data, "pos");
+	JSON_Object* reference = json_object_get_object(data, "reference");
+
+	Position.x = json_object_get_number(pos, "x");
+	Position.y = json_object_get_number(pos, "y");
+	Position.z = json_object_get_number(pos, "z");
+	Reference.x = json_object_get_number(reference, "x");
+	Reference.y = json_object_get_number(reference, "y");
+	Reference.z = json_object_get_number(reference, "z");
+	speed = json_object_get_number(data, "speed");
+
+	return ret;
+}
+
+bool ModuleCamera3D::SaveConfig(JSON_Object* data) const
+{
+	bool ret = true;
+
+	JSON_Object* pos = json_object_get_object(data, "pos");
+	JSON_Object* reference = json_object_get_object(data, "reference");
+
+	json_object_set_number(pos, "x", Position.x);
+	json_object_set_number(pos, "y", Position.y);
+	json_object_set_number(pos, "z", Position.z);
+	json_object_set_number(reference, "x", Reference.x);
+	json_object_set_number(reference, "y", Reference.y);
+	json_object_set_number(reference, "z", Reference.z);
+	json_object_set_number(data, "speed", speed);
+
+	return ret;
 }

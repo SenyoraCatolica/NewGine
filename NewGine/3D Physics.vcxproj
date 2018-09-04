@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="Application.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="JSON\parson.h" />
     <ClInclude Include="ModuleFBXLoader.h" />
     <ClInclude Include="ModuleGOManager.h" />
     <ClInclude Include="GameObject.h" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="JSON\parson.c" />
     <ClCompile Include="ModuleFBXLoader.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
