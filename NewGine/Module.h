@@ -9,6 +9,10 @@ private :
 	bool enabled;
 
 public:
+	std::string name;
+
+
+public:
 	Application* App;
 
 	Module(Application* parent, bool start_enabled = true) : App(parent)
@@ -47,6 +51,13 @@ public:
 		return true; 
 	}
 
-	virtual void OnCollision(PhysBody3D* body1, PhysBody3D* body2)
-	{}
+	virtual bool LoadConfig(JSON_Object* data)
+	{
+		return true;
+	}
+
+	virtual bool SaveConfig(JSON_Object* data) const
+	{
+		return true;
+	}
 };

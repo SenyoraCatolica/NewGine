@@ -1,4 +1,7 @@
 #include "Application.h"
+#include "JSON\parson.h"
+#include "Module.h"
+
 
 Application::Application()
 {
@@ -173,4 +176,58 @@ void Application::SetMaxFPS(int max_fps)
 int Application::GetFPS()
 {
 	return last_sec_frame_count;
+}
+
+
+bool Application::LoadConfig()
+{
+	bool ret = true;
+
+	//LoadData from Config
+	JSON_Value* config = json_parse_file("config.json");
+
+	assert(config != nullptr);
+
+	//Geting App data
+	JSON_Object* data = json_value_get_object(config);
+	JSON_Object* app_data = json_object_get_object(data, "App");
+
+	// Call LoadConfig() in all modules
+	std::list<Module*>::const_iterator it = list_modules.begin();
+	while (it != list_modules.end())
+	{
+		JSON_Object* module_config = json_object_get_object(app_data, (*it)->name.c_str());
+		ret = (*it)->LoadConfig(module_config);
+		++it;
+	}
+
+	json_value_free(config);
+
+	return ret;
+}
+
+bool Application::SaveConfig()
+{
+	bool ret = true;
+
+	JSON_Value* file = json_parse_file("config.json");
+	JSON_Object* config = json_value_get_object(file);
+	JSON_Object* app_config = json_object_get_object(config, "App");
+
+	json_object_set_string(config, "name", name.c_str());
+	json_object_set_string(config, "organization", organization.c_str());
+
+	// Call SaceConfig() in all modules
+	std::list<Module*>::const_iterator it = list_modules.begin();
+	while (it != list_modules.end())
+	{
+		JSON_Object* module_config = json_object_get_object(app_config,(*it)->name.c_str());
+		ret = (*it)->SaveConfig(module_config);
+		++it;
+	}
+
+	json_serialize_to_file_pretty(file, "config.json");
+	json_value_free(file);
+
+	return ret;
 }
