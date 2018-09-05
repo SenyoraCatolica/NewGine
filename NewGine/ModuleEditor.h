@@ -7,6 +7,7 @@
 #include "WindowConfig.h"
 #include "WindowHardware.h"
 #include "WindowAtributeEditor.h"
+#include "WindowConsole.h"
 
 class ModuleEditor : public Module
 {
@@ -32,8 +33,8 @@ private:
 	WindowHardware* hardwarewindow;
 	WindowAtributeEditor* atributeeditorwindow;
 
-	bool config_active = true;
-	bool hardware_active = true;
-	bool atributeeditor_active = true;
+	bool config_active;
+	bool atributeeditor_active;
+	bool console_active;
 
 };

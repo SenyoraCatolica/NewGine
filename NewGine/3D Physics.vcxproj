@@ -170,6 +170,7 @@
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowAtributeEditor.h" />
     <ClInclude Include="WindowConfig.h" />
+    <ClInclude Include="WindowConsole.h" />
     <ClInclude Include="WindowHardware.h" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +236,7 @@
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowAtributeEditor.cpp" />
     <ClCompile Include="WindowConfig.cpp" />
+    <ClCompile Include="WindowConsole.cpp" />
     <ClCompile Include="WindowHardware.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -73,7 +73,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::MenuItem("Console"))
 		{
-			//Call Console
+			//Call Console  TODO
 		}
 
 		ImGui::Separator();
@@ -87,7 +87,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::MenuItem("Atribute Editor"))
 		{
-			//hardwarewindow->SetActive(!hardware_active);
+			atributeeditorwindow->SetActive(!atributeeditor_active);
 		}
 
 		ImGui::EndMenu();
@@ -146,22 +146,22 @@ void ModuleEditor::InitWindows()
 {
 	windows.push_back(configwindow = new WindowConfig(App));
 	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
+	//windows.push_back(console);  TODO
 	
 	config_active = configwindow->active;
 	atributeeditor_active = atributeeditorwindow->active;
-	//configwindow->SetActive(config_active);
-	//atributeeditorwindow->SetActive(atributeeditor_active);
+	console_active = console->active;
 }
 
 bool ModuleEditor::LoadConfig(JSON_Object* data)
 {
 	bool ret = true;
 
-	//This shouldn't be here, but it's needed to load "is_open" booleans
 	InitWindows();
 
 	configwindow->active = json_object_get_boolean(data, "configuration_active");
 	atributeeditorwindow->active = json_object_get_boolean(data, "atributeeditor_active");
+	//TODO
 	//demo
 	//console
 
@@ -174,6 +174,7 @@ bool ModuleEditor::SaveConfig(JSON_Object* data) const
 
 	json_object_set_boolean(data, "configuration_active", configwindow->active);
 	json_object_set_boolean(data, "atributeeditor_active", atributeeditorwindow->active);
+	//TODO
 	//demo
 	//console
 
