@@ -24,8 +24,6 @@ bool ModuleEditor::Start()
 	//App->camera->Move(vec(18.0f, 23.0f, -27.0f));
 	//App->camera->LookAt(vec(-2, -1.5, 1.3));
 
-	InitWindows();
-
 	return ret;
 };
 
@@ -68,7 +66,7 @@ bool ModuleEditor::HandleMainMenu()
 		ImGui::EndMenu();
 	}
 
-	if (ImGui::BeginMenu("View"))
+	if (ImGui::BeginMenu("Window"))
 	{
 
 		if (ImGui::MenuItem("Console"))
@@ -78,16 +76,16 @@ bool ModuleEditor::HandleMainMenu()
 
 		ImGui::Separator();
 
-		if (ImGui::MenuItem("Configuration"))
+		if (ImGui::Checkbox("Configuration", &config_active))
 		{
-			configwindow->SetActive(!config_active);
+			configwindow->SetActive(config_active);
 		}
 
 		ImGui::Separator();
 
-		if (ImGui::MenuItem("Atribute Editor"))
+		if (ImGui::Checkbox("Atribute Editor", &atributeeditor_active))
 		{
-			atributeeditorwindow->SetActive(!atributeeditor_active);
+			atributeeditorwindow->SetActive(atributeeditor_active);
 		}
 
 		ImGui::EndMenu();
@@ -148,9 +146,7 @@ void ModuleEditor::InitWindows()
 	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
 	//windows.push_back(console);  TODO
 	
-	config_active = configwindow->active;
-	atributeeditor_active = atributeeditorwindow->active;
-	console_active = console->active;
+	//console_active = console->active;
 }
 
 bool ModuleEditor::LoadConfig(JSON_Object* data)
@@ -164,6 +160,9 @@ bool ModuleEditor::LoadConfig(JSON_Object* data)
 	//TODO
 	//demo
 	//console
+
+	config_active = configwindow->active;
+	atributeeditor_active = atributeeditorwindow->active;
 
 	return ret;
 }

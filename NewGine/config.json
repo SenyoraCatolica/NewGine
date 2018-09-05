@@ -2,20 +2,20 @@
     "App": {
         "editor": {
             "configuration_active": true,
-            "atributeeditor_active": false
+            "atributeeditor_active": true
         },
         "camera": {
             "pos": {
-                "x": 29.777915954589844,
-                "y": 26.170309066772461,
-                "z": -5.2808942794799805
+                "x": -28.875106811523438,
+                "y": 32.124916076660156,
+                "z": 2.5316400527954102
             },
             "reference": {
                 "x": -2,
                 "y": 1.5,
                 "z": 1.2999999523162842
             },
-            "speed": 0.053999997675418854
+            "speed": 0.051000002771615982
         },
         "window": {
             "width": 1362,
