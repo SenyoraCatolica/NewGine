@@ -69,7 +69,7 @@ bool ModuleEditor::HandleMainMenu()
 	if (ImGui::BeginMenu("Window"))
 	{
 
-		if (ImGui::MenuItem("Console"))
+		if (ImGui::Checkbox("Console", &console_active))
 		{
 			//Call Console  TODO
 		}
@@ -88,8 +88,13 @@ bool ModuleEditor::HandleMainMenu()
 			atributeeditorwindow->SetActive(atributeeditor_active);
 		}
 
+		if (ImGui::Checkbox("Demo", &demo_active)){}
+
 		ImGui::EndMenu();
 	}
+
+	if (demo_active)
+		ImGui::ShowTestWindow();
 
 	if (ImGui::BeginMenu("Help"))
 	{

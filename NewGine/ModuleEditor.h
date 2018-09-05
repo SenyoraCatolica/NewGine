@@ -36,5 +36,6 @@ private:
 	bool config_active;
 	bool atributeeditor_active;
 	bool console_active;
+	bool demo_active;
 
 };
