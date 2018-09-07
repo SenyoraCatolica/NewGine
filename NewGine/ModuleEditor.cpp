@@ -100,7 +100,7 @@ bool ModuleEditor::HandleMainMenu()
 	{
 		if (ImGui::MenuItem("Documentation"))
 		{
-			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/3DE/wiki", NULL, NULL, SW_MINIMIZE);
+			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/wiki", NULL, NULL, SW_MINIMIZE);
 			LOG("Open Link");
 		}
 
@@ -109,7 +109,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::MenuItem("Download Latest"))
 		{
-			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/3DE/releases", NULL, NULL, SW_MINIMIZE);
+			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/releases", NULL, NULL, SW_MINIMIZE);
 			LOG("Open Link");
 		}
 
@@ -118,7 +118,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::MenuItem("Report a bug"))
 		{
-			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/3DE/issues", NULL, NULL, SW_MINIMIZE);
+			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/issues", NULL, NULL, SW_MINIMIZE);
 			LOG("Open Link");
 		}
 
@@ -127,12 +127,11 @@ bool ModuleEditor::HandleMainMenu()
 		if (ImGui::MenuItem("About us"))
 		{
 			ImGui::Text("2Try-Engine");
-			ImGui::Text("This is a small game engine developed by two student of videogames as a class project");
+			ImGui::Text("This is a small game engine developed by a student of videogames as a class project");
 			ImGui::Text("Miquel Girones Bosch");
-			ImGui::Text("Roger Homedes Rius");
 			ImGui::Separator();
 			if (ImGui::SmallButton("Instructions"))
-				App->RequestBrowser("https://github.com/SenyoraCatolica/2Try-Engine/blob/master/README.md");
+				App->RequestBrowser("https://github.com/SenyoraCatolica/NewGine/blob/master/README.md");
 
 			ImGui::EndMenu();
 		}
