@@ -39,6 +39,7 @@ private:
 	int frame_count = 0;
 	int last_sec_frame_count = 0;
 	Timer last_sec_frame_time;
+	uint32_t last_frame_ms = 0;
 
 	std::string name;
 	std::string organization;
@@ -55,6 +56,7 @@ public:
 
 	void SetMaxFPS(int max_fps);
 	int GetFPS();
+	int GetMS();
 
 
 	bool LoadConfig();

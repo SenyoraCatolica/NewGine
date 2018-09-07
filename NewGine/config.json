@@ -2,13 +2,14 @@
     "App": {
         "editor": {
             "configuration_active": true,
-            "atributeeditor_active": true
+            "atributeeditor_active": true,
+            "demo_active": false
         },
         "camera": {
             "pos": {
-                "x": -28.875106811523438,
-                "y": 32.124916076660156,
-                "z": 2.5316400527954102
+                "x": 21.831811904907227,
+                "y": 14.48703670501709,
+                "z": -28.992521286010742
             },
             "reference": {
                 "x": -2,
@@ -26,7 +27,7 @@
             "title": "NEWGINE"
         },
         "renderer": {
-            "draw_normals": false,
+            "draw_normals": true,
             "draw_wireframe": false,
             "draw_meshes": true,
             "enable_textures": true,

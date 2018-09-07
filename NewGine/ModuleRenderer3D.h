@@ -48,16 +48,16 @@ public:
 	SDL_GLContext context;
 	float3x3 NormalMatrix;
 	float4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
-	bool draw_normals = true;
-	bool draw_wireframe = false;
-	bool draw_meshes = true;
+	bool draw_normals;
+	bool draw_wireframe;
+	bool draw_meshes;
 
 private:
 
-	bool enable_textures = true;
-	bool enable_color_material = true;
-	bool enable_depth = true;
-	bool enable_face_culling = false;
-	bool enable_lighting = true;
+	bool enable_textures;
+	bool enable_color_material;
+	bool enable_depth;
+	bool enable_face_culling;
+	bool enable_lighting;
 
 };

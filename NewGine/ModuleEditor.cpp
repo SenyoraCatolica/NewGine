@@ -71,7 +71,7 @@ bool ModuleEditor::HandleMainMenu()
 
 		if (ImGui::Checkbox("Console", &console_active))
 		{
-			//Call Console  TODO
+			//Call Console  2DO
 		}
 
 		ImGui::Separator();
@@ -149,7 +149,7 @@ void ModuleEditor::InitWindows()
 {
 	windows.push_back(configwindow = new WindowConfig(App));
 	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
-	//windows.push_back(console);  TODO
+	//windows.push_back(console);  2DO
 	
 	//console_active = console->active;
 }
@@ -162,8 +162,8 @@ bool ModuleEditor::LoadConfig(JSON_Object* data)
 
 	configwindow->active = json_object_get_boolean(data, "configuration_active");
 	atributeeditorwindow->active = json_object_get_boolean(data, "atributeeditor_active");
-	//TODO
-	//demo
+	demo_active = json_object_get_boolean(data, "demo_active");
+	//2DO
 	//console
 
 	config_active = configwindow->active;
@@ -178,8 +178,8 @@ bool ModuleEditor::SaveConfig(JSON_Object* data) const
 
 	json_object_set_boolean(data, "configuration_active", configwindow->active);
 	json_object_set_boolean(data, "atributeeditor_active", atributeeditorwindow->active);
-	//TODO
-	//demo
+	json_object_set_boolean(data, "demo_active", demo_active);
+	//2DO
 	//console
 
 	return ret;

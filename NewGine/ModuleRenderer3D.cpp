@@ -18,6 +18,7 @@
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	name = "renderer";
 }
 
 // Destructor
@@ -105,16 +106,6 @@ bool ModuleRenderer3D::Init()
 		glEnable(GL_LIGHTING);
 		glEnable(GL_COLOR_MATERIAL);
 	}
-
-
-	bool draw_normals = true;
-	bool draw_wireframe = false;
-	bool draw_meshes = true;
-	bool enable_textures = true;
-	bool enable_color_material = true;
-	bool enable_depth = true;
-	bool enable_face_culling = false;
-	bool enable_lighting = true;
 
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT,60);

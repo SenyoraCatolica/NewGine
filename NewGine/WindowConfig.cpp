@@ -89,9 +89,8 @@ void WindowConfig::ApplicationUI()
 		sprintf_s(title, 25, "Framerate %.1f", fps [fps.size() - 1]);
 		ImGui::PlotHistogram("##framerate", &fps[0], fps.size(), 0, NULL, 0.0f, 100.0f, ImVec2(310, 100));
 
-
-		sprintf_s(title, 25, "Milliseconds %.1f", ms[ms.size() - 1]);
-		ImGui::PlotHistogram("##framerate", &ms[0], ms.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));
+		/*sprintf_s(title, 25, "Milliseconds %.1f", ms[ms.size() - 1]);
+		ImGui::PlotHistogram("##framerate", &ms[0], ms.size(), 0, title, 0.0f, 40.0f, ImVec2(310, 100));*/
 	}
 }
 
