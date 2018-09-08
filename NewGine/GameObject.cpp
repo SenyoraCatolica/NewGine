@@ -2,6 +2,11 @@
 #include "Globals.h"
 #include "Glew\include\glew.h"
 
+#include "TransformComponent.h"
+#include "MeshComponent.h"
+#include "MaterialComponent.h"
+#include "CameraComponent.h"
+
 
 GameObject::GameObject() {}
 GameObject::~GameObject() {}
@@ -45,4 +50,76 @@ MyMesh GameObject::GetMesh()
 void GameObject::SetMesh(MyMesh m)
 {
 	mesh = m;
+}
+
+
+//Components===================================================================
+
+Component* GameObject::AddComponent(COMPONENT_TYPE type, uint id_num)
+{
+	if (type == COMPONENT_TRANSFORM)
+	{
+		TransformComponent* transform = new TransformComponent(type, this);
+		components.push_back(transform);
+		return transform;
+	}
+
+	if (type == COMPONENT_MATERIAL)
+	{
+		MaterialComponent* material = new MaterialComponent(type, this);
+		components.push_back(material);
+		return material;
+	}
+
+	if (type == COMPONENT_MESH)
+	{
+		MeshComponent* mesh = new MeshComponent(type, this);
+		components.push_back(mesh);
+		return mesh;
+	}
+
+	if (type == COMPONENT_CAMERA)
+	{
+		CameraComponent* camera = new CameraComponent(type, this);
+		components.push_back(camera);
+		return camera;
+	}
+}
+
+bool GameObject::DeleteComponent(Component* ComponentToDelete)
+{
+	bool ret = false;
+
+	//2DO
+
+	return ret;
+}
+
+bool GameObject::HasComponent(COMPONENT_TYPE type)
+{
+	std::list<Component*>::iterator it = components.begin();
+	while (it != components.end())
+	{
+		if ((*it)->type == type)
+		{
+			return true;
+		}
+		it++;
+	}
+	return false;
+}
+
+Component* GameObject::GetComponent(COMPONENT_TYPE type)
+{
+	std::list<Component*>::iterator it = components.begin();
+	while (it != components.end())
+	{
+		if ((*it)->type == type)
+		{
+			return (*it);
+		}
+
+		it++;
+	}
+	return nullptr;
 }

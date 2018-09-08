@@ -50,8 +50,16 @@ public:
 
 	void InitBuffer();
 
+	//2DO this will be deprecated
 	MyMesh GetMesh();
 	void SetMesh(MyMesh m);
+
+	Component* AddComponent(COMPONENT_TYPE type, uint id_num);
+	bool DeleteComponent(Component* ComponentToDelete);
+
+	bool HasComponent(COMPONENT_TYPE type);
+	Component* GetComponent(COMPONENT_TYPE type);
+
 
 private:
 	bool wireframe;
