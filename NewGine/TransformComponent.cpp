@@ -77,7 +77,6 @@ void TransformComponent::SetTranslation(float x, float y, float z)
 
 }
 
-
 void TransformComponent::SetRotation(float3 rot)
 {
 	rotation_degree = rot;
