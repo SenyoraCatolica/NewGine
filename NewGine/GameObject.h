@@ -59,5 +59,5 @@ private:
 public:
 	MyMesh mesh;
 
-	list<Component*> components;
+	std::list<Component*> components;
 };

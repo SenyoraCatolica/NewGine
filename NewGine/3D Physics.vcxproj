@@ -78,9 +78,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="JSON\parson.h" />
+    <ClInclude Include="MaterialComponent.h" />
+    <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="ModuleFBXLoader.h" />
     <ClInclude Include="ModuleGOManager.h" />
     <ClInclude Include="GameObject.h" />
@@ -168,6 +171,7 @@
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowAtributeEditor.h" />
     <ClInclude Include="WindowConfig.h" />
@@ -176,9 +180,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="JSON\parson.c" />
+    <ClCompile Include="MaterialComponent.cpp" />
+    <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="ModuleFBXLoader.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -235,6 +242,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowAtributeEditor.cpp" />
     <ClCompile Include="WindowConfig.cpp" />

@@ -330,6 +330,18 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\GameObject System</Filter>
     </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>Sources\GameObject System</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Sources\GameObject System</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialComponent.h">
+      <Filter>Sources\GameObject System</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraComponent.h">
+      <Filter>Sources\GameObject System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -525,6 +537,18 @@
       <Filter>Sources\Windows</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
+      <Filter>Sources\GameObject System</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformComponent.cpp">
+      <Filter>Sources\GameObject System</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshComponent.cpp">
+      <Filter>Sources\GameObject System</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialComponent.cpp">
+      <Filter>Sources\GameObject System</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraComponent.cpp">
       <Filter>Sources\GameObject System</Filter>
     </ClCompile>
   </ItemGroup>
