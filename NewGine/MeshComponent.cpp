@@ -3,17 +3,8 @@
 
 struct MyMesh;
 
-MeshComponent::MeshComponent(GameObject* game_object)
+MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object) : Component(type, game_object, 1)
 {
-	parent = game_object;
-	local_box.SetNegativeInfinity();
-	global_box.SetNegativeInfinity();
-}
-
-MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object)
-{
-	this->type = type;
-	parent = game_object;
 	local_box.SetNegativeInfinity();
 	global_box.SetNegativeInfinity();
 }
