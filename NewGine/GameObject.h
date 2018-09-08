@@ -2,7 +2,9 @@
 
 #include "Globals.h"
 #include <vector>
+#include <list>
 #include "MathGeoLib\include\MathGeoLib.h"
+#include "Component.h"
 
 
 
@@ -56,4 +58,6 @@ private:
 
 public:
 	MyMesh mesh;
+
+	list<Component*> components;
 };

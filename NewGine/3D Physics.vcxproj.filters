@@ -327,6 +327,9 @@
     <ClInclude Include="WindowConsole.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Sources\GameObject System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -520,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="WindowConsole.cpp">
       <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Sources\GameObject System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
