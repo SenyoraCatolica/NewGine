@@ -46,6 +46,7 @@ class GameObject
 public:
 
 	GameObject();
+	GameObject(const uint64_t uid);
 	~GameObject();
 
 	void InitBuffer();
@@ -54,18 +55,75 @@ public:
 	MyMesh GetMesh();
 	void SetMesh(MyMesh m);
 
+	const uint64_t GetUID();
+	void DrawLocator();
+	void DrawAABB();
+	void DrawOBB();
+
+	void Select();
+	void Unselect();
+
+	void SetOriginalAABB();
+	void UpdateAABB();
+
+	void UpdateTransformMatrix();
+
+	void SetActive(bool state);
+	bool IsActive();
+
+	void SetStatic(bool Stat);
+	bool IsStatic();
+
+	void SetName(const char* newName);
+	const char* GetName();
+
+
+
 	Component* AddComponent(COMPONENT_TYPE type, uint id_num);
 	bool DeleteComponent(Component* ComponentToDelete);
 
 	bool HasComponent(COMPONENT_TYPE type);
-	Component* GetComponent(COMPONENT_TYPE type);
+
+	template <typename typeComp>
+	std::vector<typeComp*> GetComponent()
+	{
+		std::vector<typeComp*> ret;
+		if (HasComponent(typeComp::GetType()))
+		{
+			std::vector<Component*>::iterator it = components.begin();
+			while (it != components.end())
+			{
+				if ((*it)->GetType() == typeComp::GetType())
+				{
+					ret.push_back((typeComp*)(*it));
+				}
+				it++;
+			}
+		}
+		return ret;
+	}
 
 
 private:
-	bool wireframe;
+	uint64_t uid;
+	bool active = true;
+	bool is_static = false;
+	bool selected = false;
+
+	AABB originalAABB;
+	TransformComponent* transform = nullptr;
+
+
 
 public:
-	MyMesh mesh;
 
+	char name[NAME_MAX_LEN];
+	AABB aabb;
+	OBB obb;
+
+	MyMesh mesh;
+	GameObject* parent = nullptr;
+
+	std::vector<Component*> childs;
 	std::list<Component*> components;
 };

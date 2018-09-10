@@ -11,6 +11,8 @@ void log(const char file[], int line, const char* format, ...);
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
 #define HAVE_M_PI
+#define NAME_MAX_LEN 1024
+
 
 
 typedef unsigned int uint;
@@ -41,3 +43,19 @@ enum update_status
 
 #define GPU_TOTAL_AVAILABLE_MEM 0x9048
 #define GPU_CURRENT_AVAILABLE_MEM 0x9049
+
+
+uint64_t GenerateUUID()
+{
+	const unsigned int bytes = sizeof(long long);
+	char myString[bytes];
+	uint64_t ret;
+
+	for (int n = 0; n < bytes; n++)
+	{
+		myString[n] = rand() % 255;
+	}
+
+	memcpy(&ret, myString, bytes);
+	return ret;
+}

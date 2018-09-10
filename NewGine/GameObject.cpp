@@ -8,8 +8,26 @@
 #include "CameraComponent.h"
 
 
-GameObject::GameObject() {}
-GameObject::~GameObject() {}
+GameObject::GameObject() 
+{
+	uid = GenerateUUID();
+	aabb.SetNegativeInfinity();
+	originalAABB.SetNegativeInfinity();
+	strcpy(name, "Unnamed");
+}
+
+GameObject::GameObject(const uint64_t uid)
+{
+	this->uid = uid;
+	aabb.SetNegativeInfinity();
+	originalAABB.SetNegativeInfinity();
+	strcpy(name, "Unnamed");
+}
+
+GameObject::~GameObject() 
+{
+	//2DO implement destructor
+}
 
 void GameObject::InitBuffer()
 {
@@ -50,6 +68,108 @@ MyMesh GameObject::GetMesh()
 void GameObject::SetMesh(MyMesh m)
 {
 	mesh = m;
+}
+
+const uint64_t GameObject::GetUID() { return uid; }
+
+void GameObject::DrawLocator()
+{
+	//2DO implement locator
+}
+
+void GameObject::DrawAABB()
+{
+	if (aabb.IsFinite())
+	{
+		math::float3 corners[8];
+		aabb.GetCornerPoints(corners);
+	}
+}
+
+void GameObject::DrawOBB()
+{
+	if (obb.IsFinite())
+	{
+		math::float3 corners[8];
+		obb.GetCornerPoints(corners);
+	}
+}
+
+void GameObject::Select()
+{
+	//2DO implement select
+}
+
+void GameObject::Unselect()
+{
+	//2DO implement unselect
+}
+
+void GameObject::SetOriginalAABB()
+{
+
+	//2DO Enclose on a aabb the object if has mesh
+
+	UpdateAABB();
+}
+
+void GameObject::UpdateAABB()
+{
+	aabb.SetNegativeInfinity();
+	obb.SetNegativeInfinity();
+	if (originalAABB.IsFinite())
+	{
+		obb = originalAABB;
+		obb.Transform(transform->GetGlobalTranform().Transposed());
+		aabb.Enclose(obb);
+	}
+}
+
+void GameObject::UpdateTransformMatrix()
+{
+	//2DO
+
+	if (HasComponent(COMPONENT_TYPE::COMPONENT_TRANSFORM))
+	{
+		//Call Update global tranform
+	}
+
+	UpdateAABB();
+
+	//Update cameras position
+	
+
+	//Call again for every child
+}
+
+void GameObject::SetActive(bool state)
+{
+	active = state;
+}
+
+bool GameObject::IsActive()
+{
+	return active;
+}
+
+void GameObject::SetStatic(bool Stat)
+{
+	is_static = Stat;
+}
+
+bool GameObject::IsStatic()
+{
+	return is_static;
+}
+
+void GameObject::SetName(const char* newName)
+{
+	strcpy(name, newName);
+}
+
+const char* GameObject::GetName()
+{
+	return name;
 }
 
 
@@ -107,19 +227,4 @@ bool GameObject::HasComponent(COMPONENT_TYPE type)
 		it++;
 	}
 	return false;
-}
-
-Component* GameObject::GetComponent(COMPONENT_TYPE type)
-{
-	std::list<Component*>::iterator it = components.begin();
-	while (it != components.end())
-	{
-		if ((*it)->type == type)
-		{
-			return (*it);
-		}
-
-		it++;
-	}
-	return nullptr;
 }
