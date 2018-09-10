@@ -5,6 +5,7 @@
 #include <list>
 #include "MathGeoLib\include\MathGeoLib.h"
 #include "Component.h"
+#include "TransformComponent.h"
 
 
 

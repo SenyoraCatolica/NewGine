@@ -40,6 +40,9 @@
     <Filter Include="Sources\Windows">
       <UniqueIdentifier>{3f1de6bc-e176-42ae-bb34-8d5267764d41}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Resources">
+      <UniqueIdentifier>{2aa22b7f-0ae6-4a21-8453-d9afeb364334}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -342,6 +345,12 @@
     <ClInclude Include="CameraComponent.h">
       <Filter>Sources\GameObject System</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleResourceManager.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="MyResource.h">
+      <Filter>Sources\Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -550,6 +559,12 @@
     </ClCompile>
     <ClCompile Include="CameraComponent.cpp">
       <Filter>Sources\GameObject System</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleResourceManager.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="MyResource.cpp">
+      <Filter>Sources\Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
