@@ -9,15 +9,6 @@
 #include "ResourceMesh.h"
 
 
-
-struct MyTexture
-{
-	uint id;
-	std::string path;
-	uint width, height;
-};
-
-
 class GameObject
 {
 public:
