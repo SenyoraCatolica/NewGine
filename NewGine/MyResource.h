@@ -5,6 +5,7 @@
 
 class MyResource
 {
+public:
 	enum R_STATE{LOADED, UNLOADED, TO_DELETE, TO_REIMPORT};
 	enum R_TYPE{NONE, MESH, MATERIAL, FOLDER};
 

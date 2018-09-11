@@ -6,6 +6,7 @@
 #include "MathGeoLib\include\MathGeoLib.h"
 #include "Component.h"
 #include "TransformComponent.h"
+#include "ResourceMesh.h"
 
 
 
@@ -16,31 +17,6 @@ struct MyTexture
 	uint width, height;
 };
 
-struct MyMesh
-{
-	//Vertices
-	uint id_vertices = 0;
-	uint num_vertices = 0;
-	float* vertices = nullptr;
-
-	//Indices
-	uint id_indices = 0;
-	uint num_indices = 0;
-	uint* indices = nullptr;
-
-	//Normals
-	uint id_normals = 0;
-	uint num_normals = 0;
-	float* normals = nullptr;
-
-	//Texture
-	uint id_texture_coords = 0;
-	uint num_texture_coords = 0;
-	float2* texture_coords;
-	std::vector<MyTexture*> textures;
-
-	float3 pos, rot, scale;
-};
 
 class GameObject
 {

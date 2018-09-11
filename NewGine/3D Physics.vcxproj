@@ -172,6 +172,8 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="ResourceMaterial.h" />
+    <ClInclude Include="ResourceMesh.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="Window.h" />
@@ -245,6 +247,8 @@
     <ClCompile Include="MyResource.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Random.cpp" />
+    <ClCompile Include="ResourceMaterial.cpp" />
+    <ClCompile Include="ResourceMesh.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformComponent.cpp" />
     <ClCompile Include="Window.cpp" />
