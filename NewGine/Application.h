@@ -15,6 +15,7 @@
 #include "ModuleFBXLoader.h"
 #include "ModuleResourceManager.h"
 #include "ModuleImporter.h"
+#include "ModuleConsole.h"
 
 using namespace std; 
 
@@ -32,6 +33,7 @@ public:
 	ModuleFBXLoader* fbx_loader;
 	ModuleResourceManager* resource_manager;
 	ModuleImporter* importer;
+	ModuleConsole* console;
 
 private:
 

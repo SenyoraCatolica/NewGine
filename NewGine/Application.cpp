@@ -6,6 +6,7 @@
 Application::Application()
 {
 	window = new ModuleWindow(this);
+	console = new ModuleConsole(this);
 	input = new ModuleInput(this);
 	//audio = new ModuleAudio(this, true);
 	scene_intro = new ModuleSceneIntro(this);
@@ -23,6 +24,7 @@ Application::Application()
 
 	// Main Modules
 	AddModule(window);
+	AddModule(console);
 	AddModule(camera);
 	AddModule(input);
 	//AddModule(audio);

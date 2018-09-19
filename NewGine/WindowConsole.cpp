@@ -11,7 +11,7 @@ WindowConsole::~WindowConsole()
 
 void WindowConsole::AddLog(const char* log, bool error)
 {
-	Log* temp = new Log();
+	ConsoleLog* temp = new ConsoleLog();
 	temp->data = log;
 	temp->error = error;
 	Logs.push_back(temp);
@@ -54,7 +54,7 @@ void WindowConsole::DrawOnEditor()
 
 		ImGui::Separator();
 
-		for (std::list<Log*>::iterator it = Logs.begin(); it != Logs.end(); ++it)
+		for (std::list<ConsoleLog*>::iterator it = Logs.begin(); it != Logs.end(); ++it)
 		{
 			if (it._Ptr->_Myval->error)
 				ImGui::TextColored(ImColor(1.0f, 0.4f, 0.4f, 1.0f), it._Ptr->_Myval->data);
