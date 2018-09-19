@@ -5,6 +5,9 @@
 #include "ModuleResourceManager.h"
 #include "MyResource.h"
 
+#include "MeshImporter.h"
+#include "MaterialImporter.h"
+
 #include "Assimp/include/cimport.h"
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
@@ -16,6 +19,7 @@
 
 class ModuleImporter : public Module
 {
+public:
 	ModuleImporter(Application* app, bool start_enabled = true);
 	~ModuleImporter();
 
@@ -28,7 +32,7 @@ class ModuleImporter : public Module
 	bool Import(const char* file, MyResource::R_STATE state);
 
 public:
-	MeshImport * iMesh = nullptr;
-	MaterialImport* iMaterial = nullptr;
+	MeshImporter * impMesh = nullptr;
+	MaterialImport* impMaterial = nullptr;
 
 };

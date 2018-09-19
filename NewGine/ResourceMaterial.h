@@ -12,6 +12,7 @@ struct MyTexture
 
 class ResourceMaterial : public MyResource
 {
+public:
 	ResourceMaterial(uint uid);
 	virtual ~ResourceMaterial();
 

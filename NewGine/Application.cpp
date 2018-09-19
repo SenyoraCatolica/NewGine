@@ -14,6 +14,8 @@ Application::Application()
 	editor = new ModuleEditor(this);
 	fbx_loader = new ModuleFBXLoader(this);
 	go_manager = new ModuleGOManager(this);
+	resource_manager = new ModuleResourceManager(this);
+	importer = new ModuleImporter(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -26,6 +28,8 @@ Application::Application()
 	//AddModule(audio);
 	AddModule(fbx_loader);
 	AddModule(go_manager);
+	AddModule(resource_manager);
+	AddModule(importer);
 
 	
 	// Scenes

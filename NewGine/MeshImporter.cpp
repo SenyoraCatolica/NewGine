@@ -3,6 +3,7 @@
 #include "MeshComponent.h"
 #include "TransformComponent.h"
 #include "MaterialComponent.h"
+#include "ResourceMaterial.h"
 #include "Globals.h"
 
 MeshImporter::MeshImporter(Application* app) : App(app){}
@@ -81,19 +82,21 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 					aiString path;
 					material->GetTexture(aiTextureType_DIFFUSE, i, &path);
 
+					// 2DO:Path should be only the name here with texture folder
+
+					ResourceMaterial* rMat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(path.C_Str()); //2DO this path should be name
+					if (rMat != nullptr)
+					{
+						if (rMat->GetState() == MyResource::R_STATE::UNLOADED)
+						{
+							std::string temp = std::to_string(rMat->GetUUID());
+							//App->importer->impMaterial->LoadResource(temp.c_str(), rMat); //2DO load res mat
+						}
+
+						//2Do merge rMat and cMat
+					}
 				}
 			}
-
-			aiQuaternion rotation;
-			aiVector3D position;
-			aiVector3D scale;
-
-			scene->mRootNode->mTransformation.Decompose(scale, rotation, position);
-
-			TransformComponent* cTrans = (TransformComponent*)go->AddComponent(COMPONENT_TRANSFORM, GenerateUUID());
-			cTrans->SetTranslation(position.x, position.y, position.z);
-			cTrans->SetRotation(rotation.x, rotation.y, rotation.z, rotation.w);
-			cTrans->SetScale(scale.x, scale.y, scale.z);
 		}
 	}
 

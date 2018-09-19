@@ -13,6 +13,8 @@
 #include "ModuleEditor.h"
 #include "ModuleGOManager.h"
 #include "ModuleFBXLoader.h"
+#include "ModuleResourceManager.h"
+#include "ModuleImporter.h"
 
 using namespace std; 
 
@@ -28,6 +30,8 @@ public:
 	ModuleEditor* editor;
 	ModuleGOManager* go_manager;
 	ModuleFBXLoader* fbx_loader;
+	ModuleResourceManager* resource_manager;
+	ModuleImporter* importer;
 
 private:
 
