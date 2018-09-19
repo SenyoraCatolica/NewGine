@@ -43,6 +43,9 @@
     <Filter Include="Sources\Resources">
       <UniqueIdentifier>{2aa22b7f-0ae6-4a21-8453-d9afeb364334}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Importer">
+      <UniqueIdentifier>{bfa6dc03-17ba-447c-9bf5-266dfda9b3c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -357,6 +360,15 @@
     <ClInclude Include="ResourceMaterial.h">
       <Filter>Sources\Resources</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleImporter.h">
+      <Filter>Sources\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="MaterialImporter.h">
+      <Filter>Sources\Importer</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshImporter.h">
+      <Filter>Sources\Importer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -577,6 +589,15 @@
     </ClCompile>
     <ClCompile Include="ResourceMaterial.cpp">
       <Filter>Sources\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleImporter.cpp">
+      <Filter>Sources\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="MaterialImporter.cpp">
+      <Filter>Sources\Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshImporter.cpp">
+      <Filter>Sources\Importer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

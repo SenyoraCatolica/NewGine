@@ -83,7 +83,9 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="JSON\parson.h" />
     <ClInclude Include="MaterialComponent.h" />
+    <ClInclude Include="MaterialImporter.h" />
     <ClInclude Include="MeshComponent.h" />
+    <ClInclude Include="MeshImporter.h" />
     <ClInclude Include="ModuleFBXLoader.h" />
     <ClInclude Include="ModuleGOManager.h" />
     <ClInclude Include="GameObject.h" />
@@ -160,6 +162,7 @@
     <ClInclude Include="MathGeoLib\include\Math\TransformOps.h" />
     <ClInclude Include="MathGeoLib\include\Time\Clock.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="ModuleImporter.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -189,7 +192,9 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="JSON\parson.c" />
     <ClCompile Include="MaterialComponent.cpp" />
+    <ClCompile Include="MaterialImporter.cpp" />
     <ClCompile Include="MeshComponent.cpp" />
+    <ClCompile Include="MeshImporter.cpp" />
     <ClCompile Include="ModuleFBXLoader.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -239,6 +244,7 @@
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleEditor.cpp" />
+    <ClCompile Include="ModuleImporter.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleResourceManager.cpp" />
