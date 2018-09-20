@@ -1,8 +1,13 @@
 #pragma once
 
 #include "Window.h"
-#include "ModuleConsole.h"
 #include <list>
+
+struct ConsoleLog {
+	const char* data = NULL;
+	bool error = false;
+};
+
 
 class WindowConsole : public Window
 {
@@ -16,6 +21,5 @@ public:
 private:
 	char InputBuff[256];
 	bool ScrollToBottom;
-	std::list<ConsoleLog*> Logs;
 };
 

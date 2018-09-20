@@ -12,17 +12,13 @@ ModuleConsole::~ModuleConsole()
 	ClearLog();
 }
 
-void ModuleConsole::AddLog(const char* log, bool error = false)
-{
-	ConsoleLog* tmp = new ConsoleLog();
-	tmp->data = log;
-	tmp->error = error;
-	logs.push_back(tmp);
-
-	//2DO add LOG
-}
-
 void ModuleConsole::ClearLog()
 {
-	logs.clear();
+	messages.clear();
+}
+
+void ModuleConsole::AddMessage(const char* message)
+{
+	messages.push_back(message);
+	LOG(message);
 }

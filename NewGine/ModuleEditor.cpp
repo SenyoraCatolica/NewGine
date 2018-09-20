@@ -17,7 +17,7 @@ ModuleEditor::~ModuleEditor()
 
 bool ModuleEditor::Start()
 {
-	LOG("Loading Editor");
+	App->console->AddMessage("Loading Editor");
 	bool ret = true;
 
 	//Set Camera Position
@@ -29,7 +29,7 @@ bool ModuleEditor::Start()
 
 bool ModuleEditor::CleanUp()
 {
-	LOG("Unloading Editor");
+	App->console->AddMessage("Unloading Editor");
 
 	return true;
 };
@@ -101,7 +101,7 @@ bool ModuleEditor::HandleMainMenu()
 		if (ImGui::MenuItem("Documentation"))
 		{
 			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/wiki", NULL, NULL, SW_MINIMIZE);
-			LOG("Open Link");
+			App->console->AddMessage("Open Link");
 		}
 
 		ImGui::Separator();
@@ -110,7 +110,7 @@ bool ModuleEditor::HandleMainMenu()
 		if (ImGui::MenuItem("Download Latest"))
 		{
 			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/releases", NULL, NULL, SW_MINIMIZE);
-			LOG("Open Link");
+			App->console->AddMessage("Open Link");
 		}
 
 		ImGui::Separator();
@@ -119,7 +119,7 @@ bool ModuleEditor::HandleMainMenu()
 		if (ImGui::MenuItem("Report a bug"))
 		{
 			ShellExecute(NULL, "open", "https://github.com/SenyoraCatolica/NewGine/issues", NULL, NULL, SW_MINIMIZE);
-			LOG("Open Link");
+			App->console->AddMessage("Open Link");
 		}
 
 		ImGui::Separator();

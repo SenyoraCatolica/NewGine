@@ -18,7 +18,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 
 	if (mesh != nullptr)
 	{
-		LOG("Importing Mesh %s", name);
+		App->console->AddMessage("Importing Mesh %s", name);
 		
 		//VERTICES  ===============================================================
 		m->num_vertices = mesh->mNumVertices;
@@ -35,7 +35,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 			{
 				if (mesh->mFaces[j].mNumIndices != 3)
 				{
-					LOG("WARNING, geometry face with != 3 indices!");
+					App->console->AddMessage("WARNING, geometry face with != 3 indices!");
 					return false;
 				}
 				else
@@ -43,7 +43,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 					memcpy(&m->indices[j * 3], mesh->mFaces[j].mIndices, 3 * sizeof(uint));
 				}
 			}
-			LOG("Indices imported");
+			App->console->AddMessage("Indices imported");
 
 			//TEXTURE COORDS  =====================================================
 			if (mesh->HasTextureCoords(0))
@@ -58,7 +58,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 					m->texture_coords[i].x = mesh->mTextureCoords[m->id_texture_coords][i].x;
 					m->texture_coords[i].y = mesh->mTextureCoords[m->id_texture_coords][i].y;
 				}
-				LOG("Texture Coord imported");
+				App->console->AddMessage("Texture Coord imported");
 			}
 
 			//NORMALS  ============================================================
@@ -68,7 +68,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 				memcpy(m->normals, mesh->mNormals, sizeof(float)*m->num_vertices * 3);
 				m->num_normals = mesh->mNormals->Length();
 
-				LOG("Normals Imported");
+				App->console->AddMessage("Normals Imported");
 			}
 
 			if (scene->HasMaterials())
@@ -102,7 +102,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 
 	else
 	{
-		LOG("WARNING! Could not find a mesh to import");
+		App->console->AddMessage("WARNING! Could not find a mesh to import");
 		return false;
 	}
 }

@@ -23,25 +23,25 @@ ModuleInput::~ModuleInput()
 // Called before render is available
 bool ModuleInput::Init()
 {
-	LOG("Init SDL input event system");
+	App->console->AddMessage("Init SDL input event system");
 	bool ret = true;
 	SDL_Init(0);
 
 	if(SDL_InitSubSystem(SDL_INIT_EVENTS) < 0)
 	{
-		LOG("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddMessage("SDL_EVENTS could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
 	if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 	{
-		LOG("SDL_JOYSTICK could not initialize! SDL_Error: %s\n", SDL_GetError());
+		App->console->AddMessage("SDL_JOYSTICK could not initialize! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
 
 	num_joysticks = SDL_NumJoysticks();
 
-	LOG("Joysticks connected: %d", num_joysticks);
+	App->console->AddMessage("Joysticks connected: %d", num_joysticks);
 
 	if (num_joysticks > 0)
 	{
@@ -193,7 +193,7 @@ update_status ModuleInput::PreUpdate(float dt)
 // Called before quitting
 bool ModuleInput::CleanUp()
 {
-	LOG("Quitting SDL input event subsystem");
+	App->console->AddMessage("Quitting SDL input event subsystem");
 
 	SDL_QuitSubSystem(SDL_INIT_EVENTS);
 	SDL_QuitSubSystem(SDL_INIT_JOYSTICK);

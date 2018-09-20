@@ -1,28 +1,14 @@
 #include "WindowConsole.h"
 #include "Imgui\imgui.h"
 #include "Globals.h"
+#include "Application.h"
 
 WindowConsole::WindowConsole(Application* app) : Window(app) {}
 
 WindowConsole::~WindowConsole()
 {
-	ClearLog();
 }
 
-void WindowConsole::AddLog(const char* log, bool error)
-{
-	ConsoleLog* temp = new ConsoleLog();
-	temp->data = log;
-	temp->error = error;
-	Logs.push_back(temp);
-	ScrollToBottom = true;
-}
-
-void WindowConsole::ClearLog()
-{
-	Logs.clear();
-	ScrollToBottom = true;
-}
 
 void WindowConsole::DrawOnEditor()
 {
@@ -37,29 +23,26 @@ void WindowConsole::DrawOnEditor()
 
 		if (ImGui::SmallButton("Add Dummy Text"))
 		{
-			AddLog("1 some text");
-			AddLog("some more text");
-			AddLog("display very important message here!");
+			App->console->AddMessage("1 some text");
+			App->console->AddMessage("some more text");
+			App->console->AddMessage("display very important message here!");
 
 		} ImGui::SameLine();
 
 		if (ImGui::SmallButton("Add Dummy Error"))
-			AddLog("[error] something went wrong", true); ImGui::SameLine();
+			App->console->AddMessage("[error] something went wrong"); ImGui::SameLine();
 
 		if (ImGui::SmallButton("Clear"))
-			ClearLog(); ImGui::SameLine();
+			App->console->ClearLog(); ImGui::SameLine();
 
 		if (ImGui::SmallButton("Scroll to bottom"))
 			ScrollToBottom = true;
 
 		ImGui::Separator();
 
-		for (std::list<ConsoleLog*>::iterator it = Logs.begin(); it != Logs.end(); ++it)
+		for (std::list<ConsoleLog*>::iterator it = App->console->messages.begin; it != App->console->messages.end; ++it)
 		{
-			if (it._Ptr->_Myval->error)
-				ImGui::TextColored(ImColor(1.0f, 0.4f, 0.4f, 1.0f), it._Ptr->_Myval->data);
-			else
-				ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), it._Ptr->_Myval->data);
+			ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), it._Ptr->_Myval->data);
 		}
 	}
 }
