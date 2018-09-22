@@ -1,0 +1,30 @@
+#pragma once
+
+#include "Module.h"
+#include "Globals.h"
+
+struct SDL_RWops;
+int close_sdl_rwops(SDL_RWops *rw);
+
+class ModuleFileSystem : public Module
+{
+public:
+
+	ModuleFileSystem(Application* app, bool start_enabled = true);
+	~ModuleFileSystem();
+
+	bool Init();
+	bool CleanUp();
+
+	bool AddPath(const char* path, const char* mount_point = NULL);
+	bool Exists(const char* file) const;
+	bool IsDirectory(const char* file) const;
+	bool CreateDir(const char* dir);
+
+
+	// Open for Read/Write
+	uint Load(const char* file, char** buffer) const;
+	SDL_RWops* Load(const char* file) const;
+
+	uint Save(const char* file, const char* buffer, uint size) const;
+};

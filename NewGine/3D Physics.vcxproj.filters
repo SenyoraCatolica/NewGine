@@ -312,9 +312,6 @@
     <ClInclude Include="ModuleGOManager.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFBXLoader.h">
-      <Filter>Sources\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Window.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
@@ -370,6 +367,9 @@
       <Filter>Sources\Importer</Filter>
     </ClInclude>
     <ClInclude Include="ModuleConsole.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFileSystem.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
   </ItemGroup>
@@ -603,6 +603,9 @@
       <Filter>Sources\Importer</Filter>
     </ClCompile>
     <ClCompile Include="ModuleConsole.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFileSystem.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>

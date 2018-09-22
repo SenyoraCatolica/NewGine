@@ -1,0 +1,147 @@
+#include "ModuleFileSystem.h"
+#include "SDL\include\SDL.h"
+
+#include "PhysFS\include\physfs.h"
+#pragma comment (lib, "PhysFS/libx86/physfs.lib")
+
+
+ModuleFileSystem::ModuleFileSystem(Application* app, bool start_enabled = true) : Module(app, start_enabled) 
+{
+	name = "file_system";
+
+	if (PHYSFS_isInit() == 0)
+	{
+		char* base_path = SDL_GetBasePath();
+		PHYSFS_init(base_path);
+		SDL_free(base_path);
+
+		AddPath(".\Game");
+	}
+}
+
+ModuleFileSystem::~ModuleFileSystem() 
+{
+	PHYSFS_deinit();
+}
+
+bool ModuleFileSystem::Init()
+{
+
+}
+bool ModuleFileSystem::CleanUp()
+{
+
+}
+
+bool ModuleFileSystem::AddPath(const char* path, const char* mount_point = NULL)
+{
+	bool ret = false;
+
+	if (PHYSFS_mount(path, mount_point, 1) == 0)
+	{
+		LOG("File System error while adding a path or zip(%s): %s\n", path, PHYSFS_getLastError());
+	}
+	else
+	{
+		LOG("Added new path to the File System: %s\n", path);
+		ret = true;
+	}
+
+	return ret;
+}
+
+bool ModuleFileSystem::Exists(const char* file) const
+{
+	return PHYSFS_exists(file) != 0;
+}
+
+bool ModuleFileSystem::IsDirectory(const char* file) const
+{
+	return PHYSFS_isDirectory(file) != 0;
+}
+
+bool ModuleFileSystem::CreateDir(const char* dir)
+{
+	if (!PHYSFS_mkdir(dir))
+	{
+		LOG("Could not create directory: %s", PHYSFS_getLastError());
+		return false;
+	}
+
+	LOG("New directory created: %s", dir);
+	return true;
+}
+
+
+
+// Open for Read/Write
+uint ModuleFileSystem::Load(const char* file, char** buffer) const
+{
+	uint ret = 0;
+
+	PHYSFS_file* open_file = PHYSFS_openRead(file);
+	if (open_file != nullptr)
+	{
+		PHYSFS_sint64 size = PHYSFS_fileLength(open_file);
+		if (size > 0)
+		{
+			*buffer = new char[(uint)size];
+			PHYSFS_sint64 read_file = PHYSFS_read(open_file, *buffer, 1, (PHYSFS_sint32)size);
+
+			if(read_file > 0)
+				ret = (uint)read_file;
+
+			else
+			{
+				RELEASE(buffer);
+				LOG("WARNING! error while reading file %s: %s\n", file, PHYSFS_getLastError());
+			}
+
+			PHYSFS_close(open_file);
+		}
+	}
+
+	else
+		LOG("WARNING! error while opening file %s: %s\n", file, PHYSFS_getLastError());
+
+}
+
+SDL_RWops* ModuleFileSystem::Load(const char* file) const
+{
+	SDL_RWops *ret = NULL;
+	char *buffer;
+	uint size = Load(file, &buffer);
+
+	if (size > 0)
+	{
+		ret = SDL_RWFromConstMem(buffer, size);
+		if (ret != NULL)
+			ret->close = close_sdl_rwops;
+	}
+
+	return ret;
+}
+
+uint ModuleFileSystem::Save(const char* file, const char* buffer, uint size) const
+{
+	uint ret = 0;
+
+	PHYSFS_file* open_file = PHYSFS_openWrite(file);
+
+	if (open_file != nullptr)
+	{
+		PHYSFS_sint64 write_file = PHYSFS_write(open_file, (const void*)buffer, 1, size);
+		if (write_file != size)
+		{
+			LOG("WRNING! error while writing file %s: %s\n", file, PHYSFS_getLastError());
+		}
+		else
+			ret = (uint)write_file;
+
+		PHYSFS_close(open_file);
+	}
+	else
+		LOG("WARNIN! error while opening file %s: %s\n", file, PHYSFS_getLastError());
+
+	return ret;
+}

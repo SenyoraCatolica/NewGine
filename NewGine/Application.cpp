@@ -17,6 +17,7 @@ Application::Application()
 	go_manager = new ModuleGOManager(this);
 	resource_manager = new ModuleResourceManager(this);
 	importer = new ModuleImporter(this);
+	file_system = new ModuleFileSystem(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -25,6 +26,7 @@ Application::Application()
 	// Main Modules
 	AddModule(window);
 	AddModule(console);
+	AddModule(file_system);
 	AddModule(camera);
 	AddModule(input);
 	//AddModule(audio);

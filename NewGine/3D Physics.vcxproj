@@ -87,7 +87,7 @@
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="MeshImporter.h" />
     <ClInclude Include="ModuleConsole.h" />
-    <ClInclude Include="ModuleFBXLoader.h" />
+    <ClInclude Include="ModuleFileSystem.h" />
     <ClInclude Include="ModuleGOManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Globals.h" />
@@ -198,6 +198,7 @@
     <ClCompile Include="MeshImporter.cpp" />
     <ClCompile Include="ModuleConsole.cpp" />
     <ClCompile Include="ModuleFBXLoader.cpp" />
+    <ClCompile Include="ModuleFileSystem.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />

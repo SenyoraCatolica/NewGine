@@ -16,6 +16,7 @@
 #include "ModuleResourceManager.h"
 #include "ModuleImporter.h"
 #include "ModuleConsole.h"
+#include "ModuleFileSystem.h"
 
 using namespace std; 
 
@@ -34,6 +35,7 @@ public:
 	ModuleResourceManager* resource_manager;
 	ModuleImporter* importer;
 	ModuleConsole* console;
+	ModuleFileSystem* file_system;
 
 private:
 
