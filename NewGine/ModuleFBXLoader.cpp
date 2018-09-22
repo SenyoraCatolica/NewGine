@@ -28,17 +28,17 @@ ModuleFBXLoader::~ModuleFBXLoader() {}
 
 bool ModuleFBXLoader::Init()
 {
-	App->console->AddMessage("Creating FBX Loader context");
+	LOG("Creating FBX Loader context");
 
-	struct aiApp->console->AddMessageStream stream;
-	stream = aiGetPredefinedApp->console->AddMessageStream(aiDefaultApp->console->AddMessageStream_DEBUGGER, nullptr);
-	aiAttachApp->console->AddMessageStream(&stream);
+	struct aiLOGStream stream;
+	stream = aiGetPredefinedLOGStream(aiDefaultLOGStream_DEBUGGER, nullptr);
+	aiAttachLOGStream(&stream);
 
 	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION ||
 		iluGetInteger(ILU_VERSION_NUM) < ILU_VERSION ||
 		ilutGetInteger(ILUT_VERSION_NUM) < ILUT_VERSION)
 	{
-		App->console->AddMessage("DevIL version is different\n");
+		LOG("DevIL version is different\n");
 	}
 
 	ilInit();
@@ -89,7 +89,7 @@ MyMesh ModuleFBXLoader::LoadMesh(const aiMesh* mesh, const aiScene* scene, const
 		{
 			if (mesh->mFaces[j].mNumIndices != 3)
 			{
-				App->console->AddMessage("WARNING, geometry face with != 3 indices!");
+				LOG("WARNING, geometry face with != 3 indices!");
 			}
 			else
 			{
@@ -180,14 +180,14 @@ uint ModuleFBXLoader::LoadTexture(const char* path)
 		//convert image
 		loaded = ilConvertImage(ilGetInteger(IL_IMAGE_FORMAT), IL_UNSIGNED_BYTE);
 
-		App->console->AddMessage("Load Texture on path %s with no errors", complete_path);
+		LOG("Load Texture on path %s with no errors", complete_path);
 	}
 
 	//loading failed
 	else
 	{
 		ILenum error = ilGetError();
-		App->console->AddMessage("ERROR on path:%s ERROR: %s", complete_path, iluErrorString(error))
+		LOG("ERROR on path:%s ERROR: %s", complete_path, iluErrorString(error))
 	}
 
 

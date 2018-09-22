@@ -6,7 +6,8 @@
 struct MyTexture
 {
 	uint id;
-	std::string path;
+	std::string name;
+	std::string extension;
 	uint width, height;
 };
 

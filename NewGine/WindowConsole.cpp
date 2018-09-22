@@ -23,14 +23,14 @@ void WindowConsole::DrawOnEditor()
 
 		if (ImGui::SmallButton("Add Dummy Text"))
 		{
-			App->console->AddMessage("1 some text");
-			App->console->AddMessage("some more text");
-			App->console->AddMessage("display very important message here!");
+			LOG("1 some text");
+			LOG("some more text");
+			LOG("display very important message here!");
 
 		} ImGui::SameLine();
 
 		if (ImGui::SmallButton("Add Dummy Error"))
-			App->console->AddMessage("[error] something went wrong"); ImGui::SameLine();
+			LOG("[error] something went wrong"); ImGui::SameLine();
 
 		if (ImGui::SmallButton("Clear"))
 			App->console->ClearLog(); ImGui::SameLine();

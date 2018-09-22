@@ -25,7 +25,7 @@ ModuleSceneIntro::~ModuleSceneIntro()
 // Load assets
 bool ModuleSceneIntro::Start()
 {
-	App->console->AddMessage("Loading Intro assets");
+	LOG("Loading Intro assets");
 	bool ret = true;
 
 	//Create World
@@ -40,7 +40,7 @@ bool ModuleSceneIntro::Start()
 // Load assets
 bool ModuleSceneIntro::CleanUp()
 {
-	App->console->AddMessage("Unloading Intro scene");
+	LOG("Unloading Intro scene");
 
 	return true;
 }
