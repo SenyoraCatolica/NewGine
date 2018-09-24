@@ -1,5 +1,6 @@
 #include "Application.h"
 #include "MaterialImporter.h"
+#include "ResourceMaterial.h"
 
 
 //DEVIL
@@ -22,7 +23,30 @@ bool MaterialImporter::Import(const char* file, uint uuid = 0)
 {
 	bool ret = false;
 
-	//2DO Need to implement filesysytem first
+	char* buffer;
+	uint size = App->file_system->Load(file, &buffer);
+
+	if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
+	{
+		ILuint size_data;
+		ILubyte *data;
+
+		size_data = ilSaveL(IL_DDS, NULL, 0); // Get the size of the data buffer
+
+		if (size_data > 0)
+		{
+			uint64_t nUUID;
+
+			if (uuid = 0)
+				nUUID = GenerateUUID();
+
+			else
+				nUUID = uuid;
+
+			ResourceMaterial* rMat = (ResourceMaterial*)App->resource_manager->CreateResource(MyResource::R_TYPE::MATERIAL, nUUID);
+		}
+
+	}
 }
 
 

@@ -15,7 +15,6 @@ void ResourceMaterial::GenerateResource(MyTexture* tex)
 {
 	texture = new MyTexture();
 	texture->id = tex->id;
-	texture->path = tex->path;
 	texture->height = tex->height;
 	texture->width = tex->width;
 }
