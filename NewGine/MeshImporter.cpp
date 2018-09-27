@@ -6,7 +6,7 @@
 #include "ResourceMaterial.h"
 #include "Globals.h"
 
-#include "Glew\include\glew.h"
+#include "Glew/include/glew.h"
 
 MeshImporter::MeshImporter(Application* app) : App(app){}
 MeshImporter::~MeshImporter(){}
