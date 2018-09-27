@@ -6,6 +6,8 @@
 #include "ResourceMaterial.h"
 #include "Globals.h"
 
+#include "Glew\include\glew.h"
+
 MeshImporter::MeshImporter(Application* app) : App(app){}
 MeshImporter::~MeshImporter(){}
 
@@ -105,4 +107,88 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 		LOG("WARNING! Could not find a mesh to import");
 		return false;
 	}
+}
+
+MyMesh* MeshImporter::LoadMesh(const char* path)
+{
+	MyMesh* mesh;
+
+	char* buffer;
+	if (App->file_system->Load(path, &buffer) != 0)
+	{
+		mesh = new MyMesh();
+		
+		char* cursor = buffer;
+
+		uint header[5];
+		uint bytes = sizeof(header);
+		memcpy(header, cursor, bytes);
+
+		mesh->num_indices = header[0];
+		mesh->num_vertices = header[1];
+		mesh->num_texture_coords = header[3];
+
+		//Indices
+		cursor += bytes;
+		bytes = sizeof(uint) * mesh->num_indices;
+		mesh->indices = new uint[mesh->num_indices];
+		memcpy(mesh->indices, cursor, bytes);
+
+		//Vertices
+		cursor += bytes;
+		bytes = sizeof(float) * mesh->num_vertices * 3;
+		mesh->vertices = new float[mesh->num_vertices * 3];
+		memcpy(mesh->vertices, cursor, bytes);
+
+		//Normals
+		cursor += bytes;
+		if (header[2] != 0)
+		{
+			bytes = sizeof(float) * mesh->num_vertices * 3;
+			mesh->normals = new float[mesh->num_vertices * 3];
+			memcpy(mesh->normals, cursor, bytes);
+
+			cursor += bytes;
+		}
+
+		//Texture coords
+		bytes = sizeof(float) * mesh->num_texture_coords * 2;
+		mesh->texture_coords = new float2[mesh->num_texture_coords];
+		memcpy(mesh->texture_coords, cursor, bytes);
+		cursor += bytes;
+
+
+
+		//Load mesh to VRAM=================================================
+
+		//Vertices
+		glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
+		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->vertices, GL_STATIC_DRAW);
+
+		//Indices 
+		glGenBuffers(1, (GLuint*) &(mesh->id_indices));
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
+
+		//Normals 
+		if (mesh->normals)
+		{
+			glGenBuffers(1, (GLuint*)&(mesh->id_normals));
+			glBindBuffer(GL_ARRAY_BUFFER, mesh->id_normals);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->normals, GL_STATIC_DRAW);
+		}
+
+		//Texture coords
+		glGenBuffers(1, (GLuint*)&(mesh->id_texture_coords));
+		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_texture_coords);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * mesh->num_texture_coords, mesh->texture_coords, GL_STATIC_DRAW);
+
+	}
+
+	if (buffer)
+		delete[] buffer;
+	buffer = nullptr;
+
+	return mesh;
 }

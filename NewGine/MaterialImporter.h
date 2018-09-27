@@ -15,6 +15,8 @@ public:
 
 	bool Import(const char* file, uint uuid = 0);
 	MyTexture* LoadTexture(const char* file);
+	bool LoadTexture(ResourceMaterial* mat);
+
 
 
 private:
