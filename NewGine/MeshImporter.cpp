@@ -192,3 +192,51 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 
 	return mesh;
 }
+
+
+bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
+{
+	bool ret = false;
+
+	uint alloc[4] = { m->num_vertices, m->num_indices, m->num_texture_coords, m->num_normals  };
+	uint size = sizeof(alloc) + (sizeof(float) * alloc[0] * 3) + (sizeof(uint) * alloc[1]) + sizeof(float2) * alloc[2];
+	if (alloc[3] > 0)
+		size += sizeof(float) * alloc[3];
+
+	char* buffer = new char[size];
+	char* cursor = buffer;
+
+	//Header
+	uint bytes = sizeof(alloc);
+	memcpy(cursor, alloc, bytes);
+	cursor += bytes;
+
+	//Vertices
+	bytes = sizeof(float) * alloc[0] * 3;
+	memcpy(cursor, m->vertices, bytes);
+	cursor += bytes;
+
+	//Indices
+	bytes = sizeof(uint) * alloc[1];
+	memcpy(cursor, m->indices, bytes);
+	cursor += bytes;
+
+	//Texture Coords
+	bytes = sizeof(float2) * alloc[4];
+	memcpy(cursor, m->texture_coords, bytes);
+	cursor += bytes;
+
+	if (alloc[3] > 0)
+	{
+		memcpy(cursor, m->normals, bytes);
+	}
+
+	//2DO Create a better save function with uuid, folder and extension
+	ret = App->file_system->Save(name, buffer, size);
+
+	delete[] buffer;
+	buffer = nullptr;
+
+	return ret;
+}
+
