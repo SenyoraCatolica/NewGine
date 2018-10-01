@@ -2,6 +2,7 @@
 
 #include "Module.h"
 #include "Globals.h"
+#include <vector>
 
 struct SDL_RWops;
 int close_sdl_rwops(SDL_RWops *rw);
@@ -21,10 +22,14 @@ public:
 	bool IsDirectory(const char* file) const;
 	bool CreateDir(const char* dir);
 
+	//to check the files of a folder
+	bool GetFilesFromPath(const char* path, std::vector<std::string>& output_files);
+
 
 	// Open for Read/Write
 	uint Load(const char* file, char** buffer) const;
 	SDL_RWops* Load(const char* file) const;
 
 	uint Save(const char* file, const char* buffer, uint size) const;
+	bool Save(const char* file, const char* buffer, uint size, const char* folder, const char* extension);
 };

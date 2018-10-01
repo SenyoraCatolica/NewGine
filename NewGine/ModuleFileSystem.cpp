@@ -72,7 +72,19 @@ bool ModuleFileSystem::CreateDir(const char* dir)
 	return true;
 }
 
+bool ModuleFileSystem::GetFilesFromPath(const char* path, std::vector<std::string>& output_files)
+{
+	char** ef = PHYSFS_enumerateFiles(path);
 
+	for (char** i = ef; *i != NULL; i++)
+	{
+		output_files.push_back(*i);
+	}
+
+	PHYSFS_freeList(ef);
+
+	return (ef != NULL) ? true : false;
+}
 
 // Open for Read/Write
 uint ModuleFileSystem::Load(const char* file, char** buffer) const
@@ -142,6 +154,39 @@ uint ModuleFileSystem::Save(const char* file, const char* buffer, uint size) con
 	}
 	else
 		LOG("WARNIN! error while opening file %s: %s\n", file, PHYSFS_getLastError());
+
+	return ret;
+}
+
+bool ModuleFileSystem::Save(const char* file, const char* buffer, uint size, const char* folder, const char* extension)
+{
+	bool ret = false;
+
+	char complete_name[100];
+	sprintf_s(complete_name, 100, "%s.%s", file, extension);
+
+
+	std::vector<std::string> files;
+	GetFilesFromPath(folder, files);
+	std::vector<std::string>::iterator it = files.begin();
+
+	uint copies = 0;
+
+	while (it != files.end())
+	{
+		if ((*it).compare(complete_name) == 0)
+		{
+			copies++;
+			//Add the number of the copy to the original name to distinguix
+			sprintf_s(complete_name, 100, "%s%d.%s", file, copies, extension);
+			break;
+		}
+	}
+
+	char final_name[500];
+	sprintf_s(final_name, 500, "%s%s", folder, complete_name);
+
+	ret = Save(final_name, buffer, size);
 
 	return ret;
 }
