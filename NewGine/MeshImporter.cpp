@@ -100,6 +100,8 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 				}
 			}
 		}
+
+		SaveMesh(m, name);
 	}
 
 	else
@@ -232,7 +234,7 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
 	}
 
 	//2DO Create a better save function with uuid, folder and extension
-	ret = App->file_system->Save(name, buffer, size);
+	ret = App->file_system->Save(name, buffer, size, MESH_FOLDER, "mesh");
 
 	delete[] buffer;
 	buffer = nullptr;

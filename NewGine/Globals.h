@@ -61,6 +61,9 @@ enum update_status
 #define TEXTURE_FOLDER "Game/Textures/"
 #define MODELS_FOLDER "MODELS/"
 
+#define MESH_FOLDER "Library\\Meshes"
+#define MESH_MATERIAL "Library\\Materials"
+
 #define GPU_TOTAL_AVAILABLE_MEM 0x9048
 #define GPU_CURRENT_AVAILABLE_MEM 0x9049
 
