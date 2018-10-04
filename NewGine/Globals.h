@@ -61,6 +61,9 @@ enum update_status
 #define TEXTURE_FOLDER "Game/Textures/"
 #define MODELS_FOLDER "MODELS/"
 
+//Folders
+#define ASSETS_FOLDER "/Assets/"
+#define LIBRARY_FOLDER "/Library/"
 #define MESH_FOLDER "Library\\Meshes"
 #define MESH_MATERIAL "Library\\Materials"
 

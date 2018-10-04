@@ -85,3 +85,47 @@ MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
 	}
 	return nullptr;
 }
+
+FILE_TYPE TryGetTypeByName(const char* file)
+{
+	FILE_TYPE ret = NONE;
+
+	if (file != nullptr)
+	{
+		char* mesh_extensions[] = { "fbx", "FBX", "obj", "OBJ" };
+		char* material_extensions[] = { "png", "PNG", "tga", "TGA" };
+
+		string name = file;
+		string extension = name.substr(name.find_last_of(".") + 1);
+
+
+		for (int i = 0; i < 4; i++)
+			if (extension.compare(mesh_extensions[i]) == 0)
+				return ret = MESH;
+
+		for (int i = 0; i < 4; i++)
+			if (extension.compare(material_extensions[i]) == 0)
+				return MATERIAL;
+	}
+
+	return ret;
+}
+
+
+void ModuleResourceManager::ImportFile(const char* file)
+{
+	FILE_TYPE type = TryGetTypeByName(file);
+
+	if (type != NONE)
+	{
+		if (App->importer->Import(file, type))
+		{
+
+		}
+	}
+
+	else
+	{
+		LOG("Could not determine the type of the file %s:", file);
+	}
+}

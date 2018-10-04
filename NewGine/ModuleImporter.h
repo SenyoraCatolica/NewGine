@@ -29,10 +29,10 @@ public:
 	bool CleanUp();
 
 
-	bool Import(const char* file, MyResource::R_STATE state);
+	bool Import(const char* file, FILE_TYPE state);
 
 public:
 	MeshImporter * impMesh = nullptr;
-	MaterialImport* impMaterial = nullptr;
+	MaterialImporter* impMaterial = nullptr;
 
 };
