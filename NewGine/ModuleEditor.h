@@ -8,6 +8,7 @@
 #include "WindowHardware.h"
 #include "WindowAtributeEditor.h"
 #include "WindowConsole.h"
+#include "WindowAssets.h"
 
 class ModuleEditor : public Module
 {
@@ -22,6 +23,7 @@ public:
 
 	bool HandleMainMenu();
 	void InitWindows();
+	WindowAssets* GetAssetsWindow();
 
 	bool LoadConfig(JSON_Object* data);
 	bool SaveConfig(JSON_Object* data) const;
@@ -32,10 +34,12 @@ private:
 	WindowConfig* configwindow;
 	WindowHardware* hardwarewindow;
 	WindowAtributeEditor* atributeeditorwindow;
+	WindowAssets* assetswindow;
 
 	bool config_active;
 	bool atributeeditor_active;
 	bool console_active;
 	bool demo_active;
+	bool assets_active;
 
 };

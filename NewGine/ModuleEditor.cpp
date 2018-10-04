@@ -88,6 +88,13 @@ bool ModuleEditor::HandleMainMenu()
 			atributeeditorwindow->SetActive(atributeeditor_active);
 		}
 
+		if (ImGui::Checkbox("Assets", &assets_active))
+		{
+			assetswindow->SetActive(assets_active);
+		}
+
+		ImGui::Separator();
+
 		if (ImGui::Checkbox("Demo", &demo_active)){}
 
 		ImGui::EndMenu();
@@ -148,6 +155,7 @@ void ModuleEditor::InitWindows()
 {
 	windows.push_back(configwindow = new WindowConfig(App));
 	windows.push_back(atributeeditorwindow = new WindowAtributeEditor(App));
+	windows.push_back(assetswindow = new WindowAssets(App));
 	//windows.push_back(console);  2DO
 	
 	//console_active = console->active;
@@ -162,6 +170,7 @@ bool ModuleEditor::LoadConfig(JSON_Object* data)
 	configwindow->active = json_object_get_boolean(data, "configuration_active");
 	atributeeditorwindow->active = json_object_get_boolean(data, "atributeeditor_active");
 	demo_active = json_object_get_boolean(data, "demo_active");
+	assetswindow->active = json_object_get_boolean(data, "assets_active");
 	//2DO
 	//console
 
@@ -178,8 +187,17 @@ bool ModuleEditor::SaveConfig(JSON_Object* data) const
 	json_object_set_boolean(data, "configuration_active", configwindow->active);
 	json_object_set_boolean(data, "atributeeditor_active", atributeeditorwindow->active);
 	json_object_set_boolean(data, "demo_active", demo_active);
+	json_object_set_boolean(data, "assets_active", assetswindow->active);
+
 	//2DO
 	//console
 
 	return ret;
 }
+
+
+WindowAssets* ModuleEditor::GetAssetsWindow()
+{
+	return assetswindow;
+}
+

@@ -118,10 +118,7 @@ void ModuleResourceManager::ImportFile(const char* file)
 
 	if (type != NONE)
 	{
-		if (App->importer->Import(file, type))
-		{
-
-		}
+		App->importer->Import(file, type);
 	}
 
 	else
