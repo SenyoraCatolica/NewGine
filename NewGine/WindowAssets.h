@@ -30,6 +30,7 @@ private:
 
 	std::vector<AssetFile> assets;
 	const char* assets_dir;
+	int size = 50;
 
 	//images
 	uint mesh_icon;
