@@ -119,6 +119,7 @@ void ModuleResourceManager::ImportFile(const char* file)
 	if (type != NONE)
 	{
 		App->importer->Import(file, type);
+		//2DO Update assets window
 	}
 
 	else

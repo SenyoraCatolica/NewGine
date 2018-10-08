@@ -11,6 +11,15 @@
 MeshImporter::MeshImporter(Application* app) : App(app){}
 MeshImporter::~MeshImporter(){}
 
+bool MeshImporter::Import(const char* file)
+{
+	bool ret = false;
+
+	char* final_path = MESH_FOLDER;
+	strcat(final_path, file);
+}
+
+
 bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid = 0)
 {
 	MyMesh* m;

@@ -23,7 +23,7 @@ public:
 	ModuleImporter(Application* app, bool start_enabled = true);
 	~ModuleImporter();
 
-	bool Init(JSON_Object* node);
+	bool Init();
 	bool Start();
 	update_status PreUpdate(float dt);
 	bool CleanUp();
@@ -32,7 +32,7 @@ public:
 	bool Import(const char* file, FILE_TYPE state);
 
 public:
-	MeshImporter * impMesh = nullptr;
-	MaterialImporter* impMaterial = nullptr;
+	MeshImporter * mesh_importer = nullptr;
+	MaterialImporter* mat_importer = nullptr;
 
 };
