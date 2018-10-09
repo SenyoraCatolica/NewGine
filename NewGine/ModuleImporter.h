@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "ModuleResourceManager.h"
 #include "MyResource.h"
+#include <string>
 
 #include "MeshImporter.h"
 #include "MaterialImporter.h"

@@ -47,7 +47,7 @@ public:
 
 
 
-	Component* AddComponent(COMPONENT_TYPE type, uint id_num);
+	Component* AddComponent(COMPONENT_TYPE type);
 	bool DeleteComponent(Component* ComponentToDelete);
 
 	bool HasComponent(COMPONENT_TYPE type);

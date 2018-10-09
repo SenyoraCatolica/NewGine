@@ -86,6 +86,17 @@ bool ModuleFileSystem::GetFilesFromPath(const char* path, std::vector<std::strin
 	return (ef != NULL) ? true : false;
 }
 
+
+std::string ModuleFileSystem::GetNameFromDirectory(std::string file)
+{
+	size_t final = file.find_last_of("\\");
+	file = file.substr(final + 1);
+	return file;
+}
+
+
+
+
 // Open for Read/Write
 uint ModuleFileSystem::Load(const char* file, char** buffer) const
 {

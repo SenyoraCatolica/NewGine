@@ -175,7 +175,7 @@ const char* GameObject::GetName()
 
 //Components===================================================================
 
-Component* GameObject::AddComponent(COMPONENT_TYPE type, uint id_num)
+Component* GameObject::AddComponent(COMPONENT_TYPE type)
 {
 	if (type == COMPONENT_TRANSFORM)
 	{

@@ -19,17 +19,19 @@ bool ModuleImporter::Import(const char* file, FILE_TYPE state)
 {
 	bool ret = false;
 
-	switch (FILE_TYPE)
+	switch (state)
 	{
-	case MESH:
-		mesh_importer->Import(file)
-		break;
+		case MESH:
+			ret = mesh_importer->Import(file);
+			break;
 
-	case MATERIAL:
-		mat_importer->Import(file);
-		break;
+		case MATERIAL:
+			ret = mat_importer->Import(file);
+			break;
 
-	default:
-		break;
+		default:
+			break;
 	}
+
+	return ret;
 }

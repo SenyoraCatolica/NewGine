@@ -3,8 +3,11 @@
 #include "MeshComponent.h"
 #include "TransformComponent.h"
 #include "MaterialComponent.h"
+#include "MyResource.h"
 #include "ResourceMaterial.h"
+#include "ResourceMesh.h"
 #include "Globals.h"
+#include "GameObject.h"
 
 #include "Glew/include/glew.h"
 
@@ -15,16 +18,90 @@ bool MeshImporter::Import(const char* file)
 {
 	bool ret = false;
 
-	char* final_path = MESH_FOLDER;
-	strcat(final_path, file);
+	uint uuid = GenerateUUID();
+
+
+	//Generate complete path in Library folder
+	string complete_path;
+	complete_path = MESH_FOLDER;
+	complete_path += "/" + std::to_string(uuid) + "/";
+	App->file_system->CreateDir(complete_path.c_str());
+	//complete name of the file with path
+	string complete_name = complete_path + std::to_string(uuid) + ".inf";
+
+	//Generate Asset folder for file
+	string assets_path = App->editor->GetAssetsWindow()->GetAssetsDirectory();
+
+	//Generate Meta file 2DO
+	
+	//Importing starts here
+	//=================================================================================
+	char* buff;
+	uint size = App->file_system->Load(file, &buff);
+
+	if (size <= 0)
+	{
+		LOG("WARNING! Could not import file: %s", file);
+		return ret;
+	}
+
+	const aiScene* scene = aiImportFile(file, aiProcessPreset_TargetRealtime_MaxQuality);
+
+	if (scene != nullptr && scene->HasMeshes() == true)
+	{
+		GameObject* go = ImportNode(scene->mRootNode, scene, nullptr);
+	}
+}
+
+GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent)
+{
+	GameObject* go = new GameObject();
+	go->parent = parent;
+	go->SetName(node->mName.C_Str());
+
+
+	//Transform component==========================================================================
+	TransformComponent* trans = (TransformComponent*)go->AddComponent(COMPONENT_TRANSFORM);
+	DecomposeTransform(trans, node);
+	//=============================================================================================
+
+
+	//Mesh component + Mesh import ================================================================
+	
+	for (uint i = 0; i < node->mNumMeshes; i++)
+	{
+		GameObject* new_go = nullptr;
+
+		if (node->mNumMeshes > 1)
+		{
+			new_go = new GameObject();
+			std::string name = "Mesh" + std::to_string(i);
+			new_go->SetName(name.c_str);
+			new_go->parent = parent;
+
+			TransformComponent* t = (TransformComponent*)new_go->AddComponent(COMPONENT_TRANSFORM);
+			DecomposeTransform(t, node);
+		}
+
+		else
+			new_go = go;
+
+		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name);
+	}
+
+
+	for (uint i = 0; i < node->mNumChildren; i++)
+	{
+		ImportNode(node->mChildren[i], scene, go);
+	}
 }
 
 
-bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid = 0)
+bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid = 0)
 {
 	MyMesh* m;
 
-	MeshComponent* cMesh = (MeshComponent*)go->AddComponent(COMPONENT_MESH, GenerateUUID());
+	MeshComponent* mesh_comp = (MeshComponent*)go->AddComponent(COMPONENT_MESH);
 
 
 	if (mesh != nullptr)
@@ -84,7 +161,7 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 
 			if (scene->HasMaterials())
 			{
-				MaterialComponent* cMat = (MaterialComponent*)go->AddComponent(COMPONENT_MATERIAL, GenerateUUID());
+				MaterialComponent* mat = (MaterialComponent*)go->AddComponent(COMPONENT_MATERIAL);
 
 				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 
@@ -94,22 +171,26 @@ bool MeshImporter::Import(const aiScene * scene, const aiMesh* mesh, GameObject*
 					material->GetTexture(aiTextureType_DIFFUSE, i, &path);
 
 					// 2DO:Path should be only the name here with texture folder
+					string mat_name = App->file_system->GetNameFromDirectory(path.C_Str());
 
-					ResourceMaterial* rMat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(path.C_Str()); //2DO this path should be name
-					if (rMat != nullptr)
+					ResourceMaterial* resource_mat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(mat_name.c_str);
+					if (resource_mat != nullptr)
 					{
-						if (rMat->GetState() == MyResource::R_STATE::UNLOADED)
+						if (resource_mat->GetState() == MyResource::R_STATE::UNLOADED)
 						{
-							std::string temp = std::to_string(rMat->GetUUID());
-							//App->importer->impMaterial->LoadResource(temp.c_str(), rMat); //2DO load res mat
+							// 2DO not clear this load
+							App->importer->mat_importer->LoadTexture(resource_mat);
 						}
 
-						//2Do merge rMat and cMat
+						mat->resourceMaterial = resource_mat;
 					}
 				}
 			}
 		}
 
+		mesh_comp->Enable();
+
+		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
 		SaveMesh(m, name);
 	}
 
@@ -243,11 +324,27 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
 	}
 
 	//2DO Create a better save function with uuid, folder and extension
-	ret = App->file_system->Save(name, buffer, size, MESH_FOLDER, "mesh");
+	ret = App->file_system->Save(name, buffer, size, MESH_FOLDER, "meix");
 
 	delete[] buffer;
 	buffer = nullptr;
 
 	return ret;
 }
+
+
+void MeshImporter::DecomposeTransform(TransformComponent* trans, aiNode* node)
+{
+	aiVector3D pos;
+	aiQuaternion rot;
+	aiVector3D scale;
+
+	node->mTransformation.Decompose(scale, rot, pos);
+
+	trans->SetTranslation(float3(pos.x, pos.y, pos.z));
+	trans->SetRotation(Quat(rot.x, rot.y, rot.z, rot.w));
+	trans->SetScale(float3(scale.x, scale.y, scale.z));
+	trans->Enable();
+}
+
 

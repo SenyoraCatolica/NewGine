@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "Component.h"
 #include "GameObject.h"
+#include "ResourceMaterial.h"
 
 #include <vector>
 
@@ -22,9 +23,8 @@ public:
 
 public:
 
-	uint texture_id = 0;
-	std::string path;
-	std::vector<uint> textures;
+	ResourceMaterial* resourceMaterial = nullptr;
+
 	float color[4] = { 1.0f,1.0f,1.0f,1.0f };
 };
 
