@@ -7,7 +7,7 @@
 
 #include <vector>
 
-
+class ResourceMaterial;
 
 class MaterialComponent : public Component
 {
@@ -20,10 +20,12 @@ public:
 	uint GetTexture(uint n);
 	void SetColor(float r, float g, float b, float a = 1.0f);
 
+	void SetResourceMaterial(ResourceMaterial* mat);
+
 
 public:
 
-	ResourceMaterial* resourceMaterial = nullptr;
+	ResourceMaterial* material = nullptr;
 
 	float color[4] = { 1.0f,1.0f,1.0f,1.0f };
 };

@@ -34,6 +34,8 @@ public:
 
 	void SetTransform();
 	void SetGlobalTransform(float4x4 trans);
+	void ComponentEditor();
+
 
 
 	void Update(float dt);

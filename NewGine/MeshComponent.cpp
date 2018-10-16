@@ -7,6 +7,8 @@ MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object) : Com
 {
 	local_box.SetNegativeInfinity();
 	global_box.SetNegativeInfinity();
+
+	id = GenerateUUID();
 }
 
 MeshComponent::~MeshComponent()
@@ -19,26 +21,25 @@ void MeshComponent::ComponentEditor()
 {
 	if (mesh != NULL)
 	{
-		ImGui::Text("Num vertices: %i", mesh->num_vertices);
-		ImGui::Text("Num indices: %i", mesh->num_indices);
-		ImGui::Text("Num normlas: %i", mesh->normals);
-		ImGui::Text("Num UVs: %i", mesh->num_texture_coords);
+		ImGui::Text("Num vertices: %i", mesh->mesh->num_vertices);
+		ImGui::Text("Num indices: %i", mesh->mesh->num_indices);
+		ImGui::Text("Num normlas: %i", mesh->mesh->normals);
+		ImGui::Text("Num UVs: %i", mesh->mesh->num_texture_coords);
 	}
 }
 
 void MeshComponent::Update(float dt)
 {
-	if (mesh)
-		RecalculateBox();
+	if (mesh->GetState() == MyResource::R_STATE::TO_DELETE)
+		mesh = nullptr;		
 }
 
-void MeshComponent::RecalculateBox()
-{
-	//2DO
-}
 
-math::AABB MeshComponent::GetGlobalBox()
+void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 {
-	return global_box;
+	if (resourse_mesh != nullptr)
+	{		
+		mesh = resourse_mesh;
+	}
 }
 

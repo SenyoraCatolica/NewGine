@@ -51,6 +51,8 @@ public:
 	bool DeleteComponent(Component* ComponentToDelete);
 
 	bool HasComponent(COMPONENT_TYPE type);
+	Component* GetComponent(COMPONENT_TYPE type);
+
 
 	template <typename typeComp>
 	std::vector<typeComp*> GetComponent()

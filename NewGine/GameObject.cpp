@@ -228,3 +228,19 @@ bool GameObject::HasComponent(COMPONENT_TYPE type)
 	}
 	return false;
 }
+
+Component* GameObject::GetComponent(COMPONENT_TYPE type)
+{
+	std::vector<Component*>::iterator it = components.begin;
+	while (it != components.end)
+	{
+		if ((*it)->type == type)
+		{
+			return (*it);
+		}
+
+		it++;
+	}
+	return nullptr;
+}
+
