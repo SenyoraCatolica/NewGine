@@ -17,6 +17,8 @@ CameraComponent::CameraComponent(COMPONENT_TYPE type, GameObject* game_object) :
 	frustum.SetUp({ 0, 1, 0 });
 	frustum.SetViewPlaneDistances(5, 50);
 	frustum.SetPerspective(DEGTORAD * horizontal_fov, DEGTORAD * horizontal_fov);
+
+	id = GenerateUUID();
 }
 
 CameraComponent::~CameraComponent() {}

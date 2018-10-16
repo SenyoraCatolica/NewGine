@@ -22,6 +22,7 @@ public:
 
 public:
 	std::list<GameObject*> all_gameobjects;
+	std::list<GameObject*> objects_to_draw;
 };
 
 #endif // _GOMANAGER_H_

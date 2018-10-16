@@ -25,15 +25,22 @@ void MeshComponent::ComponentEditor()
 		ImGui::Text("Num indices: %i", mesh->mesh->num_indices);
 		ImGui::Text("Num normlas: %i", mesh->mesh->normals);
 		ImGui::Text("Num UVs: %i", mesh->mesh->num_texture_coords);
+		ImGui::Separator();
+		ImGui::Checkbox("Bounding Box", &bb_active);
 	}
 }
 
 void MeshComponent::Update(float dt)
 {
-	if (mesh->GetState() == MyResource::R_STATE::TO_DELETE)
-		mesh = nullptr;		
-}
+	if (mesh != nullptr)
+	{
+		if (mesh->GetState() == MyResource::R_STATE::TO_DELETE)
+			mesh = nullptr;
 
+		if (bb_active)
+			RecalculateBox();
+	}			
+}
 
 void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 {
@@ -42,4 +49,21 @@ void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 		mesh = resourse_mesh;
 	}
 }
+
+void MeshComponent::RecalculateBox()
+{
+	TransformComponent* t = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
+	math::OBB obb = local_box.Transform(t->GetGlobalTranform());
+	global_box = obb.MinimalEnclosingAABB();
+}
+math::AABB MeshComponent::GetGlobalBox()
+{
+	return global_box;
+}
+
+void MeshComponent::SetBBActive(bool active)
+{
+	bb_active = active;
+}
+
 

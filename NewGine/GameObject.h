@@ -46,7 +46,7 @@ public:
 	const char* GetName();
 
 
-
+	//Components
 	Component* AddComponent(COMPONENT_TYPE type);
 	bool DeleteComponent(Component* ComponentToDelete);
 
@@ -90,6 +90,7 @@ public:
 	char name[NAME_MAX_LEN];
 	AABB aabb;
 	OBB obb;
+	bool boundingbox_active = false;
 
 	MyMesh mesh;
 	GameObject* parent = nullptr;

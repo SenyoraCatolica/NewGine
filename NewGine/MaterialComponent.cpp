@@ -13,7 +13,8 @@ MaterialComponent::MaterialComponent(COMPONENT_TYPE type, GameObject* game_objec
 
 MaterialComponent::~MaterialComponent()
 {
-
+	delete material;
+	material = nullptr;
 }
 
 void MaterialComponent::ComponentEditor()
