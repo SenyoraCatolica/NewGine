@@ -7,6 +7,7 @@
 #include "GameObject.h"
 #include <list>
 
+class CameraComponent;
 
 class ModuleGOManager : public Module
 {
@@ -18,11 +19,17 @@ public:
 	bool Init();
 	update_status Update(float dt);
 
+	GameObject* GetCameraObject();
+	CameraComponent* GetCameraComponent();
 
 
 public:
 	std::list<GameObject*> all_gameobjects;
 	std::list<GameObject*> objects_to_draw;
+
+private:
+	GameObject * camera = nullptr;
+	CameraComponent* cam_comp = nullptr;
 };
 
 #endif // _GOMANAGER_H_

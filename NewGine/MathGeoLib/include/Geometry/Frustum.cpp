@@ -1054,7 +1054,42 @@ bool Frustum::Intersects(const LineSegment &lineSegment) const
 
 bool Frustum::Intersects(const AABB &aabb) const
 {
-	return GJKIntersect(*this, aabb);
+	bool ret = true;
+
+	vec vertex[8];
+	aabb.GetCornerPoints(vertex);
+
+	Plane f_planes[6];
+
+	f_planes[0] = NearPlane();
+	f_planes[1] = FarPlane();
+	f_planes[2] = LeftPlane();
+	f_planes[3] = RightPlane();
+	f_planes[4] = BottomPlane();
+	f_planes[5] = TopPlane();
+
+	for (unsigned int i = 0; i < 6; i++)
+	{
+		unsigned int in_count = 8;
+
+		for (unsigned int j = 0; j < 8; j++)
+		{
+			if (f_planes[i].IsOnPositiveSide(vertex[j]) == true)
+			{
+				in_count--;
+			}
+		}
+
+		if (in_count == 0)
+		{
+			ret = false;
+			return ret;
+		}
+	}
+
+	return ret;
+
+	return true;
 }
 
 bool Frustum::Intersects(const OBB &obb) const
