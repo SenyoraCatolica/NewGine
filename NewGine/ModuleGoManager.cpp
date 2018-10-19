@@ -56,6 +56,55 @@ update_status ModuleGOManager::Update(float dt)
 	return update_status::UPDATE_CONTINUE;
 }
 
+GameObject* ModuleGOManager::CreateEmpty(const char* name)
+{
+	GameObject* new_go = new GameObject();
+	new_go->AddComponent(COMPONENT_TRANSFORM);
+
+	if (name != nullptr && name != "")
+	{
+		std::strcpy(new_go->name, name);
+	}
+
+	new_go->parent = root;
+}
+
+GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* parent = nullptr)
+{
+	GameObject* new_go = new GameObject();
+	new_go->AddComponent(COMPONENT_TRANSFORM);
+
+	if (name != nullptr && name != "")
+	{
+		std::strcpy(new_go->name, name);
+	}
+
+	if (parent != nullptr)
+		new_go->parent = parent;
+	else
+		new_go->parent = root;
+}
+
+bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
+{
+	bool ret = false;
+
+	if (to_delete)
+	{
+		to_delete_gos.push_back(to_delete);
+		ret = true;
+	}
+
+	return ret;
+}
+
+GameObject* ModuleGOManager::CreateCamera(const char* name)
+{
+	GameObject* cam = CreateEmpty("Camera");
+	cam->AddComponent(COMPONENT_CAMERA);
+}
+
+
 GameObject* ModuleGOManager::GetCameraObject()
 {
 	std::list<GameObject*>::iterator it = App->go_manager->all_gameobjects.begin();
