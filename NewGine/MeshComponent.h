@@ -24,6 +24,9 @@ public:
 	math::AABB GetGlobalBox();
 	void SetBBActive(bool active);
 
+	void Save(JSONWrapper& file) const;
+	void Load(JSONWrapper& file);
+
 public:
 	
 	ResourceMesh* mesh = nullptr;

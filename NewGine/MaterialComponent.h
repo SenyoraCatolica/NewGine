@@ -22,6 +22,8 @@ public:
 
 	void SetResourceMaterial(ResourceMaterial* mat);
 
+	void Save(JSONWrapper& file) const;
+	void Load(JSONWrapper& file);
 
 public:
 

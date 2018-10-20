@@ -30,6 +30,8 @@ public:
 
 	void ComponentEditor();
 
+	void Save(JSONWrapper& file) const;
+	void Load(JSONWrapper& file);
 
 	math::Frustum frustum;
 

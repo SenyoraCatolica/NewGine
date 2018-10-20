@@ -1,5 +1,6 @@
 #pragma once
 #include"Globals.h"
+#include "JSONWrapper.h"
 
 enum COMPONENT_TYPE
 {
@@ -27,6 +28,8 @@ public:
 
 	GameObject* GetObjectParent();
 
+	virtual void Save(JSONWrapper& file) const;
+	virtual void Load(JSONWrapper& file);
 
 public:
 

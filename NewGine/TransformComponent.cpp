@@ -181,6 +181,43 @@ void TransformComponent::ComponentEditor()
 }
 
 
+void TransformComponent::Save(JSONWrapper& file) const
+{
+	JSONWrapper array_value;
+	array_value.WriteUInt("UUID", id);
+	array_value.WriteBool("Enabled", enabled);
+	array_value.WriteMatrix("Loacal Matrix", local_tranformation);
+
+	array_value.WriteFloat("PositionX", position.x);
+	array_value.WriteFloat("PositionY", position.y);
+	array_value.WriteFloat("PositionZ", position.z);
+
+	array_value.WriteFloat("RotationX", rotation.x);
+	array_value.WriteFloat("RotationY", rotation.y);
+	array_value.WriteFloat("RotationZ", rotation.z);
+	array_value.WriteFloat("RotationW", rotation.w);
+
+	array_value.WriteFloat("ScaleX", scale.x);
+	array_value.WriteFloat("ScaleY", scale.y);
+	array_value.WriteFloat("ScaleZ", scale.z);
+
+
+	file.WriteArrayValue(array_value);
+}
+
+void TransformComponent::Load(JSONWrapper& file)
+{
+	id = file.ReadUInt("UUID");
+	enabled = file.ReadBool("Enabled");
+	local_tranformation = file.ReadMatrix("Local Matrix");
+
+	SetTranslation(file.ReadeFloat("PositionX"), file.ReadeFloat("PositionY"), file.ReadeFloat("PositionZ"));
+	SetRotation(file.ReadeFloat("RotationX"), file.ReadeFloat("RotationY"), file.ReadeFloat("RotationZ"), file.ReadeFloat("RotationW"));
+	SetScale(file.ReadeFloat("ScaleX"), file.ReadeFloat("ScaleY"), file.ReadeFloat("ScaleZ"));
+
+	UpdateGlobalTransform();
+}
+
 
 
 

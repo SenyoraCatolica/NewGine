@@ -20,6 +20,7 @@ public:
 	bool WriteArray(const char* name);
 	bool WriteArrayValue(const JSONWrapper& data);
 	JSONWrapper WriteJSONObject(const char* name);
+	bool WriteMatrix(const char * name, const math::float4x4 & matrix);
 
 	//Read
 	int ReadInt(const char* name)const;
@@ -30,6 +31,8 @@ public:
 	std::string ReadString(const char* name)const;
 	JSONWrapper ReadArray(const char* name, unsigned int index)const;
 	JSONWrapper ReadJSONObject(const char* name)const;
+	float4x4 ReadMatrix(const char * name) const;
+
 
 private:
 	JSON_Object * root = nullptr;

@@ -73,6 +73,19 @@ JSONWrapper JSONWrapper::WriteJSONObject(const char* name)
 	return ReadJSONObject(name);
 }
 
+bool JSONWrapper::WriteMatrix(const char * name, const math::float4x4 & matrix)
+{
+	//only 4x4 matrix
+	JSON_Value* value = json_value_init_array();
+	JSON_Array* array = json_value_get_array(value);
+	const float* matrix_array = *matrix.v;
+
+	for (int i = 0; i < 16; i++)
+		json_array_append_number(array, matrix_array[i]);
+
+	return json_object_set_value(root, name, value) == JSONSuccess;
+}
+
 
 
 //Read=====================================================================================
@@ -124,4 +137,32 @@ JSONWrapper JSONWrapper::ReadArray(const char* name, unsigned int index)const
 JSONWrapper JSONWrapper::ReadJSONObject(const char* name)const
 {
 	return JSONWrapper(json_object_get_object(root, name));
+}
+
+float4x4 JSONWrapper::ReadMatrix(const char * name) const
+{
+	JSON_Array* json_array = json_object_get_array(root, name);
+	if (json_array)
+	{
+		float4x4 ret((float)json_array_get_number(json_array, 0),
+			(float)json_array_get_number(json_array, 1),
+			(float)json_array_get_number(json_array, 2),
+			(float)json_array_get_number(json_array, 3),
+			(float)json_array_get_number(json_array, 4),
+			(float)json_array_get_number(json_array, 5),
+			(float)json_array_get_number(json_array, 6),
+			(float)json_array_get_number(json_array, 7),
+			(float)json_array_get_number(json_array, 8),
+			(float)json_array_get_number(json_array, 9),
+			(float)json_array_get_number(json_array, 10),
+			(float)json_array_get_number(json_array, 11),
+			(float)json_array_get_number(json_array, 12),
+			(float)json_array_get_number(json_array, 13),
+			(float)json_array_get_number(json_array, 14),
+			(float)json_array_get_number(json_array, 15));
+
+		return ret;
+	}
+
+	return float4x4::identity;
 }
