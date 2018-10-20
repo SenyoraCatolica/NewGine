@@ -6,7 +6,8 @@
 
 Component::Component()
 {
-
+	if (id == 0)
+		GenerateUUID();
 }
 
 Component::Component(COMPONENT_TYPE Type, GameObject* from) : type(Type), parent(from)

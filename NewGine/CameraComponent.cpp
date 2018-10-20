@@ -17,8 +17,6 @@ CameraComponent::CameraComponent(COMPONENT_TYPE type, GameObject* game_object) :
 	frustum.SetUp({ 0, 1, 0 });
 	frustum.SetViewPlaneDistances(5, 50);
 	frustum.SetPerspective(DEGTORAD * horizontal_fov, DEGTORAD * horizontal_fov);
-
-	id = GenerateUUID();
 }
 
 CameraComponent::~CameraComponent() {}
@@ -108,6 +106,38 @@ float4x4 CameraComponent::GetProjectionMatrix() const
 	tmp.Transpose();
 
 	return tmp;
+}
+
+void CameraComponent::Save(JSONWrapper& file) const
+{
+	JSONWrapper array_value;
+	array_value.WriteUInt("UUID", id);
+	array_value.WriteBool("Enabled", enabled);
+	array_value.WriteFloat("Near Plane", near_plane);
+	array_value.WriteFloat("Far Plane", far_plane);
+	array_value.WriteFloat("Horizontal FOV", horizontal_fov);
+	array_value.WriteFloat("Veritcal FOV", vertical_fov);
+
+	array_value.WriteArrayValue(file);
+}
+
+void CameraComponent::Load(JSONWrapper& file)
+{
+	id = file.ReadUInt("UUID");
+	enabled = file.ReadBool("Enabled");
+	near_plane = file.ReadeFloat("Near Plane");
+	far_plane = file.ReadeFloat("Far Plane");
+	horizontal_fov = file.ReadeFloat("Horizontal FOV");
+	vertical_fov = file.ReadeFloat("Vertical FOV");
+
+
+	//Init frustum
+	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);
+	frustum.SetPos({ 0, 0, 0 });
+	frustum.SetFront({ 0, 0, 1 });
+	frustum.SetUp({ 0, 1, 0 });
+	frustum.SetViewPlaneDistances(5, 50);
+	frustum.SetPerspective(DEGTORAD * horizontal_fov, DEGTORAD * horizontal_fov);
 }
 
 

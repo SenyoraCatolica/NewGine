@@ -8,7 +8,6 @@
 
 MaterialComponent::MaterialComponent(COMPONENT_TYPE type, GameObject* game_object) : Component(type, game_object, 2)
 {
-	id = GenerateUUID();
 }
 
 MaterialComponent::~MaterialComponent()

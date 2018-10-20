@@ -10,7 +10,6 @@ TransformComponent::TransformComponent(COMPONENT_TYPE type, GameObject* game_obj
 	rotation_degree.Set(0, 0, 0);
 	rotation.Set(0, 0, 0, 0);
 
-	id = GenerateUUID();
 }
 
 TransformComponent::~TransformComponent()

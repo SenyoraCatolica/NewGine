@@ -34,7 +34,7 @@ public:
 public:
 
 	COMPONENT_TYPE type;
-	uint id;
+	uint id = 0;
 	bool enabled = true;
 
 	GameObject* parent;

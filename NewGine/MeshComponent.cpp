@@ -8,7 +8,6 @@ MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object) : Com
 	local_box.SetNegativeInfinity();
 	global_box.SetNegativeInfinity();
 
-	id = GenerateUUID();
 }
 
 MeshComponent::~MeshComponent()
