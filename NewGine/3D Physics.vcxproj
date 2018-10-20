@@ -81,6 +81,7 @@
     <ClInclude Include="CameraComponent.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="JSONWrapper.h" />
     <ClInclude Include="JSON\parson.h" />
     <ClInclude Include="MaterialComponent.h" />
     <ClInclude Include="MaterialImporter.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="CameraComponent.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="JSONWrapper.cpp" />
     <ClCompile Include="JSON\parson.c" />
     <ClCompile Include="MaterialComponent.cpp" />
     <ClCompile Include="MaterialImporter.cpp" />

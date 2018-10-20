@@ -375,6 +375,9 @@
     <ClInclude Include="WindowAssets.h">
       <Filter>Sources\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="JSONWrapper.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -613,6 +616,9 @@
     </ClCompile>
     <ClCompile Include="WindowAssets.cpp">
       <Filter>Sources\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="JSONWrapper.cpp">
+      <Filter>Sources\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
