@@ -56,6 +56,18 @@ math::float4x4 TransformComponent::GetGlobalTranform()
 	return global_transformation;
 }
 
+void TransformComponent::UpdateGlobalTransform()
+{
+	if (parent->parent != nullptr && parent->parent->HasComponent(COMPONENT_TRANSFORM) == true)
+	{
+		TransformComponent* parent_transform = (TransformComponent*)parent->parent->GetComponent(COMPONENT_TRANSFORM);
+		global_transformation = GetTransformationMatrix() * parent_transform->GetGlobalTranform();
+	}
+	else
+		global_transformation = GetTransformationMatrix();
+}
+
+
 
 
 //setters==================================================================

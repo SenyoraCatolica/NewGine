@@ -19,6 +19,7 @@ public:
 	float4x4 GetTransformationMatrix();
 	float4x4 GetLocalTransform();
 	float4x4 GetGlobalTranform();
+	void UpdateGlobalTransform();
 
 
 	//setters

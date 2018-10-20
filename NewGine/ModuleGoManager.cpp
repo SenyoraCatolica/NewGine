@@ -63,7 +63,7 @@ GameObject* ModuleGOManager::CreateEmpty(const char* name)
 
 	if (name != nullptr && name != "")
 	{
-		std::strcpy(new_go->name, name);
+		new_go->SetName(name);
 	}
 
 	new_go->parent = root;
@@ -76,7 +76,7 @@ GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* pare
 
 	if (name != nullptr && name != "")
 	{
-		std::strcpy(new_go->name, name);
+		new_go->SetName(name);
 	}
 
 	if (parent != nullptr)

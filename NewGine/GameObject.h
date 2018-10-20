@@ -17,12 +17,6 @@ public:
 	GameObject(const uint64_t uid);
 	~GameObject();
 
-	void InitBuffer();
-
-	//2DO this will be deprecated
-	MyMesh GetMesh();
-	void SetMesh(MyMesh m);
-
 	const uint64_t GetUID();
 	void DrawLocator();
 	void DrawAABB();
@@ -31,7 +25,6 @@ public:
 	void Select();
 	void Unselect();
 
-	void SetOriginalAABB();
 	void UpdateAABB();
 
 	void UpdateTransformMatrix();
@@ -81,18 +74,14 @@ private:
 	bool selected = false;
 
 	AABB originalAABB;
-	TransformComponent* transform = nullptr;
-
 
 
 public:
-
 	char name[NAME_MAX_LEN];
 	AABB aabb;
 	OBB obb;
 	bool boundingbox_active = false;
 
-	MyMesh mesh;
 	GameObject* parent = nullptr;
 
 	std::vector<Component*> childs;

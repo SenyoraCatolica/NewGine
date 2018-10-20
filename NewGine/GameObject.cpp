@@ -26,48 +26,15 @@ GameObject::GameObject(const uint64_t uid)
 
 GameObject::~GameObject() 
 {
-	//2DO implement destructor
-}
-
-void GameObject::InitBuffer()
-{
-	//Vertices Buffer
-	glGenBuffers(1, (GLuint*) &(mesh.id_vertices));
-	glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 3, mesh.vertices, GL_STATIC_DRAW);
-
-
-	//Indices Buffer
-	glGenBuffers(1, (GLuint*) &(mesh.id_indices));
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
-
-	//Texture  Coords Buffer
-	if (mesh.texture_coords != nullptr) // If the mesh has a texture, save it in the buffer
+	std::vector<Component*>::iterator it = components.begin;
+	while((*it) != components.end)
 	{
-		glGenBuffers(1, (GLuint*) &(mesh.id_texture_coords));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_texture_coords);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float2) * mesh.num_vertices, mesh.texture_coords, GL_STATIC_DRAW);
+		delete (*it);
+		it++;
 	}
+	components.clear();
 
-	//Normals Buffer
-	if (mesh.normals != nullptr) // If the mesh has normals, save them in the buffer
-	{
-		glGenBuffers(1, (GLuint*) &(mesh.id_normals));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_normals);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_vertices * 3, mesh.normals, GL_STATIC_DRAW);
-	}
-}
-
-
-MyMesh GameObject::GetMesh()
-{
-	return mesh;
-}
-
-void GameObject::SetMesh(MyMesh m)
-{
-	mesh = m;
+	parent = nullptr;
 }
 
 const uint64_t GameObject::GetUID() { return uid; }
@@ -105,13 +72,6 @@ void GameObject::Unselect()
 	//2DO implement unselect
 }
 
-void GameObject::SetOriginalAABB()
-{
-
-	//2DO Enclose on a aabb the object if has mesh
-
-	UpdateAABB();
-}
 
 void GameObject::UpdateAABB()
 {
@@ -120,26 +80,32 @@ void GameObject::UpdateAABB()
 	if (originalAABB.IsFinite())
 	{
 		obb = originalAABB;
-		obb.Transform(transform->GetGlobalTranform().Transposed());
+		TransformComponent* t = (TransformComponent*)GetComponent(COMPONENT_TRANSFORM);
+		obb.Transform(t->GetGlobalTranform().Transposed());
 		aabb.Enclose(obb);
 	}
 }
 
 void GameObject::UpdateTransformMatrix()
 {
-	//2DO
-
 	if (HasComponent(COMPONENT_TYPE::COMPONENT_TRANSFORM))
 	{
-		//Call Update global tranform
+		TransformComponent* t = (TransformComponent*)GetComponent(COMPONENT_TRANSFORM);
+		t->UpdateGlobalTransform();
 	}
 
 	UpdateAABB();
 
-	//Update cameras position
-	
-
 	//Call again for every child
+	if (childs.size > 0)
+	{
+		std::vector<GameObject*>::iterator child = childs.begin;
+		while (child != childs.end)
+		{
+			(*child)->UpdateTransformMatrix();
+			child++;
+		}
+	}
 }
 
 void GameObject::SetActive(bool state)
