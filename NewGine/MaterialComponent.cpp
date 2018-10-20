@@ -43,4 +43,24 @@ void MaterialComponent::SetColor(float r, float g, float b, float a)
 void MaterialComponent::SetResourceMaterial(ResourceMaterial* mat)
 {
 	material = mat;
+	path = mat->path;
+}
+
+void MaterialComponent::Save(JSONWrapper& file) const
+{
+	JSONWrapper array_value;
+	array_value.WriteUInt("UUID", id);
+	array_value.WriteBool("Enabled", enabled);
+	array_value.WriteString("Path", material->path.c_str());
+
+	array_value.WriteArrayValue(file);
+}
+
+void MaterialComponent::Load(JSONWrapper& file)
+{
+	id = file.ReadUInt("UUID");
+	enabled = file.ReadBool("Enabled");
+	path = file.ReadString("Path");
+
+	//2DO link to resource mat using path
 }
