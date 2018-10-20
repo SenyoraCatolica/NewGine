@@ -1,5 +1,20 @@
 #include "JSONWrapper.h"
 
+JSONWrapper::JSONWrapper()
+{
+	root_value = json_value_init_object();
+	root = json_value_get_object(root_value);
+}
+JSONWrapper::JSONWrapper(JSON_Object* obj) : root(root)
+{
+
+}
+
+JSONWrapper::~JSONWrapper()
+{
+	json_value_free(root_value);
+}
+
 //Write===========================================================================
 
 bool JSONWrapper::WriteInt(const char* name, int value)
