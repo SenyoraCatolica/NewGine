@@ -47,6 +47,7 @@ void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 	if (resourse_mesh != nullptr)
 	{		
 		mesh = resourse_mesh;
+		path = resourse_mesh->path;
 	}
 }
 
@@ -66,4 +67,22 @@ void MeshComponent::SetBBActive(bool active)
 	bb_active = active;
 }
 
+void MeshComponent::Save(JSONWrapper& file) const
+{
+	JSONWrapper array_value;
+	array_value.WriteUInt("UUID", id);
+	array_value.WriteBool("Enabled", enabled);
+	array_value.WriteString("Path", mesh->path.c_str());
+
+	array_value.WriteArrayValue(file);
+}
+
+void MeshComponent::Load(JSONWrapper& file)
+{
+	id = file.ReadUInt("UUID");
+	enabled = file.ReadBool("Enabled");
+	path = file.ReadString("Path");
+
+	//2DO link resource with new path
+}
 
