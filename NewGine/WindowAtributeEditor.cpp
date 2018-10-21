@@ -8,7 +8,7 @@ WindowAtributeEditor::WindowAtributeEditor(Application* app) : Window(app) {}
 WindowAtributeEditor::~WindowAtributeEditor() {}
 
 void WindowAtributeEditor::DrawOnEditor()
-{
+{/*2DO
 	if (active)
 	{
 		ImGuiTreeNodeFlags attribute_editor_flags = ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize;
@@ -80,5 +80,5 @@ void WindowAtributeEditor::DrawOnEditor()
 		}
 
 		ImGui::End();
-	}
+	}*/
 }

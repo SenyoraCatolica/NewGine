@@ -1,7 +1,7 @@
 #include "ModuleResourceManager.h"
-#include "Application.h"
 #include "ResourceMaterial.h"
 #include "ResourceMesh.h"
+#include "Application.h"
 
 
 ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -14,33 +14,44 @@ ModuleResourceManager::~ModuleResourceManager()
 	resources.clear();
 }
 
-bool ModuleResourceManager::Start()
+bool ModuleResourceManager::Init()
 {
 	//2DO:Loading resources
+	return true;
 }
-update_status ModuleResourceManager::PreUpdate(float dt)
+/*update_status ModuleResourceManager::PreUpdate(float dt)
 {
 	//2DO import possible dropped files
 
 	//2DO Add all the files to reimport to a new dicctionary
 
+	return update_status::UPDATE_CONTINUE;
 }
+
+update_status ModuleResourceManager::Update(float dt)
+{
+	return update_status::UPDATE_CONTINUE;
+}
+
+
 update_status ModuleResourceManager::PostUpdate(float dt)
 {
 	//2DO delete non used resources
 
 	//2Do delete all resources to delete
-}
+	return update_status::UPDATE_CONTINUE;
+}*/
 
 bool ModuleResourceManager::CleanUp()
 {
 	//2Do save the data
+	return true;
 }
 
 MyResource* ModuleResourceManager::CreateResource(MyResource::R_TYPE type, uint uuid)
 {
 	MyResource* ret = nullptr;
-	uint64_t uid;
+	uint uid;
 
 	if (uuid == 0)
 		uid = GenerateUUID();
@@ -75,7 +86,7 @@ MyResource* ModuleResourceManager::GetResource(uint uuid)
 MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
 {
 	std::map<uint, MyResource*>::iterator it = resources.begin();
-	for (int i = 0; i < resources.size(); i++)
+	for (uint i = 0; i < resources.size(); i++)
 	{
 		if (strcmp(it->second->name, name) == 0)
 		{
@@ -95,8 +106,8 @@ FILE_TYPE TryGetTypeByName(const char* file)
 		char* mesh_extensions[] = { "fbx", "FBX", "obj", "OBJ" };
 		char* material_extensions[] = { "png", "PNG", "tga", "TGA" };
 
-		string name = file;
-		string extension = name.substr(name.find_last_of(".") + 1);
+		std::string name = file;
+		std::string extension = name.substr(name.find_last_of(".") + 1);
 
 
 		for (int i = 0; i < 4; i++)

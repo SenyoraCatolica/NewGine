@@ -194,7 +194,7 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 
 void ModuleRenderer3D::DrawMesh(MyMesh m)
 {
-	if (m.num_vertices > 0 && m.num_indices > 0)
+	/*if (m.num_vertices > 0 && m.num_indices > 0)
 	{
 		//wireframe should be enabled here
 		if (draw_wireframe)
@@ -253,7 +253,7 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 
 		//wireframe should be disabled here
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
+	}*/
 }
 
 //Getters

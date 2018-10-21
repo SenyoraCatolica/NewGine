@@ -12,7 +12,6 @@
 #include "ModuleCamera3D.h"
 #include "ModuleEditor.h"
 #include "ModuleGOManager.h"
-#include "ModuleFBXLoader.h"
 #include "ModuleResourceManager.h"
 #include "ModuleImporter.h"
 #include "ModuleConsole.h"
@@ -31,7 +30,6 @@ public:
 	ModuleCamera3D* camera;
 	ModuleEditor* editor;
 	ModuleGOManager* go_manager;
-	ModuleFBXLoader* fbx_loader;
 	ModuleResourceManager* resource_manager;
 	ModuleImporter* importer;
 	ModuleConsole* console;

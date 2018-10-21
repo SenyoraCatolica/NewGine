@@ -40,7 +40,7 @@ void WindowConsole::DrawOnEditor()
 
 		ImGui::Separator();
 
-		for (std::list<ConsoleLog*>::iterator it = App->console->messages.begin; it != App->console->messages.end; ++it)
+		for (std::list<ConsoleLog*>::iterator it = App->console->messages.begin(); it != App->console->messages.end(); ++it)
 		{
 			ImGui::TextColored(ImVec4(1.0f, 1.0f, 1.0f, 1.0f), it._Ptr->_Myval->data);
 		}

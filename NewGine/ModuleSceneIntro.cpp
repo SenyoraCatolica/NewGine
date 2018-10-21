@@ -32,8 +32,6 @@ bool ModuleSceneIntro::Start()
 	grid = new Plane_P(0, 1, 0, 0);
 	grid->axis = true;
 
-	App->fbx_loader->LoadFBX("Models/BakerHouse.fbx");
-
 	return ret;
 }
 

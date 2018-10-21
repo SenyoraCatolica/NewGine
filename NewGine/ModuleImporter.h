@@ -17,6 +17,8 @@
 
 #pragma comment (lib,"Assimp/libx86/assimp.lib")
 
+class MeshImporter;
+class MaterialImporter;
 
 class ModuleImporter : public Module
 {
@@ -25,15 +27,11 @@ public:
 	~ModuleImporter();
 
 	bool Init();
-	bool Start();
-	update_status PreUpdate(float dt);
-	bool CleanUp();
-
 
 	bool Import(const char* file, FILE_TYPE state);
 
 public:
-	MeshImporter * mesh_importer = nullptr;
+	MeshImporter* mesh_importer = nullptr;
 	MaterialImporter* mat_importer = nullptr;
 
 };

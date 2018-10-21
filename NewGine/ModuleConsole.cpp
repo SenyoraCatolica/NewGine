@@ -3,7 +3,7 @@
 #include "Globals.h"
 
 
-ModuleConsole::ModuleConsole(Application* app, bool start_enabled = true) : Module(app, start_enabled) 
+ModuleConsole::ModuleConsole(Application* app, bool start_enabled) : Module(app, start_enabled) 
 {
 	name = "console";
 }
@@ -19,6 +19,7 @@ void ModuleConsole::ClearLog()
 
 void ModuleConsole::AddMessage(const char* message)
 {
-	messages.push_back(message);
+	//2DO
+	//messages.push_back(message);
 	LOG(message);
 }

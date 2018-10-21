@@ -84,6 +84,6 @@ public:
 
 	GameObject* parent = nullptr;
 
-	std::vector<Component*> childs;
+	std::vector<GameObject*> childs;
 	std::list<Component*> components;
 };

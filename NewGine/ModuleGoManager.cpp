@@ -67,9 +67,11 @@ GameObject* ModuleGOManager::CreateEmpty(const char* name)
 	}
 
 	new_go->parent = root;
+
+	return new_go;
 }
 
-GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* parent = nullptr)
+GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* parent)
 {
 	GameObject* new_go = new GameObject();
 	new_go->AddComponent(COMPONENT_TRANSFORM);
@@ -83,6 +85,8 @@ GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* pare
 		new_go->parent = parent;
 	else
 		new_go->parent = root;
+
+	return new_go;
 }
 
 bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
@@ -102,6 +106,8 @@ GameObject* ModuleGOManager::CreateCamera(const char* name)
 {
 	GameObject* cam = CreateEmpty("Camera");
 	cam->AddComponent(COMPONENT_CAMERA);
+
+	return cam;
 }
 
 
@@ -117,6 +123,8 @@ GameObject* ModuleGOManager::GetCameraObject()
 		}
 		it++;
 	}
+
+	return nullptr;
 }
 
 CameraComponent* ModuleGOManager::GetCameraComponent()

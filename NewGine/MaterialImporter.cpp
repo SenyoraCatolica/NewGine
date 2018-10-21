@@ -19,7 +19,7 @@ MaterialImporter::~MaterialImporter()
 
 }
 
-bool MaterialImporter::Import(const char* file, uint uuid = 0)
+bool MaterialImporter::Import(const char* file, uint uuid)
 {
 	bool ret = false;
 

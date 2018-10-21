@@ -3,6 +3,9 @@
 #include "Application.h"
 #include "GameObject.h"
 
+struct aiMesh;
+struct aiNode;
+struct aiScene;
 struct MyMesh;
 
 class MeshImporter

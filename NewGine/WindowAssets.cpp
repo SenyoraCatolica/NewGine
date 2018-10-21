@@ -12,6 +12,7 @@ bool WindowAssets::Start()
 {
 	//2DO Load icons image
 	assets_dir = ASSETS_FOLDER;
+	return true;
 }
 
 
@@ -21,12 +22,12 @@ void WindowAssets::DrawOnEditor()
 	{
 		ImGui::Begin("Assets", &active);
 
-		std::vector<AssetFile*>::iterator file = assets.begin;
-		for (file; file != assets.end; file++)
+		std::vector<AssetFile>::iterator file = assets.begin();
+		for (file; file != assets.end(); file++)
 		{
-			if ((*file)->type != FILE_TYPE::NONE)
+			if (file->type != FILE_TYPE::NONE)
 			{
-				switch ((*file)->type)
+				switch (file->type)
 				{
 					case FILE_TYPE::MESH:
 						ImGui::Image((ImTextureID)mesh_icon, ImVec2(15, 15));

@@ -10,7 +10,7 @@
 
 using namespace math;
 
-class MyMesh;
+struct MyMesh;
 
 class ModuleRenderer3D : public Module
 {

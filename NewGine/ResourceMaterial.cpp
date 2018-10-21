@@ -22,6 +22,7 @@ void ResourceMaterial::GenerateResource(MyTexture* tex)
 bool ResourceMaterial::LoadToMemory()
 {
 	state = MyResource::R_STATE::LOADED;
+	return true;
 }
 
 void ResourceMaterial::DeleteToMemory()

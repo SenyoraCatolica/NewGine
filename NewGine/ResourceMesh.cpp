@@ -71,6 +71,8 @@ bool ResourceMesh::LoadToMemory()
 	}
 
 	state = MyResource::R_STATE::LOADED;
+
+	return true;
 }
 
 void ResourceMesh::DeleteToMemory()

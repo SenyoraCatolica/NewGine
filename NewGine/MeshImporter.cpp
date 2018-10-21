@@ -76,7 +76,7 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 		{
 			new_go = new GameObject();
 			std::string name = "Mesh" + std::to_string(i);
-			new_go->SetName(name.c_str);
+			new_go->SetName(name.c_str());
 			new_go->parent = parent;
 
 			TransformComponent* t = (TransformComponent*)new_go->AddComponent(COMPONENT_TRANSFORM);
@@ -94,12 +94,16 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 	{
 		ImportNode(node->mChildren[i], scene, go);
 	}
+
+	return go;
 }
 
 
-bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid = 0)
+bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid)
 {
-	MyMesh* m;
+	bool ret = false;
+
+	MyMesh* m = new MyMesh();
 
 	MeshComponent* mesh_comp = (MeshComponent*)go->AddComponent(COMPONENT_MESH);
 
@@ -173,7 +177,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 					// 2DO:Path should be only the name here with texture folder
 					string mat_name = App->file_system->GetNameFromDirectory(path.C_Str());
 
-					ResourceMaterial* resource_mat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(mat_name.c_str);
+					ResourceMaterial* resource_mat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(mat_name.c_str());
 					if (resource_mat != nullptr)
 					{
 						if (resource_mat->GetState() == MyResource::R_STATE::UNLOADED)
@@ -182,7 +186,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 							App->importer->mat_importer->LoadTexture(resource_mat);
 						}
 
-						mat->resourceMaterial = resource_mat;
+						mat->material = resource_mat;
 					}
 				}
 			}
@@ -191,19 +195,21 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 		mesh_comp->Enable();
 
 		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
-		SaveMesh(m, name);
+		ret = SaveMesh(m, name);
 	}
 
 	else
 	{
 		LOG("WARNING! Could not find a mesh to import");
-		return false;
+		return ret;
 	}
+
+	return ret;
 }
 
 MyMesh* MeshImporter::LoadMesh(const char* path)
 {
-	MyMesh* mesh;
+	MyMesh* mesh = new MyMesh();
 
 	char* buffer;
 	if (App->file_system->Load(path, &buffer) != 0)

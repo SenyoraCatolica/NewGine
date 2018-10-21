@@ -1,3 +1,4 @@
+#pragma once
 
 #include "MyResource.h"
 #include "MathGeoLib\include\MathGeoLib.h"
@@ -40,7 +41,7 @@ public:
 
 public:
 	bool hasNormals = false;
-	MyMesh* mesh;
+	MyMesh* mesh = nullptr;
 
 };
 

@@ -1,6 +1,9 @@
 #pragma once
 #include "Module.h"
 #include <list>
+#include "WindowConsole.h"
+
+struct ConsoleLog;
 
 class ModuleConsole : public Module
 {
@@ -12,6 +15,6 @@ public:
 	void ClearLog();
 
 public:
-	std::list<const char*> messages;
+	std::list<ConsoleLog*> messages;
 
 };

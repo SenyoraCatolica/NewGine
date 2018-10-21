@@ -1,7 +1,6 @@
 #include "MeshComponent.h"
 #include "Imgui\imgui.h"
 
-struct MyMesh;
 
 MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object) : Component(type, game_object, 1)
 {

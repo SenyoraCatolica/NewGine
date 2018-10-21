@@ -26,8 +26,8 @@ GameObject::GameObject(const uint64_t uid)
 
 GameObject::~GameObject() 
 {
-	std::vector<Component*>::iterator it = components.begin;
-	while((*it) != components.end)
+	std::list<Component*>::iterator it = components.begin();
+	while(it != components.end())
 	{
 		delete (*it);
 		it++;
@@ -97,10 +97,10 @@ void GameObject::UpdateTransformMatrix()
 	UpdateAABB();
 
 	//Call again for every child
-	if (childs.size > 0)
+	if (childs.size() > 0)
 	{
-		std::vector<GameObject*>::iterator child = childs.begin;
-		while (child != childs.end)
+		std::vector<GameObject*>::iterator child = childs.begin();
+		while (child != childs.end())
 		{
 			(*child)->UpdateTransformMatrix();
 			child++;
@@ -197,8 +197,8 @@ bool GameObject::HasComponent(COMPONENT_TYPE type)
 
 Component* GameObject::GetComponent(COMPONENT_TYPE type)
 {
-	std::vector<Component*>::iterator it = components.begin;
-	while (it != components.end)
+	std::list<Component*>::iterator it = components.begin();
+	while (it != components.end())
 	{
 		if ((*it)->type == type)
 		{

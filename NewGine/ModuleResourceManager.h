@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include "Module.h"
 #include "Globals.h"
 #include "MyResource.h"
@@ -10,23 +11,19 @@ enum FILE_TYPE
 	MESH, MATERIAL, NONE
 };
 
-
 class ModuleResourceManager : public Module
 {
 public:
 	ModuleResourceManager(Application* app, bool start_enabled = true);
 	~ModuleResourceManager();
 
-	bool Start();
-	update_status PreUpdate(float dt);
-	update_status PostUpdate(float dt);
+	bool Init();
 	bool CleanUp();
 
-public:
 	MyResource* CreateResource(MyResource::R_TYPE, uint uuid);
 	MyResource* GetResource(uint uuid);
 	MyResource* TryGetResourceByName(const char* file);
-	FILE_TYPE TryGetTypeByName(const char* file);
+	//FILE_TYPE TryGetTypeByName(const char* file);
 
 	//Handle files
 	void ImportFile(const char* file);
