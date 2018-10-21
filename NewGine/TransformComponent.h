@@ -38,7 +38,6 @@ public:
 	void ComponentEditor();
 
 	void Update(float dt);
-	void ComponentEditor();
 
 	void Save(JSONWrapper& file) const;
 	void Load(JSONWrapper& file);

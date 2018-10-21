@@ -4,7 +4,7 @@
 #include "ResourceMesh.h"
 
 
-ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled = true) : Module(app, start_enabled)
+ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	name = "Resource Manager";
 }

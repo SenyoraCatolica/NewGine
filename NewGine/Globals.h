@@ -71,11 +71,11 @@ enum update_status
 #define GPU_CURRENT_AVAILABLE_MEM 0x9049
 
 
-uint64_t GenerateUUID()
+uint GenerateUUID()
 {
 	const unsigned int bytes = sizeof(long long);
 	char myString[bytes];
-	uint64_t ret;
+	uint ret;
 
 	for (int n = 0; n < bytes; n++)
 	{

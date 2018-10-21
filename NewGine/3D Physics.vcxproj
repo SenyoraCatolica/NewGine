@@ -200,7 +200,6 @@
     <ClCompile Include="MeshComponent.cpp" />
     <ClCompile Include="MeshImporter.cpp" />
     <ClCompile Include="ModuleConsole.cpp" />
-    <ClCompile Include="ModuleFBXLoader.cpp" />
     <ClCompile Include="ModuleFileSystem.cpp" />
     <ClCompile Include="ModuleGOManager.cpp" />
     <ClCompile Include="GameObject.cpp" />

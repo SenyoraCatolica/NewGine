@@ -551,9 +551,6 @@
     <ClCompile Include="ModuleGOManager.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleFBXLoader.cpp">
-      <Filter>Sources\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="Window.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
