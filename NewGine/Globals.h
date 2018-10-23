@@ -71,9 +71,9 @@ enum update_status
 #define GPU_CURRENT_AVAILABLE_MEM 0x9049
 
 
-uint GenerateUUID()
+inline uint GenerateUUID()
 {
-	const unsigned int bytes = sizeof(long long);
+	/*const unsigned int bytes = sizeof(long long);
 	char myString[bytes];
 	uint ret;
 
@@ -83,5 +83,6 @@ uint GenerateUUID()
 	}
 
 	memcpy(&ret, myString, bytes);
-	return ret;
+	return ret;*/
+	return 0;
 }

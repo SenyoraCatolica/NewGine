@@ -7,7 +7,7 @@
 Component::Component()
 {
 	if (id == 0)
-		GenerateUUID();
+		id = GenerateUUID();
 }
 
 Component::Component(COMPONENT_TYPE Type, GameObject* from) : type(Type), parent(from)
@@ -58,4 +58,7 @@ GameObject* Component::GetObjectParent()
 {
 	return parent;
 }
+
+void Component::Save(JSONWrapper& file) const{}
+void Component::Load(JSONWrapper& file){}
 

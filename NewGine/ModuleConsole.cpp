@@ -1,4 +1,4 @@
-#include "ModuleConsole.h"
+//#include "ModuleConsole.h"
 #include "Application.h"
 #include "Globals.h"
 
@@ -9,7 +9,7 @@ ModuleConsole::ModuleConsole(Application* app, bool start_enabled) : Module(app,
 }
 ModuleConsole::~ModuleConsole()
 {
-	ClearLog();
+	//ClearLog();
 }
 
 void ModuleConsole::ClearLog()

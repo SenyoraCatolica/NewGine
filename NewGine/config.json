@@ -3,13 +3,14 @@
         "editor": {
             "configuration_active": true,
             "atributeeditor_active": true,
-            "demo_active": false
+            "demo_active": false,
+            "assets_active": true
         },
         "camera": {
             "pos": {
-                "x": 21.831811904907227,
-                "y": 14.48703670501709,
-                "z": -28.992521286010742
+                "x": -9.7506275177001953,
+                "y": 17.337982177734375,
+                "z": -35.349788665771484
             },
             "reference": {
                 "x": -2,

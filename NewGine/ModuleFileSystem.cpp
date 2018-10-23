@@ -1,4 +1,4 @@
-#include "ModuleFileSystem.h"
+#include "Application.h"
 #include "SDL\include\SDL.h"
 
 #include "PhysFS\include\physfs.h"
@@ -26,11 +26,11 @@ ModuleFileSystem::~ModuleFileSystem()
 
 bool ModuleFileSystem::Init()
 {
-
+	return true;
 }
 bool ModuleFileSystem::CleanUp()
 {
-
+	return true;
 }
 
 bool ModuleFileSystem::AddPath(const char* path, const char* mount_point)
@@ -127,6 +127,7 @@ uint ModuleFileSystem::Load(const char* file, char** buffer) const
 	else
 		LOG("WARNING! error while opening file %s: %s\n", file, PHYSFS_getLastError());
 
+	return ret;
 }
 
 SDL_RWops* ModuleFileSystem::Load(const char* file) const
@@ -200,4 +201,12 @@ bool ModuleFileSystem::Save(const char* file, const char* buffer, uint size, con
 	ret = Save(final_name, buffer, size);
 
 	return ret;
+}
+
+int close_sdl_rwops(SDL_RWops *rw)
+{
+	if (rw->hidden.mem.base)
+		delete rw->hidden.mem.base;
+	SDL_FreeRW(rw);
+	return 0;
 }

@@ -1,4 +1,3 @@
-#include "ModuleResourceManager.h"
 #include "ResourceMaterial.h"
 #include "ResourceMesh.h"
 #include "Application.h"

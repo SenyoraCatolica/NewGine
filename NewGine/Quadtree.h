@@ -89,8 +89,8 @@ inline std::vector<GameObject*> QuadNode::GetColliderObjects(T type)
 
 
 //QuadTree
-template<typename c>
-inline std::vector<GameObject*> Quad_Tree::GetColliderObjects(t type)
+template<typename t>
+inline std::vector<GameObject*> Quadtree::GetColliderObjects(t type)
 {
 	return root.GetColliderObjects(type);
 }

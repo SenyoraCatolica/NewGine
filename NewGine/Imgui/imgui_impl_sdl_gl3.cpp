@@ -12,9 +12,11 @@
 // SDL,GL3W
 #include "../SDL/include/SDL.h"
 #include "../SDL/include/SDL_syswm.h"
-#include "../GL3W/include/glew.h"
+#include "../Glew/include/glew.h"
 
-#pragma comment (lib, "GL3W/libx86/glew32.lib") /*link Microsoft OpenGL lib*/
+#pragma comment (lib, "Glew/libx86/glew32.lib") /*link Microsoft OpenGL lib*/
+#pragma comment (lib, "Glew/libx86/glew32.lib") /*link Microsoft OpenGL lib*/
+
 
 // Data
 static double       g_Time = 0.0f;
