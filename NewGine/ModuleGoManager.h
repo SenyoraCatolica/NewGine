@@ -5,6 +5,7 @@
 #include "Globals.h"
 #include "Module.h"
 #include "GameObject.h"
+#include "Quadtree.h"
 #include <list>
 
 class CameraComponent;
@@ -41,6 +42,7 @@ private:
 	CameraComponent* cam_comp = nullptr;
 	GameObject* root = nullptr;
 
+	Quadtree* quadtree;
 };
 
 #endif // _GOMANAGER_H_

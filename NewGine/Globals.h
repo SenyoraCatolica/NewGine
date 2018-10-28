@@ -70,6 +70,11 @@ enum update_status
 #define GPU_TOTAL_AVAILABLE_MEM 0x9048
 #define GPU_CURRENT_AVAILABLE_MEM 0x9049
 
+//USED WHEN GENERATING THE QUAD TREE SIZE
+#define WORLD_WIDTH 1400
+#define WORLD_DEPTH 1400
+#define WORLD_HEIGHT 600
+
 
 inline uint GenerateUUID()
 {

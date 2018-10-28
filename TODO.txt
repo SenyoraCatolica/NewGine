@@ -1,0 +1,3 @@
+Repassar quadtree.
+crear selector dobjectes i mousepicking
+vincular components i recursos
