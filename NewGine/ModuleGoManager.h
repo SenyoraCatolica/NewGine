@@ -29,10 +29,13 @@ public:
 	GameObject* GetCameraObject();
 	CameraComponent* GetCameraComponent();
 
+	GameObject* Raycast(const Ray& ray)const;
+
 
 public:
 	std::list<GameObject*> all_gameobjects;
 	std::list<GameObject*> objects_to_draw;
+	std::list<GameObject*> dynamic_objects;
 
 private:
 	std::list<GameObject*> to_delete_gos;

@@ -64,12 +64,22 @@ void GameObject::DrawOBB()
 
 void GameObject::Select()
 {
-	//2DO implement select
+	selected = true;
+	
+	for (int i = 0; i < childs.size(); i++)
+	{
+		childs[i]->Select();
+	}
 }
 
 void GameObject::Unselect()
 {
-	//2DO implement unselect
+	selected = false;
+
+	for (int i = 0; i < childs.size(); i++)
+	{
+		childs[i]->Unselect();
+	}
 }
 
 

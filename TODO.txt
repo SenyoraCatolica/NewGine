@@ -1,3 +1,5 @@
 Repassar quadtree.
 crear selector dobjectes i mousepicking
 vincular components i recursos
+draw bounding boxes
+draw quadtree

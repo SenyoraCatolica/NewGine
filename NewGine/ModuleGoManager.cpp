@@ -132,5 +132,28 @@ CameraComponent* ModuleGOManager::GetCameraComponent()
 	return (CameraComponent*)GetCameraObject()->GetComponent(COMPONENT_CAMERA);
 }
 
+GameObject* ModuleGOManager::Raycast(const Ray& ray)const
+{
+	GameObject* ret = nullptr;
+
+
+	vector<GameObject*> cols;   //list og game objects that collided with the ray
+
+	cols = quadtree->GetColliderObjects(ray);
+
+	std::list<GameObject*>::iterator it = App->go_manager->dynamic_objects.begin();
+	while (it != dynamic_objects.end())
+	{
+		if ((*it)->IsActive() && (*it)->aabb.IsFinite() && (*it)->aabb.Intersects(ray) == true)
+		{
+			cols.push_back((*it));
+		}
+
+		it++;
+	}
+
+}
+
+
 
 

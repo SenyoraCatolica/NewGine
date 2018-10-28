@@ -15,7 +15,6 @@
 #include "../Glew/include/glew.h"
 
 #pragma comment (lib, "Glew/libx86/glew32.lib") /*link Microsoft OpenGL lib*/
-#pragma comment (lib, "Glew/libx86/glew32.lib") /*link Microsoft OpenGL lib*/
 
 
 // Data

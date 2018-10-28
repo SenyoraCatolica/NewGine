@@ -9,6 +9,7 @@
 #include "ResourceMesh.h"
 
 
+
 class GameObject
 {
 public:
@@ -37,6 +38,7 @@ public:
 
 	void SetName(const char* newName);
 	const char* GetName();
+
 
 
 	//Components
@@ -68,10 +70,9 @@ public:
 
 
 private:
-	uint64_t uid;
+	uint uid;
 	bool active = true;
 	bool is_static = false;
-	bool selected = false;
 
 	AABB originalAABB;
 
@@ -81,8 +82,10 @@ public:
 	AABB aabb;
 	OBB obb;
 	bool boundingbox_active = false;
+	bool selected = false;
 
 	GameObject* parent = nullptr;
+
 
 	std::vector<GameObject*> childs;
 	std::list<Component*> components;
