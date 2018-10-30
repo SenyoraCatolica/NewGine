@@ -63,7 +63,7 @@ inline std::vector<GameObject*> QuadNode::GetColliderObjects(T type)
 		{
 			for (std::vector<GameObject*>::iterator it = gos.begin(); it != gos.end(); it++)
 			{
-				if ((*it)->IsActive() && (*it)->aabb.IsFinite() && col.Intersects((*it)->aabb) == true)
+				if ((*it)->IsActive() && (*it)->aabb.IsFinite() && type.Intersects((*it)->aabb) == true)
 				{
 					ret.push_back(*it);
 				}
