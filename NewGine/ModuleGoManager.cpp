@@ -18,6 +18,7 @@ ModuleGOManager::~ModuleGOManager()
 
 	camera = nullptr;
 	cam_comp = nullptr;
+	selected_go = nullptr;
 }
 
 bool ModuleGOManager::Init()
@@ -52,6 +53,7 @@ update_status ModuleGOManager::Update(float dt)
 		it++;
 	}
 
+	SelectObject();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -141,20 +143,87 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 
 	cols = quadtree->GetColliderObjects(ray);
 
+	//Sort all the candidates by distance
+	std::map<float, GameObject*> candidates;
 	std::list<GameObject*>::iterator it = App->go_manager->dynamic_objects.begin();
 	while (it != dynamic_objects.end())
 	{
-		if ((*it)->IsActive() && (*it)->aabb.IsFinite() && (*it)->aabb.Intersects(ray) == true)
+		float near_dist, far_dist;
+		if ((*it)->obb.Intersects(ray, near_dist, far_dist) == true)
 		{
-			cols.push_back((*it));
+			candidates.insert(std::pair<float, GameObject*>(MIN(near_dist, far_dist), (*it)));
 		}
-
-		it++;
 	}
+
+
+	//iterate all the possible collisions by order
+	std::map<float, GameObject*>::iterator mapit = candidates.begin();
+
+	while (mapit != candidates.end())
+	{
+		float coldist = 100000;
+
+		//check if go has mesh
+		if (mapit->second->HasComponent(COMPONENT_MESH))
+		{
+			TransformComponent* t = (TransformComponent*)mapit->second->GetComponent(COMPONENT_TRANSFORM);
+
+			Ray transposed_ray = ray;
+			transposed_ray.Transform(t->GetGlobalTranform().InverseTransposed());
+
+			MeshComponent* m = (MeshComponent*)mapit->second->GetComponent(COMPONENT_MESH);
+			const uint num_indices = m->mesh->mesh->num_indices;
+
+			uint u1, u2, u3;
+			float3 v1, v2, v3;
+			Triangle triangle;
+			float distance;
+			float3 hitpoint;
+
+
+			//now create triangles and check them
+			for (uint i = 0; i < num_indices/3; i++)
+			{
+				u1 = m->mesh->mesh->indices[i * 3];
+				u2 = m->mesh->mesh->indices[i * 3 + 1];
+				u3 = m->mesh->mesh->indices[i * 3 + 2];
+				v1 = float3(&m->mesh->mesh->vertices[u1]);
+				v2 = float3(&m->mesh->mesh->vertices[u2]);
+				v3 = float3(&m->mesh->mesh->vertices[u3]);
+				triangle = Triangle(v1, v2, v3);
+
+				if (triangle.Intersects(transposed_ray, &distance, &hitpoint) == true)
+				{
+					if (distance < coldist)
+					{
+						//save the mesh with less dist
+						ret = mapit->second;
+					}
+				}
+			}
+		}
+	}
+
 
 	return ret;
 }
 
 
+void ModuleGOManager::SelectObject()
+{
+	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+	{
+		CameraComponent* cam = (CameraComponent*)camera->GetComponent(COMPONENT_CAMERA);
+
+		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
+
+		pos.x = 2.0f * pos.x / (float)App->window->GetWidth() - 1.0f;
+		pos.y = 1.0f - 2.0f * pos.y / (float)App->window->GetHeight();
+
+		Ray ray = cam->frustum.UnProjectFromNearPlane(pos.x, pos.y);
+
+		selected_go = Raycast(ray);
+	}
+}
 
 

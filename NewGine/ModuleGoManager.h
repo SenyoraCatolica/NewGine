@@ -30,6 +30,7 @@ public:
 	CameraComponent* GetCameraComponent();
 
 	GameObject* Raycast(const Ray& ray)const;
+	void SelectObject();
 
 
 public:
@@ -40,6 +41,7 @@ public:
 private:
 	std::list<GameObject*> to_delete_gos;
 
+	GameObject* selected_go = nullptr;
 
 	GameObject * camera = nullptr;
 	CameraComponent* cam_comp = nullptr;
