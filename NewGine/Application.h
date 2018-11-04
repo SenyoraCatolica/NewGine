@@ -17,7 +17,12 @@
 #include "ModuleConsole.h"
 #include "ModuleFileSystem.h"
 
-using namespace std; 
+using namespace std;
+
+enum GAME_STATE
+{
+	PLAY_STATE, STOP_STATE, PAUSED_STATE, RUN_STATE
+};
 
 class Application
 {
@@ -50,6 +55,8 @@ private:
 	std::string name;
 	std::string organization;
 
+	GAME_STATE game_state;
+
 public:
 
 	Application();
@@ -63,6 +70,11 @@ public:
 	void SetMaxFPS(int max_fps);
 	int GetFPS();
 	int GetMS();
+
+	//Game states
+	void Play();
+	void Stop();
+	void Pause();
 
 
 	bool LoadConfig();

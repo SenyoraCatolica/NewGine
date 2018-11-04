@@ -194,6 +194,28 @@ int Application::GetMS()
 	return last_frame_ms;
 }
 
+//Game states============================================
+void Application::Play()
+{
+	if (game_state == STOP_STATE)
+	{
+		//2DO save scene
+	}
+
+	game_state = RUN_STATE;
+}
+
+void Application::Stop()
+{
+	game_state = STOP_STATE;
+	//2DO load scene
+}
+
+void Application::Pause()
+{
+	game_state = PAUSED_STATE;
+}
+
 
 bool Application::LoadConfig()
 {
