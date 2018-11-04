@@ -203,6 +203,13 @@ void QuadNode::SetBox(int index, float3 limit)
 }
 
 
+std::vector<QuadNode> QuadNode::GetChilds()
+{
+	return childs;
+}
+
+
+
 //===================================================================================
 
 Quadtree::Quadtree(float3 min, float3 max) : root(min, max)
@@ -219,6 +226,12 @@ void Quadtree::DebugDraw()
 {
 	root.DebugDraw();
 }
+
+QuadNode Quadtree::GetRoot()
+{
+	return root;
+}
+
 
 
 void Quadtree::Insert(GameObject* go)

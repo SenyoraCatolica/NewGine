@@ -3,6 +3,7 @@
 #include "Globals.h"
 #include "MathGeoLib\include\MathGeoLib.h"
 #include "Light.h"
+#include "Quadtree.h"
 
 
 
@@ -26,6 +27,10 @@ public:
 	void OnResize(int width, int height, float fovy);
 
 	void DrawMesh(MyMesh m);
+
+	void DebugDrawQuadtree(Quadtree* quadtree, QuadNode root);
+
+	void DrawBox(float3* corners, float4 color);
 
 	bool GetEnableTextures() const;
 	bool GetEnableColorMaterial() const;

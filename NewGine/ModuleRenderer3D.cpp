@@ -256,6 +256,43 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 	}*/
 }
 
+
+void ModuleRenderer3D::DebugDrawQuadtree(Quadtree* quadtree, QuadNode root)
+{
+	float3 corners[8];
+	root.GetBox().GetCornerPoints(corners);
+
+
+	for (std::vector<QuadNode>::iterator it = root.GetChilds().begin(); it != root.GetChilds().end(); it++)
+	{
+		DebugDrawQuadtree(quadtree, (*it));
+	}
+}
+
+void ModuleRenderer3D::DrawBox(float3* corners, float4 color)
+{
+	glColor4f(color.x, color.y, color.z, color.w);
+
+	glBegin(GL_LINES);
+
+	glVertex3fv(corners[0].ptr()); glVertex3fv(corners[1].ptr());
+	glVertex3fv(corners[0].ptr()); glVertex3fv(corners[2].ptr());
+	glVertex3fv(corners[0].ptr()); glVertex3fv(corners[4].ptr());
+	glVertex3fv(corners[3].ptr()); glVertex3fv(corners[1].ptr());
+	glVertex3fv(corners[3].ptr()); glVertex3fv(corners[2].ptr());
+	glVertex3fv(corners[3].ptr()); glVertex3fv(corners[7].ptr());
+	glVertex3fv(corners[5].ptr()); glVertex3fv(corners[1].ptr());
+	glVertex3fv(corners[5].ptr()); glVertex3fv(corners[4].ptr());
+	glVertex3fv(corners[5].ptr()); glVertex3fv(corners[7].ptr());
+	glVertex3fv(corners[6].ptr()); glVertex3fv(corners[2].ptr());
+	glVertex3fv(corners[6].ptr()); glVertex3fv(corners[4].ptr());
+	glVertex3fv(corners[6].ptr()); glVertex3fv(corners[7].ptr());
+
+	glEnd();
+}
+
+
+
 //Getters
 bool ModuleRenderer3D::GetEnableTextures() const
 {

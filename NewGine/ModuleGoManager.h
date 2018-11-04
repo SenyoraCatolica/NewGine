@@ -38,6 +38,8 @@ public:
 	std::list<GameObject*> objects_to_draw;
 	std::list<GameObject*> dynamic_objects;
 
+	Quadtree* quadtree;
+
 private:
 	std::list<GameObject*> to_delete_gos;
 
@@ -46,8 +48,6 @@ private:
 	GameObject * camera = nullptr;
 	CameraComponent* cam_comp = nullptr;
 	GameObject* root = nullptr;
-
-	Quadtree* quadtree;
 };
 
 #endif // _GOMANAGER_H_

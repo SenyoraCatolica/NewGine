@@ -24,6 +24,8 @@ public:
 	AABB GetBox();
 	void SetBox(int index, float3 limit);
 
+	std::vector<QuadNode> GetChilds();
+
 private:
 	QuadNode * parent;
 	std::vector<QuadNode> childs;
@@ -40,7 +42,7 @@ public:
 	~Quadtree();
 
 	void DebugDraw();
-
+	QuadNode GetRoot();
 
 	void Insert(GameObject* go);
 	void Remove(GameObject* go);

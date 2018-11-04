@@ -381,6 +381,9 @@
     <ClInclude Include="Quadtree.h">
       <Filter>Sources\Containers</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalFunctions.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -622,6 +625,9 @@
     </ClCompile>
     <ClCompile Include="Quadtree.cpp">
       <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalFunctions.cpp">
+      <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

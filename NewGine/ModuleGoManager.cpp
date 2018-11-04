@@ -55,6 +55,9 @@ update_status ModuleGOManager::Update(float dt)
 
 	SelectObject();
 
+	//2DO condition to draw
+	App->renderer3D->DebugDrawQuadtree(quadtree, quadtree->GetRoot());
+
 	return update_status::UPDATE_CONTINUE;
 }
 
