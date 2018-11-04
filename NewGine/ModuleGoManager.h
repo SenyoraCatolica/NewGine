@@ -31,6 +31,7 @@ public:
 
 	GameObject* Raycast(const Ray& ray)const;
 	void SelectObject();
+	void DrawLocator();
 
 
 public:

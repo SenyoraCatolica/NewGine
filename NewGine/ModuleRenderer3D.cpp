@@ -291,7 +291,30 @@ void ModuleRenderer3D::DrawBox(float3* corners, float4 color)
 	glEnd();
 }
 
+void ModuleRenderer3D::DrawLocator(float4x4 transform, float4 color)
+{
+	glDisable(GL_LIGHTING);
+	
+	glPushMatrix();
+	glMultMatrixf(transform.ptr());
 
+	glColor4f(color.x, color.y, color.z, color.w);
+
+	glBegin(GL_LINES);
+
+	glVertex3f(1.0f, 0.0f, 0.0f); glVertex3f(-1.0f, 0.0f, 0.0f);
+	glVertex3f(0.0f, 1.0f, 0.0f); glVertex3f(0.0f, -1.0f, 0.0f);
+	glVertex3f(0.0f, 0.0f, 1.0f); glVertex3f(0.0f, 0.0f, -1.0f);
+
+	glVertex3f(0.0f, 0.0f, 1.0f); glVertex3f(0.1f, 0.0f, 0.9f);
+	glVertex3f(0.0f, 0.0f, 1.0f); glVertex3f(-0.1f, 0.0f, 0.9f);
+
+	glEnd();
+
+	glEnable(GL_LIGHTING);
+
+	glPopMatrix();
+}
 
 //Getters
 bool ModuleRenderer3D::GetEnableTextures() const

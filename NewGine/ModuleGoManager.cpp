@@ -54,6 +54,7 @@ update_status ModuleGOManager::Update(float dt)
 	}
 
 	SelectObject();
+	DrawLocator();
 
 	//2DO condition to draw
 	App->renderer3D->DebugDrawQuadtree(quadtree, quadtree->GetRoot());
@@ -228,5 +229,17 @@ void ModuleGOManager::SelectObject()
 		selected_go = Raycast(ray);
 	}
 }
+
+void ModuleGOManager::DrawLocator()
+{
+	if (selected_go != nullptr)
+	{
+		float4 color = float4(0.1f, 0.58f, 0.2f, 1.0f);
+		TransformComponent* t = (TransformComponent*)selected_go->GetComponent(COMPONENT_TRANSFORM);
+
+		App->renderer3D->DrawLocator(t->GetGlobalTranform(), color);
+	}
+}
+
 
 

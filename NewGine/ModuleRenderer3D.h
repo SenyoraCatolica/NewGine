@@ -29,6 +29,7 @@ public:
 	void DrawMesh(MyMesh m);
 
 	void DebugDrawQuadtree(Quadtree* quadtree, QuadNode root);
+	void DrawLocator(float4x4 transform, float4 color);
 
 	void DrawBox(float3* corners, float4 color);
 
