@@ -13,8 +13,15 @@ ModuleGOManager::ModuleGOManager(Application* app, bool start_enabled) : Module(
 
 ModuleGOManager::~ModuleGOManager()
 {
-	delete camera;
-	delete cam_comp;
+	if(camera)
+		delete camera;
+
+	if(cam_comp)
+		delete cam_comp;
+
+	if (root)
+		delete root;
+
 
 	camera = nullptr;
 	cam_comp = nullptr;

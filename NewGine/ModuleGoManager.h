@@ -51,7 +51,6 @@ private:
 
 	GameObject * camera = nullptr;
 	CameraComponent* cam_comp = nullptr;
-	GameObject* root = nullptr;
 };
 
 #endif // _GOMANAGER_H_
