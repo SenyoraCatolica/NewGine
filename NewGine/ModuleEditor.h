@@ -9,6 +9,7 @@
 #include "WindowAtributeEditor.h"
 #include "WindowConsole.h"
 #include "WindowAssets.h"
+#include "OutlinerWindow.h"
 
 class ModuleEditor : public Module
 {
@@ -35,11 +36,16 @@ private:
 	WindowHardware* hardwarewindow;
 	WindowAtributeEditor* atributeeditorwindow;
 	WindowAssets* assetswindow;
+	OutlinerWindow* outlinerwindow;
 
 	bool config_active;
 	bool atributeeditor_active;
 	bool console_active;
 	bool demo_active;
 	bool assets_active;
+	bool outliner_active;
+
+public:
+	GameObject* selected_object;
 
 };

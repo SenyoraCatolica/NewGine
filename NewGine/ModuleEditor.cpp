@@ -95,6 +95,13 @@ bool ModuleEditor::HandleMainMenu()
 
 		ImGui::Separator();
 
+		if (ImGui::Checkbox("Outliner", &outliner_active))
+		{
+			outlinerwindow->SetActive(outliner_active);
+		}
+
+		ImGui::Separator();
+
 		if (ImGui::Checkbox("Demo", &demo_active)){}
 
 		ImGui::EndMenu();

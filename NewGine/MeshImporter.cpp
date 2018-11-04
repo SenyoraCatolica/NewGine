@@ -341,11 +341,44 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
 
 void MeshImporter::DecomposeTransform(TransformComponent* trans, aiNode* node)
 {
-	aiVector3D pos;
-	aiQuaternion rot;
-	aiVector3D scale;
+	aiVector3D translation;
+	aiQuaternion rotation;
+	aiVector3D scaling;
 
-	node->mTransformation.Decompose(scale, rot, pos);
+	node->mTransformation.Decompose(scaling, rotation, scaling);
+
+
+	math::float3 pos;
+	pos.x = translation.x; pos.y = translation.y; pos.z = translation.z;
+
+	math::Quat rot;
+	rot.x = rotation.x; rot.y = rotation.y; rot.z = rotation.z; rot.w = rotation.w;
+
+	math::float3 scale;
+	scale.x = scaling.x; scale.y = scaling.y; scale.z = scaling.z;
+
+	//Don't load fbx dummies as gameobjects. 
+	static const char* dummies[5] =
+	{
+		"$AssimpFbx$_PreRotation",
+		"$AssimpFbx$_Rotation",
+		"$AssimpFbx$_PostRotation",
+		"$AssimpFbx$_Scaling",
+		"$AssimpFbx$_Translation"
+	};
+
+	for (int i = 0; i < 5; ++i)
+	{
+		if (((string)(node->mName.C_Str())).find(dummies[i]) != string::npos && node->mNumChildren == 1)
+		{
+			node = node->mChildren[0];
+			node->mTransformation.Decompose(scaling, rotation, translation);
+			pos += float3(translation.x, translation.y, translation.z);
+			scale = float3(scale.x * scaling.x, scale.y * scaling.y, scale.z * scaling.z);
+			rot = rot * Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+			i = -1;
+		}
+	}
 
 	trans->SetTranslation(float3(pos.x, pos.y, pos.z));
 	trans->SetRotation(Quat(rot.x, rot.y, rot.z, rot.w));

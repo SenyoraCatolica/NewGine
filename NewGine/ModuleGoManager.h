@@ -34,6 +34,8 @@ public:
 	void DrawLocator();
 
 
+	GameObject* GetRoot();
+
 public:
 	std::list<GameObject*> all_gameobjects;
 	std::list<GameObject*> objects_to_draw;
@@ -44,6 +46,7 @@ public:
 private:
 	std::list<GameObject*> to_delete_gos;
 
+	GameObject* root = nullptr;
 	GameObject* selected_go = nullptr;
 
 	GameObject * camera = nullptr;

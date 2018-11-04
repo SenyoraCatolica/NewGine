@@ -384,6 +384,9 @@
     <ClInclude Include="GlobalFunctions.h">
       <Filter>Sources</Filter>
     </ClInclude>
+    <ClInclude Include="OutlinerWindow.h">
+      <Filter>Sources\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -628,6 +631,9 @@
     </ClCompile>
     <ClCompile Include="GlobalFunctions.cpp">
       <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="OutlinerWindow.cpp">
+      <Filter>Sources\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,8 @@
 Repassar quadtree.
-crear selector dobjectes i mousepicking
+crear selector dobjectes i mousepicking*************************
 vincular components i recursos
 draw bounding boxes
-draw quadtree
+draw quadtree      **************************
+draw gameobjects
+play/pause
+hierarchy

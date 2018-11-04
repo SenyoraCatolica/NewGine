@@ -242,4 +242,11 @@ void ModuleGOManager::DrawLocator()
 }
 
 
+GameObject* ModuleGOManager::GetRoot()
+{
+	return root;
+}
+
+
+
 
