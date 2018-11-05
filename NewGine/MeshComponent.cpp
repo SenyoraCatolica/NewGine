@@ -67,7 +67,8 @@ void MeshComponent::SetBBActive(bool active)
 
 void MeshComponent::Save(JSONWrapper& file) const
 {
-	JSONWrapper array_value;
+	JSONWrapper array_value;	
+	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteString("Path", mesh->path.c_str());
@@ -77,6 +78,7 @@ void MeshComponent::Save(JSONWrapper& file) const
 
 void MeshComponent::Load(JSONWrapper& file)
 {
+	type = (COMPONENT_TYPE)file.ReadUInt("Type");
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	path = file.ReadString("Path");

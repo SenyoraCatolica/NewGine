@@ -16,13 +16,26 @@ GameObject::GameObject()
 	strcpy(name, "Unnamed");
 }
 
-GameObject::GameObject(const uint64_t uid)
+GameObject::GameObject(const uint uid)
 {
 	this->uid = uid;
 	aabb.SetNegativeInfinity();
 	originalAABB.SetNegativeInfinity();
 	strcpy(name, "Unnamed");
 }
+
+GameObject::GameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active)
+{
+	strcpy(this->name, name);
+	uid = uuid;
+	parent = parent;
+	this->is_static = is_static;
+	this->active = is_active;
+
+	aabb.SetNegativeInfinity();
+	originalAABB.SetNegativeInfinity();
+}
+
 
 GameObject::~GameObject() 
 {

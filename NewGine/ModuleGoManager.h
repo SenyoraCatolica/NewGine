@@ -24,6 +24,7 @@ public:
 	//GameObject Management
 	GameObject* CreateEmpty(const char* name);
 	GameObject* CreateGameObject(const char* name, GameObject* parent = nullptr);
+	GameObject* CreateGameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active);
 	bool DeleteGameObject(GameObject* to_delete);
 	GameObject* CreateCamera(const char* name);
 	GameObject* GetCameraObject();
@@ -35,8 +36,9 @@ public:
 
 	GameObject* GetRoot();
 
-	void LoadScene();
+	void LoadScene(const char* name);
 	void SaveScene(const char* name);
+	GameObject* LoadGameObject(const JSONWrapper& file);
 
 public:
 	std::list<GameObject*> all_gameobjects;

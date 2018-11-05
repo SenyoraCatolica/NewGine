@@ -48,6 +48,7 @@ void MaterialComponent::SetResourceMaterial(ResourceMaterial* mat)
 void MaterialComponent::Save(JSONWrapper& file) const
 {
 	JSONWrapper array_value;
+	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteString("Path", material->path.c_str());
@@ -57,6 +58,7 @@ void MaterialComponent::Save(JSONWrapper& file) const
 
 void MaterialComponent::Load(JSONWrapper& file)
 {
+	type = (COMPONENT_TYPE)file.ReadUInt("Type");
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	path = file.ReadString("Path");

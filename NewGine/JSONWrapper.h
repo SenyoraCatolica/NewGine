@@ -7,6 +7,7 @@ class JSONWrapper
 public:
 	JSONWrapper();
 	JSONWrapper(JSON_Object* obj);
+	JSONWrapper(const char* file);
 	~JSONWrapper();
 
 
@@ -34,7 +35,7 @@ public:
 	float4x4 ReadMatrix(const char * name) const;
 
 	size_t SerializeBuffer(char** buff);
-
+	size_t GetArraySize(const char* array);
 
 private:
 	JSON_Object * root = nullptr;

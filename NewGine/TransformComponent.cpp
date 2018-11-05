@@ -183,6 +183,7 @@ void TransformComponent::ComponentEditor()
 void TransformComponent::Save(JSONWrapper& file) const
 {
 	JSONWrapper array_value;
+	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteMatrix("Loacal Matrix", local_tranformation);
@@ -206,6 +207,7 @@ void TransformComponent::Save(JSONWrapper& file) const
 
 void TransformComponent::Load(JSONWrapper& file)
 {
+	type = (COMPONENT_TYPE)file.ReadUInt("Type");
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	local_tranformation = file.ReadMatrix("Local Matrix");

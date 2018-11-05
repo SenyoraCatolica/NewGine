@@ -103,6 +103,14 @@ GameObject* ModuleGOManager::CreateGameObject(const char* name, GameObject* pare
 	return new_go;
 }
 
+GameObject* ModuleGOManager::CreateGameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active)
+{
+	GameObject* ret = new GameObject(name, uuid, parent, is_static, is_active);
+	all_gameobjects.push_back(ret);
+	return ret;
+}
+
+
 bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 {
 	bool ret = false;
@@ -127,9 +135,9 @@ GameObject* ModuleGOManager::CreateCamera(const char* name)
 
 GameObject* ModuleGOManager::GetCameraObject()
 {
-	std::list<GameObject*>::iterator it = App->go_manager->all_gameobjects.begin();
+	std::list<GameObject*>::iterator it = all_gameobjects.begin();
 
-	while (it != App->go_manager->all_gameobjects.end())
+	while (it != all_gameobjects.end())
 	{
 		if ((*it)->GetComponent(COMPONENT_CAMERA) != nullptr)
 		{
@@ -255,9 +263,40 @@ GameObject* ModuleGOManager::GetRoot()
 	return root;
 }
 
-void ModuleGOManager::LoadScene()
+void ModuleGOManager::LoadScene(const char* name)
 {
 	//2DO
+	char* buffer = nullptr;
+	uint size = App->file_system->Load(name, &buffer);
+
+	if (size > 0)
+	{
+		//2DO Delete current scene
+
+		JSONWrapper root(buffer);
+		JSONWrapper root_value;
+
+		root_value = root.ReadArray("Scene", 0);
+
+
+		for (int i = 0; i < root.GetArraySize("Scene"); i++)
+		{
+			if (i == 0)
+				this->root = LoadGameObject(root.ReadArray("Scene", i));
+
+			else
+				LoadGameObject(root.ReadArray("Scene", i));
+		}
+
+	}
+
+	else
+	{
+		if (buffer)
+			delete[] buffer;
+
+		LOG("Error while loading Scene: %s", name);
+	}
 }
 
 void ModuleGOManager::SaveScene(const char* name)
@@ -272,6 +311,79 @@ void ModuleGOManager::SaveScene(const char* name)
 	size_t size = root_node.SerializeBuffer(&buf);
 	App->file_system->Save("Library/current_scene.json", buf, size);
 }
+
+GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
+{
+	//get the go data in local variables
+	std::string name  = file.ReadString("name");
+	int uuid = file.ReadUInt("UUID");
+	int parent_uuid = file.ReadUInt("parent");
+	bool is_static = file.ReadBool("static");
+	bool is_active = file.ReadBool("active");
+
+	//set the parent of the new object
+	GameObject*  parent = nullptr;
+	std::list<GameObject*>::iterator it = all_gameobjects.begin();
+	while (it != all_gameobjects.end())
+	{
+		if ((*it)->GetUID() == uuid)
+			parent = (*it);
+		it++;
+	}
+
+	GameObject* new_go = CreateGameObject(name.c_str(), uuid, parent, is_static, is_active);
+
+	//set the new object as child from the parent
+	if (parent != nullptr)
+		parent->childs.push_back(new_go);
+
+	//load components
+	JSONWrapper root = file;
+	JSONWrapper array_value;
+
+	for (int i = 0; i < root.GetArraySize("components"); i++)
+	{
+		array_value = root.ReadArray("components", i);
+		COMPONENT_TYPE t = (COMPONENT_TYPE)root.ReadUInt("Type");
+
+		switch (t)
+		{
+			case COMPONENT_TRANSFORM:
+				TransformComponent* trans = (TransformComponent*)new_go->AddComponent(t);
+				trans->Load(array_value);
+				break;
+			case COMPONENT_MESH:
+				MeshComponent* mesh = (MeshComponent*)new_go->AddComponent(t);
+				mesh->Load(array_value);
+				break;
+			case COMPONENT_MATERIAL:
+				MaterialComponent* mat = (MaterialComponent*)new_go->AddComponent(t);
+				mat->Load(array_value);
+
+				break;
+			case COMPONENT_CAMERA:
+				CameraComponent* cam = (CameraComponent*)new_go->AddComponent(t);
+				cam->Load(array_value);
+
+				break;
+			default:
+				break;
+		}
+
+		if (is_static)
+		{
+			quadtree->Insert(new_go);
+		}
+
+		else
+		{
+			dynamic_objects.push_back(new_go);
+		}
+	}
+
+	return new_go;
+}
+
 
 
 

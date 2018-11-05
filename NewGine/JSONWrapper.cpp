@@ -10,6 +10,13 @@ JSONWrapper::JSONWrapper(JSON_Object* obj) : root(root)
 
 }
 
+JSONWrapper::JSONWrapper(const char* file)
+{
+	root_value = json_parse_string(file);
+	root = json_value_get_object(root_value);
+}
+
+
 JSONWrapper::~JSONWrapper()
 {
 	json_value_free(root_value);
@@ -172,8 +179,20 @@ float4x4 JSONWrapper::ReadMatrix(const char * name) const
 //small function to get the size of the buffer to save
 size_t JSONWrapper::SerializeBuffer(char** buff)
 {
-	size_t size = json_serialization_size_pretty(root_value);
-	*buff = new char[size];
-	json_serialize_to_buffer_pretty(root_value, *buff, size);
-	return size;
+	size_t ret = json_serialization_size_pretty(root_value);
+	*buff = new char[ret];
+	json_serialize_to_buffer_pretty(root_value, *buff, ret);
+	return ret;
 }
+
+size_t JSONWrapper::GetArraySize(const char* array)
+{
+	size_t ret = 0;
+	JSON_Array* json_array = json_object_get_array(root, array);
+
+	if (json_array != nullptr)
+		ret = json_array_get_count(json_array);
+
+	return ret;
+}
+

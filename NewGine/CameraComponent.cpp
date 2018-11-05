@@ -111,6 +111,7 @@ float4x4 CameraComponent::GetProjectionMatrix() const
 void CameraComponent::Save(JSONWrapper& file) const
 {
 	JSONWrapper array_value;
+	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteFloat("Near Plane", near_plane);
@@ -123,6 +124,7 @@ void CameraComponent::Save(JSONWrapper& file) const
 
 void CameraComponent::Load(JSONWrapper& file)
 {
+	type = (COMPONENT_TYPE)file.ReadUInt("Type");
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	near_plane = file.ReadeFloat("Near Plane");
