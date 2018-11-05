@@ -39,7 +39,7 @@ public:
 	void SetName(const char* newName);
 	const char* GetName();
 
-
+	void Save(JSONWrapper& file);
 
 	//Components
 	Component* AddComponent(COMPONENT_TYPE type);

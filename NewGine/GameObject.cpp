@@ -148,6 +148,45 @@ const char* GameObject::GetName()
 	return name;
 }
 
+void GameObject::Save(JSONWrapper& file)
+{
+	JSONWrapper array_value;
+
+	array_value.WriteString("name", name);
+	array_value.WriteUInt("UUID", uid);
+
+	if (parent == nullptr)
+		array_value.WriteUInt("parent", 0);
+	else
+		array_value.WriteUInt("parent", parent->uid);
+
+	array_value.WriteBool("static", is_static);
+	array_value.WriteBool("active", active);
+
+
+	//Save Components
+	array_value.WriteArray("components");
+	std::list<Component*>::const_iterator it = components.begin();
+	while (it != components.end())
+	{
+		(*it)->Save(array_value);
+		it++;
+	}
+
+	file.WriteArrayValue(array_value);
+
+
+	//save for its childs
+	std::vector<GameObject*>::const_iterator child = childs.begin();
+	while (child != childs.end())
+	{
+		(*child)->Save(file);
+		child++;
+	}
+		
+}
+
+
 
 //Components===================================================================
 

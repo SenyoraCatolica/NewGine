@@ -4,6 +4,7 @@
 #include "Application.h"
 #include "CameraComponent.h"
 #include "MeshComponent.h"
+#include "JSONWrapper.h"
 
 
 ModuleGOManager::ModuleGOManager(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -252,6 +253,24 @@ void ModuleGOManager::DrawLocator()
 GameObject* ModuleGOManager::GetRoot()
 {
 	return root;
+}
+
+void ModuleGOManager::LoadScene()
+{
+	//2DO
+}
+
+void ModuleGOManager::SaveScene(const char* name)
+{
+	JSONWrapper root_node;
+	root_node.WriteArray("Scene");
+
+	//Save all go in the array
+	root->Save(root_node);
+
+	char* buf;
+	size_t size = root_node.SerializeBuffer(&buf);
+	App->file_system->Save("Library/current_scene.json", buf, size);
 }
 
 

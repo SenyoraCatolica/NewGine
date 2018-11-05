@@ -166,3 +166,14 @@ float4x4 JSONWrapper::ReadMatrix(const char * name) const
 
 	return float4x4::identity;
 }
+
+//============================================================================
+
+//small function to get the size of the buffer to save
+size_t JSONWrapper::SerializeBuffer(char** buff)
+{
+	size_t size = json_serialization_size_pretty(root_value);
+	*buff = new char[size];
+	json_serialize_to_buffer_pretty(root_value, *buff, size);
+	return size;
+}

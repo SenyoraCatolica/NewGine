@@ -33,8 +33,10 @@ public:
 	void SelectObject();
 	void DrawLocator();
 
-
 	GameObject* GetRoot();
+
+	void LoadScene();
+	void SaveScene(const char* name);
 
 public:
 	std::list<GameObject*> all_gameobjects;

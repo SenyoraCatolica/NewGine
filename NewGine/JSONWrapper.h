@@ -33,6 +33,8 @@ public:
 	JSONWrapper ReadJSONObject(const char* name)const;
 	float4x4 ReadMatrix(const char * name) const;
 
+	size_t SerializeBuffer(char** buff);
+
 
 private:
 	JSON_Object * root = nullptr;

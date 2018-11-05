@@ -7,3 +7,4 @@ draw gameobjects
 play/pause
 hierarchy**********************************
 load/save scene on application
+handle root object
