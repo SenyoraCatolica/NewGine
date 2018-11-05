@@ -17,7 +17,8 @@ public:
 	ModuleGOManager(Application* app, bool start_enabled = true);
 	~ModuleGOManager();
 
-	bool Init();
+	bool Start();
+	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 
 
@@ -38,12 +39,17 @@ public:
 
 	void LoadScene(const char* name);
 	void SaveScene(const char* name);
+	void LoadEmptyScene();
+	void ClearScene();
 	GameObject* LoadGameObject(const JSONWrapper& file);
+	void ClearGameObjectFromScene(GameObject* go);
 
 public:
 	std::list<GameObject*> all_gameobjects;
 	std::list<GameObject*> objects_to_draw;
 	std::list<GameObject*> dynamic_objects;
+	std::list<GameObject*> todelete_objects;
+
 
 	Quadtree* quadtree;
 

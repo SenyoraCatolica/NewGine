@@ -23,6 +23,7 @@ public:
 
 
 	bool HandleMainMenu();
+	void HandleScenesMenu();
 	void InitWindows();
 	void GamePanel();
 	WindowAssets* GetAssetsWindow();
@@ -45,6 +46,12 @@ private:
 	bool demo_active;
 	bool assets_active;
 	bool outliner_active;
+
+	//Scene management
+	char scene_name[256] = "";
+	bool want_new_scene = false;
+	bool want_to_save = false;
+	bool want_to_load = false;
 
 public:
 	GameObject* selected_object = nullptr;

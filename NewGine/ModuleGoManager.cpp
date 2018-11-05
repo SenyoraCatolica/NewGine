@@ -29,10 +29,40 @@ ModuleGOManager::~ModuleGOManager()
 	selected_go = nullptr;
 }
 
-bool ModuleGOManager::Init()
+bool ModuleGOManager::Start()
 {
+	if (root == nullptr)
+	{
+		LoadEmptyScene();
+	}
+
 	return true;
 }
+
+update_status ModuleGOManager::PreUpdate(float dt)
+{
+	std::list<GameObject*>::iterator it = todelete_objects.begin();
+	while (it != todelete_objects.end())
+	{
+		if ((*it)->IsStatic())
+		{
+			quadtree->Remove((*it));
+		}
+
+		else
+		{
+			dynamic_objects.remove((*it));
+		}
+
+		delete (*it);
+		it++;
+	}
+
+	todelete_objects.clear();
+
+	return UPDATE_CONTINUE;
+}
+
 
 
 update_status ModuleGOManager::Update(float dt)
@@ -61,7 +91,7 @@ update_status ModuleGOManager::Update(float dt)
 		it++;
 	}
 
-	SelectObject();
+	//SelectObject(); 2DO reactivate
 	DrawLocator();
 
 	//2DO condition to draw
@@ -231,7 +261,7 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 
 void ModuleGOManager::SelectObject()
 {
-	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_UP)
+	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
 	{
 		CameraComponent* cam = (CameraComponent*)camera->GetComponent(COMPONENT_CAMERA);
 
@@ -272,6 +302,7 @@ void ModuleGOManager::LoadScene(const char* name)
 	if (size > 0)
 	{
 		//2DO Delete current scene
+		ClearScene();
 
 		JSONWrapper root(buffer);
 		JSONWrapper root_value;
@@ -312,6 +343,29 @@ void ModuleGOManager::SaveScene(const char* name)
 	App->file_system->Save("Library/current_scene.json", buf, size);
 }
 
+
+void ModuleGOManager::LoadEmptyScene()
+{
+	ClearScene();
+
+	//Empty scene
+	root = CreateGameObject("root");
+}
+
+void ModuleGOManager::ClearScene()
+{
+	ClearGameObjectFromScene(root);
+
+	root = nullptr;
+	selected_go = nullptr;
+
+	all_gameobjects.clear();
+	dynamic_objects.clear();
+
+	//2Do reset quadtree?
+}
+
+
 GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 {
 	//get the go data in local variables
@@ -346,24 +400,27 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 		array_value = root.ReadArray("components", i);
 		COMPONENT_TYPE t = (COMPONENT_TYPE)root.ReadUInt("Type");
 
+		//2do check if component is loaded correctly
+		Component* comp = nullptr;
+
 		switch (t)
 		{
 			case COMPONENT_TRANSFORM:
-				TransformComponent* trans = (TransformComponent*)new_go->AddComponent(t);
-				trans->Load(array_value);
+				comp = (TransformComponent*)new_go->AddComponent(t);
+				comp->Load(array_value);
 				break;
 			case COMPONENT_MESH:
-				MeshComponent* mesh = (MeshComponent*)new_go->AddComponent(t);
-				mesh->Load(array_value);
+				comp = (MeshComponent*)new_go->AddComponent(t);
+				comp->Load(array_value);
 				break;
 			case COMPONENT_MATERIAL:
-				MaterialComponent* mat = (MaterialComponent*)new_go->AddComponent(t);
-				mat->Load(array_value);
+				comp = (MaterialComponent*)new_go->AddComponent(t);
+				comp->Load(array_value);
 
 				break;
 			case COMPONENT_CAMERA:
-				CameraComponent* cam = (CameraComponent*)new_go->AddComponent(t);
-				cam->Load(array_value);
+				comp = (CameraComponent*)new_go->AddComponent(t);
+				comp->Load(array_value);
 
 				break;
 			default:
@@ -383,6 +440,40 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 
 	return new_go;
 }
+
+void ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
+{
+	if (go)
+	{
+		if (go->parent != nullptr)
+		{
+			std::vector<GameObject*>::iterator it = go->parent->childs.begin();
+			while (it != go->parent->childs.end())
+			{
+				if ((*it) == go)
+				{
+					go->parent->childs.erase(it);
+				}
+
+				it++;
+			}
+
+			go->parent = nullptr;
+		}
+
+		std::vector<GameObject*>::iterator it = go->childs.begin();
+		while (it != go->childs.end())
+		{
+			ClearGameObjectFromScene((*it));
+			it++;
+		}
+			
+		go->childs.clear();
+
+		todelete_objects.push_back(go);
+	}
+}
+
 
 
 

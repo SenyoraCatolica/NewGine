@@ -37,6 +37,7 @@ bool ModuleEditor::CleanUp()
 update_status ModuleEditor::Update(float dt)
 {
 	HandleMainMenu();
+	HandleScenesMenu();
 	GamePanel();
 
 	vector<Window*>::iterator it = windows.begin();
@@ -56,6 +57,18 @@ bool ModuleEditor::HandleMainMenu()
 
 	if (ImGui::BeginMenu("File"))
 	{
+		if (ImGui::MenuItem("New Scene##NewMenuBar"))
+		{
+			want_new_scene = true;
+		}
+		if (ImGui::MenuItem("Save Scene##SaveMenuBar"))
+		{
+			want_to_save = true;
+		}
+		if (ImGui::MenuItem("Load Scene##LoadMenuBar"))
+		{
+			want_to_load = true;
+		}
 
 		ImGui::Separator();
 
@@ -248,4 +261,89 @@ WindowAssets* ModuleEditor::GetAssetsWindow()
 {
 	return assetswindow;
 }
+
+void ModuleEditor::HandleScenesMenu()
+{
+	ImGui::SetNextWindowSize(ImVec2(300, 120));
+	if (ImGui::BeginPopupModal("New scene"))
+	{
+		bool close = false;
+		ImGui::Text("Save current scene?");
+		if (ImGui::Button("Yes##saveCurrentButton"))
+		{
+			want_to_save = true;
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("No##NotSaveCurrentButton"))
+		{
+			selected_object = nullptr;
+			App->go_manager->LoadEmptyScene();
+			close = true;
+		}
+		ImGui::SameLine();
+		if (close || ImGui::Button("Cancel##CancelSaveCurrentButton"))
+		{
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
+
+	ImGui::SetNextWindowSize(ImVec2(300, 120));
+	if (ImGui::BeginPopupModal("Save scene"))
+	{
+		bool close = false;
+		ImGui::Text("Scene name:");
+		ImGui::InputText("##saveSceneInputText", scene_name, 256);
+		if (ImGui::Button("Save##saveButton") && scene_name[0] != '\0')
+		{
+			App->go_manager->SaveScene(scene_name);
+			close = true;
+		}
+		ImGui::SameLine();
+		if (close || ImGui::Button("Cancel##cancelSaveScene"))
+		{
+			strcpy(scene_name, "");
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
+	ImGui::SetNextWindowSize(ImVec2(300, 120));
+	if (ImGui::BeginPopupModal("Load Scene"))
+	{
+		ImGui::Text("Scene name:");
+		ImGui::InputText("##saveSceneInputText", scene_name, 256);
+		bool close = false;
+		if (ImGui::Button("Load##loadButton") && scene_name[0] != '\0')
+		{
+			App->go_manager->LoadScene(scene_name);
+			close = true;
+		}
+		ImGui::SameLine();
+		if (close || ImGui::Button("Cancel##cancelLoadScene"))
+		{
+			strcpy(scene_name, "");
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
+	if (want_new_scene)
+	{
+		ImGui::OpenPopup("New scene");
+		want_new_scene = false;
+	}
+	if (want_to_save)
+	{
+		ImGui::OpenPopup("Save scene");
+		want_to_save = false;
+	}
+	if (want_to_load)
+	{
+		ImGui::OpenPopup("Load Scene");
+		want_to_load = false;
+	}
+}
+
 
