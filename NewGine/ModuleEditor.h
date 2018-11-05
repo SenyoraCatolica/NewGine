@@ -46,6 +46,6 @@ private:
 	bool outliner_active;
 
 public:
-	GameObject* selected_object;
+	GameObject* selected_object = nullptr;
 
 };

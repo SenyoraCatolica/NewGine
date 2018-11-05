@@ -259,6 +259,9 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 
 void ModuleRenderer3D::DebugDrawQuadtree(Quadtree* quadtree, QuadNode root)
 {
+	if (quadtree->GetRoot().GetChilds().empty())
+		return;
+
 	float3 corners[8];
 	root.GetBox().GetCornerPoints(corners);
 

@@ -28,7 +28,6 @@ void WindowAtributeEditor::DrawOnEditor()
 
 	else
 	{
-
 		//Transformation
 		if (ImGui::CollapsingHeader("Transformation"));
 		{

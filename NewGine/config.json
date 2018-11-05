@@ -4,7 +4,8 @@
             "configuration_active": true,
             "atributeeditor_active": true,
             "demo_active": false,
-            "assets_active": true
+            "assets_active": true,
+            "outliner_active": true
         },
         "camera": {
             "pos": {
@@ -17,7 +18,7 @@
                 "y": 1.5,
                 "z": 1.2999999523162842
             },
-            "speed": 0.051000002771615982
+            "speed": 0.048000000417232513
         },
         "window": {
             "width": 1362,
