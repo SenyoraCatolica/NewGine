@@ -86,6 +86,8 @@ bool Application::Init()
 	ms_timer.Start();
 	last_sec_frame_time.Start();
 
+	Stop();
+
 	return ret;
 }
 
@@ -214,6 +216,11 @@ void Application::Stop()
 void Application::Pause()
 {
 	game_state = PAUSED_STATE;
+}
+
+GAME_STATE Application::GetGameState()
+{
+	return game_state;
 }
 
 

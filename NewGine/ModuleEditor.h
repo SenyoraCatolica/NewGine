@@ -24,6 +24,7 @@ public:
 
 	bool HandleMainMenu();
 	void InitWindows();
+	void GamePanel();
 	WindowAssets* GetAssetsWindow();
 
 	bool LoadConfig(JSON_Object* data);

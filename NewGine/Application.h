@@ -75,7 +75,7 @@ public:
 	void Play();
 	void Stop();
 	void Pause();
-
+	GAME_STATE GetGameState();
 
 	bool LoadConfig();
 	bool SaveConfig();

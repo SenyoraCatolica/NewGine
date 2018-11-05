@@ -37,7 +37,7 @@ bool ModuleEditor::CleanUp()
 update_status ModuleEditor::Update(float dt)
 {
 	HandleMainMenu();
-
+	GamePanel();
 
 	vector<Window*>::iterator it = windows.begin();
 	while (it != windows.end())
@@ -168,6 +168,43 @@ void ModuleEditor::InitWindows()
 	
 	//console_active = console->active;
 }
+
+void ModuleEditor::GamePanel()
+{
+	ImGui::SetNextWindowPos(ImVec2(500.0f, 20.0f));
+	ImGui::SetNextWindowSize(ImVec2(300.0f, 30.0f));
+
+	ImGuiWindowFlags flags = ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoTitleBar;
+
+	ImGui::Begin("PlayButtons", 0, ImVec2(500, 200), 0.8f, flags);
+
+	if (App->GetGameState() != GAME_STATE::PLAY_STATE)
+	{
+		if (ImGui::Button("Play##PlayButton"))
+		{
+			//time play
+			App->Play();
+			//2DO save scene
+		}
+	}
+	else
+	{
+		if (ImGui::Button("Pause##PauseButton"))
+		{
+			//time pause
+			App->Pause();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Stop##StopButton"))
+		{
+			//time stop
+			//load scene
+			App->Stop();
+		}
+	}
+	ImGui::End();
+}
+
 
 bool ModuleEditor::LoadConfig(JSON_Object* data)
 {
