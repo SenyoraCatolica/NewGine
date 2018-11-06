@@ -295,9 +295,9 @@ GameObject* ModuleGOManager::GetRoot()
 
 void ModuleGOManager::LoadScene(const char* name)
 {
-	string scene_path = LIBRARY_FOLDER;
+	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
-	scene_path += ".json";
+	scene_path += ".fbx";
 
 	//2DO
 	char* buffer = nullptr;

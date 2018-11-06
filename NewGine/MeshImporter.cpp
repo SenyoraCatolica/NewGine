@@ -56,14 +56,22 @@ bool MeshImporter::Import(const char* file)
 
 	if (scene != nullptr && scene->HasMeshes() == true)
 	{
+		//Save the FBX as a new scene
 		JSONWrapper new_scene_node;
 		new_scene_node.WriteArray("Scene");
 
-		GameObject* go = ImportNode(scene->mRootNode, scene, nullptr, mesh_path.data());
+		GameObject* go = ImportNode(scene->mRootNode, scene, nullptr, mesh_path.data(), new_scene_node);
+
+		char* buff;
+		size_t size = new_scene_node.SerializeBuffer(&buff);
+
+		App->file_system->Save(assets_path.data(), buff, size);
+
+		delete[] buff;
 	}
 }
 
-GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent, const char* save_path)
+GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent, const char* save_path, JSONWrapper& root_node)
 {
 	GameObject* go = new GameObject();
 	go->parent = parent;
@@ -96,20 +104,39 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 		else
 			new_go = go;
 
-		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path);
+		JSONWrapper go_node;
+		go_node.WriteString("Name", go->name);
+		go_node.WriteUInt("UUID", go->GetUID());
+		go_node.WriteBool("Active", true);
+		go_node.WriteBool("static", false);
+		if (go->parent == nullptr)
+			go_node.WriteUInt("Parent", 0);
+		else
+			go_node.WriteUInt("Parent", go->parent->GetUID());
+
+
+		//Save components in components array
+		go_node.WriteArray("Components");
+
+		//transform
+		trans->Save(go_node);
+
+		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path, go_node);
+
+		root_node.WriteArrayValue(go_node);
 	}
 
 
 	for (uint i = 0; i < node->mNumChildren; i++)
 	{
-		ImportNode(node->mChildren[i], scene, go, save_path);
+		ImportNode(node->mChildren[i], scene, go, save_path, root_node);
 	}
 
 	return go;
 }
 
 
-bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, const char* save_path, uint uuid)
+bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, const char* save_path, JSONWrapper& root, uint uuid)
 {
 	bool ret = false;
 
@@ -197,12 +224,16 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 						}
 
 						mat->material = resource_mat;
+						mat->Save(root);
 					}
 				}
+
 			}
 		}
 
 		mesh_comp->Enable();
+		mesh_comp->path = save_path;
+		mesh_comp->Save(root);
 
 		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
 		ret = SaveMesh(m, name, save_path);

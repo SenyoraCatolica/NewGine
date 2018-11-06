@@ -71,7 +71,7 @@ void MeshComponent::Save(JSONWrapper& file) const
 	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
-	array_value.WriteString("Path", mesh->path.c_str());
+	array_value.WriteString("Path", path.data());
 
 	array_value.WriteArrayValue(file);
 }
