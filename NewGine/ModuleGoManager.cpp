@@ -379,11 +379,11 @@ void ModuleGOManager::ClearScene()
 GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 {
 	//get the go data in local variables
-	std::string name  = file.ReadString("name");
+	std::string name  = file.ReadString("Name");
 	int uuid = file.ReadUInt("UUID");
-	int parent_uuid = file.ReadUInt("parent");
+	int parent_uuid = file.ReadUInt("Parent");
 	bool is_static = file.ReadBool("static");
-	bool is_active = file.ReadBool("active");
+	bool is_active = file.ReadBool("Active");
 
 	//set the parent of the new object
 	GameObject*  parent = nullptr;

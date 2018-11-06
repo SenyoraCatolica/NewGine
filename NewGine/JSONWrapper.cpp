@@ -5,9 +5,9 @@ JSONWrapper::JSONWrapper()
 	root_value = json_value_init_object();
 	root = json_value_get_object(root_value);
 }
-JSONWrapper::JSONWrapper(JSON_Object* obj) : root(root)
+JSONWrapper::JSONWrapper(JSON_Object* obj)
 {
-
+	this->root = obj;
 }
 
 JSONWrapper::JSONWrapper(const char* file)
@@ -135,9 +135,13 @@ std::string JSONWrapper::ReadString(const char* name)const
 
 JSONWrapper JSONWrapper::ReadArray(const char* name, unsigned int index)const
 {
+	JSONWrapper ret;
+
 	JSON_Array* json_array = json_object_get_array(root, name);
 	if (json_array)
-		return JSONWrapper(json_array_get_object(json_array, index));
+	{
+		return ret =  JSONWrapper(json_array_get_object(json_array, index));
+	}
 	return JSONWrapper((JSON_Object*) nullptr);
 }
 
