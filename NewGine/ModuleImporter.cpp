@@ -17,11 +17,11 @@ bool ModuleImporter::Init()
 }
 
 
-bool ModuleImporter::Import(const char* file, FILE_TYPE state)
+bool ModuleImporter::Import(const char* file, FILE_TYPE type)
 {
 	bool ret = false;
 
-	switch (state)
+	switch (type)
 	{
 		case MESH:
 			ret = mesh_importer->Import(file);

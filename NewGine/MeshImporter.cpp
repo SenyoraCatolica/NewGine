@@ -18,26 +18,33 @@ bool MeshImporter::Import(const char* file)
 {
 	bool ret = false;
 
-	/*uint uuid = GenerateUUID();
+	uint uuid = 123456789;
 
 
 	//Generate complete path in Library folder
-	string complete_path;
-	complete_path = MESH_FOLDER;
-	complete_path += "/" + std::to_string(uuid) + "/";
-	App->file_system->CreateDir(complete_path.c_str());
+	string mesh_path;
+	mesh_path = MESH_FOLDER;
+	mesh_path += std::to_string(uuid) + "/";
+	App->file_system->CreateDir(mesh_path.c_str());
 	//complete name of the file with path
-	string complete_name = complete_path + std::to_string(uuid) + ".inf";
+	string lib_path = mesh_path + std::to_string(uuid) + ".dta";
 
 	//Generate Asset folder for file
-	string assets_path = App->editor->GetAssetsWindow()->GetAssetsDirectory();
+	string assets_path;
+	if (App->file_system->Exists(file) == false)
+		assets_path = App->resource_manager->CopyFileToAssets(file, App->editor->GetAssetsWindow()->GetAssetsDirectory());
+	else
+		assets_path = file;
 
-	//Generate Meta file 2DO*/
+	string path = file;
+
+	//Generate Meta file 2DO
+	App->resource_manager->CreateFileMeta(uuid, MESH, assets_path.data(), lib_path.data());
 	
 	//Importing starts here
 	//=================================================================================
 	char* buff;
-	uint size = App->file_system->Load(file, &buff);
+	uint size = App->file_system->Load(assets_path.data(), &buff);
 
 	if (size <= 0)
 	{
@@ -49,11 +56,14 @@ bool MeshImporter::Import(const char* file)
 
 	if (scene != nullptr && scene->HasMeshes() == true)
 	{
-		GameObject* go = ImportNode(scene->mRootNode, scene, nullptr);
+		JSONWrapper new_scene_node;
+		new_scene_node.WriteArray("Scene");
+
+		GameObject* go = ImportNode(scene->mRootNode, scene, nullptr, mesh_path.data());
 	}
 }
 
-GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent)
+GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent, const char* save_path)
 {
 	GameObject* go = new GameObject();
 	go->parent = parent;
@@ -86,20 +96,20 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 		else
 			new_go = go;
 
-		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name);
+		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path);
 	}
 
 
 	for (uint i = 0; i < node->mNumChildren; i++)
 	{
-		ImportNode(node->mChildren[i], scene, go);
+		ImportNode(node->mChildren[i], scene, go, save_path);
 	}
 
 	return go;
 }
 
 
-bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, uint uuid)
+bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObject* go, const char* name, const char* save_path, uint uuid)
 {
 	bool ret = false;
 
@@ -195,7 +205,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 		mesh_comp->Enable();
 
 		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
-		ret = SaveMesh(m, name);
+		ret = SaveMesh(m, name, save_path);
 	}
 
 	else
@@ -292,7 +302,7 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 }
 
 
-bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
+bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 {
 	bool ret = false;
 
@@ -320,17 +330,17 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name)
 	cursor += bytes;
 
 	//Texture Coords
-	bytes = sizeof(float2) * alloc[4];
+	bytes = sizeof(float2) * alloc[3];
 	memcpy(cursor, m->texture_coords, bytes);
 	cursor += bytes;
 
-	if (alloc[3] > 0)
+	if (alloc[2] > 0)
 	{
 		memcpy(cursor, m->normals, bytes);
 	}
 
 	//2DO Create a better save function with uuid, folder and extension
-	ret = App->file_system->Save(name, buffer, size, MESH_FOLDER, "meix");
+	ret = App->file_system->Save(name, buffer, size, save_path, "mex");
 
 	delete[] buffer;
 	buffer = nullptr;

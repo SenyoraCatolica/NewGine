@@ -30,6 +30,7 @@ public:
 	void ImportFile(const char* file);
 	void ImportFromOutsideFolder(const char* file, FILE_TYPE type);
 	void CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir);
+	std::string CopyFileToAssets(const char* path, std::string assets_dir);
 
 
 public:

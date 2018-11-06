@@ -21,6 +21,8 @@ public:
 	bool Exists(const char* file) const;
 	bool IsDirectory(const char* file) const;
 	bool CreateDir(const char* dir);
+	bool CopyFileToDir(const char * from, const char * to);
+
 
 	//to check the files of a folder
 	bool GetFilesFromPath(const char* path, std::vector<std::string>& output_files);

@@ -141,11 +141,11 @@ void ModuleResourceManager::ImportFile(const char* file)
 
 	if (type != NONE)
 	{
-		if (App->file_system->Exists(file))
+		//if (App->file_system->Exists(file))
 			App->importer->Import(file, type);
 
-		else
-			ImportFromOutsideFolder(file, type);
+		//else
+		//	ImportFromOutsideFolder(file, type);
 		//2DO Update assets window
 	}
 
@@ -189,31 +189,57 @@ void ModuleResourceManager::ImportFromOutsideFolder(const char* file, FILE_TYPE 
 	//Create the data to transform it into an own file
 	uint uuid = GenerateUUID();
 
-	CreateFileMeta(uuid, type, library_dir.data(), assets_dir.data());
+	string complete_path_assets = assets_dir;
+	complete_path_assets = complete_path_assets.substr(0, complete_path_assets.length() - 4);
+
+	CreateFileMeta(uuid, type, library_dir.data(), complete_path_assets.data());
 
 	library_dir += "/";	
 
-	App->importer->Import(assets_dir.data(), type);
+	App->importer->Import(complete_path_assets.data(), type);
 }
 
-void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir)
+void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char* path, const char* lib_dir)
 {
 	JSONWrapper root;
 
 	root.WriteUInt("UUID", uuid);
 	root.WriteUInt("Type", (int)type);
 	root.WriteString("LibraryPath", lib_dir);
-	root.WriteString("AssetsPath", assets_dir);
+	root.WriteString("OriginalPath", path);
+	
 
 	char* buff;
 	size_t size = root.SerializeBuffer(&buff);  //get the size of the buffer
 
-	string new_path = assets_dir;
-	new_path = new_path.substr(0, new_path.length() - 4);
+	string final_path = path;
+	final_path = final_path.substr(0, final_path.length() - 4);
+	final_path += ".meta";
 
-	App->file_system->Save(new_path.data(), buff, size);
+	App->file_system->Save(final_path.data(), buff, size);
 
 	delete[] buff;
 }
+
+std::string ModuleResourceManager::CopyFileToAssets(const char* path, std::string assets_dir)
+{
+	string dir;
+
+	if (assets_dir.empty())
+	{
+		dir = App->editor->GetAssetsWindow()->GetAssetsDirectory();
+	}
+
+	else
+	{
+		dir = assets_dir;
+	}
+
+	dir += App->file_system->GetNameFromDirectory(path);
+	App->file_system->CopyFileToDir(path, dir.data());
+
+	return dir;
+}
+
 
 

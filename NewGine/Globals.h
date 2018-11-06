@@ -67,7 +67,7 @@ enum update_status
 //Folders
 #define ASSETS_FOLDER "/Assets/"
 #define LIBRARY_FOLDER "/Library/"
-#define MESH_FOLDER "Library\\Meshes"
+#define MESH_FOLDER "Library/Meshes/"
 #define MATERIAL_FOLDER "Library\\Materials"
 
 #define GPU_TOTAL_AVAILABLE_MEM 0x9048

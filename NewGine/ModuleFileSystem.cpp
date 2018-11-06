@@ -77,6 +77,36 @@ bool ModuleFileSystem::CreateDir(const char* dir)
 	return true;
 }
 
+bool ModuleFileSystem::CopyFileToDir(const char * from, const char * to)
+{
+	bool ret = false;
+
+	FILE* file;
+	fopen_s(&file, from, "rb"); //rb is written as we want to read it as binary
+	PHYSFS_file* fs_file = PHYSFS_openWrite(to);
+	char buffer[8192];
+
+	if (fs_file && file)
+	{
+		size_t read_ret;
+		PHYSFS_sint64 written = 0;
+		while (read_ret = fread_s(buffer, 8192, 1, 8192, file))
+			written += PHYSFS_write(fs_file, buffer, 1, read_ret);
+
+		ret = true;
+	}
+	else
+	{
+		LOG("File System error while copying %s", from);
+	}
+
+	fclose(file);
+	PHYSFS_close(fs_file);
+
+	return ret;
+}
+
+
 bool ModuleFileSystem::GetFilesFromPath(const char* path, std::vector<std::string>& output_files)
 {
 	char** ef = PHYSFS_enumerateFiles(path);
@@ -198,6 +228,8 @@ bool ModuleFileSystem::Save(const char* file, const char* buffer, uint size, con
 			sprintf_s(complete_name, 100, "%s%d.%s", file, copies, extension);
 			break;
 		}
+
+		it++;
 	}
 
 	char final_name[500];
