@@ -18,6 +18,7 @@ public:
 	~ModuleResourceManager();
 
 	bool Init();
+	bool Start();
 	bool CleanUp();
 
 	MyResource* CreateResource(MyResource::R_TYPE, uint uuid);

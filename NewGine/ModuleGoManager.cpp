@@ -295,9 +295,13 @@ GameObject* ModuleGOManager::GetRoot()
 
 void ModuleGOManager::LoadScene(const char* name)
 {
+	string scene_path = LIBRARY_FOLDER;
+	scene_path += name;
+	scene_path += ".json";
+
 	//2DO
 	char* buffer = nullptr;
-	uint size = App->file_system->Load(name, &buffer);
+	uint size = App->file_system->Load(scene_path.data(), &buffer);
 
 	if (size > 0)
 	{
@@ -309,16 +313,19 @@ void ModuleGOManager::LoadScene(const char* name)
 
 		root_value = root.ReadArray("Scene", 0);
 
-
-		for (int i = 0; i < root.GetArraySize("Scene"); i++)
+		if (root_value.IsNull() == false)
 		{
-			if (i == 0)
-				this->root = LoadGameObject(root.ReadArray("Scene", i));
+			ClearScene();
 
-			else
-				LoadGameObject(root.ReadArray("Scene", i));
+			for (int i = 0; i < root.GetArraySize("Scene"); i++)
+			{
+				if (i == 0)
+					this->root = LoadGameObject(root.ReadArray("Scene", i));
+
+				else
+					LoadGameObject(root.ReadArray("Scene", i));
+			}
 		}
-
 	}
 
 	else
@@ -340,7 +347,10 @@ void ModuleGOManager::SaveScene(const char* name)
 
 	char* buf;
 	size_t size = root_node.SerializeBuffer(&buf);
-	App->file_system->Save("Library/current_scene.json", buf, size);
+	string scene_path = LIBRARY_FOLDER;
+	scene_path += name;
+	scene_path += ".json";
+	App->file_system->Save(scene_path.data(), buf, size);
 }
 
 

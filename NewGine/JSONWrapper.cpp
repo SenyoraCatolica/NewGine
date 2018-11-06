@@ -196,3 +196,8 @@ size_t JSONWrapper::GetArraySize(const char* array)
 	return ret;
 }
 
+bool JSONWrapper::IsNull() const
+{
+	return (root_value == nullptr && root == nullptr && array == nullptr) ? true : false;
+}
+

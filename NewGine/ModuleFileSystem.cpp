@@ -15,7 +15,7 @@ ModuleFileSystem::ModuleFileSystem(Application* app, bool start_enabled) : Modul
 		PHYSFS_init(base_path);
 		SDL_free(base_path);
 
-		AddPath(".\Game");
+		AddPath(".");
 	}
 }
 
@@ -26,6 +26,11 @@ ModuleFileSystem::~ModuleFileSystem()
 
 bool ModuleFileSystem::Init()
 {
+	if (PHYSFS_setWriteDir(".") == 0)
+	{
+		LOG("File System error while creating write dir: %s\n", PHYSFS_getLastError());
+	}
+
 	return true;
 }
 bool ModuleFileSystem::CleanUp()

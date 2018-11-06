@@ -36,6 +36,7 @@ public:
 
 	size_t SerializeBuffer(char** buff);
 	size_t GetArraySize(const char* array);
+	bool IsNull() const;
 
 private:
 	JSON_Object * root = nullptr;

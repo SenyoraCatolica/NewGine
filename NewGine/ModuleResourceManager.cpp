@@ -18,6 +18,19 @@ bool ModuleResourceManager::Init()
 	//2DO:Loading resources
 	return true;
 }
+
+bool ModuleResourceManager::Start()
+{
+	App->file_system->CreateDir("Library");
+	App->file_system->CreateDir("Library/Meshes");
+	App->file_system->CreateDir("Library/Textures");
+	App->file_system->CreateDir("Library/Materials");
+	App->file_system->CreateDir("Library/Meta");
+	App->file_system->CreateDir("Assets/Scenes");
+
+	return true;
+}
+
 /*update_status ModuleResourceManager::PreUpdate(float dt)
 {
 	//2DO import possible dropped files
