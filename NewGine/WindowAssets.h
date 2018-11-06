@@ -29,7 +29,7 @@ public:
 private:
 
 	std::vector<AssetFile> assets;
-	const char* assets_dir;
+	const char* assets_dir = nullptr;
 	int size = 50;
 
 	//images

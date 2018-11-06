@@ -170,6 +170,20 @@ update_status ModuleInput::PreUpdate(float dt)
 			mouse_y_motion = e.motion.yrel / SCREEN_SIZE;
 			break;
 
+			case SDL_DROPFILE:
+			{
+				char dropped_file[1024];
+				strcpy_s(dropped_file, e.drop.file);
+
+				App->resource_manager->ImportFile(dropped_file);
+
+				SDL_free(e.drop.file);
+				LOG("Dropped %s", dropped_file);
+				
+
+				break;
+			}
+
 			case SDL_QUIT:
 			quit = true;
 			break;
@@ -178,7 +192,7 @@ update_status ModuleInput::PreUpdate(float dt)
 			{
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
 					App->renderer3D->OnResize(e.window.data1, e.window.data2, 20.0f);
-			}
+			}			
 		}
 	}
 

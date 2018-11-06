@@ -18,7 +18,7 @@ bool MeshImporter::Import(const char* file)
 {
 	bool ret = false;
 
-	uint uuid = GenerateUUID();
+	/*uint uuid = GenerateUUID();
 
 
 	//Generate complete path in Library folder
@@ -32,7 +32,7 @@ bool MeshImporter::Import(const char* file)
 	//Generate Asset folder for file
 	string assets_path = App->editor->GetAssetsWindow()->GetAssetsDirectory();
 
-	//Generate Meta file 2DO
+	//Generate Meta file 2DO*/
 	
 	//Importing starts here
 	//=================================================================================

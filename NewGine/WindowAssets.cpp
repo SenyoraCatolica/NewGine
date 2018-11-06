@@ -49,6 +49,8 @@ void WindowAssets::DrawOnEditor()
 
 const char* WindowAssets::GetAssetsDirectory()
 {
+	if (assets_dir == nullptr)
+		assets_dir = ASSETS_FOLDER;
 	return assets_dir;
 }
 

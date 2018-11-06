@@ -28,6 +28,9 @@ public:
 
 	//Handle files
 	void ImportFile(const char* file);
+	void ImportFromOutsideFolder(const char* file, FILE_TYPE type);
+	void CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir);
+
 
 public:
 	std::map<uint, MyResource*> resources;

@@ -141,7 +141,11 @@ void ModuleResourceManager::ImportFile(const char* file)
 
 	if (type != NONE)
 	{
-		App->importer->Import(file, type);
+		if (App->file_system->Exists(file))
+			App->importer->Import(file, type);
+
+		else
+			ImportFromOutsideFolder(file, type);
 		//2DO Update assets window
 	}
 
@@ -150,3 +154,66 @@ void ModuleResourceManager::ImportFile(const char* file)
 		LOG("Could not determine the type of the file %s:", file);
 	}
 }
+
+void ModuleResourceManager::ImportFromOutsideFolder(const char* file, FILE_TYPE type)
+{
+	string dir = file;
+
+	//Assets 
+	string assets_dir = App->editor->GetAssetsWindow()->GetAssetsDirectory() + App->file_system->GetNameFromDirectory(file);
+	if(App->file_system->Exists(App->editor->GetAssetsWindow()->GetAssetsDirectory()) == false)
+		App->file_system->CreateDir(ASSETS_FOLDER);
+
+	//Library
+	string library_dir;
+
+	switch (type)
+	{
+	case MESH:
+		library_dir = MESH_FOLDER;
+		break;
+	case MATERIAL:
+		library_dir = MATERIAL_FOLDER;
+		break;
+	case NONE:
+		LOG("Could not determine the type of the file %s:", file);
+		return;
+		break;
+	default:
+		break;
+	}
+
+	if(App->file_system->Exists(library_dir.data()) == false)
+		App->file_system->CreateDir(library_dir.data());
+
+	//Create the data to transform it into an own file
+	uint uuid = GenerateUUID();
+
+	CreateFileMeta(uuid, type, library_dir.data(), assets_dir.data());
+
+	library_dir += "/";	
+
+	App->importer->Import(assets_dir.data(), type);
+}
+
+void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir)
+{
+	JSONWrapper root;
+
+	root.WriteUInt("UUID", uuid);
+	root.WriteUInt("Type", (int)type);
+	root.WriteString("LibraryPath", lib_dir);
+	root.WriteString("AssetsPath", assets_dir);
+
+	char* buff;
+	size_t size = root.SerializeBuffer(&buff);  //get the size of the buffer
+
+	string new_path = assets_dir;
+	new_path = new_path.substr(0, new_path.length() - 4);
+
+	App->file_system->Save(new_path.data(), buff, size);
+
+	delete[] buff;
+}
+
+
