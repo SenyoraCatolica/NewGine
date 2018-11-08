@@ -31,6 +31,7 @@ class ResourceMesh : public MyResource
 {
 public:
 	ResourceMesh(uint uid);
+	ResourceMesh(uint uid, const char* path);
 	virtual ~ResourceMesh();
 
 	void GenerateResource(MyMesh* m);

@@ -31,7 +31,6 @@ public:
 public:
 	
 	ResourceMesh* mesh = nullptr;
-	std::string path;
 	math::AABB local_box;
 	math::AABB global_box;
 	bool bb_active = false;

@@ -28,7 +28,6 @@ public:
 public:
 
 	ResourceMaterial* material = nullptr;
-	std::string path;
 
 	float color[4] = { 1.0f,1.0f,1.0f,1.0f };
 };

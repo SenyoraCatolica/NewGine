@@ -4,6 +4,7 @@
 #include "GlobalFunctions.h"
 
 
+
 ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	name = "Resource Manager";
@@ -11,6 +12,13 @@ ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enable
 
 ModuleResourceManager::~ModuleResourceManager()
 {
+	std::map<uint, MyResource*>::iterator it = resources.begin();
+	/*while (it != resources.end())
+	{
+		delete &it;
+		it++;
+	}*/
+
 	resources.clear();
 }
 
@@ -90,16 +98,18 @@ MyResource* ModuleResourceManager::CreateResource(MyResource::R_TYPE type, uint 
 
 MyResource* ModuleResourceManager::GetResource(uint uuid)
 {
+	MyResource* ret = nullptr;
+
 	std::map<uint, MyResource*>::iterator it = resources.begin();
 	while (it != resources.end())
 	{
 		if ((*it).first == uuid)
-			return (*it).second;
+			ret = (*it).second;
 
 		it++;
 	}
 
-	return nullptr;
+	return ret;
 }
 
 MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
@@ -109,7 +119,7 @@ MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
 	{
 		if (it->second->name == name)
 		{
-			return it->second;
+			return GetResource(it->first);
 		}
 		it++;
 	}
@@ -248,23 +258,57 @@ std::string ModuleResourceManager::CopyFileToAssets(const char* path, std::strin
 	return dir;
 }
 
-ResourceMesh* ModuleResourceManager::LinkResourceMesh(const char* name)
+ResourceMesh* ModuleResourceManager::LinkResourceMesh(const char* name, const char* path)
 {
 	ResourceMesh* m = (ResourceMesh*)TryGetResourceByName(name);
+
+	if (m == nullptr)
+	{
+		m = (ResourceMesh*)LoadResource(path, MESH);
+	}
 	
 	if (m)
 		return m;
 	return nullptr;
 }
 
-ResourceMaterial* ModuleResourceManager::LinkResourceMaterial(const char* path, const char* name)
+ResourceMaterial* ModuleResourceManager::LinkResourceMaterial(const char* name, const char* path)
 {
 	ResourceMaterial* m = (ResourceMaterial*)TryGetResourceByName(name);
+
+	if (m == nullptr)
+	{
+		m = (ResourceMaterial*)LoadResource(path, MATERIAL);
+	}
 
 	if (m)
 		return m;
 	return nullptr;
 }
+
+MyResource* ModuleResourceManager::LoadResource(const char* path, FILE_TYPE type)
+{
+	MyResource* ret = nullptr;
+
+	switch (type)
+	{
+	case MESH:
+
+		ret = new ResourceMesh(GenerateUUID(), path);
+		break;
+	case MATERIAL:
+		ret = new ResourceMaterial(GenerateUUID(), path);
+		break;
+	case NONE:
+		LOG("Could not load the resource: TYPE == NONE");
+		break;
+	default:
+		break;
+	}
+
+	return ret;
+}
+
 
 uint ModuleResourceManager::GetUUIDFromResourcePath(const char* path)
 {

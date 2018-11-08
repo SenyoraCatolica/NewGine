@@ -36,6 +36,6 @@ public:
 	COMPONENT_TYPE type;
 	uint id = 0;
 	bool enabled = true;
-
+	std::string path;
 	GameObject* parent;
 };

@@ -420,7 +420,10 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 		{
 			//Link component mesh and resource mesh
 			MeshComponent* mesh = (MeshComponent*)comp;
-			mesh->SetResourceMesh(App->resource_manager->LinkResourceMesh(comp->parent->name));
+			mesh->SetResourceMesh(App->resource_manager->LinkResourceMesh(comp->parent->name, comp->path.data()));
+			//Load mesh to memory
+			string complete_file = comp->path + comp->parent->name + ".mex";
+			mesh->mesh->mesh = App->importer->mesh_importer->LoadMesh(complete_file.data());
 		}
 
 		if (t == COMPONENT_MATERIAL)
@@ -428,6 +431,7 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 			//Link component material and resource material
 			MaterialComponent* mat = (MaterialComponent*)comp;
 			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial(comp->parent->name));
+			mat->material->texture = App->importer->mat_importer->LoadTexture(mat->path.data());
 		}
 	}
 

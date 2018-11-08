@@ -7,6 +7,12 @@ ResourceMesh::ResourceMesh(uint uid) : MyResource(uid, MyResource::R_TYPE::MESH,
 	LOG("Resource Mesh Created!");
 }
 
+ResourceMesh::ResourceMesh(uint uid, const char* path) : MyResource(uid, MyResource::R_TYPE::MESH, MyResource::R_STATE::UNLOADED)
+{
+	this->path = path;
+}
+
+
 ResourceMesh::~ResourceMesh()
 {
 	delete mesh->vertices;

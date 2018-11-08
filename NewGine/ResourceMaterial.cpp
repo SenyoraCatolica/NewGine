@@ -6,6 +6,12 @@ ResourceMaterial::ResourceMaterial(uint uid) : MyResource(uid, MyResource::R_TYP
 	LOG("Resource Material Created!");
 }
 
+ResourceMaterial::ResourceMaterial(uint uid, const char* path) : MyResource(uid, MyResource::R_TYPE::MATERIAL, MyResource::R_STATE::UNLOADED)
+{
+	this->path = path;
+}
+
+
 ResourceMaterial::~ResourceMaterial()
 {
 	delete texture;

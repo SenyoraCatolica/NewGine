@@ -260,6 +260,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 			resource_mesh->name = go->name;
 		}
 		mesh_comp->SetResourceMesh(resource_mesh);
+
 		mesh_comp->path = mesh_comp->mesh->path;
 		out_mesh = mesh_comp;
 	}

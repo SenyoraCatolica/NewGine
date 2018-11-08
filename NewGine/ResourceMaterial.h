@@ -15,6 +15,8 @@ class ResourceMaterial : public MyResource
 {
 public:
 	ResourceMaterial(uint uid);
+	ResourceMaterial(uint uid, const char* path);
+
 	virtual ~ResourceMaterial();
 
 	void GenerateResource(MyTexture* tex);
