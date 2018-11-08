@@ -53,7 +53,7 @@ void MaterialComponent::Save(JSONWrapper& file) const
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteString("Path", material->path.c_str());
 
-	array_value.WriteArrayValue(file);
+	file.WriteArrayValue(array_value);
 }
 
 void MaterialComponent::Load(JSONWrapper& file)

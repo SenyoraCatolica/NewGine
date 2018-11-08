@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Globals.h"
 #include "Glew\include\glew.h"
+#include "GlobalFunctions.h"
 
 #include "TransformComponent.h"
 #include "MeshComponent.h"

@@ -12,6 +12,7 @@ class MeshComponent : public Component
 {
 public:
 	MeshComponent(COMPONENT_TYPE type, GameObject* game_object);
+	MeshComponent(MeshComponent& m);
 	~MeshComponent();
 
 	void Update(float dt);

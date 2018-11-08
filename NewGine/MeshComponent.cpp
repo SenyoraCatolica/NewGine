@@ -9,6 +9,17 @@ MeshComponent::MeshComponent(COMPONENT_TYPE type, GameObject* game_object) : Com
 
 }
 
+MeshComponent::MeshComponent(MeshComponent& m)
+{
+	mesh = m.mesh;
+	path = m.path;
+	local_box =  m.local_box;
+	global_box = m.global_box;
+	bb_active = m.bb_active;
+	parent = m.parent;
+}
+
+
 MeshComponent::~MeshComponent()
 {
 	delete mesh;
@@ -73,7 +84,7 @@ void MeshComponent::Save(JSONWrapper& file) const
 	array_value.WriteBool("Enabled", enabled);
 	array_value.WriteString("Path", path.data());
 
-	array_value.WriteArrayValue(file);
+	file.WriteArrayValue(array_value);
 }
 
 void MeshComponent::Load(JSONWrapper& file)

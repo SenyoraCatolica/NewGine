@@ -1,6 +1,7 @@
 #include "ResourceMaterial.h"
 #include "ResourceMesh.h"
 #include "Application.h"
+#include "GlobalFunctions.h"
 
 
 ModuleResourceManager::ModuleResourceManager(Application* app, bool start_enabled) : Module(app, start_enabled)

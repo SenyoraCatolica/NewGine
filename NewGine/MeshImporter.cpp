@@ -8,6 +8,7 @@
 #include "ResourceMesh.h"
 #include "Globals.h"
 #include "GameObject.h"
+#include "GlobalFunctions.h"
 
 #include "Glew/include/glew.h"
 
@@ -18,7 +19,7 @@ bool MeshImporter::Import(const char* file)
 {
 	bool ret = false;
 
-	uint uuid = 123456789;
+	uint uuid = GenerateUUID();
 
 
 	//Generate complete path in Library folder
@@ -74,6 +75,7 @@ bool MeshImporter::Import(const char* file)
 GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent, const char* save_path, JSONWrapper& root_node)
 {
 	GameObject* go = new GameObject();
+
 	go->parent = parent;
 	go->SetName(node->mName.C_Str());
 
@@ -83,9 +85,21 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 	DecomposeTransform(trans, node);
 	//=============================================================================================
 
+	//Save go info
+	JSONWrapper go_node;
+
+	go_node.WriteString("Name", go->name);
+	go_node.WriteUInt("UUID", go->GetUID());
+	go_node.WriteBool("Active", true);
+	go_node.WriteBool("static", false);
+	if (go->parent == nullptr)
+		go_node.WriteUInt("Parent", 0);
+	else
+		go_node.WriteUInt("Parent", go->parent->GetUID());
 
 	//Mesh component + Mesh import ================================================================
-	
+
+
 	for (uint i = 0; i < node->mNumMeshes; i++)
 	{
 		GameObject* new_go = nullptr;
@@ -104,27 +118,31 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 		else
 			new_go = go;
 
-		JSONWrapper go_node;
-		go_node.WriteString("Name", go->name);
-		go_node.WriteUInt("UUID", go->GetUID());
-		go_node.WriteBool("Active", true);
-		go_node.WriteBool("static", false);
-		if (go->parent == nullptr)
-			go_node.WriteUInt("Parent", 0);
-		else
-			go_node.WriteUInt("Parent", go->parent->GetUID());
+
+		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path, go_node);
 
 
-		//Save components in components array
+		//Save components info in components array
 		go_node.WriteArray("Components");
 
 		//transform
 		trans->Save(go_node);
 
-		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path, go_node);
+		if (out_mesh != nullptr)
+		{
+			out_mesh->Save(go_node);
+			out_mesh = nullptr;
+		}
 
-		root_node.WriteArrayValue(go_node);
+		if (out_material != nullptr)
+		{
+			out_material->Save(go_node);
+			out_material = nullptr;
+		}
 	}
+
+	root_node.WriteArrayValue(go_node);
+
 
 
 	for (uint i = 0; i < node->mNumChildren; i++)
@@ -224,7 +242,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 						}
 
 						mat->material = resource_mat;
-						mat->Save(root);
+						out_material = mat;
 					}
 				}
 
@@ -233,10 +251,16 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 
 		mesh_comp->Enable();
 		mesh_comp->path = save_path;
-		mesh_comp->Save(root);
 
 		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
-		ret = SaveMesh(m, name, save_path);
+		if (ret = SaveMesh(m, name, save_path))
+		{
+			resource_mesh->mesh = m;
+			resource_mesh->path = save_path;
+		}
+		mesh_comp->SetResourceMesh(resource_mesh);
+		mesh_comp->path = mesh_comp->mesh->path;
+		out_mesh = mesh_comp;
 	}
 
 	else

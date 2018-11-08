@@ -5,6 +5,7 @@
 #include "CameraComponent.h"
 #include "MeshComponent.h"
 #include "JSONWrapper.h"
+#include "GlobalFunctions.h"
 
 
 ModuleGOManager::ModuleGOManager(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -67,30 +68,6 @@ update_status ModuleGOManager::PreUpdate(float dt)
 
 update_status ModuleGOManager::Update(float dt)
 {
-	objects_to_draw.clear();
-
-	std::list<GameObject*>::iterator it = all_gameobjects.begin();
-
-	while (it != all_gameobjects.end())
-	{
-		MeshComponent* mesh = (MeshComponent*)(*it)->GetComponent(COMPONENT_MESH);
-		if (mesh)
-		{
-			if (GetCameraComponent()->frustum.Intersects(mesh->GetGlobalBox()))
-			{
-				objects_to_draw.push_back(*it);
-			}
-		}
-		it++;
-	}
-
-	it = objects_to_draw.begin();
-	while (it != objects_to_draw.end())
-	{
-		//2DO draw game objects to draw
-		it++;
-	}
-
 	//SelectObject(); 2DO reactivate
 	DrawLocator();
 
@@ -110,7 +87,13 @@ GameObject* ModuleGOManager::CreateEmpty(const char* name)
 		new_go->SetName(name);
 	}
 
-	new_go->parent = root;
+	if (root)
+		new_go->parent = root;
+
+	else
+		new_go = root;
+
+	all_gameobjects.push_back(new_go);
 
 	return new_go;
 }
@@ -320,7 +303,7 @@ void ModuleGOManager::LoadScene(const char* name)
 			for (int i = 0; i < root.GetArraySize("Scene"); i++)
 			{
 				if (i == 0)
-					this->root = LoadGameObject(root.ReadArray("Scene", i));
+					LoadGameObject(root.ReadArray("Scene", i));
 
 				else
 					LoadGameObject(root.ReadArray("Scene", i));
@@ -347,9 +330,11 @@ void ModuleGOManager::SaveScene(const char* name)
 
 	char* buf;
 	size_t size = root_node.SerializeBuffer(&buf);
-	string scene_path = LIBRARY_FOLDER;
+	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
-	scene_path += ".json";
+	
+	if(scene_path.find(".scn"))
+
 	App->file_system->Save(scene_path.data(), buf, size);
 }
 
@@ -390,7 +375,7 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	std::list<GameObject*>::iterator it = all_gameobjects.begin();
 	while (it != all_gameobjects.end())
 	{
-		if ((*it)->GetUID() == uuid)
+		if ((*it)->GetUID() == parent_uuid)
 			parent = (*it);
 		it++;
 	}
@@ -400,14 +385,16 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	//set the new object as child from the parent
 	if (parent != nullptr)
 		parent->childs.push_back(new_go);
+	else
+		root = new_go;
 
 	//load components
 	JSONWrapper root = file;
 	JSONWrapper array_value;
 
-	for (int i = 0; i < root.GetArraySize("components"); i++)
+	for (int i = 0; i < root.GetArraySize("Components"); i++)
 	{
-		array_value = root.ReadArray("components", i);
+		array_value = root.ReadArray("Components", i);
 		COMPONENT_TYPE t = (COMPONENT_TYPE)root.ReadUInt("Type");
 
 		//2do check if component is loaded correctly
@@ -447,7 +434,6 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 			dynamic_objects.push_back(new_go);
 		}
 	}
-
 	return new_go;
 }
 

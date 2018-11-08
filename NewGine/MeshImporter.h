@@ -3,10 +3,14 @@
 #include "Application.h"
 #include "GameObject.h"
 
+
 struct aiMesh;
 struct aiNode;
 struct aiScene;
 struct MyMesh;
+
+class MeshComponent;
+class MaterialComponent;
 
 class MeshImporter
 {
@@ -24,5 +28,7 @@ public:
 
 private:
 	Application* App;
+	MeshComponent*  out_mesh = nullptr;
+	MaterialComponent* out_material = nullptr;
 
 };

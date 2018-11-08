@@ -6,10 +6,6 @@
 
 void log(const char file[], int line, const char* format, ...);
 
-#define CAP(n) ((n <= 0.0f) ? n=0.0f : (n >= 1.0f) ? n=1.0f : n=n)
-#define MIN(a,b) ((a)<(b)) ? (a) : (b)
-#define MAX(a,b) ((a)>(b)) ? (a) : (b)
-
 
 #define DEGTORAD 0.0174532925199432957f
 #define RADTODEG 57.295779513082320876f
@@ -78,19 +74,3 @@ enum update_status
 #define WORLD_DEPTH 1400
 #define WORLD_HEIGHT 600
 
-
-inline uint GenerateUUID()
-{
-	/*const unsigned int bytes = sizeof(long long);
-	char myString[bytes];
-	uint ret;
-
-	for (int n = 0; n < bytes; n++)
-	{
-		myString[n] = rand() % 255;
-	}
-
-	memcpy(&ret, myString, bytes);
-	return ret;*/
-	return 0;
-}
