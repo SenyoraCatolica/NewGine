@@ -420,14 +420,14 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 		{
 			//Link component mesh and resource mesh
 			MeshComponent* mesh = (MeshComponent*)comp;
-			mesh->SetResourceMesh(App->resource_manager->LinkResourceMesh(mesh->parent->name));
+			mesh->SetResourceMesh(App->resource_manager->LinkResourceMesh(comp->parent->name));
 		}
 
 		if (t == COMPONENT_MATERIAL)
 		{
 			//Link component material and resource material
 			MaterialComponent* mat = (MaterialComponent*)comp;
-			//mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial(mat->path.data()));
+			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial(comp->parent->name));
 		}
 	}
 

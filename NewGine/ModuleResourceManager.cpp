@@ -259,8 +259,7 @@ ResourceMesh* ModuleResourceManager::LinkResourceMesh(const char* name)
 
 ResourceMaterial* ModuleResourceManager::LinkResourceMaterial(const char* path, const char* name)
 {
-	uint uuid = GetUUIDFromResourcePath(path);
-	ResourceMaterial* m = (ResourceMaterial*)GetResource(uuid);
+	ResourceMaterial* m = (ResourceMaterial*)TryGetResourceByName(name);
 
 	if (m)
 		return m;
