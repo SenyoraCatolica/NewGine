@@ -90,9 +90,15 @@ MyResource* ModuleResourceManager::CreateResource(MyResource::R_TYPE type, uint 
 
 MyResource* ModuleResourceManager::GetResource(uint uuid)
 {
-	std::map<uint, MyResource*>::iterator it = resources.find(uuid);
-	if (it != resources.end())
-		return it->second;
+	std::map<uint, MyResource*>::iterator it = resources.begin();
+	while (it != resources.end())
+	{
+		if ((*it).first == uuid)
+			return (*it).second;
+
+		it++;
+	}
+
 	return nullptr;
 }
 
@@ -101,7 +107,7 @@ MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
 	std::map<uint, MyResource*>::iterator it = resources.begin();
 	for (uint i = 0; i < resources.size(); i++)
 	{
-		if (strcmp(it->second->name, name) == 0)
+		if (it->second->name == name)
 		{
 			return it->second;
 		}
@@ -241,6 +247,45 @@ std::string ModuleResourceManager::CopyFileToAssets(const char* path, std::strin
 
 	return dir;
 }
+
+ResourceMesh* ModuleResourceManager::LinkResourceMesh(const char* name)
+{
+	ResourceMesh* m = (ResourceMesh*)TryGetResourceByName(name);
+	
+	if (m)
+		return m;
+	return nullptr;
+}
+
+ResourceMaterial* ModuleResourceManager::LinkResourceMaterial(const char* path, const char* name)
+{
+	uint uuid = GetUUIDFromResourcePath(path);
+	ResourceMaterial* m = (ResourceMaterial*)GetResource(uuid);
+
+	if (m)
+		return m;
+	return nullptr;
+}
+
+uint ModuleResourceManager::GetUUIDFromResourcePath(const char* path)
+{
+	uint ret = 0;
+
+	string p = path;
+	p.pop_back();
+
+	int last = p.find_last_of("/\\") + 1;
+	string name = p.substr(last);
+	name = name.substr(0, name.find_last_of('.'));
+
+	if (name.length() == 0)
+		ret = 0;
+	else
+		ret = std::stoul(name);
+
+	return ret;
+}
+
 
 
 

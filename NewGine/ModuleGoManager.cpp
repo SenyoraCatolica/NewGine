@@ -302,11 +302,7 @@ void ModuleGOManager::LoadScene(const char* name)
 
 			for (int i = 0; i < root.GetArraySize("Scene"); i++)
 			{
-				if (i == 0)
-					LoadGameObject(root.ReadArray("Scene", i));
-
-				else
-					LoadGameObject(root.ReadArray("Scene", i));
+				LoadGameObject(root.ReadArray("Scene", i));
 			}
 		}
 	}
@@ -392,48 +388,59 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	JSONWrapper root = file;
 	JSONWrapper array_value;
 
-	for (int i = 0; i < root.GetArraySize("Components"); i++)
+	int size = root.GetArraySize("Components");
+
+	for (int i = 0; i < size; i++)
 	{
 		array_value = root.ReadArray("Components", i);
-		COMPONENT_TYPE t = (COMPONENT_TYPE)root.ReadUInt("Type");
-
-		//2do check if component is loaded correctly
+		COMPONENT_TYPE t = (COMPONENT_TYPE)array_value.ReadUInt("Type");
+		
 		Component* comp = nullptr;
-
 		switch (t)
 		{
-			case COMPONENT_TRANSFORM:
-				comp = (TransformComponent*)new_go->AddComponent(t);
-				comp->Load(array_value);
-				break;
-			case COMPONENT_MESH:
-				comp = (MeshComponent*)new_go->AddComponent(t);
-				comp->Load(array_value);
-				break;
-			case COMPONENT_MATERIAL:
-				comp = (MaterialComponent*)new_go->AddComponent(t);
-				comp->Load(array_value);
-
-				break;
-			case COMPONENT_CAMERA:
-				comp = (CameraComponent*)new_go->AddComponent(t);
-				comp->Load(array_value);
-
-				break;
-			default:
-				break;
+		case COMPONENT_TRANSFORM:
+			comp = new_go->AddComponent(t);
+			comp->Load(array_value);
+			break;
+		case COMPONENT_MESH:
+			comp = new_go->AddComponent(t);
+			comp->Load(array_value);
+			break;
+		case COMPONENT_MATERIAL:
+			comp = new_go->AddComponent(t);
+			comp->Load(array_value);
+			break;
+		case COMPONENT_CAMERA:
+			break;
+		default:
+			break;
 		}
 
-		if (is_static)
+		if (t == COMPONENT_MESH)
 		{
-			quadtree->Insert(new_go);
+			//Link component mesh and resource mesh
+			MeshComponent* mesh = (MeshComponent*)comp;
+			mesh->SetResourceMesh(App->resource_manager->LinkResourceMesh(mesh->parent->name));
 		}
 
-		else
+		if (t == COMPONENT_MATERIAL)
 		{
-			dynamic_objects.push_back(new_go);
+			//Link component material and resource material
+			MaterialComponent* mat = (MaterialComponent*)comp;
+			//mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial(mat->path.data()));
 		}
 	}
+
+	if (is_static)
+	{
+		quadtree->Insert(new_go);
+	}
+
+	else
+	{
+		dynamic_objects.push_back(new_go);
+	}
+	
 	return new_go;
 }
 

@@ -28,6 +28,6 @@ protected:
 	uint64_t uuid;
 
 public:
-	char name[NAME_MAX_LEN];
+	std::string name;
 	std::string path;
 };

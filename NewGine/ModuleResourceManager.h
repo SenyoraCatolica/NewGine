@@ -6,6 +6,11 @@
 #include "MyResource.h"
 #include <map>
 
+#include "MeshComponent.h"
+#include "MaterialComponent.h"
+#include "ResourceMesh.h"
+#include "ResourceMaterial.h"
+
 enum FILE_TYPE
 {
 	MESH, MATERIAL, NONE
@@ -24,7 +29,6 @@ public:
 	MyResource* CreateResource(MyResource::R_TYPE, uint uuid);
 	MyResource* GetResource(uint uuid);
 	MyResource* TryGetResourceByName(const char* file);
-	//FILE_TYPE TryGetTypeByName(const char* file);
 
 	//Handle files
 	void ImportFile(const char* file);
@@ -32,6 +36,10 @@ public:
 	void CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir);
 	std::string CopyFileToAssets(const char* path, std::string assets_dir);
 
+	ResourceMesh* LinkResourceMesh(const char* name);
+	ResourceMaterial* LinkResourceMaterial(const char* path, const char* name);
+
+	uint GetUUIDFromResourcePath(const char* path);
 
 public:
 	std::map<uint, MyResource*> resources;

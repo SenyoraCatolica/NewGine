@@ -97,6 +97,12 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 	else
 		go_node.WriteUInt("Parent", go->parent->GetUID());
 
+	//Save components info in components array
+	go_node.WriteArray("Components");
+
+	//transform
+	trans->Save(go_node);
+
 	//Mesh component + Mesh import ================================================================
 
 
@@ -121,12 +127,6 @@ GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObj
 
 		ImportMesh(scene, scene->mMeshes[node->mMeshes[i]], new_go, new_go->name, save_path, go_node);
 
-
-		//Save components info in components array
-		go_node.WriteArray("Components");
-
-		//transform
-		trans->Save(go_node);
 
 		if (out_mesh != nullptr)
 		{
@@ -252,11 +252,12 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 		mesh_comp->Enable();
 		mesh_comp->path = save_path;
 
-		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, GenerateUUID());
+		ResourceMesh* resource_mesh = (ResourceMesh*)App->resource_manager->CreateResource(MyResource::R_TYPE::MESH, go->GetUID());
 		if (ret = SaveMesh(m, name, save_path))
 		{
 			resource_mesh->mesh = m;
 			resource_mesh->path = save_path;
+			resource_mesh->name = go->name;
 		}
 		mesh_comp->SetResourceMesh(resource_mesh);
 		mesh_comp->path = mesh_comp->mesh->path;
@@ -394,7 +395,6 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 		memcpy(cursor, m->normals, bytes);
 	}
 
-	//2DO Create a better save function with uuid, folder and extension
 	ret = App->file_system->Save(name, buffer, size, save_path, "mex");
 
 	delete[] buffer;
