@@ -32,8 +32,6 @@ void MeshComponent::ComponentEditor()
 	{
 		ImGui::Text("Num vertices: %i", mesh->mesh->num_vertices);
 		ImGui::Text("Num indices: %i", mesh->mesh->num_indices);
-		ImGui::Text("Num normlas: %i", mesh->mesh->normals);
-		ImGui::Text("Num UVs: %i", mesh->mesh->num_texture_coords);
 		ImGui::Separator();
 		ImGui::Checkbox("Bounding Box", &bb_active);
 	}
@@ -93,7 +91,5 @@ void MeshComponent::Load(JSONWrapper& file)
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	path = file.ReadString("Path");
-
-	//2DO link resource with new path
 }
 

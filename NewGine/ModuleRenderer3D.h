@@ -27,11 +27,15 @@ public:
 	void OnResize(int width, int height, float fovy);
 
 	void DrawMesh(MyMesh m);
+	void DrawGameObject(GameObject* go);
 
 	void DebugDrawQuadtree(Quadtree* quadtree, QuadNode root);
 	void DrawLocator(float4x4 transform, float4 color);
 
+	void DrawBox(const AABB &aabb, Color color);
 	void DrawBox(float3* corners, float4 color);
+	void DrawAABB(const vec* vertices, Color color);
+
 
 	bool GetEnableTextures() const;
 	bool GetEnableColorMaterial() const;

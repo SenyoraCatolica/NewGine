@@ -235,7 +235,8 @@ void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char
 
 	App->file_system->Save(final_path.data(), buff, size);
 
-	delete[] buff;
+	if(buff)
+		delete[] buff;
 }
 
 std::string ModuleResourceManager::CopyFileToAssets(const char* path, std::string assets_dir)

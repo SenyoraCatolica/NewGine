@@ -137,15 +137,15 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	ImGuiIO& io = ImGui::GetIO();
 
+	std::list<GameObject*>::iterator it = App->go_manager->all_gameobjects.begin();
+	while (it != App->go_manager->all_gameobjects.end())
+	{
+		DrawGameObject(*it);
+		it++;
+	}
+
 	SDL_GL_SwapWindow(App->window->window);
-	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_DOWN)
-	{
-		lights[0].Active(false);
-	}
-	if (App->input->GetKey(SDL_SCANCODE_H) == KEY_UP)
-	{
-		lights[0].Active(true);
-	}
+
 
 	return UPDATE_CONTINUE;
 }
@@ -256,6 +256,120 @@ void ModuleRenderer3D::DrawMesh(MyMesh m)
 	}*/
 }
 
+void ModuleRenderer3D::DrawGameObject(GameObject* go)
+{
+	if (go->IsActive())
+	{
+		if (go->components.size() > 1) //to check if any object has more than a transform component
+		{
+			std::list<MeshComponent*> meshes;
+			for (std::list<Component*>::iterator it = go->components.begin(); it != go->components.end(); it++)
+			{
+				if ((*it)->type == COMPONENT_MESH)
+					meshes.push_back((MeshComponent*)(*it));
+			}
+
+			TransformComponent* transform = (TransformComponent*)go->GetComponent(COMPONENT_TRANSFORM);
+			if (transform != nullptr)
+			{
+				glPushMatrix();
+				glMultMatrixf(*transform->GetTransformationMatrix().v);
+			}
+
+			//draw every mesh of the go
+			for (std::list<MeshComponent*>::iterator mesh = meshes.begin(); mesh != meshes.end(); mesh++)
+			{
+				if ((*mesh)->mesh != nullptr)
+				{
+					if ((*mesh)->mesh->mesh->num_vertices > 0 && (*mesh)->mesh->mesh->num_indices > 0)
+					{
+						glEnableClientState(GL_VERTEX_ARRAY);
+						glEnableClientState(GL_NORMAL_ARRAY);
+						glEnableClientState(GL_ELEMENT_ARRAY_BUFFER);
+						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+						//Set Wireframe
+						if (draw_wireframe)
+						{
+							glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+						}
+
+						if (enable_color_material)
+						{
+							glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
+						}
+
+						//draw texture
+						if (enable_textures)
+						{
+							glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+
+							std::list<MaterialComponent*> materials;
+							for (std::list<Component*>::iterator it = go->components.begin(); it != go->components.end(); it++)
+							{
+								if ((*it)->type == COMPONENT_MATERIAL)
+									materials.push_back((MaterialComponent*)(*it));
+							}
+
+							for (std::list<MaterialComponent*>::iterator mat = materials.begin(); mat != materials.end(); mat++)
+							{
+								if ((*mat)->material != nullptr && (*mat)->material->texture != nullptr)
+									glBindTexture(GL_TEXTURE_2D, (*mat)->material->texture->id);
+							}
+
+							glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+						}
+
+						//vertices
+						glBindBuffer(GL_ARRAY_BUFFER, (*mesh)->mesh->mesh->id_vertices);
+						glVertexPointer(3, GL_FLOAT, 0, NULL);
+
+
+						//indices
+						glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*mesh)->mesh->mesh->id_indices);
+						glDrawElements(GL_TRIANGLES, (*mesh)->mesh->mesh->num_indices, GL_UNSIGNED_INT, NULL);
+
+
+
+						// NORMALS ----------------------------------
+						if ((*mesh)->mesh->mesh->num_normals > 0)
+						{
+							glBindBuffer(GL_ARRAY_BUFFER, (*mesh)->mesh->mesh->id_normals);
+							glVertexPointer(3, GL_FLOAT, sizeof(float3), NULL);
+							glDrawArrays(GL_LINES, 0, (*mesh)->mesh->mesh->num_vertices * 2);
+							glBindBuffer(GL_ARRAY_BUFFER, 0);
+						}
+
+						glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+						glBindBuffer(GL_ARRAY_BUFFER, 0);
+						glBindTexture(GL_TEXTURE_2D, 0);
+
+						if (draw_wireframe)
+						{
+							glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+						}
+						glDisableClientState(GL_VERTEX_ARRAY);
+						glDisableClientState(GL_NORMAL_ARRAY);
+						glDisableClientState(GL_ELEMENT_ARRAY_BUFFER);
+						glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+					}
+				}
+			}
+
+			if (transform != nullptr)
+				glPopMatrix();
+		}
+	}
+
+	if (go->boundingbox_active)
+	{
+		DrawBox(go->aabb, Yellow);
+	}
+}
+
+
 
 void ModuleRenderer3D::DebugDrawQuadtree(Quadtree* quadtree, QuadNode root)
 {
@@ -318,6 +432,66 @@ void ModuleRenderer3D::DrawLocator(float4x4 transform, float4 color)
 
 	glPopMatrix();
 }
+
+void ModuleRenderer3D::DrawBox(const AABB &aabb, Color color)
+{
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glDisable(GL_CULL_FACE);
+	glDisable(GL_TEXTURE_2D);
+
+	static float3 vertices[8];
+	aabb.GetCornerPoints(vertices);
+
+	DrawAABB(vertices, color);
+
+
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void ModuleRenderer3D::DrawAABB(const vec* vertices, Color color)
+{
+	glColor3f(color.r, color.g, color.b);
+
+	glBegin(GL_QUADS);
+
+	glVertex3fv((GLfloat*)&vertices[1]);
+	glVertex3fv((GLfloat*)&vertices[5]);
+	glVertex3fv((GLfloat*)&vertices[7]);
+	glVertex3fv((GLfloat*)&vertices[3]);
+
+	glVertex3fv((GLfloat*)&vertices[4]);
+	glVertex3fv((GLfloat*)&vertices[0]);
+	glVertex3fv((GLfloat*)&vertices[2]);
+	glVertex3fv((GLfloat*)&vertices[6]);
+
+	glVertex3fv((GLfloat*)&vertices[5]);
+	glVertex3fv((GLfloat*)&vertices[4]);
+	glVertex3fv((GLfloat*)&vertices[6]);
+	glVertex3fv((GLfloat*)&vertices[7]);
+
+	glVertex3fv((GLfloat*)&vertices[0]);
+	glVertex3fv((GLfloat*)&vertices[1]);
+	glVertex3fv((GLfloat*)&vertices[3]);
+	glVertex3fv((GLfloat*)&vertices[2]);
+
+	glVertex3fv((GLfloat*)&vertices[1]);
+	glVertex3fv((GLfloat*)&vertices[3]);
+	glVertex3fv((GLfloat*)&vertices[0]);
+	glVertex3fv((GLfloat*)&vertices[2]);
+
+	glVertex3fv((GLfloat*)&vertices[5]);
+	glVertex3fv((GLfloat*)&vertices[7]);
+	glVertex3fv((GLfloat*)&vertices[4]);
+	glVertex3fv((GLfloat*)&vertices[6]);
+
+	glEnd();
+
+	glColor3f(1.0f, 1.0f, 1.0f);
+}
+
 
 //Getters
 bool ModuleRenderer3D::GetEnableTextures() const

@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "MaterialImporter.h"
 #include "ResourceMaterial.h"
+#include "GlobalFunctions.h"
+#include "MyResource.h"
 
 
 //DEVIL
@@ -23,8 +25,43 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 {
 	bool ret = false;
 
+	if(uuid == 0)
+		uuid = GenerateUUID();
+
+
+	//Generate complete path in Library folder
+	string mat_path;
+	mat_path = MATERIAL_FOLDER;
+	mat_path += std::to_string(uuid) + "/";
+
+	if(App->file_system->Exists(mat_path.c_str()) == false)
+		App->file_system->CreateDir(mat_path.c_str());
+	//complete name of the file with path
+	string lib_path = mat_path + std::to_string(uuid) + ".dta";
+
+	//Generate Asset folder for file
+	string assets_path;
+	if (App->file_system->Exists(file) == false)
+		assets_path = App->resource_manager->CopyFileToAssets(file, App->editor->GetAssetsWindow()->GetAssetsDirectory());
+	else
+		assets_path = file;
+
+	string path = file;
+
+	//Generate Meta file 2DO
+	App->resource_manager->CreateFileMeta(uuid, MATERIAL, assets_path.data(), lib_path.data());
+
+
+
+	//Importing starts here
+	//=================================================================================
+
 	char* buffer;
-	uint size = App->file_system->Load(file, &buffer);
+	uint size = App->file_system->Load(assets_path.data(), &buffer);
+
+	ILuint id;
+	ilGenImages(1, &id);
+	ilBindImage(id);
 
 	if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
 	{
@@ -39,14 +76,26 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 			data = new ILubyte[size_data];
 			if (ilSaveL(IL_DDS, data, size_data) > 0)
 			{
-				ret = App->file_system->Save(file, (char*)data, size_data);
+				string new_path = App->file_system->ChangeExtension(assets_path, ".tex");
+				ret = App->file_system->Save(new_path.data(), (char*)data, size_data);
 			}
 			delete[] data;
 			ilDeleteImages(1, &size);
 		}
 	}
 
-	delete[] buffer;
+	else
+	{
+		ILenum error = ilGetError();
+		LOG("Image Load failed - IL reportes error: %i, %s", error, iluErrorString(error));
+	}
+
+	if(buffer)
+		delete[] buffer;
+
+	//Load texture to be get the resource material ready
+	ResourceMaterial* mat = (ResourceMaterial*)App->resource_manager->CreateResource(MyResource::R_TYPE::MATERIAL, uuid);
+	mat->texture = LoadTexture(assets_path.data());
 
 	return ret;
 }

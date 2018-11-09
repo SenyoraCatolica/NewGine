@@ -66,7 +66,8 @@ bool MeshImporter::Import(const char* file)
 		char* buff;
 		size_t size = new_scene_node.SerializeBuffer(&buff);
 
-		App->file_system->Save(assets_path.data(), buff, size);
+		string final_path = App->file_system->ChangeExtension(assets_path, ".mex");
+		App->file_system->Save(final_path.data(), buff, size);
 
 		delete[] buff;
 	}
@@ -213,7 +214,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 			{
 				m->normals = new float[m->num_vertices * 3];
 				memcpy(m->normals, mesh->mNormals, sizeof(float)*m->num_vertices * 3);
-				m->num_normals = mesh->mNormals->Length();
+				//m->num_normals = m->num_vertices;
 
 				LOG("Normals Imported");
 			}

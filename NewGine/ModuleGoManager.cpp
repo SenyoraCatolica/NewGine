@@ -280,7 +280,7 @@ void ModuleGOManager::LoadScene(const char* name)
 {
 	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
-	scene_path += ".fbx";
+	scene_path += ".mex";
 
 	//2DO
 	char* buffer = nullptr;

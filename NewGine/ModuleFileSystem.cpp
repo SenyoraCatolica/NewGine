@@ -129,6 +129,16 @@ std::string ModuleFileSystem::GetNameFromDirectory(std::string file)
 	return file;
 }
 
+std::string ModuleFileSystem::ChangeExtension(std::string path, const char* extension)
+{
+	string final_path = path;
+	final_path = final_path.substr(0, final_path.length() - 4);
+	final_path += extension;
+
+	return final_path;
+}
+
+
 
 
 
