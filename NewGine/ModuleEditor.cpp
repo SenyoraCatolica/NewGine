@@ -298,6 +298,7 @@ void ModuleEditor::HandleScenesMenu()
 		if (ImGui::Button("Save##saveButton") && scene_name[0] != '\0')
 		{
 			App->go_manager->SaveScene(scene_name);
+			selected_object = nullptr;
 			close = true;
 		}
 		ImGui::SameLine();
@@ -317,6 +318,7 @@ void ModuleEditor::HandleScenesMenu()
 		bool close = false;
 		if (ImGui::Button("Load##loadButton") && scene_name[0] != '\0')
 		{
+			selected_object = nullptr;
 			App->go_manager->LoadScene(scene_name);
 			close = true;
 		}

@@ -280,7 +280,7 @@ void ModuleGOManager::LoadScene(const char* name)
 {
 	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
-	scene_path += ".mex";
+	scene_path += ".scn";
 
 	//2DO
 	char* buffer = nullptr;
@@ -328,8 +328,7 @@ void ModuleGOManager::SaveScene(const char* name)
 	size_t size = root_node.SerializeBuffer(&buf);
 	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
-	
-	if(scene_path.find(".scn"))
+	scene_path += ".scn";
 
 	App->file_system->Save(scene_path.data(), buf, size);
 }

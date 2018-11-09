@@ -66,7 +66,7 @@ bool MeshImporter::Import(const char* file)
 		char* buff;
 		size_t size = new_scene_node.SerializeBuffer(&buff);
 
-		string final_path = App->file_system->ChangeExtension(assets_path, ".mex");
+		string final_path = App->file_system->ChangeExtension(assets_path, ".scn");
 		App->file_system->Save(final_path.data(), buff, size);
 
 		delete[] buff;

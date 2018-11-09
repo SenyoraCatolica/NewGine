@@ -29,7 +29,7 @@ GameObject::GameObject(const char* name, uint uuid, GameObject* parent, bool is_
 {
 	strcpy(this->name, name);
 	uid = uuid;
-	parent = parent;
+	this->parent = parent;
 	this->is_static = is_static;
 	this->active = is_active;
 
@@ -166,20 +166,20 @@ void GameObject::Save(JSONWrapper& file)
 {
 	JSONWrapper array_value;
 
-	array_value.WriteString("name", name);
+	array_value.WriteString("Name", name);
 	array_value.WriteUInt("UUID", uid);
 
 	if (parent == nullptr)
-		array_value.WriteUInt("parent", 0);
+		array_value.WriteUInt("Parent", 0);
 	else
-		array_value.WriteUInt("parent", parent->uid);
+		array_value.WriteUInt("Parent", parent->uid);
 
 	array_value.WriteBool("static", is_static);
-	array_value.WriteBool("active", active);
+	array_value.WriteBool("Active", active);
 
 
 	//Save Components
-	array_value.WriteArray("components");
+	array_value.WriteArray("Components");
 	std::list<Component*>::const_iterator it = components.begin();
 	while (it != components.end())
 	{
