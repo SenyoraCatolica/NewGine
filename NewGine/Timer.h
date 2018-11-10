@@ -28,6 +28,7 @@ private:
 	bool	running;
 	Uint32	started_at;
 	Uint32	stopped_at;
+	double started_new_frame;
 
 
 	//Game states
@@ -39,9 +40,15 @@ private:
 	unsigned long real_time = 0;
 
 	//game time
-	unsigned long game_time = 0;
-	unsigned long game_played_time = 0;
-	unsigned long game_paused_time = 0;
+	double game_time = 0;
+
+	double game_played_time = 0;
+	double game_play_start = 0;
+
+	double game_paused_time = 0;
+	double game_pause_start = 0;
+
+	double frequency = 0;
 
 };
 
