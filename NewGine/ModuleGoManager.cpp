@@ -355,6 +355,16 @@ void ModuleGOManager::ClearScene()
 	//2Do reset quadtree?
 }
 
+void ModuleGOManager::SaveSceneOnPlay()
+{
+	SaveScene("TempScene");
+}
+
+void ModuleGOManager::LoadSceneOnStop()
+{
+	LoadScene("TempScene");
+}
+
 
 GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 {
@@ -447,8 +457,10 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	return new_go;
 }
 
-void ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
+bool ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 {
+	bool ret = false;
+
 	if (go)
 	{
 		if (go->parent != nullptr)
@@ -459,6 +471,8 @@ void ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 				if ((*it) == go)
 				{
 					go->parent->childs.erase(it);
+					ret  = true;
+					break;
 				}
 
 				it++;
@@ -470,14 +484,19 @@ void ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 		std::vector<GameObject*>::iterator it = go->childs.begin();
 		while (it != go->childs.end())
 		{
-			ClearGameObjectFromScene((*it));
-			it++;
+			if (ClearGameObjectFromScene((*it)))
+				it = go->childs.begin();
+
+			else
+				it++;
 		}
 			
 		go->childs.clear();
 
 		todelete_objects.push_back(go);
 	}
+
+	return ret;
 }
 
 

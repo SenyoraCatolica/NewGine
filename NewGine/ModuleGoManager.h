@@ -37,12 +37,17 @@ public:
 
 	GameObject* GetRoot();
 
+	//Scene management
 	void LoadScene(const char* name);
 	void SaveScene(const char* name);
 	void LoadEmptyScene();
 	void ClearScene();
+	void SaveSceneOnPlay();
+	void LoadSceneOnStop();
+
 	GameObject* LoadGameObject(const JSONWrapper& file);
-	void ClearGameObjectFromScene(GameObject* go);
+	bool ClearGameObjectFromScene(GameObject* go);
+
 
 public:
 	std::list<GameObject*> all_gameobjects;

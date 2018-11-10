@@ -21,7 +21,7 @@ using namespace std;
 
 enum GAME_STATE
 {
-	PLAY_STATE, STOP_STATE, PAUSED_STATE, RUN_STATE
+	PLAY_STATE, STOP_STATE, PAUSED_STATE
 };
 
 class Application
@@ -43,6 +43,7 @@ public:
 private:
 
 	Timer	ms_timer;
+	Timer game_timer;
 	float	dt;
 	list<Module*> list_modules;
 	int fps = 60;

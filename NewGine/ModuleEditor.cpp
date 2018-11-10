@@ -195,23 +195,20 @@ void ModuleEditor::GamePanel()
 	{
 		if (ImGui::Button("Play##PlayButton"))
 		{
-			//time play
+			selected_object = nullptr;
 			App->Play();
-			//2DO save scene
 		}
 	}
 	else
 	{
 		if (ImGui::Button("Pause##PauseButton"))
 		{
-			//time pause
 			App->Pause();
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Stop##StopButton"))
 		{
-			//time stop
-			//load scene
+			selected_object = nullptr;
 			App->Stop();
 		}
 	}

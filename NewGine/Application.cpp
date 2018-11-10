@@ -5,6 +5,9 @@
 
 Application::Application()
 {
+
+	game_timer.Start();
+
 	window = new ModuleWindow(this);
 	console = new ModuleConsole(this);
 	input = new ModuleInput(this);
@@ -97,6 +100,8 @@ void Application::PrepareUpdate()
 	frame_count++;
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
+
+	game_timer.UpdateTime();
 }
 
 // ---------------------------------------------
@@ -201,21 +206,25 @@ void Application::Play()
 {
 	if (game_state == STOP_STATE)
 	{
-		//2DO save scene
+		go_manager->SaveSceneOnPlay();
 	}
 
-	game_state = RUN_STATE;
+	game_state = PLAY_STATE;
+	game_timer.PlayGame();
+
 }
 
 void Application::Stop()
 {
 	game_state = STOP_STATE;
-	//2DO load scene
+	game_timer.StopGame();
+	go_manager->LoadSceneOnStop();
 }
 
 void Application::Pause()
 {
 	game_state = PAUSED_STATE;
+	game_timer.PauseGame();
 }
 
 GAME_STATE Application::GetGameState()

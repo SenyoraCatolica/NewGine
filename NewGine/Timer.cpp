@@ -67,7 +67,6 @@ void Timer::PauseGame()
 
 void Timer::StopGame()
 {
-	is_play = false;
 	is_pause = false;
 
 	game_played_time = SDL_GetPerformanceCounter() - game_play_start;

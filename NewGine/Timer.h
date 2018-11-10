@@ -34,7 +34,8 @@ private:
 	//Game states
 	bool is_play = false;
 	bool is_pause = false;
-	bool is_stop = true;
+
+public:
 
 	//real time
 	unsigned long real_time = 0;
