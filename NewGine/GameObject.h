@@ -20,14 +20,10 @@ public:
 	~GameObject();
 
 	const uint64_t GetUID();
-	void DrawLocator();
-	void DrawAABB();
-	void DrawOBB();
 
+	void DrawLocator();
 	void Select();
 	void Unselect();
-
-	void UpdateAABB();
 
 	void UpdateTransformMatrix();
 
@@ -49,39 +45,15 @@ public:
 	bool HasComponent(COMPONENT_TYPE type);
 	Component* GetComponent(COMPONENT_TYPE type);
 
-
-	template <typename typeComp>
-	std::vector<typeComp*> GetComponent()
-	{
-		std::vector<typeComp*> ret;
-		if (HasComponent(typeComp::GetType()))
-		{
-			std::vector<Component*>::iterator it = components.begin();
-			while (it != components.end())
-			{
-				if ((*it)->GetType() == typeComp::GetType())
-				{
-					ret.push_back((typeComp*)(*it));
-				}
-				it++;
-			}
-		}
-		return ret;
-	}
-
-
 private:
 	uint uid;
 	bool active = true;
 	bool is_static = false;
 
-	AABB originalAABB;
-
-
 public:
 	char name[NAME_MAX_LEN];
 	AABB aabb;
-	OBB obb;
+
 	bool boundingbox_active = false;
 	bool selected = false;
 

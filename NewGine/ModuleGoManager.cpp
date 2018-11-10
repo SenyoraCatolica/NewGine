@@ -182,7 +182,7 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 	while (it != dynamic_objects.end())
 	{
 		float near_dist, far_dist;
-		if ((*it)->obb.Intersects(ray, near_dist, far_dist) == true)
+		if ((*it)->aabb.Intersects(ray, near_dist, far_dist) == true)
 		{
 			candidates.insert(std::pair<float, GameObject*>(MIN(near_dist, far_dist), (*it)));
 		}
@@ -433,6 +433,7 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 			//Load mesh to memory
 			string complete_file = comp->path + comp->parent->name + ".mex";
 			mesh->mesh->mesh = App->importer->mesh_importer->LoadMesh(complete_file.data());
+			mesh->RecalculateLocalbox();
 		}
 
 		if (t == COMPONENT_MATERIAL)

@@ -355,17 +355,17 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 						glDisableClientState(GL_ELEMENT_ARRAY_BUFFER);
 						glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 					}
+
+					//if (go->boundingbox_active)
+					{
+						DrawBox(go->aabb, Yellow);
+					}
 				}
 			}
 
 			if (transform != nullptr)
 				glPopMatrix();
 		}
-	}
-
-	if (go->boundingbox_active)
-	{
-		DrawBox(go->aabb, Yellow);
 	}
 }
 

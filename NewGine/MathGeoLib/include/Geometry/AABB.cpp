@@ -1103,7 +1103,7 @@ void AABB::Enclose(const Polyhedron &polyhedron)
 	Enclose(polyhedron.MinimalEnclosingAABB());
 }
 
-void AABB::Enclose(const vec *pointArray, int numPoints)
+void AABB::Enclose(const float3 *pointArray, int numPoints)
 {
 	assume(pointArray || numPoints == 0);
 	if (!pointArray)

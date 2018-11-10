@@ -41,11 +41,7 @@ void MeshComponent::Update(float dt)
 {
 	if (mesh != nullptr)
 	{
-		if (mesh->GetState() == MyResource::R_STATE::TO_DELETE)
-			mesh = nullptr;
-
-		if (bb_active)
-			RecalculateBox();
+		RecalculateBox();
 	}			
 }
 
@@ -55,14 +51,23 @@ void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 	{		
 		mesh = resourse_mesh;
 		path = resourse_mesh->path;
+		
 	}
 }
+
+void MeshComponent::RecalculateLocalbox()
+{
+	local_box.Enclose((float3*)mesh->mesh->vertices, mesh->mesh->num_vertices);
+	RecalculateBox();
+}
+
 
 void MeshComponent::RecalculateBox()
 {
 	TransformComponent* t = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
 	math::OBB obb = local_box.Transform(t->GetGlobalTranform());
 	global_box = obb.MinimalEnclosingAABB();
+	parent->aabb = global_box;
 }
 math::AABB MeshComponent::GetGlobalBox()
 {
@@ -91,5 +96,7 @@ void MeshComponent::Load(JSONWrapper& file)
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	path = file.ReadString("Path");
+
+	RecalculateBox();
 }
 

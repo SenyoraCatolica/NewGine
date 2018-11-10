@@ -12,16 +12,12 @@
 GameObject::GameObject() 
 {
 	uid = GenerateUUID();
-	aabb.SetNegativeInfinity();
-	originalAABB.SetNegativeInfinity();
 	strcpy(name, "Unnamed");
 }
 
 GameObject::GameObject(const uint uid)
 {
 	this->uid = uid;
-	aabb.SetNegativeInfinity();
-	originalAABB.SetNegativeInfinity();
 	strcpy(name, "Unnamed");
 }
 
@@ -32,9 +28,6 @@ GameObject::GameObject(const char* name, uint uuid, GameObject* parent, bool is_
 	this->parent = parent;
 	this->is_static = is_static;
 	this->active = is_active;
-
-	aabb.SetNegativeInfinity();
-	originalAABB.SetNegativeInfinity();
 }
 
 
@@ -58,23 +51,6 @@ void GameObject::DrawLocator()
 	//2DO implement locator
 }
 
-void GameObject::DrawAABB()
-{
-	if (aabb.IsFinite())
-	{
-		math::float3 corners[8];
-		aabb.GetCornerPoints(corners);
-	}
-}
-
-void GameObject::DrawOBB()
-{
-	if (obb.IsFinite())
-	{
-		math::float3 corners[8];
-		obb.GetCornerPoints(corners);
-	}
-}
 
 void GameObject::Select()
 {
@@ -97,19 +73,6 @@ void GameObject::Unselect()
 }
 
 
-void GameObject::UpdateAABB()
-{
-	aabb.SetNegativeInfinity();
-	obb.SetNegativeInfinity();
-	if (originalAABB.IsFinite())
-	{
-		obb = originalAABB;
-		TransformComponent* t = (TransformComponent*)GetComponent(COMPONENT_TRANSFORM);
-		obb.Transform(t->GetGlobalTranform().Transposed());
-		aabb.Enclose(obb);
-	}
-}
-
 void GameObject::UpdateTransformMatrix()
 {
 	if (HasComponent(COMPONENT_TYPE::COMPONENT_TRANSFORM))
@@ -117,8 +80,6 @@ void GameObject::UpdateTransformMatrix()
 		TransformComponent* t = (TransformComponent*)GetComponent(COMPONENT_TRANSFORM);
 		t->UpdateGlobalTransform();
 	}
-
-	UpdateAABB();
 
 	//Call again for every child
 	if (childs.size() > 0)

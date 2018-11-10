@@ -455,7 +455,7 @@ public:
 	void Enclose(const Frustum &frustum);
 	void Enclose(const Polygon &polygon);
 	void Enclose(const Polyhedron &polyhedron);
-	void Enclose(const vec *pointArray, int numPoints);
+	void Enclose(const float3 *pointArray, int numPoints);
 
 	/// Generates an unindexed triangle mesh representation of this AABB.
 	/** @param numFacesX The number of faces to generate along the X axis. This value must be >= 1.

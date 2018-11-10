@@ -21,6 +21,7 @@ public:
 
 	void SetResourceMesh(ResourceMesh * resourse_mesh);
 
+	void RecalculateLocalbox();
 	void RecalculateBox();
 	math::AABB GetGlobalBox();
 	void SetBBActive(bool active);
