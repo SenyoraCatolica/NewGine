@@ -214,7 +214,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 			{
 				m->normals = new float[m->num_vertices * 3];
 				memcpy(m->normals, mesh->mNormals, sizeof(float)*m->num_vertices * 3);
-				//m->num_normals = m->num_vertices;
+				m->num_normals = m->num_vertices;
 
 				LOG("Normals Imported");
 			}
@@ -286,19 +286,14 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 		
 		char* cursor = buffer;
 
-		uint header[5];
+		uint header[4];
 		uint bytes = sizeof(header);
 		memcpy(header, cursor, bytes);
 
-		mesh->num_indices = header[0];
-		mesh->num_vertices = header[1];
-		mesh->num_texture_coords = header[3];
+		mesh->num_vertices = header[0];
+		mesh->num_indices = header[1];
+		mesh->num_texture_coords = header[2];
 
-		//Indices
-		cursor += bytes;
-		bytes = sizeof(uint) * mesh->num_indices;
-		mesh->indices = new uint[mesh->num_indices];
-		memcpy(mesh->indices, cursor, bytes);
 
 		//Vertices
 		cursor += bytes;
@@ -306,16 +301,11 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 		mesh->vertices = new float[mesh->num_vertices * 3];
 		memcpy(mesh->vertices, cursor, bytes);
 
-		//Normals
+		//Indices
 		cursor += bytes;
-		if (header[2] != 0)
-		{
-			bytes = sizeof(float) * mesh->num_vertices * 3;
-			mesh->normals = new float[mesh->num_vertices * 3];
-			memcpy(mesh->normals, cursor, bytes);
-
-			cursor += bytes;
-		}
+		bytes = sizeof(uint) * mesh->num_indices;
+		mesh->indices = new uint[mesh->num_indices];
+		memcpy(mesh->indices, cursor, bytes);
 
 		//Texture coords
 		bytes = sizeof(float) * mesh->num_texture_coords * 2;
@@ -323,6 +313,16 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 		memcpy(mesh->texture_coords, cursor, bytes);
 		cursor += bytes;
 
+		//Normals
+		cursor += bytes;
+		if (header[3] != 0)
+		{
+			bytes = sizeof(float) * mesh->num_vertices * 3;
+			mesh->normals = new float[mesh->num_vertices * 3];
+			memcpy(mesh->normals, cursor, bytes);
+
+			cursor += bytes;
+		}
 
 
 		//Load mesh to VRAM=================================================
@@ -367,7 +367,7 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 	uint alloc[4] = { m->num_vertices, m->num_indices, m->num_texture_coords, m->num_normals  };
 	uint size = sizeof(alloc) + (sizeof(float) * alloc[0] * 3) + (sizeof(uint) * alloc[1]) + sizeof(float2) * alloc[2];
 	if (alloc[3] > 0)
-		size += sizeof(float) * alloc[3];
+		size += sizeof(float) * alloc[0] * 3;
 
 	char* buffer = new char[size];
 	char* cursor = buffer;
@@ -392,8 +392,9 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 	memcpy(cursor, m->texture_coords, bytes);
 	cursor += bytes;
 
-	if (alloc[2] > 0)
+	if (alloc[3] > 0)
 	{
+		bytes = sizeof(float) * alloc[0] * 3;
 		memcpy(cursor, m->normals, bytes);
 	}
 
