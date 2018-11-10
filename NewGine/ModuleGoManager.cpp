@@ -40,7 +40,7 @@ bool ModuleGOManager::Start()
 	return true;
 }
 
-update_status ModuleGOManager::PreUpdate(float dt)
+update_status ModuleGOManager::PreUpdate()
 {
 	std::list<GameObject*>::iterator it = todelete_objects.begin();
 	while (it != todelete_objects.end())
@@ -66,7 +66,7 @@ update_status ModuleGOManager::PreUpdate(float dt)
 
 
 
-update_status ModuleGOManager::Update(float dt)
+update_status ModuleGOManager::Update()
 {
 	//SelectObject(); 2DO reactivate
 	DrawLocator();

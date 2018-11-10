@@ -18,8 +18,8 @@ public:
 	~ModuleGOManager();
 
 	bool Start();
-	update_status PreUpdate(float dt);
-	update_status Update(float dt);
+	update_status PreUpdate();
+	update_status Update();
 
 
 	//GameObject Management

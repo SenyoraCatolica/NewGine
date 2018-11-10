@@ -15,8 +15,8 @@ Timer::Timer()
 void Timer::Start()
 {
 	running = true;
-	started_at = SDL_GetPerformanceCounter();
-	started_new_frame = started_at;
+	started_at = SDL_GetTicks();
+	started_new_frame = SDL_GetPerformanceCounter();
 	frequency = SDL_GetPerformanceFrequency();
 }
 
@@ -24,7 +24,7 @@ void Timer::Start()
 void Timer::Stop()
 {
 	running = false;
-	stopped_at = SDL_GetPerformanceCounter();
+	stopped_at = SDL_GetTicks();
 }
 
 // ---------------------------------------------

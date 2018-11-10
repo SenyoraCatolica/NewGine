@@ -220,12 +220,12 @@ void WindowConfig::Camera()
 	if (ImGui::CollapsingHeader("Camera"))
 	{
 		float3 pos = App->camera->GetPosition();
+		float3 new_pos = pos;
 
-		ImGui::Text("X: %.3f   ", pos.x);
-		ImGui::SameLine();
-		ImGui::Text("Y: %.3f   ", pos.y);
-		ImGui::SameLine();
-		ImGui::Text("Z: %.3f", pos.z);
+		if (ImGui::DragFloat3("Position", new_pos.ptr()))
+		{
+			App->camera->Position.Set(new_pos.x, new_pos.y, new_pos.z);
+		}
 
 		float3 tmp_float3 = App->camera->GetReference();
 		float tmp_float;
@@ -236,8 +236,9 @@ void WindowConfig::Camera()
 		}
 
 		tmp_float = App->camera->speed;
-		ImGui::DragFloat("Camera Speed", &tmp_float, 1.0f, 0.0f, 100.0f);
-		App->camera->speed = tmp_float;
+		if(ImGui::DragFloat("Camera Speed", &tmp_float, 1.0f, 0.0f, 100.0f))
+
+			App->camera->speed = tmp_float;
 
 	}
 }

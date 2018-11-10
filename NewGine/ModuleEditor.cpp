@@ -34,7 +34,7 @@ bool ModuleEditor::CleanUp()
 	return true;
 };
 
-update_status ModuleEditor::Update(float dt)
+update_status ModuleEditor::Update()
 {
 	HandleMainMenu();
 	HandleScenesMenu();
