@@ -286,7 +286,6 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 						glEnableClientState(GL_VERTEX_ARRAY);
 						glEnableClientState(GL_NORMAL_ARRAY);
 						glEnableClientState(GL_ELEMENT_ARRAY_BUFFER);
-						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 						//Set Wireframe
 						if (draw_wireframe)
@@ -296,7 +295,7 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 
 						if (enable_color_material)
 						{
-							glColor4f(1.0f, 0.0f, 1.0f, 1.0f);
+							glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 						}
 
 						//draw texture
