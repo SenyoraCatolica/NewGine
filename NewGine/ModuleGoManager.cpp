@@ -68,6 +68,9 @@ update_status ModuleGOManager::PreUpdate()
 
 update_status ModuleGOManager::Update()
 {
+	if(root)
+		TransformationHierarchy(root);
+
 	//SelectObject(); 2DO reactivate
 	DrawLocator();
 
@@ -391,17 +394,18 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	if (parent != nullptr)
 		parent->childs.push_back(new_go);
 	else
-		root = new_go;
+		if(root == nullptr)
+			root = new_go;
 
 	//load components
-	JSONWrapper root = file;
+	JSONWrapper root_node = file;
 	JSONWrapper array_value;
 
-	int size = root.GetArraySize("Components");
+	int size = root_node.GetArraySize("Components");
 
 	for (int i = 0; i < size; i++)
 	{
-		array_value = root.ReadArray("Components", i);
+		array_value = root_node.ReadArray("Components", i);
 		COMPONENT_TYPE t = (COMPONENT_TYPE)array_value.ReadUInt("Type");
 		
 		Component* comp = nullptr;
@@ -498,6 +502,40 @@ bool ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 	}
 
 	return ret;
+}
+
+void ModuleGOManager::TransformationHierarchy(GameObject* object)
+{
+	TransformComponent* trans = (TransformComponent*)object->GetComponent(COMPONENT_TRANSFORM);
+
+	if (trans != nullptr)
+	{
+
+		if (object->parent != nullptr)
+		{
+			TransformComponent* parent_trans = (TransformComponent*)object->parent->GetComponent(COMPONENT_TRANSFORM);
+
+			if (parent_trans != nullptr)
+				trans->SetGlobalTransform(parent_trans->GetGlobalTranform() * trans->GetLocalTransform());
+
+			else
+				trans->SetGlobalTransform(trans->GetLocalTransform());
+		}
+
+		else
+			trans->SetGlobalTransform(trans->GetLocalTransform());
+		
+	}
+
+	if (object->childs.size())
+	{
+		vector<GameObject*>::iterator it = object->childs.begin();
+		while (it != object->childs.end())
+		{
+			TransformationHierarchy((*it));
+			it++;
+		}
+	}
 }
 
 

@@ -1,0 +1,862 @@
+{
+    "Scene": [
+        {
+            "Name": "RootNode",
+            "UUID": 374620140,
+            "Active": true,
+            "static": false,
+            "Parent": 0,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 4090781839,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "cloth_1",
+            "UUID": 1747971787,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 234107701,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_4",
+            "UUID": 292753441,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 848388944,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_5",
+            "UUID": 1081245945,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 913451937,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_3",
+            "UUID": 3723110965,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 198176777,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_2",
+            "UUID": 3684092565,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 367795728,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "pants_boots",
+            "UUID": 2185315278,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1973249532,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "bust",
+            "UUID": 1146089371,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1650268637,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "medallion",
+            "UUID": 2304044870,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3965418784,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "belt",
+            "UUID": 69335359,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3658452889,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "belt_details",
+            "UUID": 2127834024,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1866587421,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "head",
+            "UUID": 728290663,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1059149191,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_refl_refr",
+            "UUID": 4089893429,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2144767953,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_details",
+            "UUID": 1297469869,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1418273823,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "eyelashes",
+            "UUID": 2147821921,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 612006862,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "teeth",
+            "UUID": 48669793,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1670224139,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_diffuse",
+            "UUID": 1027233236,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1759343193,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        },
+        {
+            "Name": "Hair",
+            "UUID": 3849806853,
+            "Active": true,
+            "static": false,
+            "Parent": 374620140,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3075127083,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/1699843621\/"
+                }
+            ]
+        }
+    ]
+} 

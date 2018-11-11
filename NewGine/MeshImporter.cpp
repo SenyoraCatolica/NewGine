@@ -279,7 +279,7 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 {
 	MyMesh* mesh = new MyMesh();
 
-	char* buffer;
+	char* buffer = nullptr;
 	if (App->file_system->Load(path, &buffer) != 0)
 	{
 		mesh = new MyMesh();
@@ -352,7 +352,7 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 
 	}
 
-	if (buffer)
+	if (buffer != nullptr)
 		delete[] buffer;
 	buffer = nullptr;
 
@@ -388,9 +388,12 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 	cursor += bytes;
 
 	//Texture Coords
-	bytes = sizeof(float2) * alloc[3];
-	memcpy(cursor, m->texture_coords, bytes);
-	cursor += bytes;
+	if (alloc[2] > 0)
+	{
+		bytes = sizeof(float2) * alloc[3];
+		memcpy(cursor, m->texture_coords, bytes);
+		cursor += bytes;
+	}
 
 	if (alloc[3] > 0)
 	{

@@ -48,6 +48,8 @@ public:
 	GameObject* LoadGameObject(const JSONWrapper& file);
 	bool ClearGameObjectFromScene(GameObject* go);
 
+	void TransformationHierarchy(GameObject* object);
+
 
 public:
 	std::list<GameObject*> all_gameobjects;

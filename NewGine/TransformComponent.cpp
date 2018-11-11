@@ -156,6 +156,12 @@ void TransformComponent::Update(float dt)
 	}
 }
 
+void TransformComponent::UpdateTransform()
+{
+
+}
+
+
 void TransformComponent::ComponentEditor()
 {
 	float3 new_pos = position;
