@@ -526,17 +526,11 @@ void ModuleGOManager::TransformationHierarchy(GameObject* object)
 		if (object->parent != nullptr)
 		{
 			TransformComponent* parent_trans = (TransformComponent*)object->parent->GetComponent(COMPONENT_TRANSFORM);
-
-			if (parent_trans != nullptr)
-				trans->SetGlobalTransform(parent_trans->GetTransformationMatrix() * trans->GetLocalTransform());
-
-			else
-				trans->SetGlobalTransform(trans->GetLocalTransform());
+			trans->SetGlobalTransform(parent_trans->GetGlobalTranform() * trans->GetLocalTransform());
 		}
 
 		else
-			trans->SetGlobalTransform(trans->GetLocalTransform());
-		
+			trans->SetGlobalTransform(trans->GetLocalTransform());	
 	}
 
 	if (object->childs.size())
