@@ -14,7 +14,7 @@ public:
 	~CameraComponent();
 
 	void Update();
-
+	void UpdateLogicFrustum();
 
 	const float GetNear()const;
 	const float GetFar()const;

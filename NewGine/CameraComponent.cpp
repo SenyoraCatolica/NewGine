@@ -27,7 +27,27 @@ void CameraComponent::Update()
 	// Handle visible object to draw
 	//draw frustrum
 	//update logic frustrum
+
+	UpdateLogicFrustum();
 }
+
+void CameraComponent::UpdateLogicFrustum()
+{
+	if (parent)
+	{
+		TransformComponent* trans = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
+
+		float4x4 matrix = trans->GetGlobalTranform();
+
+		frustum.SetPos(matrix.TranslatePart());
+		frustum.SetFront(matrix.WorldZ());
+		frustum.SetUp(matrix.WorldY());
+	}
+	else
+		LOG("Error: Component Camera is trying to update it's matrix but it is not attached to any game object.");
+
+}
+
 
 void CameraComponent::ComponentEditor()
 {

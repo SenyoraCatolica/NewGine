@@ -491,6 +491,24 @@ void ModuleRenderer3D::DrawAABB(const vec* vertices, Color color)
 	glColor3f(1.0f, 1.0f, 1.0f);
 }
 
+void ModuleRenderer3D::DrawFrustrum(const Frustum &frustum)
+{
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glDisable(GL_CULL_FACE);
+	//glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE_2D);
+
+	float3 vertices[8];
+	frustum.GetCornerPoints(vertices);
+
+	DrawAABB(vertices, Red);
+
+	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_CULL_FACE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
 
 //Getters
 bool ModuleRenderer3D::GetEnableTextures() const

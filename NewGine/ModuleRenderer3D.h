@@ -31,6 +31,7 @@ public:
 
 	void DebugDrawQuadtree(Quadtree* quadtree, QuadNode root);
 	void DrawLocator(float4x4 transform, float4 color);
+	void DrawFrustrum(const Frustum &frustum);
 
 	void DrawBox(const AABB &aabb, Color color);
 	void DrawBox(float3* corners, float4 color);
