@@ -21,7 +21,7 @@ CameraComponent::CameraComponent(COMPONENT_TYPE type, GameObject* game_object) :
 
 CameraComponent::~CameraComponent() {}
 
-void CameraComponent::Update(float dt)
+void CameraComponent::Update()
 {
 	//2DO
 	// Handle visible object to draw

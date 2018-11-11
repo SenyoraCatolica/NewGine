@@ -46,6 +46,21 @@ GameObject::~GameObject()
 
 const uint64_t GameObject::GetUID() { return uid; }
 
+
+void GameObject::Update()
+{
+	if (active)
+	{
+		std::list<Component*>::iterator it = components.begin();
+		while (it != components.end())
+		{
+			(*it)->Update();
+			it++;
+		}
+	}
+}
+
+
 void GameObject::DrawLocator()
 {
 	//2DO implement locator

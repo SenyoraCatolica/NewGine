@@ -15,7 +15,7 @@ public:
 	MeshComponent(MeshComponent& m);
 	~MeshComponent();
 
-	void Update(float dt);
+	void Update();
 
 	void ComponentEditor();
 

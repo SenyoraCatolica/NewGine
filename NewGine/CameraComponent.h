@@ -13,7 +13,7 @@ public:
 	CameraComponent(COMPONENT_TYPE type, GameObject* game_object);
 	~CameraComponent();
 
-	void Update(float dt);
+	void Update();
 
 
 	const float GetNear()const;

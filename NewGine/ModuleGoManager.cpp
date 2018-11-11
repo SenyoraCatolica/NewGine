@@ -68,8 +68,20 @@ update_status ModuleGOManager::PreUpdate()
 
 update_status ModuleGOManager::Update()
 {
-	if(root)
+	if (root)
+	{
+		//TransformComponent* trans = (TransformComponent*)root->GetComponent(COMPONENT_TRANSFORM);
+		//trans->UpdateGlobalTransform();
 		TransformationHierarchy(root);
+
+	}
+
+	std::list<GameObject*>::iterator it = all_gameobjects.begin();
+	while (it != all_gameobjects.end())
+	{
+		(*it)->Update();
+		it++;
+	}
 
 	//SelectObject(); 2DO reactivate
 	DrawLocator();
@@ -516,7 +528,7 @@ void ModuleGOManager::TransformationHierarchy(GameObject* object)
 			TransformComponent* parent_trans = (TransformComponent*)object->parent->GetComponent(COMPONENT_TRANSFORM);
 
 			if (parent_trans != nullptr)
-				trans->SetGlobalTransform(parent_trans->GetGlobalTranform() * trans->GetLocalTransform());
+				trans->SetGlobalTransform(parent_trans->GetTransformationMatrix() * trans->GetLocalTransform());
 
 			else
 				trans->SetGlobalTransform(trans->GetLocalTransform());

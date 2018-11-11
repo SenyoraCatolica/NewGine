@@ -25,6 +25,7 @@ public:
 	void Select();
 	void Unselect();
 
+	void Update();
 	void UpdateTransformMatrix();
 
 	void SetActive(bool state);

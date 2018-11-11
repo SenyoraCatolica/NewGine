@@ -22,7 +22,7 @@ public:
 	~Component();
 
 	virtual void Enable();
-	virtual void Update(float dt) {};
+	virtual void Update() {};
 	virtual void Disable();
 	virtual void ComponentEditor() {};
 

@@ -147,7 +147,7 @@ void TransformComponent::SetGlobalTransform(math::float4x4 trans)
 }
 //=============================================================================
 
-void TransformComponent::Update(float dt)
+void TransformComponent::Update()
 {
 	if (modify == true)
 	{
@@ -155,12 +155,6 @@ void TransformComponent::Update(float dt)
 		modify = false;
 	}
 }
-
-void TransformComponent::UpdateTransform()
-{
-
-}
-
 
 void TransformComponent::ComponentEditor()
 {

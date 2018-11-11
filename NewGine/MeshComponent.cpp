@@ -37,7 +37,7 @@ void MeshComponent::ComponentEditor()
 	}
 }
 
-void MeshComponent::Update(float dt)
+void MeshComponent::Update()
 {
 	if (mesh != nullptr)
 	{

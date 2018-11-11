@@ -37,8 +37,7 @@ public:
 	void SetGlobalTransform(float4x4 trans);
 	void ComponentEditor();
 
-	void Update(float dt);
-	void UpdateTransform();
+	void Update();
 
 	void Save(JSONWrapper& file) const;
 	void Load(JSONWrapper& file);
