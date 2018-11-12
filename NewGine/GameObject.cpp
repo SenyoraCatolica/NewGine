@@ -90,7 +90,7 @@ void GameObject::Unselect()
 
 void GameObject::UpdateTransformMatrix()
 {
-	if (HasComponent(COMPONENT_TYPE::COMPONENT_TRANSFORM))
+	/*if (HasComponent(COMPONENT_TYPE::COMPONENT_TRANSFORM))
 	{
 		TransformComponent* t = (TransformComponent*)GetComponent(COMPONENT_TRANSFORM);
 		t->UpdateGlobalTransform();
@@ -105,7 +105,7 @@ void GameObject::UpdateTransformMatrix()
 			(*child)->UpdateTransformMatrix();
 			child++;
 		}
-	}
+	}*/
 }
 
 void GameObject::SetActive(bool state)

@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include "Imgui\imgui.h"
 #include "Application.h"
+#include "MeshComponent.h"
 
 TransformComponent::TransformComponent(COMPONENT_TYPE type, GameObject* game_object) : Component(type, game_object, 0)
 {
@@ -9,7 +10,6 @@ TransformComponent::TransformComponent(COMPONENT_TYPE type, GameObject* game_obj
 	scale.Set(1, 1, 1);
 	rotation_degree.Set(0, 0, 0);
 	rotation.Set(0, 0, 0, 0);
-
 }
 
 TransformComponent::~TransformComponent()
@@ -57,17 +57,36 @@ math::float4x4 TransformComponent::GetGlobalTranform()
 
 void TransformComponent::UpdateGlobalTransform()
 {
-	if (parent->parent != nullptr && parent->parent->HasComponent(COMPONENT_TRANSFORM) == true)
+	TransformComponent* trans = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
+
+	if (trans != nullptr)
 	{
-		TransformComponent* parent_transform = (TransformComponent*)parent->parent->GetComponent(COMPONENT_TRANSFORM);
-		global_transformation = GetTransformationMatrix() * parent_transform->GetGlobalTranform();
+		if (parent->parent != nullptr)
+		{
+			TransformComponent* parent_trans = (TransformComponent*)parent->parent->GetComponent(COMPONENT_TRANSFORM);
+			trans->SetGlobalTransform(parent_trans->GetGlobalTranform() * trans->GetLocalTransform());
+		}
+
+		else
+			trans->SetGlobalTransform(trans->GetLocalTransform());
 	}
-	else
-		global_transformation = GetTransformationMatrix();
+
+	if (parent->childs.size())
+	{
+		vector<GameObject*>::iterator it = parent->childs.begin();
+		while (it != parent->childs.end())
+		{
+			TransformComponent* child_trans = (TransformComponent*)(*it)->GetComponent(COMPONENT_TRANSFORM);
+			child_trans->UpdateGlobalTransform();
+			it++;
+		}
+	}
+
+	MeshComponent* mesh = (MeshComponent*)parent->GetComponent(COMPONENT_MESH);
+	if (mesh != nullptr)
+		mesh->RecalculateBox();
+
 }
-
-
-
 
 //setters==================================================================
 
@@ -159,6 +178,10 @@ void TransformComponent::Update()
 
 void TransformComponent::ComponentEditor()
 {
+	bool pactive = parent->IsStatic();
+	ImGui::Checkbox("Static", &pactive);
+	parent->SetStatic(pactive);
+
 	float3 new_pos = position;
 	ImGui::Text("Position");
 	ImGui::Text("     X           Y            Z");
@@ -178,6 +201,12 @@ void TransformComponent::ComponentEditor()
 	{
 		SetRotation(new_rotation);
 	}
+
+	//Local Matrix
+	ImGui::Text("%0.2f %0.2f %0.2f %0.2f", local_tranformation.v[0][0], local_tranformation.v[0][1], local_tranformation.v[0][2], local_tranformation.v[0][3]);
+	ImGui::Text("%0.2f %0.2f %0.2f %0.2f", local_tranformation.v[1][0], local_tranformation.v[1][1], local_tranformation.v[1][2], local_tranformation.v[1][3]);
+	ImGui::Text("%0.2f %0.2f %0.2f %0.2f", local_tranformation.v[2][0], local_tranformation.v[2][1], local_tranformation.v[2][2], local_tranformation.v[2][3]);
+	ImGui::Text("%0.2f %0.2f %0.2f %0.2f", local_tranformation.v[3][0], local_tranformation.v[3][1], local_tranformation.v[3][2], local_tranformation.v[3][3]);
 }
 
 
@@ -213,9 +242,15 @@ void TransformComponent::Load(JSONWrapper& file)
 	enabled = file.ReadBool("Enabled");
 	local_tranformation = file.ReadMatrix("Local Matrix");
 
-	SetTranslation(file.ReadeFloat("PositionX"), file.ReadeFloat("PositionY"), file.ReadeFloat("PositionZ"));
+	/*SetTranslation(file.ReadeFloat("PositionX"), file.ReadeFloat("PositionY"), file.ReadeFloat("PositionZ"));
 	SetRotation(file.ReadeFloat("RotationX"), file.ReadeFloat("RotationY"), file.ReadeFloat("RotationZ"), file.ReadeFloat("RotationW"));
-	SetScale(file.ReadeFloat("ScaleX"), file.ReadeFloat("ScaleY"), file.ReadeFloat("ScaleZ"));
+	SetScale(file.ReadeFloat("ScaleX"), file.ReadeFloat("ScaleY"), file.ReadeFloat("ScaleZ"));*/
+
+	position = local_tranformation.TranslatePart();
+	rotation_degree = local_tranformation.ToEulerXYZ(); //In radians for now.
+	rotation = Quat::FromEulerXYZ(rotation_degree.x, rotation_degree.y, rotation_degree.z);
+	rotation_degree = RadToDeg(rotation_degree); //To degrees
+	scale = local_tranformation.GetScale();
 
 	UpdateGlobalTransform();
 }

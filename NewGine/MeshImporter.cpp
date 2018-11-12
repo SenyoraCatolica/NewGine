@@ -458,7 +458,7 @@ void MeshImporter::DecomposeTransform(TransformComponent* trans, aiNode* node)
 	trans->SetRotation(Quat(rot.x, rot.y, rot.z, rot.w));
 	trans->SetScale(float3(scale.x, scale.y, scale.z));
 	trans->Enable();
-	trans->Update();
+	trans->SetTransform();
 }
 
 

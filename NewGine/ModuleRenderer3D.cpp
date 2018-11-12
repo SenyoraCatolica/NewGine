@@ -387,14 +387,26 @@ void ModuleRenderer3D::DebugDrawQuadtree(Quadtree* quadtree, QuadNode root)
 	float3 corners[8];
 	root.GetBox().GetCornerPoints(corners);
 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	DrawAABB(corners, Blue);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	for (std::vector<QuadNode>::iterator it = root.GetChilds().begin(); it != root.GetChilds().end(); it++)
+
+	std::vector<QuadNode> childs = root.GetChilds();
+	std::vector<QuadNode>::iterator it = childs.begin();
+	while (it != childs.end())
 	{
 		DebugDrawQuadtree(quadtree, (*it));
+		it++;
 	}
+
+	/*for (std::vector<QuadNode>::iterator it = root.GetChilds().begin(); it != root.GetChilds().end(); it++)
+	{
+		DebugDrawQuadtree(quadtree, (*it));
+	}*/
 }
 
-void ModuleRenderer3D::DrawBox(float3* corners, float4 color)
+void ModuleRenderer3D::DrawBox(const vec* corners, float4 color)
 {
 	glColor4f(color.x, color.y, color.z, color.w);
 

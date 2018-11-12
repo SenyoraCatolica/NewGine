@@ -34,7 +34,7 @@ public:
 	void DrawFrustrum(const Frustum &frustum);
 
 	void DrawBox(const AABB &aabb, Color color);
-	void DrawBox(float3* corners, float4 color);
+	void DrawBox(const vec* corners, float4 color);
 	void DrawAABB(const vec* vertices, Color color);
 
 

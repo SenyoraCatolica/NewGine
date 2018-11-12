@@ -9,6 +9,7 @@ QuadNode::QuadNode(float3 min, float3 max) : parent(nullptr)
 
 QuadNode::QuadNode(QuadNode* parent)
 {
+	this->parent = parent;
 	aabb = parent->GetBox();
 }
 

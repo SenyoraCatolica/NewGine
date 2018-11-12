@@ -72,7 +72,7 @@ update_status ModuleGOManager::Update()
 	{
 		//TransformComponent* trans = (TransformComponent*)root->GetComponent(COMPONENT_TRANSFORM);
 		//trans->UpdateGlobalTransform();
-		TransformationHierarchy(root);
+		//TransformationHierarchy(root);
 
 	}
 
@@ -367,7 +367,11 @@ void ModuleGOManager::ClearScene()
 	all_gameobjects.clear();
 	dynamic_objects.clear();
 
-	//2Do reset quadtree?
+	//provisinal smaller quadtree to check if works
+	float3 min, max;
+	min.x = -20; min.y = -20; min.z = -20;
+	max.x = 20; max.y = 20; max.z = 20;
+	quadtree = new Quadtree(min, max);
 }
 
 void ModuleGOManager::SaveSceneOnPlay()
@@ -523,6 +527,11 @@ bool ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 void ModuleGOManager::TransformationHierarchy(GameObject* object)
 {
 	TransformComponent* trans = (TransformComponent*)object->GetComponent(COMPONENT_TRANSFORM);
+
+	if (object == *root->childs.begin())
+	{
+		trans->SetGlobalTransform(trans->GetLocalTransform());
+	}
 
 	if (trans != nullptr)
 	{
