@@ -42,7 +42,7 @@ void MaterialComponent::SetColor(float r, float g, float b, float a)
 void MaterialComponent::SetResourceMaterial(ResourceMaterial* mat)
 {
 	material = mat;
-	path = mat->path;
+	//path = mat->path;
 }
 
 void MaterialComponent::Save(JSONWrapper& file) const
@@ -51,7 +51,7 @@ void MaterialComponent::Save(JSONWrapper& file) const
 	array_value.WriteUInt("Type", type);
 	array_value.WriteUInt("UUID", id);
 	array_value.WriteBool("Enabled", enabled);
-	array_value.WriteString("Path", material->path.c_str());
+	array_value.WriteString("Path", path.c_str());
 
 	file.WriteArrayValue(array_value);
 }

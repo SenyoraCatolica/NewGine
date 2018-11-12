@@ -28,6 +28,7 @@ public:
 	bool GetFilesFromPath(const char* path, std::vector<std::string>& output_files);
 	std::string GetNameFromDirectory(std::string file);
 	std::string ChangeExtension(std::string path, const char* extension);
+	std::string DeleteExtensionFromName(std::string file);
 
 	// Open for Read/Write
 	uint Load(const char* file, char** buffer) const;

@@ -456,7 +456,7 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 		{
 			//Link component material and resource material
 			MaterialComponent* mat = (MaterialComponent*)comp;
-			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial(comp->parent->name));
+			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial("",mat->path.data()));
 			mat->material->texture = App->importer->mat_importer->LoadTexture(mat->path.data());
 		}
 	}

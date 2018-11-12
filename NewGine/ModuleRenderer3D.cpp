@@ -6,6 +6,8 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include "CameraComponent.h"
+
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
@@ -365,6 +367,10 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 			if (transform != nullptr)
 				glPopMatrix();
 		}
+
+		CameraComponent* cam = (CameraComponent*)go->GetComponent(COMPONENT_CAMERA);
+		if(cam != nullptr)
+			DrawFrustrum(cam->frustum);
 	}
 }
 

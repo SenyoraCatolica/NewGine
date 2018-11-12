@@ -31,13 +31,14 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 
 	//Generate complete path in Library folder
 	string mat_path;
+	string mat_name = App->file_system->DeleteExtensionFromName(App->file_system->GetNameFromDirectory(file));
 	mat_path = MATERIAL_FOLDER;
-	mat_path += std::to_string(uuid) + "/";
-
+	mat_path += mat_name;
+	mat_path += "/";
 	if(App->file_system->Exists(mat_path.c_str()) == false)
 		App->file_system->CreateDir(mat_path.c_str());
 	//complete name of the file with path
-	string lib_path = mat_path + std::to_string(uuid) + ".dta";
+	string lib_path = mat_path + mat_name + ".dta";
 
 	//Generate Asset folder for file
 	string assets_path;
@@ -51,6 +52,7 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 	//Generate Meta file 2DO
 	App->resource_manager->CreateFileMeta(uuid, MATERIAL, assets_path.data(), lib_path.data());
 
+	ResourceMaterial* mat = (ResourceMaterial*)App->resource_manager->CreateResource(MyResource::R_TYPE::MATERIAL, uuid);
 
 
 	//Importing starts here
@@ -78,6 +80,15 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 			{
 				string new_path = App->file_system->ChangeExtension(assets_path, ".tex");
 				ret = App->file_system->Save(new_path.data(), (char*)data, size_data);
+
+				if (ret)
+				{
+					string new_path = App->file_system->ChangeExtension(lib_path, ".tex");
+					ret = App->file_system->Save(new_path.data(), (char*)data, size_data);
+					mat->path = new_path;
+					mat->name = App->file_system->GetNameFromDirectory(new_path.data());
+				}
+
 			}
 			delete[] data;
 			ilDeleteImages(1, &size);
@@ -94,8 +105,7 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 		delete[] buffer;
 
 	//Load texture to be get the resource material ready
-	ResourceMaterial* mat = (ResourceMaterial*)App->resource_manager->CreateResource(MyResource::R_TYPE::MATERIAL, uuid);
-	mat->texture = LoadTexture(assets_path.data());
+	//mat->texture = LoadTexture(assets_path.data());
 
 	return ret;
 }
@@ -103,56 +113,49 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 
 MyTexture* MaterialImporter::LoadTexture(const char* file)
 {
-	//2DO GEt the correct name
+	char* buffer;
+	uint size = App->file_system->Load(file, &buffer);
 
-	//setting image
-	ILuint texID;
-	glGenTextures(1, &texID);
-	glBindTexture(GL_TEXTURE_2D, texID);
-
-	//loading image
-	ILboolean loaded = ilLoadImage(file);
-
-	//success loading
-	if (loaded == IL_TRUE)
+	if (size > 0)
 	{
-		ILinfo ImageInfo;
-		iluGetImageInfo(&ImageInfo);
-		if (ImageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
+		//setting image
+		ILuint texID;
+		glGenTextures(1, &texID);
+		ilBindImage(texID);
+
+		if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
 		{
-			iluFlipImage();
+			ILuint id;
+			ilGenImages(1, &id);
+			ilBindImage(id);
+			if (ilLoadL(IL_DDS, (const void*)buffer, size))
+			{
+				ILinfo info;
+				iluGetImageInfo(&info);
+
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+
+				MyTexture* tex = new MyTexture();
+				tex->id = texID;
+				tex->width = ilGetInteger(IL_IMAGE_WIDTH);
+				tex->height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+				ilDeleteImages(1, &id);
+				return tex;
+			}
 		}
-
-		//convert image
-		loaded = ilConvertImage(ilGetInteger(IL_IMAGE_FORMAT), IL_UNSIGNED_BYTE);
-
-		LOG("Load Texture on path %s with no errors", file);
 	}
 
-	//loading failed
 	else
 	{
-		ILenum error = ilGetError();
-		LOG("ERROR on path:%s ERROR: %s", file, iluErrorString(error))
+		LOG("Could load texture: %s", file);
 	}
-
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
-
-	MyTexture* tex = new MyTexture();
-	tex->id = texID;
-	tex->width = ilGetInteger(IL_IMAGE_WIDTH);
-	tex->height = ilGetInteger(IL_IMAGE_HEIGHT);
-	//2DO
-	//tex->name = name
-	//tex->extension = extension
-
-	ilDeleteImages(1, &texID);
-	return tex;
+	
+	return nullptr;
 }
 
 bool MaterialImporter::LoadTexture(ResourceMaterial* mat)

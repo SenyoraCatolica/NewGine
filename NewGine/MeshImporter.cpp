@@ -231,9 +231,10 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 					material->GetTexture(aiTextureType_DIFFUSE, i, &path);
 
 					// 2DO:Path should be only the name here with texture folder
-					string mat_name = App->file_system->GetNameFromDirectory(path.C_Str());
+					string mat_name_extension = App->file_system->GetNameFromDirectory(path.C_Str());
+					string mat_name = App->file_system->DeleteExtensionFromName(mat_name_extension);
 
-					ResourceMaterial* resource_mat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(mat_name.c_str());
+					/*ResourceMaterial* resource_mat = (ResourceMaterial*)App->resource_manager->TryGetResourceByName(mat_name.c_str());
 					if (resource_mat != nullptr)
 					{
 						if (resource_mat->GetState() == MyResource::R_STATE::UNLOADED)
@@ -243,8 +244,11 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 						}
 
 						mat->material = resource_mat;
-						out_material = mat;
-					}
+					}*/
+
+					string mat_path = MATERIAL_FOLDER + mat_name + "/" + App->file_system->ChangeExtension(mat_name_extension, ".tex");
+					mat->path = mat_path;
+					out_material = mat;
 				}
 
 			}

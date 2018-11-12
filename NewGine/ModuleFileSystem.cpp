@@ -138,7 +138,13 @@ std::string ModuleFileSystem::ChangeExtension(std::string path, const char* exte
 	return final_path;
 }
 
+std::string ModuleFileSystem::DeleteExtensionFromName(std::string file)
+{
+	for (int i = 0; i < 4; i++)
+		file.pop_back();
 
+	return file;
+}
 
 
 
