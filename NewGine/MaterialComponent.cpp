@@ -18,16 +18,19 @@ MaterialComponent::~MaterialComponent()
 
 void MaterialComponent::ComponentEditor()
 {
-	ImGui::Text("Id Material: ");
-	ImGui::SameLine();
-	ImGui::Text("%d", material->texture->id);
-	ImGui::Text("Width: ");
-	ImGui::SameLine();
-	ImGui::Text("%d", material->texture->width);
-	ImGui::Text("Height: ");
-	ImGui::SameLine();
-	ImGui::Text("%d", material->texture->height);
-	ImGui::Image((ImTextureID)material->texture->id, ImVec2(250, 250));
+	if (material->texture)
+	{
+		ImGui::Text("Id Material: ");
+		ImGui::SameLine();
+		ImGui::Text("%d", material->texture->id);
+		ImGui::Text("Width: ");
+		ImGui::SameLine();
+		ImGui::Text("%d", material->texture->width);
+		ImGui::Text("Height: ");
+		ImGui::SameLine();
+		ImGui::Text("%d", material->texture->height);
+		ImGui::Image((ImTextureID)material->texture->id, ImVec2(250, 250));
+	}	
 }
 
 

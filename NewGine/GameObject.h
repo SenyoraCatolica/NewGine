@@ -47,7 +47,7 @@ public:
 	Component* GetComponent(COMPONENT_TYPE type);
 
 private:
-	uint uid;
+	uint32 uid;
 	bool active = true;
 	bool is_static = false;
 

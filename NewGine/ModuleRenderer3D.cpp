@@ -146,6 +146,9 @@ update_status ModuleRenderer3D::PostUpdate()
 		it++;
 	}
 
+	ImGui::Render();
+
+
 	SDL_GL_SwapWindow(App->window->window);
 
 

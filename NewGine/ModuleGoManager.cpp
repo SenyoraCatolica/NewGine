@@ -385,8 +385,12 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 {
 	//get the go data in local variables
 	std::string name  = file.ReadString("Name");
-	int uuid = file.ReadUInt("UUID");
-	int parent_uuid = file.ReadUInt("Parent");
+	uint32 uuid = file.ReadUInt("UUID");
+	uint32 parent_uuid = file.ReadUInt("Parent");
+	LOG("Name: %s\n", name.data());
+	LOG("UUID: %s\n", std::to_string(uuid).data());
+	LOG("PUUID: %s\n", std::to_string(parent_uuid).data());
+
 	bool is_static = file.ReadBool("static");
 	bool is_active = file.ReadBool("Active");
 
@@ -522,7 +526,6 @@ void ModuleGOManager::TransformationHierarchy(GameObject* object)
 
 	if (trans != nullptr)
 	{
-
 		if (object->parent != nullptr)
 		{
 			TransformComponent* parent_trans = (TransformComponent*)object->parent->GetComponent(COMPONENT_TRANSFORM);

@@ -1,0 +1,964 @@
+{
+    "Scene": [
+        {
+            "Name": "RootNode",
+            "UUID": 2871837774,
+            "Active": true,
+            "static": false,
+            "Parent": 0,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3694011166,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "cloth_1",
+            "UUID": 2477858188,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 892153931,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_4",
+            "UUID": 4053337064,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 994955786,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_5",
+            "UUID": 3365724012,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2975559610,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_3",
+            "UUID": 2426200754,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 995448215,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "cloth_2",
+            "UUID": 2319241977,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 771953993,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "pants_boots",
+            "UUID": 2456181815,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3682454896,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/clothes_D\/clothes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "bust",
+            "UUID": 1768514461,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3938842554,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/head_D\/head_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "medallion",
+            "UUID": 2323337399,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 525386223,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/medallion_D\/medallion_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "belt",
+            "UUID": 2010375024,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2903986438,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/belt_D\/belt_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "belt_details",
+            "UUID": 2368995624,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2343083818,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/belt_D\/belt_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "head",
+            "UUID": 1308460354,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3200007768,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/head_D\/head_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_refl_refr",
+            "UUID": 3023934642,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2872816611,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/eye_D\/eye_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_details",
+            "UUID": 2269045523,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 1783939087,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/eye_D\/eye_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "eyelashes",
+            "UUID": 538448945,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2408330261,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/eyelashes_D\/eyelashes_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "teeth",
+            "UUID": 3284171036,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 2186132543,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/head_D\/head_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "eyes_diffuse",
+            "UUID": 1872358966,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3371513709,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/head_D\/head_D.tex"
+                }
+            ]
+        },
+        {
+            "Name": "Hair",
+            "UUID": 2802001478,
+            "Active": true,
+            "static": false,
+            "Parent": 2871837774,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 3647700143,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.19770397245883942,
+                    "ScaleY": 0.19770397245883942,
+                    "ScaleZ": 0.19770397245883942
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/2108450539\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/hair_D\/hair_D.tex"
+                }
+            ]
+        }
+    ]
+} 

@@ -104,7 +104,7 @@ int JSONWrapper::ReadInt(const char* name)const
 
 unsigned int JSONWrapper::ReadUInt(const char* name)const
 {
-	return (unsigned int)json_object_get_number(root, name);
+	return (unsigned _int32)json_object_get_number(root, name);
 }
 
 float JSONWrapper::ReadeFloat(const char* name)const

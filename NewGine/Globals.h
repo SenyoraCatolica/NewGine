@@ -35,6 +35,7 @@ void log(const char file[], int line, const char* format, ...);
 
 
 typedef unsigned int uint;
+typedef unsigned _int32 uint32;
 
 enum update_status
 {

@@ -47,7 +47,6 @@ update_status ModuleEditor::Update()
 		++it;
 	}
 
-	ImGui::Render();
 	return UPDATE_CONTINUE;
 };
 

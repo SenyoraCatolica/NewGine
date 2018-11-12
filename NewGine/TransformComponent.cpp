@@ -139,6 +139,7 @@ void TransformComponent::SetScale(float x, float y, float z)
 void TransformComponent::SetTransform()
 {
 	local_tranformation = local_tranformation.FromTRS(position, rotation, scale);
+	UpdateGlobalTransform();
 }
 
 void TransformComponent::SetGlobalTransform(math::float4x4 trans)

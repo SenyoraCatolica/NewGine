@@ -246,7 +246,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 						mat->material = resource_mat;
 					}*/
 
-					string mat_path = MATERIAL_FOLDER + mat_name + "/" + App->file_system->ChangeExtension(mat_name_extension, ".tex");
+					string mat_path = MATERIAL_FOLDER + mat_name + "/" + App->file_system->ChangeExtension(mat_name_extension, ".dds");
 					mat->path = mat_path;
 					out_material = mat;
 				}
@@ -318,7 +318,6 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 		cursor += bytes;
 
 		//Normals
-		cursor += bytes;
 		if (header[3] != 0)
 		{
 			bytes = sizeof(float) * mesh->num_vertices * 3;
@@ -459,6 +458,7 @@ void MeshImporter::DecomposeTransform(TransformComponent* trans, aiNode* node)
 	trans->SetRotation(Quat(rot.x, rot.y, rot.z, rot.w));
 	trans->SetScale(float3(scale.x, scale.y, scale.z));
 	trans->Enable();
+	trans->Update();
 }
 
 

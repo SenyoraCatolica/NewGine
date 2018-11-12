@@ -78,12 +78,12 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 			data = new ILubyte[size_data];
 			if (ilSaveL(IL_DDS, data, size_data) > 0)
 			{
-				string new_path = App->file_system->ChangeExtension(assets_path, ".tex");
+				string new_path = App->file_system->ChangeExtension(assets_path, ".png");
 				ret = App->file_system->Save(new_path.data(), (char*)data, size_data);
 
 				if (ret)
 				{
-					string new_path = App->file_system->ChangeExtension(lib_path, ".tex");
+					string new_path = App->file_system->ChangeExtension(lib_path, ".png");
 					ret = App->file_system->Save(new_path.data(), (char*)data, size_data);
 					mat->path = new_path;
 					mat->name = App->file_system->GetNameFromDirectory(new_path.data());
@@ -123,30 +123,21 @@ MyTexture* MaterialImporter::LoadTexture(const char* file)
 		glGenTextures(1, &texID);
 		ilBindImage(texID);
 
-		if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
+		if (ilLoadL(IL_DDS, (const void*)buffer, size))
 		{
-			ILuint id;
-			ilGenImages(1, &id);
-			ilBindImage(id);
-			if (ilLoadL(IL_DDS, (const void*)buffer, size))
-			{
-				ILinfo info;
-				iluGetImageInfo(&info);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+			glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+			MyTexture* tex = new MyTexture();
+			tex->id = texID;
+			tex->width = ilGetInteger(IL_IMAGE_WIDTH);
+			tex->height = ilGetInteger(IL_IMAGE_HEIGHT);
 
-				MyTexture* tex = new MyTexture();
-				tex->id = texID;
-				tex->width = ilGetInteger(IL_IMAGE_WIDTH);
-				tex->height = ilGetInteger(IL_IMAGE_HEIGHT);
-
-				ilDeleteImages(1, &id);
-				return tex;
-			}
+			ilDeleteImages(1, &texID);
+			return tex;
 		}
 	}
 
@@ -170,9 +161,10 @@ bool MaterialImporter::LoadTexture(ResourceMaterial* mat)
 		ILuint id;
 		ilGenImages(1, &id);
 		ilBindImage(id);
-		if (ilLoadL(IL_DDS, (const void*)buffer, size))
+
+		if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
 		{
-			ILinfo ImageInfo;
+			/*ILinfo ImageInfo;
 			iluGetImageInfo(&ImageInfo);
 			if (ImageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
 			{
@@ -185,7 +177,7 @@ bool MaterialImporter::LoadTexture(ResourceMaterial* mat)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 			glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), 
-				ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+				ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());*/
 
 			//Set texture properties
 			mat->texture->id = id;
