@@ -25,6 +25,7 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height, float fovy);
+	void SetCurrentCamView(const float4x4& matrix);
 
 	void DrawMesh(MyMesh m);
 	void DrawGameObject(GameObject* go);

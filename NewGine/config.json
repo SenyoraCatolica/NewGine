@@ -16,9 +16,9 @@
             "reference": {
                 "x": 0,
                 "y": 0,
-                "z": 0
+                "z": 10
             },
-            "speed": 0
+            "speed": 1
         },
         "window": {
             "width": 1362,

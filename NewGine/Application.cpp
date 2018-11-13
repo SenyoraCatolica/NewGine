@@ -219,6 +219,7 @@ void Application::Stop()
 	game_state = STOP_STATE;
 	game_timer.StopGame();
 	go_manager->LoadSceneOnStop();
+	camera->SetCurrentCam(camera->GetEditorCam());
 }
 
 void Application::Pause()
@@ -236,6 +237,12 @@ double Application::GetDeltaTime()
 {
 	return game_timer.game_time;
 }
+
+double Application::GetRealDeltaTime()
+{
+	return game_timer.real_time;
+}
+
 
 
 bool Application::LoadConfig()

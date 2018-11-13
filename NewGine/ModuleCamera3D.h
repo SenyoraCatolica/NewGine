@@ -36,7 +36,7 @@ public:
 	void LookAt(const vec &Spot);
 	void Move(const vec &Movement);
 	void Move(Direction d, float speed);
-	float* GetViewMatrix();
+	float4x4 GetViewMatrix();
 
 	void Rotate(float x, float y);
 
@@ -47,6 +47,7 @@ public:
 	void From3Dto2D(vec point, int& x, int& y); 
 
 	void UpdateEditorCam();
+	void CleanCameras();
 
 	void CreateEditorCam();
 

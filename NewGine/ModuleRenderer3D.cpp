@@ -123,7 +123,7 @@ update_status ModuleRenderer3D::PreUpdate()
 	glLoadIdentity();
 
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf(App->camera->GetViewMatrix());
+	glLoadMatrixf(*App->camera->GetViewMatrix().v);
 
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
@@ -195,6 +195,17 @@ void ModuleRenderer3D::OnResize(int width, int height, float fovy)
 	glLoadIdentity();
 }
 
+void ModuleRenderer3D::SetCurrentCamView(const float4x4& matrix)
+{
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	ProjectionMatrix = matrix;
+	glLoadMatrixf(ProjectionMatrix.ptr());
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+}
 
 
 void ModuleRenderer3D::DrawMesh(MyMesh m)

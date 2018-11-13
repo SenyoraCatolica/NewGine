@@ -21,7 +21,6 @@ public:
 	update_status PreUpdate();
 	update_status Update();
 
-
 	//GameObject Management
 	GameObject* CreateEmpty(const char* name);
 	GameObject* CreateGameObject(const char* name, GameObject* parent = nullptr);

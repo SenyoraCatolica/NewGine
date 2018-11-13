@@ -115,9 +115,7 @@ void CameraComponent::LookAt(const math::float3& point)
 math::float4x4 CameraComponent::GetViewMatrix()const
 {
 	float4x4 tmp = frustum.ViewMatrix();
-	tmp.Transpose();
-
-	return tmp;
+	return tmp.Transposed();
 }
 
 float4x4 CameraComponent::GetProjectionMatrix() const

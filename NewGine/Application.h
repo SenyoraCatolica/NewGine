@@ -79,6 +79,7 @@ public:
 	GAME_STATE GetGameState();
 
 	double GetDeltaTime();
+	double GetRealDeltaTime();
 
 	bool LoadConfig();
 	bool SaveConfig();

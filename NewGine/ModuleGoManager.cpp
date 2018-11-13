@@ -96,7 +96,7 @@ update_status ModuleGOManager::Update()
 		it++;
 	}
 
-	SelectObject();
+	//SelectObject();
 	DrawLocator();
 
 	App->renderer3D->DebugDrawQuadtree(quadtree, quadtree->GetRoot());
@@ -338,8 +338,6 @@ void ModuleGOManager::LoadScene(const char* name)
 
 		if (root_value.IsNull() == false)
 		{
-			ClearScene();
-
 			for (int i = 0; i < root.GetArraySize("Scene"); i++)
 			{
 				LoadGameObject(root.ReadArray("Scene", i));
@@ -354,6 +352,8 @@ void ModuleGOManager::LoadScene(const char* name)
 
 		LOG("Error while loading Scene: %s", name);
 	}
+
+	App->camera->CreateEditorCam();
 }
 
 void ModuleGOManager::SaveScene(const char* name)
@@ -377,6 +377,7 @@ void ModuleGOManager::SaveScene(const char* name)
 void ModuleGOManager::LoadEmptyScene()
 {
 	ClearScene();
+	App->camera->CreateEditorCam();
 
 	//Empty scene
 	root = CreateGameObject("root");
@@ -385,12 +386,15 @@ void ModuleGOManager::LoadEmptyScene()
 void ModuleGOManager::ClearScene()
 {
 	ClearGameObjectFromScene(root);
+	App->camera->CleanCameras();
+
 
 	root = nullptr;
 	selected_go = nullptr;
 
 	all_gameobjects.clear();
 	dynamic_objects.clear();
+
 
 	//provisinal smaller quadtree to check if works
 	float3 min, max;

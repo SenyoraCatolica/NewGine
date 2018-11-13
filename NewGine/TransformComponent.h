@@ -14,6 +14,7 @@ public:
 	//getters
 	float3 GetTranslation();
 	float3 GetRotation();
+	Quat GetQuatRotation();
 	float3 GetScale();
 
 	float4x4 GetTransformationMatrix();
