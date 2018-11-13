@@ -9,15 +9,6 @@
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	name = "camera";
-
-	CalculateViewMatrix();
-
-	X = vec(1.0f, 0.0f, 0.0f);
-	Y = vec(0.0f, 1.0f, 0.0f);
-	Z = vec(0.0f, 0.0f, 1.0f);
-
-	Position = vec(0.0f, 0.0f, 5.0f);
-	Reference = vec(0.0f, 0.0f, 0.0f);
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -28,6 +19,9 @@ bool ModuleCamera3D::Start()
 {
 	LOG("Setting up the camera");
 	bool ret = true;
+
+	CreateEditorCam();
+
 	return ret;
 }
 
@@ -42,8 +36,6 @@ bool ModuleCamera3D::CleanUp()
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update()
 {
-	// Debug camera mode: Disabled for the final game (but better keep the code)
-
 	vec newPos(0,0,0);
 	speed = speed;
 
@@ -63,8 +55,8 @@ update_status ModuleCamera3D::Update()
 	Position += newPos;
 	Reference += newPos;
 
-	// Mouse motion ----------------
 
+	// Mouse motion ----------------
 	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 	{
 		int dx = -App->input->GetMouseXMotion();
@@ -72,39 +64,17 @@ update_status ModuleCamera3D::Update()
 
 		float Sensitivity = 0.025f;
 
-		Position -= Reference;
+		TransformComponent* current_cam_transform = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
 
-		if (dx != 0)
-		{
-			float DeltaX = (float)dx * Sensitivity;
-			Quat quaternion;
-			quaternion = quaternion.RotateAxisAngle(vec(0.0f, 1.0f, 0.0f), DeltaX);
-			X = quaternion * X;
-			Y = quaternion * Y;
-			Z = quaternion * Z;
-		}
+		float3 pos = current_cam_transform->GetGlobalTranform().Transposed().TranslatePart();
+		pos += current_cam_transform->GetGlobalTranform().Transposed().WorldZ().Normalized() * 10;
 
-		if (dy != 0)
-		{
-			float DeltaY = (float)dy * Sensitivity;
+		pos += (float)dy * Sensitivity *current_cam_transform->GetGlobalTranform().Transposed().WorldY().Normalized();
 
-			Quat quaternion2;
-			quaternion2 = quaternion2.RotateAxisAngle(X, DeltaY);
-			Y = quaternion2 * Y;
-			Z = quaternion2 * Z;
+		pos += (float)dx * Sensitivity * current_cam_transform->GetGlobalTranform().Transposed().WorldX().Normalized();
 
-			if (Y.y < 0.0f)
-			{
-				Z = vec(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-				Y = Z.Cross(X);
-			}
-		}
-
-		Position = Reference + Z * Position.Length();
+		LookAt(pos);
 	}
-
-	// Recalculate matrix -------------
-	CalculateViewMatrix();
 
 	return UPDATE_CONTINUE;
 }
@@ -267,6 +237,63 @@ void ModuleCamera3D::From3Dto2D(vec point, int& x, int& y)
 	x = (screen.x +1) * (SCREEN_WIDTH /2);
 	y = (screen.y + 1) * (SCREEN_HEIGHT /2);
 }
+
+void ModuleCamera3D::UpdateEditorCam()
+{
+
+}
+
+void ModuleCamera3D::CreateEditorCam()
+{
+	editor_cam_go = App->go_manager->CreateCamera("EditorCam", true);
+	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+}
+
+//----------------------------------------------------------------------------------------
+CameraComponent* ModuleCamera3D::GetEditorCam()
+{
+	return editor_cam;
+}
+
+CameraComponent* ModuleCamera3D::GetCurrentCam()
+{
+	if (current_cam == nullptr)
+	{
+		current_cam = editor_cam;
+		return editor_cam;
+	}
+}
+
+CameraComponent* ModuleCamera3D::GetGameCam()
+{
+	return game_cam;
+}
+
+//----------------------------------------------------------------------------------------
+
+void ModuleCamera3D::SetEditorCam(CameraComponent* cam)
+{
+	if (editor_cam_go == nullptr)
+		CreateEditorCam();
+
+	editor_cam = cam;
+}
+
+void ModuleCamera3D::SetEditorCam(GameObject* cam)
+{
+	editor_cam_go = cam;
+	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+}
+
+void ModuleCamera3D::SetCurrentCam(CameraComponent* cam)
+{
+	current_cam = cam;
+}
+void ModuleCamera3D::SetGameCam(CameraComponent* cam)
+{
+	game_cam = cam;
+}
+
 
 // -----------------------------------------------------------------
 

@@ -4,6 +4,9 @@
 #include "MathGeoLib\include\MathGeoLib.h"
 #include <list>
 #include "p2Point.h"
+#include "CameraComponent.h"
+#include "TransformComponent.h"
+#include "GameObject.h"
 
 #define PIXELS_PER_METER 50.0f // if touched change METER_PER_PIXEL too
 #define METER_PER_PIXEL 0.02f // this is 1 / PIXELS_PER_METER !
@@ -43,6 +46,19 @@ public:
 	//Transform a 3D point to a point of the screen
 	void From3Dto2D(vec point, int& x, int& y); 
 
+	void UpdateEditorCam();
+
+	void CreateEditorCam();
+
+	CameraComponent* GetEditorCam();
+	CameraComponent* GetCurrentCam();
+	CameraComponent* GetGameCam();
+
+	void SetEditorCam(CameraComponent* cam);
+	void SetEditorCam(GameObject* cam);
+	void SetCurrentCam(CameraComponent* cam);
+	void SetGameCam(CameraComponent* cam);
+
 	bool LoadConfig(JSON_Object* data);
 	bool SaveConfig(JSON_Object* data) const;
 
@@ -56,6 +72,11 @@ public:
 	float speed;
 
 private:
+
+	GameObject* editor_cam_go = nullptr;
+	CameraComponent* current_cam = nullptr;
+	CameraComponent* editor_cam = nullptr;
+	CameraComponent* game_cam = nullptr;
 
 	float4x4 ViewMatrix, ViewMatrixInverse;
 };

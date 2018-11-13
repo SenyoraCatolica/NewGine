@@ -27,7 +27,7 @@ public:
 	GameObject* CreateGameObject(const char* name, GameObject* parent = nullptr);
 	GameObject* CreateGameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active);
 	bool DeleteGameObject(GameObject* to_delete);
-	GameObject* CreateCamera(const char* name);
+	GameObject* CreateCamera(const char* name,  bool is_editor_cam = false);
 	GameObject* GetCameraObject();
 	CameraComponent* GetCameraComponent();
 
