@@ -78,6 +78,8 @@ public:
 	void Pause();
 	GAME_STATE GetGameState();
 
+	double GetDeltaTime();
+
 	bool LoadConfig();
 	bool SaveConfig();
 

@@ -232,6 +232,11 @@ GAME_STATE Application::GetGameState()
 	return game_state;
 }
 
+double Application::GetDeltaTime()
+{
+	return game_timer.game_time;
+}
+
 
 bool Application::LoadConfig()
 {
