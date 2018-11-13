@@ -120,6 +120,8 @@ bool GameObject::IsActive()
 
 void GameObject::SetStatic(bool Stat)
 {
+	if (is_static != Stat)
+		static_changed = true;
 	is_static = Stat;
 }
 

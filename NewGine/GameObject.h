@@ -55,6 +55,9 @@ public:
 	char name[NAME_MAX_LEN];
 	AABB aabb;
 
+	bool static_changed = false;
+
+
 	bool boundingbox_active = false;
 	bool selected = false;
 

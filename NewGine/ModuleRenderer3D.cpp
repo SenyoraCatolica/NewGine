@@ -399,11 +399,6 @@ void ModuleRenderer3D::DebugDrawQuadtree(Quadtree* quadtree, QuadNode root)
 		DebugDrawQuadtree(quadtree, (*it));
 		it++;
 	}
-
-	/*for (std::vector<QuadNode>::iterator it = root.GetChilds().begin(); it != root.GetChilds().end(); it++)
-	{
-		DebugDrawQuadtree(quadtree, (*it));
-	}*/
 }
 
 void ModuleRenderer3D::DrawBox(const vec* corners, float4 color)

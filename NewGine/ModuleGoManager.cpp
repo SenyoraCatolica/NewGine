@@ -68,18 +68,31 @@ update_status ModuleGOManager::PreUpdate()
 
 update_status ModuleGOManager::Update()
 {
-	if (root)
-	{
-		//TransformComponent* trans = (TransformComponent*)root->GetComponent(COMPONENT_TRANSFORM);
-		//trans->UpdateGlobalTransform();
-		//TransformationHierarchy(root);
-
-	}
-
 	std::list<GameObject*>::iterator it = all_gameobjects.begin();
 	while (it != all_gameobjects.end())
 	{
 		(*it)->Update();
+
+		//Update objects static behaviour
+		if ((*it)->static_changed == true)
+		{
+			if ((*it)->IsStatic() == true)
+			{
+				dynamic_objects.remove((*it));
+				quadtree->Insert((*it));
+			}
+
+			else
+			{
+				quadtree->Remove((*it));
+				dynamic_objects.push_back((*it));
+			}
+
+			(*it)->static_changed = false;
+		}
+			
+			
+
 		it++;
 	}
 
