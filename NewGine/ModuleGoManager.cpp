@@ -96,9 +96,10 @@ update_status ModuleGOManager::Update()
 		it++;
 	}
 
-	SelectObject();
+	//SelectObject(); 2DO reactivate
 	DrawLocator();
 
+	//2DO condition to draw
 	App->renderer3D->DebugDrawQuadtree(quadtree, quadtree->GetRoot());
 
 	return update_status::UPDATE_CONTINUE;
@@ -164,20 +165,10 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 	return ret;
 }
 
-GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
+GameObject* ModuleGOManager::CreateCamera(const char* name)
 {
-	GameObject* cam = new GameObject();
-	cam->AddComponent(COMPONENT_TRANSFORM);
+	GameObject* cam = CreateEmpty("Camera");
 	cam->AddComponent(COMPONENT_CAMERA);
-
-	if (is_editor_cam)
-		cam->parent = nullptr;
-	else
-		if(root)
-			cam->parent = root;
-
-	all_gameobjects.push_back(cam);
-
 
 	return cam;
 }
@@ -293,9 +284,6 @@ void ModuleGOManager::SelectObject()
 		Ray ray = cam->frustum.UnProjectFromNearPlane(pos.x, pos.y);
 
 		selected_go = Raycast(ray);
-
-		if (selected_go != nullptr)
-			App->editor->selected_object = selected_go;
 	}
 }
 
