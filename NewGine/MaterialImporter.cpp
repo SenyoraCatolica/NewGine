@@ -88,12 +88,12 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 			data = new ILubyte[size_data];
 			if (ilSaveL(IL_DDS, data, size_data) > 0)
 			{
-				string new_path = App->file_system->ChangeExtension(assets_path, ".png");
+				string new_path = App->file_system->ChangeExtension(assets_path, ".dds");
 				rett = App->file_system->Save(new_path.data(), (char*)data, size_data);
 
 				if (rett)
 				{
-					string new_path = App->file_system->ChangeExtension(lib_path, ".png");
+					string new_path = App->file_system->ChangeExtension(lib_path, ".dds");
 					rett = App->file_system->Save(new_path.data(), (char*)data, size_data);
 					mat->path = new_path;
 					mat->name = App->file_system->GetNameFromDirectory(new_path.data());
