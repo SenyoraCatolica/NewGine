@@ -419,7 +419,7 @@ void MeshImporter::DecomposeTransform(TransformComponent* trans, aiNode* node)
 	aiQuaternion rotation;
 	aiVector3D scaling;
 
-	node->mTransformation.Decompose(scaling, rotation, scaling);
+	node->mTransformation.Decompose(scaling, rotation, translation);
 
 
 	math::float3 pos;

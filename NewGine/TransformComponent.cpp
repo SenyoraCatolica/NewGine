@@ -242,16 +242,27 @@ void TransformComponent::Load(JSONWrapper& file)
 	enabled = file.ReadBool("Enabled");
 	local_tranformation = file.ReadMatrix("Local Matrix");
 
-	/*SetTranslation(file.ReadeFloat("PositionX"), file.ReadeFloat("PositionY"), file.ReadeFloat("PositionZ"));
-	SetRotation(file.ReadeFloat("RotationX"), file.ReadeFloat("RotationY"), file.ReadeFloat("RotationZ"), file.ReadeFloat("RotationW"));
-	SetScale(file.ReadeFloat("ScaleX"), file.ReadeFloat("ScaleY"), file.ReadeFloat("ScaleZ"));*/
+	float3 pos = float3::zero; 
+	pos.x = file.ReadeFloat("PositionX"); 
+	pos.y = file.ReadeFloat("PositionY"); 
+	pos.z = file.ReadeFloat("PositionZ");
+	SetTranslation(pos);
 
-	position = local_tranformation.TranslatePart();
-	rotation_degree = local_tranformation.ToEulerXYZ(); //In radians for now.
-	rotation = Quat::FromEulerXYZ(rotation_degree.x, rotation_degree.y, rotation_degree.z);
-	rotation_degree = RadToDeg(rotation_degree); //To degrees
-	scale = local_tranformation.GetScale();
+	Quat rot = Quat::identity;
+	rot.x = file.ReadeFloat("RotationX");
+	rot.y = file.ReadeFloat("RotationY");
+	rot.z = file.ReadeFloat("RotationZ");
+	rot.w = file.ReadeFloat("RotationW");
+	SetRotation(rot);
 
+	float3 sca = float3::zero;
+	sca.x = file.ReadeFloat("ScaleX");
+	sca.y = file.ReadeFloat("ScaleY");
+	sca.z = file.ReadeFloat("ScaleZ");
+	SetScale(sca);
+
+	
+	local_tranformation = local_tranformation.FromTRS(position, rotation, scale);
 	UpdateGlobalTransform();
 }
 

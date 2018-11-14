@@ -96,7 +96,5 @@ void MeshComponent::Load(JSONWrapper& file)
 	id = file.ReadUInt("UUID");
 	enabled = file.ReadBool("Enabled");
 	path = file.ReadString("Path");
-
-	RecalculateBox();
 }
 
