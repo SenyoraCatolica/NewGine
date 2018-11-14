@@ -153,7 +153,9 @@ MyTexture* MaterialImporter::LoadTexture(const char* file)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), 
+		ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+
 
 	MyTexture* tex = new MyTexture();
 	tex->id = texID;
@@ -167,6 +169,8 @@ MyTexture* MaterialImporter::LoadTexture(const char* file)
 bool MaterialImporter::LoadTexture(ResourceMaterial* mat)
 {
 	bool ret = false;
+	ILenum error = ilGetError();
+
 
 	char* buffer = nullptr;
 	unsigned int size = App->file_system->Load(mat->texture->name.c_str(), &buffer);
@@ -179,20 +183,35 @@ bool MaterialImporter::LoadTexture(ResourceMaterial* mat)
 
 		if (ilLoadL(IL_TYPE_UNKNOWN, (const void*)buffer, size))
 		{
-			/*ILinfo ImageInfo;
+			ILinfo ImageInfo;
 			iluGetImageInfo(&ImageInfo);
 			if (ImageInfo.Origin == IL_ORIGIN_UPPER_LEFT)
 			{
 				iluFlipImage();
 			}
 
-			//Set parameters
+			// Convert the image into a suitable format to work with
+			if (!ilConvertImage(ilGetInteger(IL_IMAGE_FORMAT), IL_UNSIGNED_BYTE))
+			{
+				error = ilGetError();
+				LOG("Image conversion failed - IL reportes error: %i, %s", error, iluErrorString(error));
+				exit(-1);
+			}
+
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-			glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), 
-				ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());*/
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+			glTexImage2D(GL_TEXTURE_2D,
+				0,
+				ilGetInteger(IL_IMAGE_FORMAT),
+				ilGetInteger(IL_IMAGE_WIDTH),
+				ilGetInteger(IL_IMAGE_HEIGHT),
+				0,
+				ilGetInteger(IL_IMAGE_FORMAT),
+				GL_UNSIGNED_BYTE,
+				ilGetData());
 
 			//Set texture properties
 			mat->texture->id = id;
@@ -205,7 +224,6 @@ bool MaterialImporter::LoadTexture(ResourceMaterial* mat)
 
 		else
 		{
-			ILenum error = ilGetError();
 			LOG("ERROR loading material: ERROR: %s", iluErrorString(error))
 		}
 	}

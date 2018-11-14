@@ -300,13 +300,15 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 
 						if (enable_color_material)
 						{
-							glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+							//glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 						}
 
 						//draw texture
 						if (enable_textures)
 						{
 							glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+							glEnable(GL_TEXTURE_2D);
+							glBindTexture(GL_TEXTURE_2D, 0);
 
 
 							std::list<MaterialComponent*> materials;
@@ -322,6 +324,8 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 									glBindTexture(GL_TEXTURE_2D, (*mat)->material->texture->id);
 							}
 
+							glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+							glBindBuffer(GL_ARRAY_BUFFER, (*mesh)->mesh->mesh->id_texture_coords);
 							glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 						}
 
@@ -345,10 +349,11 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 							glBindBuffer(GL_ARRAY_BUFFER, 0);
 						}
 
-						glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+						//glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 						glBindBuffer(GL_ARRAY_BUFFER, 0);
 						glBindTexture(GL_TEXTURE_2D, 0);
+						glDisable(GL_TEXTURE_2D);
 
 						if (draw_wireframe)
 						{

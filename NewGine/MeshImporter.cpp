@@ -213,7 +213,7 @@ bool MeshImporter::ImportMesh(const aiScene * scene, const aiMesh* mesh, GameObj
 			{
 				m->normals = new float[m->num_vertices * 3];
 				memcpy(m->normals, mesh->mNormals, sizeof(float)*m->num_vertices * 3);
-				m->num_normals = m->num_vertices;
+				m->num_normals = mesh->mNumVertices;
 
 				LOG("Normals Imported");
 			}
