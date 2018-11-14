@@ -11,7 +11,6 @@
 
 GameObject::GameObject() 
 {
-	uid = GenerateUUID();
 	strcpy(name, "Unnamed");
 }
 
@@ -44,7 +43,12 @@ GameObject::~GameObject()
 	parent = nullptr;
 }
 
-const uint64_t GameObject::GetUID() { return uid; }
+const uint32 GameObject::GetUID() { return uid; }
+
+void GameObject::SetUID(uint uuid)
+{
+	uid = uuid;
+}
 
 
 void GameObject::Update()

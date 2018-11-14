@@ -68,6 +68,8 @@ public:
 	bool CleanUp();
 	void RequestBrowser(const char* link);
 
+	uint GenerateUUID();
+
 	void SetMaxFPS(int max_fps);
 	int GetFPS();
 	int GetMS();

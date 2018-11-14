@@ -75,7 +75,7 @@ MyResource* ModuleResourceManager::CreateResource(MyResource::R_TYPE type, uint 
 	uint uid;
 
 	if (uuid == 0)
-		uid = GenerateUUID();
+		uid = App->GenerateUUID();
 	else
 		uid = uuid;
 
@@ -204,7 +204,7 @@ void ModuleResourceManager::ImportFromOutsideFolder(const char* file, FILE_TYPE 
 		App->file_system->CreateDir(library_dir.data());
 
 	//Create the data to transform it into an own file
-	uint uuid = GenerateUUID();
+	uint uuid = App->GenerateUUID();
 
 	string complete_path_assets = assets_dir;
 	complete_path_assets = complete_path_assets.substr(0, complete_path_assets.length() - 4);
@@ -295,10 +295,10 @@ MyResource* ModuleResourceManager::LoadResource(const char* path, FILE_TYPE type
 	{
 	case MESH:
 
-		ret = new ResourceMesh(GenerateUUID(), path);
+		ret = new ResourceMesh(App->GenerateUUID(), path);
 		break;
 	case MATERIAL:
-		ret = new ResourceMaterial(GenerateUUID(), path);
+		ret = new ResourceMaterial(App->GenerateUUID(), path);
 		break;
 	case NONE:
 		LOG("Could not load the resource: TYPE == NONE");

@@ -13,6 +13,8 @@ bool ModuleImporter::Init()
 	mesh_importer = new MeshImporter(App);
 	mat_importer = new MaterialImporter(App);
 
+	mat_importer->Init();
+
 	return true;
 }
 

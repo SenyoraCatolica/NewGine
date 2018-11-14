@@ -19,7 +19,8 @@ public:
 	GameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active);
 	~GameObject();
 
-	const uint64_t GetUID();
+	const uint32_t GetUID();
+	void SetUID(uint uuid);
 
 	void DrawLocator();
 	void Select();

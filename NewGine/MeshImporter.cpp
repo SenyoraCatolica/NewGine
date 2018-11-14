@@ -19,7 +19,7 @@ bool MeshImporter::Import(const char* file)
 {
 	bool ret = false;
 
-	uint uuid = GenerateUUID();
+	uint uuid = App->GenerateUUID();
 
 
 	//Generate complete path in Library folder
@@ -75,8 +75,7 @@ bool MeshImporter::Import(const char* file)
 
 GameObject* MeshImporter::ImportNode(aiNode* node, const aiScene* scene, GameObject* parent, const char* save_path, JSONWrapper& root_node)
 {
-	GameObject* go = new GameObject();
-
+	GameObject* go = new GameObject(App->GenerateUUID());
 	go->parent = parent;
 	go->SetName(node->mName.C_Str());
 

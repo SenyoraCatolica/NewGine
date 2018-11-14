@@ -10,18 +10,11 @@ Component::Component()
 
 Component::Component(COMPONENT_TYPE Type, GameObject* from) : type(Type), parent(from)
 {
-	id = GenerateUUID();
 }
 
 Component::Component(COMPONENT_TYPE Type, GameObject* from, uint number) : type(Type), parent(from), id(number)
 {
-	if (number <= 0)
-	{
-		id = GenerateUUID();
-	}
-
-	else
-		id = number;
+	id = number;
 }
 
 Component::~Component()

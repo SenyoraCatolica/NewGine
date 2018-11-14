@@ -404,9 +404,6 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	std::string name  = file.ReadString("Name");
 	uint32 uuid = file.ReadUInt("UUID");
 	uint32 parent_uuid = file.ReadUInt("Parent");
-	LOG("Name: %s\n", name.data());
-	LOG("UUID: %s\n", std::to_string(uuid).data());
-	LOG("PUUID: %s\n", std::to_string(parent_uuid).data());
 
 	bool is_static = file.ReadBool("static");
 	bool is_active = file.ReadBool("Active");

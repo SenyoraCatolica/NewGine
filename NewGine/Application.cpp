@@ -184,6 +184,22 @@ void Application::RequestBrowser(const char* link)
 	ShellExecute(0, 0, link, 0, 0, SW_SHOW);
 }
 
+uint Application::GenerateUUID()
+{
+	unsigned int ret;
+
+	const unsigned int bytes = sizeof(long long);
+	char myString[bytes];
+
+	for (int n = 0; n < bytes; n++)
+	{
+		myString[n] = rand() % 255;
+	}
+
+	memcpy(&ret, myString, bytes);
+	return ret;
+}
+
 void Application::SetMaxFPS(int max_fps)
 {
 	fps = max_fps;
