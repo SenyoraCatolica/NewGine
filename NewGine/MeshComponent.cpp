@@ -65,7 +65,7 @@ void MeshComponent::RecalculateLocalbox()
 void MeshComponent::RecalculateBox()
 {
 	TransformComponent* t = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
-	math::OBB obb = local_box.Transform(t->GetGlobalTranform());
+	math::OBB obb = local_box.Transform(t->GetLocalTransform().Transposed());
 	global_box = obb.MinimalEnclosingAABB();
 	parent->aabb = global_box;
 }
