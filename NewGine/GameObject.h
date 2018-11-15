@@ -15,6 +15,7 @@ class GameObject
 public:
 
 	GameObject();
+	GameObject(const char* name);
 	GameObject(const uint uid);
 	GameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active);
 	~GameObject();

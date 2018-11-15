@@ -14,6 +14,11 @@ GameObject::GameObject()
 	strcpy(name, "Unnamed");
 }
 
+GameObject::GameObject(const char* name)
+{
+	strcpy(this->name, name);
+}
+
 GameObject::GameObject(const uint uid)
 {
 	this->uid = uid;

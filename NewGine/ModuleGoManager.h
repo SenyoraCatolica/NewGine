@@ -28,8 +28,8 @@ public:
 	GameObject* CreateGameObject(const char* name, uint uuid, GameObject* parent, bool is_static, bool is_active);
 	bool DeleteGameObject(GameObject* to_delete);
 	GameObject* CreateCamera(const char* name, bool is_editor_cam);
-	GameObject* GetCameraObject();
-	CameraComponent* GetCameraComponent();
+	GameObject* GetCameraObjectInRoot(GameObject* root);
+	bool HasCameraObjectInRoot(GameObject* root);
 
 	GameObject* Raycast(const Ray& ray)const;
 	void SelectObject();
@@ -65,9 +65,6 @@ private:
 
 	GameObject* root = nullptr;
 	GameObject* selected_go = nullptr;
-
-	GameObject * camera = nullptr;
-	CameraComponent* cam_comp = nullptr;
 };
 
 #endif // _GOMANAGER_H_

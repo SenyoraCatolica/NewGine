@@ -389,7 +389,7 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 		}
 
 		CameraComponent* cam = (CameraComponent*)go->GetComponent(COMPONENT_CAMERA);
-		if(cam != nullptr)
+		if(cam != nullptr && cam != App->camera->GetEditorCam())
 			DrawFrustrum(cam->frustum);
 	}
 }

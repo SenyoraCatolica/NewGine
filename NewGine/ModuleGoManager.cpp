@@ -15,18 +15,9 @@ ModuleGOManager::ModuleGOManager(Application* app, bool start_enabled) : Module(
 
 ModuleGOManager::~ModuleGOManager()
 {
-	if(camera)
-		delete camera;
-
-	if(cam_comp)
-		delete cam_comp;
-
 	if (root)
 		delete root;
 
-
-	camera = nullptr;
-	cam_comp = nullptr;
 	selected_go = nullptr;
 }
 
@@ -164,7 +155,7 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 
 GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 {
-	GameObject* cam = new GameObject();
+	GameObject* cam = new GameObject(name);
 	cam->AddComponent(COMPONENT_TRANSFORM);
 	cam->AddComponent(COMPONENT_CAMERA);
 
@@ -172,7 +163,10 @@ GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 		cam->parent = nullptr;
 	else
 		if (root)
+		{
 			cam->parent = root;
+			root->childs.push_back(cam);
+		}
 
 	all_gameobjects.push_back(cam);
 
@@ -181,11 +175,11 @@ GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 }
 
 
-GameObject* ModuleGOManager::GetCameraObject()
+GameObject* ModuleGOManager::GetCameraObjectInRoot(GameObject* root)
 {
-	std::list<GameObject*>::iterator it = all_gameobjects.begin();
+	std::vector<GameObject*>::iterator it = root->childs.begin();
 
-	while (it != all_gameobjects.end())
+	while (it != root->childs.end())
 	{
 		if ((*it)->GetComponent(COMPONENT_CAMERA) != nullptr)
 		{
@@ -197,9 +191,20 @@ GameObject* ModuleGOManager::GetCameraObject()
 	return nullptr;
 }
 
-CameraComponent* ModuleGOManager::GetCameraComponent()
+bool ModuleGOManager::HasCameraObjectInRoot(GameObject* root)
 {
-	return (CameraComponent*)GetCameraObject()->GetComponent(COMPONENT_CAMERA);
+	std::vector<GameObject*>::iterator it = root->childs.begin();
+
+	while (it != root->childs.end())
+	{
+		if ((*it)->GetComponent(COMPONENT_CAMERA) != nullptr)
+		{
+			return true;
+		}
+		it++;
+	}
+
+	return false;
 }
 
 GameObject* ModuleGOManager::Raycast(const Ray& ray)const
@@ -348,6 +353,9 @@ void ModuleGOManager::LoadScene(const char* name)
 			{
 				LoadGameObject(root.ReadArray("Scene", i));
 			}
+
+			if (HasCameraObjectInRoot(this->root) == false)
+				CreateCamera("Camera", false);
 		}
 	}
 
@@ -385,6 +393,7 @@ void ModuleGOManager::LoadEmptyScene()
 	App->camera->CreateEditorCam();
 	//Empty scene
 	root = CreateGameObject("root");
+	CreateCamera("Camera", false);
 }
 
 void ModuleGOManager::ClearScene()
