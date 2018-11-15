@@ -79,6 +79,7 @@ public:
 	void Stop();
 	void Pause();
 	GAME_STATE GetGameState();
+	double GetRealDeltaTime();
 
 	bool LoadConfig();
 	bool SaveConfig();

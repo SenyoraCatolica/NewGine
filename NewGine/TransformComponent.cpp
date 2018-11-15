@@ -35,6 +35,11 @@ float3 TransformComponent::GetRotation()
 	return tmp;
 }
 
+Quat TransformComponent::GetQuatRotation()
+{
+	return rotation;
+}
+
 float3 TransformComponent::GetScale()
 {
 	return scale;

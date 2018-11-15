@@ -10,14 +10,6 @@ ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(ap
 {
 	name = "camera";
 
-	CalculateViewMatrix();
-
-	X = vec(1.0f, 0.0f, 0.0f);
-	Y = vec(0.0f, 1.0f, 0.0f);
-	Z = vec(0.0f, 0.0f, 1.0f);
-
-	Position = vec(0.0f, 0.0f, 5.0f);
-	Reference = vec(0.0f, 0.0f, 0.0f);
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -27,8 +19,7 @@ ModuleCamera3D::~ModuleCamera3D()
 bool ModuleCamera3D::Start()
 {
 	LOG("Setting up the camera");
-	bool ret = true;
-	return ret;
+	return true;
 }
 
 // -----------------------------------------------------------------
@@ -39,72 +30,24 @@ bool ModuleCamera3D::CleanUp()
 	return true;
 }
 
+void ModuleCamera3D::CleanCameras()
+{
+	if (editor_cam_go != nullptr) delete editor_cam_go;
+	if (editor_cam != nullptr)editor_cam = nullptr;
+	if (current_cam != nullptr)current_cam = nullptr;
+	if (game_cam != nullptr)game_cam = nullptr;
+}
+
 // -----------------------------------------------------------------
 update_status ModuleCamera3D::Update()
 {
-	// Debug camera mode: Disabled for the final game (but better keep the code)
-
-	vec newPos(0,0,0);
-	speed = speed;
-
-	if (App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = speed * 2;
+	UpdateEditorCam();
 	
-	if(App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed;
-	if(App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed;
-
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= Z * speed;
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += Z * speed;
-
-
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed;
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed;
-	
-	Position += newPos;
-	Reference += newPos;
-
-	// Mouse motion ----------------
-
-	if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+	if (current_cam != nullptr)
 	{
-		int dx = -App->input->GetMouseXMotion();
-		int dy = -App->input->GetMouseYMotion();
-
-		float Sensitivity = 0.025f;
-
-		Position -= Reference;
-
-		if (dx != 0)
-		{
-			float DeltaX = (float)dx * Sensitivity;
-			Quat quaternion;
-			quaternion = quaternion.RotateAxisAngle(vec(0.0f, 1.0f, 0.0f), DeltaX);
-			X = quaternion * X;
-			Y = quaternion * Y;
-			Z = quaternion * Z;
-		}
-
-		if (dy != 0)
-		{
-			float DeltaY = (float)dy * Sensitivity;
-
-			Quat quaternion2;
-			quaternion2 = quaternion2.RotateAxisAngle(X, DeltaY);
-			Y = quaternion2 * Y;
-			Z = quaternion2 * Z;
-
-			if (Y.y < 0.0f)
-			{
-				Z = vec(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-				Y = Z.Cross(X);
-			}
-		}
-
-		Position = Reference + Z * Position.Length();
+		float4x4 matrix = current_cam->GetProjectionMatrix();
+		App->renderer3D->SetCurrentCamView(matrix);
 	}
-
-	// Recalculate matrix -------------
-	CalculateViewMatrix();
 
 	return UPDATE_CONTINUE;
 }
@@ -131,7 +74,7 @@ void ModuleCamera3D::Look(const vec &Position, const vec &Reference, bool Rotate
 }
 
 // -----------------------------------------------------------------
-void ModuleCamera3D::LookAt( const vec &Spot)
+void ModuleCamera3D::LookAt(const vec &Spot)
 {
 	Reference = Spot;
 
@@ -182,9 +125,9 @@ void ModuleCamera3D::Move(Direction d, float speed)
 }
 
 // -----------------------------------------------------------------
-float* ModuleCamera3D::GetViewMatrix()
+float4x4 ModuleCamera3D::GetViewMatrix()
 {
-	return *ViewMatrix.v;
+	return current_cam->GetViewMatrix();
 }
 
 // -----------------------------------------------------------------
@@ -278,6 +221,128 @@ vec ModuleCamera3D::GetPosition()
 vec ModuleCamera3D::GetReference()
 {
 	return Reference;
+}
+
+void ModuleCamera3D::UpdateEditorCam()
+{
+	if (current_cam == editor_cam)
+	{		//Keys Movement   --------------------------------------------------------------------------------
+		TransformComponent* t = (TransformComponent*)editor_cam_go->GetComponent(COMPONENT_TRANSFORM);
+
+		float3 new_pos = float3::zero;
+
+		float3 world_z = t->GetGlobalTranform().WorldZ();
+		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			new_pos += world_z * speed;
+		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			new_pos -= world_z * speed;
+
+		float3 world_x = t->GetGlobalTranform().WorldX();
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			new_pos += world_x * speed;
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			new_pos -= world_x * speed;
+
+		float3 world_y = t->GetGlobalTranform().WorldY();
+
+
+
+		// Mouse motion ---------------------------------------------------------
+		if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+		{
+			int dx = -App->input->GetMouseXMotion();
+			int dy = -App->input->GetMouseYMotion();
+
+			float Sensitivity = 0.025f;
+
+			float3 pos = t->GetGlobalTranform().Transposed().TranslatePart();
+			pos += world_z.Normalized() * 10;
+
+			pos += (float)dy * Sensitivity * world_y.Normalized();
+
+			pos += (float)dx * Sensitivity * world_x.Normalized();
+
+			LookAt(pos);
+		}
+
+		//Mouse wheel --------------------------------------------------------------
+		float wheel_speed = 0.005f;
+
+		if (App->input->GetMouseZ() > 0) new_pos += world_z * speed * wheel_speed;
+		if (App->input->GetMouseZ() < 0) new_pos -= world_z * speed * wheel_speed;
+
+
+		//Middle mouse button movement
+		if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)
+		{
+			int dx = App->input->GetMouseXMotion();
+			int dy = App->input->GetMouseYMotion();
+
+			new_pos += world_x * speed * dx;
+			new_pos += world_y * speed * dy;
+		}
+
+		if (new_pos.x != 0 || new_pos.y != 0 || new_pos.z != 0)
+		{
+			//Set final position;
+			float3 pos = t->GetTranslation();
+			pos += new_pos;
+			t->SetTranslation(pos);
+			LOG("camera pos: %iX, %iY, %iZ", pos.x, pos.y, pos.z);
+		}		
+	}
+}
+
+void ModuleCamera3D::CreateEditorCam()
+{
+	editor_cam_go = App->go_manager->CreateCamera("EditorCam", true);
+	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+	current_cam = editor_cam;
+}
+
+//----------------------------------------------------------------------------------------
+CameraComponent* ModuleCamera3D::GetEditorCam()
+{
+	return editor_cam;
+}
+
+CameraComponent* ModuleCamera3D::GetCurrentCam()
+{
+	if (current_cam == nullptr)
+	{
+		current_cam = editor_cam;
+		return editor_cam;
+	}
+}
+
+CameraComponent* ModuleCamera3D::GetGameCam()
+{
+	return game_cam;
+}
+
+//----------------------------------------------------------------------------------------
+
+void ModuleCamera3D::SetEditorCam(CameraComponent* cam)
+{
+	if (editor_cam_go == nullptr)
+		CreateEditorCam();
+
+	editor_cam = cam;
+}
+
+void ModuleCamera3D::SetEditorCam(GameObject* cam)
+{
+	editor_cam_go = cam;
+	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+}
+
+void ModuleCamera3D::SetCurrentCam(CameraComponent* cam)
+{
+	current_cam = cam;
+}
+void ModuleCamera3D::SetGameCam(CameraComponent* cam)
+{
+	game_cam = cam;
 }
 
 //--------------------------------------------------------------------

@@ -165,10 +165,20 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 	return ret;
 }
 
-GameObject* ModuleGOManager::CreateCamera(const char* name)
+GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 {
-	GameObject* cam = CreateEmpty("Camera");
+	GameObject* cam = new GameObject();
+	cam->AddComponent(COMPONENT_TRANSFORM);
 	cam->AddComponent(COMPONENT_CAMERA);
+
+	if (is_editor_cam)
+		cam->parent = nullptr;
+	else
+		if (root)
+			cam->parent = root;
+
+	all_gameobjects.push_back(cam);
+
 
 	return cam;
 }
@@ -326,8 +336,6 @@ void ModuleGOManager::LoadScene(const char* name)
 
 		if (root_value.IsNull() == false)
 		{
-			ClearScene();
-
 			for (int i = 0; i < root.GetArraySize("Scene"); i++)
 			{
 				LoadGameObject(root.ReadArray("Scene", i));
@@ -342,6 +350,7 @@ void ModuleGOManager::LoadScene(const char* name)
 
 		LOG("Error while loading Scene: %s", name);
 	}
+	App->camera->CreateEditorCam();
 }
 
 void ModuleGOManager::SaveScene(const char* name)
@@ -365,7 +374,7 @@ void ModuleGOManager::SaveScene(const char* name)
 void ModuleGOManager::LoadEmptyScene()
 {
 	ClearScene();
-
+	App->camera->CreateEditorCam();
 	//Empty scene
 	root = CreateGameObject("root");
 }
@@ -373,6 +382,7 @@ void ModuleGOManager::LoadEmptyScene()
 void ModuleGOManager::ClearScene()
 {
 	ClearGameObjectFromScene(root);
+	App->camera->CleanCameras();
 
 	root = nullptr;
 	selected_go = nullptr;
