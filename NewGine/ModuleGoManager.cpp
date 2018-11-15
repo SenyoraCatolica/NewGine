@@ -91,13 +91,10 @@ update_status ModuleGOManager::Update()
 			(*it)->static_changed = false;
 		}
 			
-			
-
 		it++;
 	}
 
-	//SelectObject(); 2DO reactivate
-	DrawLocator();
+	SelectObject();
 
 	//2DO condition to draw
 	App->renderer3D->DebugDrawQuadtree(quadtree, quadtree->GetRoot());
@@ -224,6 +221,8 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 		{
 			candidates.insert(std::pair<float, GameObject*>(MIN(near_dist, far_dist), (*it)));
 		}
+
+		it++;
 	}
 
 
@@ -273,6 +272,8 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 				}
 			}
 		}
+
+		mapit++;
 	}
 
 
@@ -284,7 +285,7 @@ void ModuleGOManager::SelectObject()
 {
 	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
 	{
-		CameraComponent* cam = (CameraComponent*)camera->GetComponent(COMPONENT_CAMERA);
+		CameraComponent* cam = App->camera->GetCurrentCam();
 
 		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
 
@@ -294,6 +295,13 @@ void ModuleGOManager::SelectObject()
 		Ray ray = cam->frustum.UnProjectFromNearPlane(pos.x, pos.y);
 
 		selected_go = Raycast(ray);
+
+		if (selected_go != nullptr)
+		{
+			DrawLocator();
+			App->editor->selected_object = selected_go;
+		}
+
 	}
 }
 

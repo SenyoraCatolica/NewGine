@@ -160,6 +160,10 @@ bool ModuleWindow::LoadConfig(JSON_Object* data)
 	case WINDOW_MODE::FULL_DESKTOP: win_mode = FULL_DESKTOP; break;
 	case WINDOW_MODE::FULLSCREEN: win_mode = FULLSCREEN; break;
 	}
+
+	if (width <= 0)width = SCREEN_WIDTH;
+	if (height <= 0)height = SCREEN_HEIGHT;
+
 	return ret;
 }
 
