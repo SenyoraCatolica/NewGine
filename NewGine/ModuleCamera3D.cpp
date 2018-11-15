@@ -42,12 +42,6 @@ void ModuleCamera3D::CleanCameras()
 update_status ModuleCamera3D::Update()
 {
 	UpdateEditorCam();
-	
-	if (current_cam != nullptr)
-	{
-		float4x4 matrix = current_cam->GetProjectionMatrix();
-		App->renderer3D->SetCurrentCamView(matrix);
-	}
 
 	return UPDATE_CONTINUE;
 }
@@ -227,7 +221,7 @@ void ModuleCamera3D::UpdateEditorCam()
 {
 	if (current_cam == editor_cam)
 	{		//Keys Movement   --------------------------------------------------------------------------------
-		TransformComponent* t = (TransformComponent*)editor_cam_go->GetComponent(COMPONENT_TRANSFORM);
+		TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
 
 		float3 new_pos = float3::zero;
 
@@ -313,6 +307,9 @@ CameraComponent* ModuleCamera3D::GetCurrentCam()
 		current_cam = editor_cam;
 		return editor_cam;
 	}
+
+	else
+		return current_cam;
 }
 
 CameraComponent* ModuleCamera3D::GetGameCam()
