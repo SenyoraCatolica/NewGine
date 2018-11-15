@@ -1,10 +1,20 @@
-Repassar quadtree.
-crear selector dobjectes i mousepicking*************************
-vincular components i recursos*************************************
-draw bounding boxes****************************************
-draw quadtree      **************************
-draw gameobjects
-play/pause
-hierarchy**********************************
-load/save scene on application**************************************
-handle root object****************************************
+
+draw dynamic gameobjects + play/pause
+
+draw locator
+
+add/remove component
+
+load go on scene
+
+handle multiple cameras
+
+look at + camera movement
+
+Handle quadtree when new static
+
+Update config window
+
+chek memory leaks
+
+console

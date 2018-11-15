@@ -49,9 +49,11 @@ private:
 
 	//Scene management
 	char scene_name[256] = "";
+	char prefab_name[256] = "";
 	bool want_new_scene = false;
 	bool want_to_save = false;
 	bool want_to_load = false;
+	bool want_to_load_prefab = false;
 
 public:
 	GameObject* selected_object = nullptr;

@@ -18,13 +18,8 @@ ModuleEditor::~ModuleEditor()
 bool ModuleEditor::Start()
 {
 	LOG("Loading Editor");
-	bool ret = true;
 
-	//Set Camera Position
-	//App->camera->Move(vec(18.0f, 23.0f, -27.0f));
-	//App->camera->LookAt(vec(-2, -1.5, 1.3));
-
-	return ret;
+	return true;
 };
 
 bool ModuleEditor::CleanUp()
@@ -67,6 +62,11 @@ bool ModuleEditor::HandleMainMenu()
 		if (ImGui::MenuItem("Load Scene##LoadMenuBar"))
 		{
 			want_to_load = true;
+		}
+
+		if (ImGui::MenuItem("Load Prefab##LoadMenuBar"))
+		{
+			want_to_load_prefab = true;
 		}
 
 		ImGui::Separator();
@@ -327,6 +327,27 @@ void ModuleEditor::HandleScenesMenu()
 		ImGui::EndPopup();
 	}
 
+	ImGui::SetNextWindowSize(ImVec2(300, 120));
+	if (ImGui::BeginPopupModal("Load Prefab"))
+	{
+		ImGui::Text("Prefab name:");
+		ImGui::InputText("##saveSceneInputText", prefab_name, 256);
+		bool close = false;
+		if (ImGui::Button("Load##loadButton") && prefab_name[0] != '\0')
+		{
+			selected_object = nullptr;
+			App->go_manager->LoadScene(prefab_name);
+			close = true;
+		}
+		ImGui::SameLine();
+		if (close || ImGui::Button("Cancel##cancelLoadScene"))
+		{
+			strcpy(prefab_name, "");
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
 	if (want_new_scene)
 	{
 		ImGui::OpenPopup("New scene");
@@ -341,6 +362,12 @@ void ModuleEditor::HandleScenesMenu()
 	{
 		ImGui::OpenPopup("Load Scene");
 		want_to_load = false;
+	}
+
+	if (want_to_load_prefab)
+	{
+		ImGui::OpenPopup("Load Prefab");
+		want_to_load_prefab = false;
 	}
 }
 
