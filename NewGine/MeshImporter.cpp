@@ -311,14 +311,15 @@ MyMesh* MeshImporter::LoadMesh(const char* path)
 		memcpy(mesh->indices, cursor, bytes);
 
 		//Texture coords
+		cursor += bytes;
 		bytes = sizeof(float) * mesh->num_texture_coords * 2;
 		mesh->texture_coords = new float2[mesh->num_texture_coords];
 		memcpy(mesh->texture_coords, cursor, bytes);
-		cursor += bytes;
 
 		//Normals
 		if (header[3] != 0)
 		{
+			cursor += bytes;
 			bytes = sizeof(float) * mesh->num_vertices * 3;
 			mesh->normals = new float[mesh->num_vertices * 3];
 			memcpy(mesh->normals, cursor, bytes);
@@ -392,7 +393,7 @@ bool MeshImporter::SaveMesh(MyMesh* m, const char* name, const char* save_path)
 	//Texture Coords
 	if (alloc[2] > 0)
 	{
-		bytes = sizeof(float2) * alloc[3];
+		bytes = sizeof(float2) * alloc[0];
 		memcpy(cursor, m->texture_coords, bytes);
 		cursor += bytes;
 	}
