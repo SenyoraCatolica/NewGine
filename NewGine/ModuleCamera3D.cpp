@@ -217,20 +217,18 @@ void ModuleCamera3D::UpdateEditorCam()
 
 		float3 new_pos = float3::zero;
 
+		float3 world_y = t->GetGlobalTranform().WorldY();
 		float3 world_z = t->GetGlobalTranform().WorldZ();
 		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			new_pos += world_z * speed;
+			new_pos += world_y * speed;
 		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			new_pos -= world_z * speed;
+			new_pos -= world_y * speed;
 
 		float3 world_x = t->GetGlobalTranform().WorldX();
 		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 			new_pos += world_x * speed;
 		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
 			new_pos -= world_x * speed;
-
-		float3 world_y = t->GetGlobalTranform().WorldY();
-
 
 
 		// Mouse motion ---------------------------------------------------------
@@ -252,7 +250,7 @@ void ModuleCamera3D::UpdateEditorCam()
 		}
 
 		//Mouse wheel --------------------------------------------------------------
-		float wheel_speed = 0.005f;
+		float wheel_speed = 2.0f;
 
 		if (App->input->GetMouseZ() > 0) new_pos += world_z * speed * wheel_speed;
 		if (App->input->GetMouseZ() < 0) new_pos -= world_z * speed * wheel_speed;
@@ -274,7 +272,6 @@ void ModuleCamera3D::UpdateEditorCam()
 			float3 pos = t->GetTranslation();
 			pos += new_pos;
 			t->SetTranslation(pos);
-			LOG("camera pos: %iX, %iY, %iZ", pos.x, pos.y, pos.z);
 		}		
 	}
 }
@@ -283,6 +280,7 @@ void ModuleCamera3D::CreateEditorCam()
 {
 	editor_cam_go = App->go_manager->CreateCamera("EditorCam", true);
 	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+	editor_cam->SetFar(200);
 	current_cam = editor_cam;
 }
 

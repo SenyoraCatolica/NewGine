@@ -2,7 +2,7 @@
     "Scene": [
         {
             "Name": "RootNode",
-            "UUID": 1600122811,
+            "UUID": 198176777,
             "Active": true,
             "static": false,
             "Parent": 0,
@@ -44,10 +44,10 @@
         },
         {
             "Name": "Sky001_$AssimpFbx$_Translation",
-            "UUID": 1374540990,
+            "UUID": 3684092565,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -86,10 +86,10 @@
         },
         {
             "Name": "Sky001_$AssimpFbx$_PreRotation",
-            "UUID": 1699843621,
+            "UUID": 367795728,
             "Active": true,
             "static": false,
-            "Parent": 1374540990,
+            "Parent": 3684092565,
             "Components": [
                 {
                     "Type": 0,
@@ -128,10 +128,10 @@
         },
         {
             "Name": "Sky001_$AssimpFbx$_PostRotation",
-            "UUID": 374620140,
+            "UUID": 2185315278,
             "Active": true,
             "static": false,
-            "Parent": 1699843621,
+            "Parent": 367795728,
             "Components": [
                 {
                     "Type": 0,
@@ -170,10 +170,10 @@
         },
         {
             "Name": "Sky001",
-            "UUID": 4090781839,
+            "UUID": 1973249532,
             "Active": true,
             "static": false,
-            "Parent": 374620140,
+            "Parent": 2185315278,
             "Components": [
                 {
                     "Type": 0,
@@ -212,10 +212,10 @@
         },
         {
             "Name": "Dummy001_$AssimpFbx$_PreRotation",
-            "UUID": 1747971787,
+            "UUID": 1146089371,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -254,10 +254,10 @@
         },
         {
             "Name": "Dummy001_$AssimpFbx$_Rotation",
-            "UUID": 234107701,
+            "UUID": 1650268637,
             "Active": true,
             "static": false,
-            "Parent": 1747971787,
+            "Parent": 1146089371,
             "Components": [
                 {
                     "Type": 0,
@@ -296,10 +296,10 @@
         },
         {
             "Name": "Dummy001",
-            "UUID": 292753441,
+            "UUID": 2304044870,
             "Active": true,
             "static": false,
-            "Parent": 234107701,
+            "Parent": 1650268637,
             "Components": [
                 {
                     "Type": 0,
@@ -338,10 +338,10 @@
         },
         {
             "Name": "City_building_004",
-            "UUID": 848388944,
+            "UUID": 3965418784,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -380,7 +380,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -392,10 +392,10 @@
         },
         {
             "Name": "City_building_001",
-            "UUID": 1081245945,
+            "UUID": 69335359,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -434,7 +434,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -446,10 +446,10 @@
         },
         {
             "Name": "City_building_007",
-            "UUID": 913451937,
+            "UUID": 3658452889,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -488,7 +488,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -500,10 +500,10 @@
         },
         {
             "Name": "City_building_008",
-            "UUID": 3723110965,
+            "UUID": 2127834024,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -542,7 +542,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -554,10 +554,10 @@
         },
         {
             "Name": "Line002",
-            "UUID": 198176777,
+            "UUID": 1866587421,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -596,16 +596,16 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 }
             ]
         },
         {
             "Name": "Plane001",
-            "UUID": 3684092565,
+            "UUID": 728290663,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -644,16 +644,16 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 }
             ]
         },
         {
             "Name": "City_building_010",
-            "UUID": 367795728,
+            "UUID": 1059149191,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -692,7 +692,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -704,10 +704,10 @@
         },
         {
             "Name": "City_building_011",
-            "UUID": 2185315278,
+            "UUID": 4089893429,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -746,7 +746,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -758,10 +758,10 @@
         },
         {
             "Name": "City_building_013",
-            "UUID": 1973249532,
+            "UUID": 2144767953,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -800,7 +800,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -812,10 +812,10 @@
         },
         {
             "Name": "City_building_014",
-            "UUID": 1146089371,
+            "UUID": 1297469869,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -854,7 +854,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -866,10 +866,10 @@
         },
         {
             "Name": "City_building_016",
-            "UUID": 1650268637,
+            "UUID": 1418273823,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -908,7 +908,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -920,10 +920,10 @@
         },
         {
             "Name": "City_building_017",
-            "UUID": 2304044870,
+            "UUID": 2147821921,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -962,7 +962,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -974,10 +974,10 @@
         },
         {
             "Name": "City_building_022",
-            "UUID": 3965418784,
+            "UUID": 612006862,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1016,7 +1016,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1028,10 +1028,10 @@
         },
         {
             "Name": "City_building_023",
-            "UUID": 69335359,
+            "UUID": 48669793,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1070,7 +1070,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1082,10 +1082,10 @@
         },
         {
             "Name": "City_building_024",
-            "UUID": 3658452889,
+            "UUID": 1670224139,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1124,7 +1124,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1136,10 +1136,10 @@
         },
         {
             "Name": "City_building_026",
-            "UUID": 2127834024,
+            "UUID": 1027233236,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1178,7 +1178,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1190,10 +1190,10 @@
         },
         {
             "Name": "City_building_028",
-            "UUID": 1866587421,
+            "UUID": 1759343193,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1232,7 +1232,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1244,10 +1244,10 @@
         },
         {
             "Name": "Object010",
-            "UUID": 728290663,
+            "UUID": 3849806853,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1286,16 +1286,16 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 }
             ]
         },
         {
             "Name": "City_building_030",
-            "UUID": 1059149191,
+            "UUID": 3075127083,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1334,7 +1334,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1346,10 +1346,10 @@
         },
         {
             "Name": "City_building_031",
-            "UUID": 4089893429,
+            "UUID": 3353829741,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1388,7 +1388,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1400,10 +1400,10 @@
         },
         {
             "Name": "City_building_032",
-            "UUID": 2144767953,
+            "UUID": 3641190636,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1442,7 +1442,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1454,10 +1454,10 @@
         },
         {
             "Name": "City_building_033",
-            "UUID": 1297469869,
+            "UUID": 397414606,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1496,7 +1496,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1508,10 +1508,10 @@
         },
         {
             "Name": "City_building_034",
-            "UUID": 1418273823,
+            "UUID": 590307987,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1550,7 +1550,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1562,10 +1562,10 @@
         },
         {
             "Name": "City_building_035",
-            "UUID": 2147821921,
+            "UUID": 1088601018,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1604,7 +1604,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1616,10 +1616,10 @@
         },
         {
             "Name": "City_building_036",
-            "UUID": 612006862,
+            "UUID": 198193844,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1658,7 +1658,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1670,10 +1670,10 @@
         },
         {
             "Name": "City_building_037",
-            "UUID": 48669793,
+            "UUID": 3113256616,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1712,7 +1712,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1724,10 +1724,10 @@
         },
         {
             "Name": "City_building_038",
-            "UUID": 1670224139,
+            "UUID": 4169196427,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1766,7 +1766,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1778,10 +1778,10 @@
         },
         {
             "Name": "City_building_039",
-            "UUID": 1027233236,
+            "UUID": 1339307778,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1820,7 +1820,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1832,10 +1832,10 @@
         },
         {
             "Name": "City_building_040",
-            "UUID": 1759343193,
+            "UUID": 342298259,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1874,7 +1874,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1886,10 +1886,10 @@
         },
         {
             "Name": "City_building_041",
-            "UUID": 3849806853,
+            "UUID": 1995017394,
             "Active": true,
             "static": false,
-            "Parent": 292753441,
+            "Parent": 2304044870,
             "Components": [
                 {
                     "Type": 0,
@@ -1928,7 +1928,7 @@
                     "Type": 1,
                     "UUID": 1,
                     "Enabled": true,
-                    "Path": "Library\/Meshes\/3956697897\/"
+                    "Path": "Library\/Meshes\/3723110965\/"
                 },
                 {
                     "Type": 2,
@@ -1940,10 +1940,10 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_Translation",
-            "UUID": 3075127083,
+            "UUID": 332720271,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -1982,10 +1982,10 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_PreRotation",
-            "UUID": 3353829741,
+            "UUID": 2620950842,
             "Active": true,
             "static": false,
-            "Parent": 3075127083,
+            "Parent": 332720271,
             "Components": [
                 {
                     "Type": 0,
@@ -2024,10 +2024,10 @@
         },
         {
             "Name": "Camera001_$AssimpFbx$_Rotation",
-            "UUID": 3641190636,
+            "UUID": 2387417630,
             "Active": true,
             "static": false,
-            "Parent": 3353829741,
+            "Parent": 2620950842,
             "Components": [
                 {
                     "Type": 0,
@@ -2066,10 +2066,10 @@
         },
         {
             "Name": "Camera001",
-            "UUID": 397414606,
+            "UUID": 2011482174,
             "Active": true,
             "static": false,
-            "Parent": 3641190636,
+            "Parent": 2387417630,
             "Components": [
                 {
                     "Type": 0,
@@ -2108,10 +2108,10 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_Translation",
-            "UUID": 590307987,
+            "UUID": 1293550924,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -2150,10 +2150,10 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_PreRotation",
-            "UUID": 1088601018,
+            "UUID": 1440795793,
             "Active": true,
             "static": false,
-            "Parent": 590307987,
+            "Parent": 1293550924,
             "Components": [
                 {
                     "Type": 0,
@@ -2192,10 +2192,10 @@
         },
         {
             "Name": "Camera001.Target_$AssimpFbx$_Rotation",
-            "UUID": 198193844,
+            "UUID": 2572687903,
             "Active": true,
             "static": false,
-            "Parent": 1088601018,
+            "Parent": 1440795793,
             "Components": [
                 {
                     "Type": 0,
@@ -2234,10 +2234,10 @@
         },
         {
             "Name": "Camera001.Target",
-            "UUID": 3113256616,
+            "UUID": 3992636113,
             "Active": true,
             "static": false,
-            "Parent": 198193844,
+            "Parent": 2572687903,
             "Components": [
                 {
                     "Type": 0,
@@ -2276,10 +2276,10 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_Translation",
-            "UUID": 4169196427,
+            "UUID": 2307762728,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -2318,10 +2318,10 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_PreRotation",
-            "UUID": 1339307778,
+            "UUID": 2901410280,
             "Active": true,
             "static": false,
-            "Parent": 4169196427,
+            "Parent": 2307762728,
             "Components": [
                 {
                     "Type": 0,
@@ -2360,10 +2360,10 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_Rotation",
-            "UUID": 342298259,
+            "UUID": 3618780435,
             "Active": true,
             "static": false,
-            "Parent": 1339307778,
+            "Parent": 2901410280,
             "Components": [
                 {
                     "Type": 0,
@@ -2402,10 +2402,10 @@
         },
         {
             "Name": "Spot001_$AssimpFbx$_PostRotation",
-            "UUID": 1995017394,
+            "UUID": 2365194663,
             "Active": true,
             "static": false,
-            "Parent": 342298259,
+            "Parent": 3618780435,
             "Components": [
                 {
                     "Type": 0,
@@ -2444,10 +2444,10 @@
         },
         {
             "Name": "Spot001",
-            "UUID": 332720271,
+            "UUID": 2881795513,
             "Active": true,
             "static": false,
-            "Parent": 1995017394,
+            "Parent": 2365194663,
             "Components": [
                 {
                     "Type": 0,
@@ -2486,10 +2486,10 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_Translation",
-            "UUID": 2620950842,
+            "UUID": 1482852050,
             "Active": true,
             "static": false,
-            "Parent": 1600122811,
+            "Parent": 198176777,
             "Components": [
                 {
                     "Type": 0,
@@ -2528,10 +2528,10 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_PreRotation",
-            "UUID": 2387417630,
+            "UUID": 3998774829,
             "Active": true,
             "static": false,
-            "Parent": 2620950842,
+            "Parent": 1482852050,
             "Components": [
                 {
                     "Type": 0,
@@ -2570,10 +2570,10 @@
         },
         {
             "Name": "Spot001.Target_$AssimpFbx$_Rotation",
-            "UUID": 2011482174,
+            "UUID": 168312880,
             "Active": true,
             "static": false,
-            "Parent": 2387417630,
+            "Parent": 3998774829,
             "Components": [
                 {
                     "Type": 0,
@@ -2612,10 +2612,10 @@
         },
         {
             "Name": "Spot001.Target",
-            "UUID": 1293550924,
+            "UUID": 2611372491,
             "Active": true,
             "static": false,
-            "Parent": 2011482174,
+            "Parent": 168312880,
             "Components": [
                 {
                     "Type": 0,
