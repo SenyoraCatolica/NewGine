@@ -70,15 +70,7 @@ void ModuleCamera3D::Look(const vec &Position, const vec &Reference, bool Rotate
 // -----------------------------------------------------------------
 void ModuleCamera3D::LookAt(const vec &Spot)
 {
-	Reference = Spot;
-
-	Z = (Position - Reference);
-	Z.Normalize();
-	X = vec(0.0f, 1.0f, 0.0f).Cross(Z);
-	X.Normalize();
-	Y = Z.Cross(X);
-
-	CalculateViewMatrix();
+	GetCurrentCam()->LookAt(Spot);
 }
 
 
