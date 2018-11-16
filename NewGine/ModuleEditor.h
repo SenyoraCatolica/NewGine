@@ -28,6 +28,8 @@ public:
 	void GamePanel();
 	WindowAssets* GetAssetsWindow();
 
+	void HandleGuizmo();
+
 	bool LoadConfig(JSON_Object* data);
 	bool SaveConfig(JSON_Object* data) const;
 

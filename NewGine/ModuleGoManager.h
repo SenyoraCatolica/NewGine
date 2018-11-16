@@ -53,7 +53,6 @@ public:
 
 	void TransformationHierarchy(GameObject* object);
 
-
 public:
 	std::list<GameObject*> all_gameobjects;
 	std::list<GameObject*> objects_to_draw;

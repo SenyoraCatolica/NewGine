@@ -197,6 +197,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GlobalFunctions.cpp" />
+    <ClCompile Include="Imgui\ImGuizmo.cpp" />
     <ClCompile Include="JSONWrapper.cpp" />
     <ClCompile Include="JSON\parson.c" />
     <ClCompile Include="MaterialComponent.cpp" />

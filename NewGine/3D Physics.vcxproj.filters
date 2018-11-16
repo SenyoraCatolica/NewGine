@@ -635,6 +635,9 @@
     <ClCompile Include="OutlinerWindow.cpp">
       <Filter>Sources\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="Imgui\ImGuizmo.cpp">
+      <Filter>Resources\Imgui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ListIterator.snippet">

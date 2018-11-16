@@ -16,6 +16,7 @@
 #include "Imgui\imgui.h"
 #include "Imgui\imgui_impl_sdl.h"
 #include "Imgui\imgui_impl_sdl_gl3.h"
+#include "Imgui\ImGuizmo.h"
 
 
 ModuleRenderer3D::ModuleRenderer3D(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -135,14 +136,15 @@ update_status ModuleRenderer3D::PreUpdate()
 	for (uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+	//ImGuizmo::SetDrawlist();
+
+
 	return UPDATE_CONTINUE;
 }
 
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate()
 {
-	ImGuiIO& io = ImGui::GetIO();
-
 	std::list<GameObject*>::iterator it = App->go_manager->all_gameobjects.begin();
 	while (it != App->go_manager->all_gameobjects.end())
 	{

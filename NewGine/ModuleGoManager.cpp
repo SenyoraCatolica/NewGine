@@ -324,7 +324,6 @@ void ModuleGOManager::SelectObject()
 
 			if (selected_go != nullptr)
 			{
-				DrawLocator();
 				App->editor->selected_object = selected_go;
 			}
 		}
@@ -333,8 +332,9 @@ void ModuleGOManager::SelectObject()
 
 void ModuleGOManager::DrawLocator()
 {
-	if (selected_go != nullptr)
+	if (selected_go != nullptr || App->editor->selected_object != nullptr)
 	{
+		selected_go = App->editor->selected_object;
 		float4 color = float4(0.1f, 0.58f, 0.2f, 1.0f);
 		TransformComponent* t = (TransformComponent*)selected_go->GetComponent(COMPONENT_TRANSFORM);
 
@@ -698,6 +698,7 @@ void ModuleGOManager::TransformationHierarchy(GameObject* object)
 		}
 	}
 }
+
 
 
 

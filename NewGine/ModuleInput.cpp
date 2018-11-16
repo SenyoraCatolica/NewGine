@@ -4,6 +4,7 @@
 
 #include "Imgui\imgui.h"
 #include "Imgui\imgui_impl_sdl_gl3.h"
+#include "Imgui\ImGuizmo.h"
 
 #define MAX_KEYS 300
 
@@ -200,6 +201,7 @@ update_status ModuleInput::PreUpdate()
 		return UPDATE_STOP;
 
 	ImGui_ImplSdlGL3_NewFrame(App->window->window);
+	ImGuizmo::BeginFrame();
 
 	return UPDATE_CONTINUE;
 }

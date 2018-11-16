@@ -2,9 +2,11 @@
 #include "Application.h"
 #include "ModuleEditor.h"
 #include "Imgui\imgui.h"
+#include "Imgui\ImGuizmo.h"
 #include "Glew\include\glew.h"
 #include "glut\glut.h"
 #include "JSON\parson.h"
+
 
 ModuleEditor::ModuleEditor(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -41,6 +43,8 @@ update_status ModuleEditor::Update()
 		(*it)->DrawOnEditor();
 		++it;
 	}
+
+	HandleGuizmo();
 
 	return UPDATE_CONTINUE;
 };
@@ -370,5 +374,48 @@ void ModuleEditor::HandleScenesMenu()
 		want_to_load_prefab = false;
 	}
 }
+
+void ModuleEditor::HandleGuizmo()
+{
+	if (selected_object != nullptr)
+	{
+		ImGuiIO& io = ImGui::GetIO();
+		ImGuizmo::Enable(true);
+		static ImGuizmo::OPERATION operation(ImGuizmo::TRANSLATE);
+		ImGuizmo::SetRect(0, 0, 25, 100);
+		ImGuizmo::MODE transform_mode = ImGuizmo::LOCAL;
+
+
+		if (io.WantTextInput == false)
+		{
+			// SET GUIZMO OPERATION ----------------------------------
+			if (App->input->GetKey(SDL_SCANCODE_T) == KEY_DOWN)
+			{
+				operation = ImGuizmo::TRANSLATE;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_R) == KEY_DOWN)
+			{
+				operation = ImGuizmo::ROTATE;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+			{
+				operation = ImGuizmo::SCALE;
+			}
+		}
+
+		TransformComponent* t = (TransformComponent*)selected_object->GetComponent(COMPONENT_TRANSFORM);
+
+		// EDIT TRANSFORM QITH GUIZMO
+		ImGuizmo::Manipulate(*App->camera->GetViewMatrix().v, *App->camera->GetCurrentCam()->GetProjectionMatrix().v, operation,
+			transform_mode, *t->GetGlobalTranform().v);
+
+		// Only edit transforms with guizmo if it's selected first
+		if (ImGuizmo::IsUsing() && App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT)
+		{
+			t->UpdateGlobalTransform();
+		}
+	}
+}
+
 
 
