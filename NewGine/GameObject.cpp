@@ -260,4 +260,22 @@ Component* GameObject::GetComponent(COMPONENT_TYPE type)
 	return nullptr;
 }
 
+std::vector<Component*> GameObject::GetComponents(COMPONENT_TYPE type)
+{
+	std::vector<Component*> ret;
+	std::list<Component*>::iterator it = components.begin();
+	while (it != components.end())
+	{
+		if ((*it)->type == type)
+		{
+			ret.push_back(*it);
+		}
+
+		it++;
+	}
+
+	return ret;
+}
+
+
 

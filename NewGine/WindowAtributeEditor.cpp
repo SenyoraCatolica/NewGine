@@ -40,28 +40,45 @@ void WindowAtributeEditor::DrawOnEditor()
 		}
 
 		// Material
-		if (ImGui::CollapsingHeader("Material"));
-		{
-			MaterialComponent* m = (MaterialComponent*)App->editor->selected_object->GetComponent(COMPONENT_MATERIAL);
-			if (m != nullptr)
-				m->ComponentEditor();
+		vector<Component*> materials = App->editor->selected_object->GetComponents(COMPONENT_MATERIAL);
 
-			else
-				ImGui::Text("No material component.");
+		std::vector<Component*>::iterator it = materials.begin();
+		while (it != materials.end())
+		{
+			if (ImGui::CollapsingHeader("Material"));
+			{
+				MaterialComponent* m = (MaterialComponent*)(*it);
+				if (m != nullptr)
+					m->ComponentEditor();
+
+				else
+					ImGui::Text("No material component.");
+			}
+
+			it++;
 		}
+		
 
 		//Mesh
-		if (ImGui::CollapsingHeader("Mesh"));
+		vector<Component*> meshes = App->editor->selected_object->GetComponents(COMPONENT_MESH);
+		std::vector<Component*>::iterator it2 = meshes.begin();
+		while (it2 != meshes.end())
 		{
-			MeshComponent* m = (MeshComponent*)App->editor->selected_object->GetComponent(COMPONENT_MESH);
+			if (ImGui::CollapsingHeader("Mesh"));
+			{
+				MeshComponent* m = (MeshComponent*)(*it2);
 
-			if (m != nullptr)
-				m->ComponentEditor();
+				if (m != nullptr)
+					m->ComponentEditor();
 
-			else
-				ImGui::Text("No mesh component.");
+				else
+					ImGui::Text("No mesh component.");
+			}
 
+			it2++;
 		}
+
+		
 
 		//Camera
 		if (ImGui::CollapsingHeader("Camera"));

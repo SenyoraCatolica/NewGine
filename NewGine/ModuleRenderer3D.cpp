@@ -361,7 +361,7 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 							glBindBuffer(GL_ARRAY_BUFFER, 0);
 						}
 
-						//glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+						glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
 						glBindBuffer(GL_ARRAY_BUFFER, 0);
 						glBindTexture(GL_TEXTURE_2D, 0);

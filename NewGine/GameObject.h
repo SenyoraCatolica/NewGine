@@ -47,6 +47,7 @@ public:
 
 	bool HasComponent(COMPONENT_TYPE type);
 	Component* GetComponent(COMPONENT_TYPE type);
+	std::vector<Component*> GetComponents(COMPONENT_TYPE type);
 
 private:
 	uint32 uid;
