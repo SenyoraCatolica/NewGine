@@ -135,7 +135,7 @@ void CameraComponent::Save(JSONWrapper& file) const
 	array_value.WriteFloat("Horizontal FOV", horizontal_fov);
 	array_value.WriteFloat("Veritcal FOV", vertical_fov);
 
-	array_value.WriteArrayValue(file);
+	file.WriteArrayValue(array_value);
 }
 
 void CameraComponent::Load(JSONWrapper& file)

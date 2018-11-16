@@ -47,7 +47,7 @@ public:
 	void From3Dto2D(vec point, int& x, int& y); 
 
 	void UpdateEditorCam();
-
+	void  ChangeCurrentCam(CameraComponent* cam);
 	void CleanCameras();
 
 	void CreateEditorCam();

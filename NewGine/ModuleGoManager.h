@@ -30,6 +30,7 @@ public:
 	GameObject* CreateCamera(const char* name, bool is_editor_cam);
 	GameObject* GetCameraObjectInRoot(GameObject* root);
 	bool HasCameraObjectInRoot(GameObject* root);
+	void SwitchToGameCam();
 
 	GameObject* Raycast(const Ray& ray)const;
 	void SelectObject();
@@ -46,6 +47,7 @@ public:
 	void LoadSceneOnStop();
 
 	GameObject* LoadGameObject(const JSONWrapper& file);
+	void LoadPrefab(const char* name);
 	bool ClearGameObjectFromScene(GameObject* go);
 
 	void TransformationHierarchy(GameObject* object);

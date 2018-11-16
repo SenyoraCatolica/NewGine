@@ -336,7 +336,7 @@ void ModuleEditor::HandleScenesMenu()
 		if (ImGui::Button("Load##loadButton") && prefab_name[0] != '\0')
 		{
 			selected_object = nullptr;
-			App->go_manager->LoadScene(prefab_name);
+			App->go_manager->LoadPrefab(prefab_name);
 			close = true;
 		}
 		ImGui::SameLine();

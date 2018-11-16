@@ -276,6 +276,15 @@ void ModuleCamera3D::UpdateEditorCam()
 	}
 }
 
+void  ModuleCamera3D::ChangeCurrentCam(CameraComponent* cam) 
+{
+	if (cam != nullptr)
+	{
+		current_cam = cam;
+	}
+}
+
+
 void ModuleCamera3D::CreateEditorCam()
 {
 	editor_cam_go = App->go_manager->CreateCamera("EditorCam", true);

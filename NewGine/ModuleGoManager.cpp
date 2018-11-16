@@ -23,11 +23,6 @@ ModuleGOManager::~ModuleGOManager()
 
 bool ModuleGOManager::Start()
 {
-	if (root == nullptr)
-	{
-		LoadEmptyScene();
-	}
-
 	return true;
 }
 
@@ -197,7 +192,7 @@ bool ModuleGOManager::HasCameraObjectInRoot(GameObject* root)
 
 	while (it != root->childs.end())
 	{
-		if ((*it)->GetComponent(COMPONENT_CAMERA) != nullptr)
+		if ((*it)->HasComponent(COMPONENT_CAMERA))
 		{
 			return true;
 		}
@@ -206,6 +201,22 @@ bool ModuleGOManager::HasCameraObjectInRoot(GameObject* root)
 
 	return false;
 }
+
+void ModuleGOManager::SwitchToGameCam()
+{
+	std::vector<GameObject*>::iterator it = root->childs.begin();
+	while (it != root->childs.end())
+	{
+		if ((*it)->HasComponent(COMPONENT_CAMERA))
+		{
+			CameraComponent* cam = (CameraComponent*)(*it)->GetComponent(COMPONENT_CAMERA);
+			App->camera->ChangeCurrentCam(cam);
+		}
+
+		it++;
+	}
+}
+
 
 GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 {
@@ -333,13 +344,11 @@ void ModuleGOManager::LoadScene(const char* name)
 	scene_path += name;
 	scene_path += ".scn";
 
-	//2DO
 	char* buffer = nullptr;
 	uint size = App->file_system->Load(scene_path.data(), &buffer);
 
 	if (size > 0)
 	{
-		//2DO Delete current scene
 		ClearScene();
 
 		JSONWrapper root(buffer);
@@ -361,11 +370,12 @@ void ModuleGOManager::LoadScene(const char* name)
 
 	else
 	{
-		if (buffer)
-			delete[] buffer;
-
 		LOG("Error while loading Scene: %s", name);
 	}
+
+	if (buffer)
+		delete[] buffer;
+
 	App->camera->CreateEditorCam();
 }
 
@@ -451,8 +461,17 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	if (parent != nullptr)
 		parent->childs.push_back(new_go);
 	else
-		if(root == nullptr)
+	{
+		if (root == nullptr)
 			root = new_go;
+		else
+		{
+			new_go->parent = root;
+			root->childs.push_back(new_go);
+		}
+	}
+		
+
 
 	//load components
 	JSONWrapper root_node = file;
@@ -481,6 +500,8 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 			comp->Load(array_value);
 			break;
 		case COMPONENT_CAMERA:
+			comp = new_go->AddComponent(t);
+			comp->Load(array_value);
 			break;
 		default:
 			break;
@@ -518,6 +539,41 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 	
 	return new_go;
 }
+
+void ModuleGOManager::LoadPrefab(const char* name)
+{
+	string scene_path = ASSETS_FOLDER;
+	scene_path += name;
+	scene_path += ".scn";
+
+	char* buffer = nullptr;
+	uint size = App->file_system->Load(scene_path.data(), &buffer);
+
+	if (size > 0)
+	{
+		JSONWrapper root(buffer);
+		JSONWrapper root_value;
+
+		root_value = root.ReadArray("Scene", 0);
+
+		if (root_value.IsNull() == false)
+		{
+			for (int i = 0; i < root.GetArraySize("Scene"); i++)
+			{
+				LoadGameObject(root.ReadArray("Scene", i));
+			}
+		}
+	}
+
+	else
+	{
+		LOG("Error while loading Prefab: %s", name);
+	}
+
+	if (buffer)
+		delete[] buffer;
+}
+
 
 bool ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 {

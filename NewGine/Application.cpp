@@ -223,6 +223,7 @@ void Application::Play()
 	if (game_state == STOP_STATE)
 	{
 		go_manager->SaveSceneOnPlay();
+		go_manager->SwitchToGameCam();
 	}
 
 	game_state = PLAY_STATE;
@@ -234,7 +235,11 @@ void Application::Stop()
 {
 	game_state = STOP_STATE;
 	game_timer.StopGame();
+
 	go_manager->LoadSceneOnStop();
+	if (go_manager->GetRoot() == nullptr)
+		go_manager->LoadEmptyScene();
+
 	camera->SetCurrentCam(camera->GetEditorCam());
 }
 
