@@ -63,7 +63,6 @@ public:
 	Quadtree* quadtree;
 
 private:
-	std::list<GameObject*> to_delete_gos;
 
 	GameObject* root = nullptr;
 	GameObject* selected_go = nullptr;

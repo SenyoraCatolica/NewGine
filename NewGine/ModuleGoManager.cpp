@@ -141,7 +141,7 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 
 	if (to_delete)
 	{
-		to_delete_gos.push_back(to_delete);
+		todelete_objects.push_back(to_delete);
 		ret = true;
 	}
 
@@ -305,19 +305,21 @@ void ModuleGOManager::SelectObject()
 
 		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
 
-		pos.x = 2.0f * pos.x / (float)App->window->GetWidth() - 1.0f;
-		pos.y = 1.0f - 2.0f * pos.y / (float)App->window->GetHeight();
-
-		Ray ray = cam->frustum.UnProjectFromNearPlane(pos.x, pos.y);
-
-		selected_go = Raycast(ray);
-
-		if (selected_go != nullptr)
+		if (pos.x > 300 && pos.x < 1000 && pos.y > 25 && pos.y < 550)
 		{
-			DrawLocator();
-			App->editor->selected_object = selected_go;
-		}
+			pos.x = 2.0f * pos.x / (float)App->window->GetWidth() - 1.0f;
+			pos.y = 1.0f - 2.0f * pos.y / (float)App->window->GetHeight();
 
+			Ray ray = cam->frustum.UnProjectFromNearPlane(pos.x, pos.y);
+
+			selected_go = Raycast(ray);
+
+			if (selected_go != nullptr)
+			{
+				DrawLocator();
+				App->editor->selected_object = selected_go;
+			}
+		}
 	}
 }
 
