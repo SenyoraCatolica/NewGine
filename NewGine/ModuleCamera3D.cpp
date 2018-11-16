@@ -201,13 +201,21 @@ void ModuleCamera3D::From3Dto2D(vec point, int& x, int& y)
 
 vec ModuleCamera3D::GetPosition()
 {
-	return Position;
+	TransformComponent* t = (TransformComponent*)editor_cam_go->GetComponent(COMPONENT_TRANSFORM);
+	return t->position;
 }
 
 vec ModuleCamera3D::GetReference()
 {
 	return Reference;
 }
+
+void ModuleCamera3D::SetPosition(float3 pos)
+{
+	TransformComponent* t = (TransformComponent*)editor_cam_go->GetComponent(COMPONENT_TRANSFORM);
+	t->SetTranslation(pos);
+}
+
 
 void ModuleCamera3D::UpdateEditorCam()
 {

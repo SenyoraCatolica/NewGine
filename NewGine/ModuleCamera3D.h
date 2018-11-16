@@ -43,6 +43,8 @@ public:
 	vec GetPosition();
 	vec GetReference();
 
+	void SetPosition(float3 pos);
+
 	//Transform a 3D point to a point of the screen
 	void From3Dto2D(vec point, int& x, int& y); 
 

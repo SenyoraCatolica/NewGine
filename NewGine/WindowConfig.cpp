@@ -224,7 +224,7 @@ void WindowConfig::Camera()
 
 		if (ImGui::DragFloat3("Position", new_pos.ptr()))
 		{
-			App->camera->Position.Set(new_pos.x, new_pos.y, new_pos.z);
+			App->camera->SetPosition(new_pos);
 		}
 
 		float3 tmp_float3 = App->camera->GetReference();

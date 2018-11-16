@@ -65,12 +65,20 @@ update_status ModuleGOManager::Update()
 			if ((*it)->IsStatic() == true)
 			{
 				dynamic_objects.remove((*it));
-				quadtree->Insert((*it));
+
+				if(quadtree != nullptr)
+					quadtree->Insert((*it));
+				else
+				{
+					quadtree = new Quadtree(float3(WORLD_WIDTH / -2, WORLD_HEIGHT / -2, WORLD_DEPTH / -2), float3(WORLD_WIDTH / 2, WORLD_HEIGHT / 2, WORLD_DEPTH / 2));
+					quadtree->Insert((*it));
+				}
 			}
 
 			else
 			{
-				quadtree->Remove((*it));
+				if(quadtree != nullptr)
+					quadtree->Remove((*it));
 				dynamic_objects.push_back((*it));
 			}
 
