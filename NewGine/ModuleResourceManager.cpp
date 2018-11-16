@@ -229,7 +229,7 @@ void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char
 	char* buff;
 	size_t size = root.SerializeBuffer(&buff);  //get the size of the buffer
 
-	string final_path = path;
+	string final_path = lib_dir;
 	final_path = final_path.substr(0, final_path.length() - 4);
 	final_path += ".meta";
 

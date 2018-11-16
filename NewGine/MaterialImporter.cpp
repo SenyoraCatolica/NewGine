@@ -88,10 +88,10 @@ bool MaterialImporter::Import(const char* file, uint uuid)
 			data = new ILubyte[size_data];
 			if (ilSaveL(IL_DDS, data, size_data) > 0)
 			{
-				string new_path = App->file_system->ChangeExtension(assets_path, ".dds");
-				rett = App->file_system->Save(new_path.data(), (char*)data, size_data);
+				//string new_path = App->file_system->ChangeExtension(assets_path, ".dds");
+				//rett = App->file_system->Save(new_path.data(), (char*)data, size_data);
 
-				if (rett)
+				//if (rett)
 				{
 					string new_path = App->file_system->ChangeExtension(lib_path, ".dds");
 					rett = App->file_system->Save(new_path.data(), (char*)data, size_data);

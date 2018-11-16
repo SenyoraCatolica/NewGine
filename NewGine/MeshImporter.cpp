@@ -27,8 +27,6 @@ bool MeshImporter::Import(const char* file)
 	mesh_path = MESH_FOLDER;
 	mesh_path += std::to_string(uuid) + "/";
 	App->file_system->CreateDir(mesh_path.c_str());
-	//complete name of the file with path
-	string lib_path = mesh_path + std::to_string(uuid) + ".dta";
 
 	//Generate Asset folder for file
 	string assets_path;
@@ -40,7 +38,7 @@ bool MeshImporter::Import(const char* file)
 	string path = file;
 
 	//Generate Meta file 2DO
-	App->resource_manager->CreateFileMeta(uuid, MESH, assets_path.data(), lib_path.data());
+	App->resource_manager->CreateFileMeta(uuid, MESH, assets_path.data(), mesh_path.data());
 	
 	//Importing starts here
 	//=================================================================================
