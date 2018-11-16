@@ -49,6 +49,7 @@ public:
 	GameObject* LoadGameObject(const JSONWrapper& file);
 	void LoadPrefab(const char* name);
 	bool ClearGameObjectFromScene(GameObject* go);
+	void LoadExtraComponent(GameObject* go, const char* file, COMPONENT_TYPE type);
 
 	void TransformationHierarchy(GameObject* object);
 

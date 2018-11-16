@@ -25,7 +25,7 @@ bool MeshImporter::Import(const char* file)
 	//Generate complete path in Library folder
 	string mesh_path;
 	mesh_path = MESH_FOLDER;
-	mesh_path += std::to_string(uuid) + "/";
+	//mesh_path += std::to_string(uuid) + "/";
 	App->file_system->CreateDir(mesh_path.c_str());
 
 	//Generate Asset folder for file

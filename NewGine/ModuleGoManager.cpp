@@ -532,8 +532,8 @@ GameObject* ModuleGOManager::LoadGameObject(const JSONWrapper& file)
 		{
 			//Link component material and resource material
 			MaterialComponent* mat = (MaterialComponent*)comp;
-			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterial("",mat->path.data()));
-			mat->material->texture = App->importer->mat_importer->LoadTexture(mat->path.data());
+			mat->SetResourceMaterial(App->resource_manager->LinkResourceMaterialByPath(mat->path.data()));
+			mat->material->GenerateResource(App->importer->mat_importer->LoadTexture(mat->path.data()));
 		}
 	}
 
@@ -626,6 +626,46 @@ bool ModuleGOManager::ClearGameObjectFromScene(GameObject* go)
 
 	return ret;
 }
+
+void ModuleGOManager::LoadExtraComponent(GameObject* go, const char* file, COMPONENT_TYPE type)
+{
+	if (type == COMPONENT_MESH)
+	{
+		MeshComponent* mesh = (MeshComponent*)go->AddComponent(type);
+
+		string name = App->file_system->GetNameFromDirectory(file);
+		name = App->file_system->DeleteExtensionFromName(name.data());
+
+		ResourceMesh* r_mesh = App->resource_manager->LinkResourceMesh(name.data(), file);
+
+		if (r_mesh != nullptr)
+		{
+			mesh->SetResourceMesh(r_mesh);
+			if (r_mesh->GetState() == MyResource::R_STATE::UNLOADED)
+				mesh->mesh->GenerateResource(App->importer->mesh_importer->LoadMesh(file));
+		}
+
+		mesh->RecalculateLocalbox();
+	}
+	
+	if (type == COMPONENT_MATERIAL)
+	{
+		MaterialComponent* mat = (MaterialComponent*)go->AddComponent(type);
+
+		string name = App->file_system->GetNameFromDirectory(file);
+		name = App->file_system->DeleteExtensionFromName(name.data());
+		ResourceMaterial* r_mat = App->resource_manager->LinkResourceMaterial(name.data(), file);
+
+		if (r_mat != nullptr)
+		{
+			mat->SetResourceMaterial(r_mat);
+
+			if (r_mat->GetState() == MyResource::R_STATE::UNLOADED)
+				mat->material->GenerateResource(App->importer->mat_importer->LoadTexture(file));
+		}
+	}	
+}
+
 
 void ModuleGOManager::TransformationHierarchy(GameObject* object)
 {

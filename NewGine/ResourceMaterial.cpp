@@ -23,6 +23,8 @@ void ResourceMaterial::GenerateResource(MyTexture* tex)
 	texture->id = tex->id;
 	texture->height = tex->height;
 	texture->width = tex->width;
+
+	LoadToMemory();
 }
 
 bool ResourceMaterial::LoadToMemory()

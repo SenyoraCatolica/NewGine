@@ -29,6 +29,9 @@ public:
 	MyResource* CreateResource(MyResource::R_TYPE, uint uuid);
 	MyResource* GetResource(uint uuid);
 	MyResource* TryGetResourceByName(const char* file);
+	ResourceMesh* CopyResourceMesh(ResourceMesh* copy);
+	ResourceMaterial* CopyResourceMaterial(ResourceMaterial* copy);
+
 
 
 	//Handle files
@@ -37,8 +40,13 @@ public:
 	void CreateFileMeta(uint uuid, FILE_TYPE type, const char* lib_dir, const char* assets_dir);
 	std::string CopyFileToAssets(const char* path, std::string assets_dir);
 
-	ResourceMesh* LinkResourceMesh(const char* name, const char* path = "");
-	ResourceMaterial* LinkResourceMaterial(const char* name, const char* path = "");
+	ResourceMesh* LinkResourceMesh(const char* name, const char* path);
+	ResourceMesh* LinkResourceMeshByName(const char* name);
+	ResourceMesh* LinkResourceMeshByPath(const char* path);
+
+	ResourceMaterial* LinkResourceMaterial(const char* name, const char* path);
+	ResourceMaterial* LinkResourceMaterialByName(const char* name);
+	ResourceMaterial* LinkResourceMaterialByPath(const char* path);
 	MyResource* LoadResource(const char* path, FILE_TYPE type);
 
 	uint GetUUIDFromResourcePath(const char* path);

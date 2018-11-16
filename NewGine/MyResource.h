@@ -24,10 +24,11 @@ public:
 
 protected:
 	R_TYPE type;
-	R_STATE state;
+	R_STATE state = UNLOADED;
 	uint64_t uuid;
 
 public:
 	std::string name;
 	std::string path;
+	uint uses = 0;
 };

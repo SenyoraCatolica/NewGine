@@ -126,6 +126,22 @@ MyResource* ModuleResourceManager::TryGetResourceByName(const char* name)
 	return nullptr;
 }
 
+ResourceMesh* ModuleResourceManager::CopyResourceMesh(ResourceMesh* copy)
+{
+	ResourceMesh* ret = new ResourceMesh(App->GenerateUUID(), copy->path.data());
+	ret->GenerateResource(copy->mesh);
+	ret->name = copy->name + "_copy";
+	return ret;
+}
+
+ResourceMaterial* ModuleResourceManager::CopyResourceMaterial(ResourceMaterial* copy)
+{
+	ResourceMaterial* ret = new ResourceMaterial(App->GenerateUUID(), copy->path.data());
+	ret->GenerateResource(copy->texture);
+	ret->name = copy->name + "_copy";
+	return ret;
+}
+
 FILE_TYPE TryGetTypeByName(const char* file)
 {
 	FILE_TYPE ret = NONE;
@@ -261,30 +277,52 @@ std::string ModuleResourceManager::CopyFileToAssets(const char* path, std::strin
 
 ResourceMesh* ModuleResourceManager::LinkResourceMesh(const char* name, const char* path)
 {
-	ResourceMesh* m = (ResourceMesh*)TryGetResourceByName(name);
+	ResourceMesh* m = LinkResourceMeshByName(name);
 
 	if (m == nullptr)
-	{
-		m = (ResourceMesh*)LoadResource(path, MESH);
-	}
-	
-	if (m)
-		return m;
-	return nullptr;
+		m = LinkResourceMeshByPath(path);
+
+	return m;
+}
+
+ResourceMesh* ModuleResourceManager::LinkResourceMeshByName(const char* name)
+{
+	ResourceMesh* m = (ResourceMesh*)TryGetResourceByName(name);
+	if(m != nullptr)
+		m->uses++;
+
+	return m;
+}
+
+ResourceMesh* ModuleResourceManager::LinkResourceMeshByPath(const char* path)
+{
+	ResourceMesh* m = (ResourceMesh*)LoadResource(path, MESH);
+	return m;
 }
 
 ResourceMaterial* ModuleResourceManager::LinkResourceMaterial(const char* name, const char* path)
 {
-	ResourceMaterial* m = (ResourceMaterial*)TryGetResourceByName(name);
+	ResourceMaterial* m = LinkResourceMaterialByName(name);
 
 	if (m == nullptr)
-	{
-		m = (ResourceMaterial*)LoadResource(path, MATERIAL);
-	}
+		m = LinkResourceMaterialByPath(path);
 
-	if (m)
-		return m;
-	return nullptr;
+	return m;
+}
+
+
+ResourceMaterial* ModuleResourceManager::LinkResourceMaterialByName(const char* name)
+{
+	ResourceMaterial* m = (ResourceMaterial*)TryGetResourceByName(name);
+	if(m != nullptr)
+		m->uses++;
+	return m;
+}
+
+ResourceMaterial* ModuleResourceManager::LinkResourceMaterialByPath(const char* path)
+{
+	ResourceMaterial* m = (ResourceMaterial*)LoadResource(path, MATERIAL);
+	return m;
 }
 
 MyResource* ModuleResourceManager::LoadResource(const char* path, FILE_TYPE type)

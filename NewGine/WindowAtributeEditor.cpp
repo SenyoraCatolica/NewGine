@@ -74,7 +74,68 @@ void WindowAtributeEditor::DrawOnEditor()
 				ImGui::Text("No camera component.");
 
 		}
+
+		ImGui::Separator();
+
+		if (ImGui::Button("Add Component"))
+			ImGui::OpenPopup("Add Comp");
+
+		if (ImGui::BeginPopup("Add Comp"))
+		{
+			AddComponentWindow();
+			ImGui::EndPopup();
+		}
 	}
 
 	ImGui::End();
+}
+
+
+void WindowAtributeEditor::AddComponentWindow()
+{
+	if (ImGui::BeginMenu("Component Mesh"))
+	{
+		mesh_names = App->file_system->GetFileNamesFromDirectory(MESH_FOLDER);
+
+		std::vector<string>::iterator it = mesh_names.begin();
+		while (it != mesh_names.end())
+		{
+			if (ImGui::MenuItem((*it).data()))
+			{
+				string complete_name = MESH_FOLDER + (*it);
+				App->go_manager->LoadExtraComponent(App->editor->selected_object, complete_name.data(), COMPONENT_MESH);
+			}
+
+			it++;
+		}
+
+		mesh_names.clear();
+		ImGui::EndMenu();
+	}
+
+	if (ImGui::BeginMenu("Component Material"))
+	{
+		material_names = App->file_system->GetFileNamesFromDirectory(MATERIAL_FOLDER);
+
+		std::vector<string>::iterator it = material_names.begin();
+		while (it != material_names.end())
+		{
+			if (ImGui::MenuItem((*it).data()))
+			{
+				string complete_name = MATERIAL_FOLDER + (*it);
+				complete_name += "/" + (*it) + ".dds";
+				App->go_manager->LoadExtraComponent(App->editor->selected_object, complete_name.data(), COMPONENT_MATERIAL);
+			}
+
+			it++;
+		}
+
+		material_names.clear();
+		ImGui::EndMenu();
+	}
+
+	if (ImGui::MenuItem("Component Camera"))
+	{
+		App->editor->selected_object->AddComponent(COMPONENT_CAMERA);
+	}
 }

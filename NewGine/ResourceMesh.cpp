@@ -45,6 +45,8 @@ void ResourceMesh::GenerateResource(MyMesh* m)
 	mesh->id_texture_coords = m->id_texture_coords;
 	mesh->num_texture_coords = m->num_texture_coords;
 	mesh->texture_coords = m->texture_coords;
+
+	state = LOADED;
 }
 
 bool ResourceMesh::LoadToMemory()
