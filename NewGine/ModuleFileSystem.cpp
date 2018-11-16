@@ -146,6 +146,21 @@ std::string ModuleFileSystem::DeleteExtensionFromName(std::string file)
 	return file;
 }
 
+std::vector<std::string> ModuleFileSystem::GetFileNamesFromDirectory(const char* dir)
+{
+	std::vector<std::string> vec;
+
+	char** files = PHYSFS_enumerateFiles(dir);
+
+	for (char** i = files; *i != nullptr; i++)
+	{
+		vec.push_back(*i);
+	}
+
+	PHYSFS_freeList(files);
+
+	return vec;
+}
 
 
 // Open for Read/Write

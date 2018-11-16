@@ -29,6 +29,7 @@ public:
 	std::string GetNameFromDirectory(std::string file);
 	std::string ChangeExtension(std::string path, const char* extension);
 	std::string DeleteExtensionFromName(std::string file);
+	std::vector<std::string> GetFileNamesFromDirectory(const char* dir);
 
 	// Open for Read/Write
 	uint Load(const char* file, char** buffer) const;
