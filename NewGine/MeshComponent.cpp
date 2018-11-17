@@ -41,7 +41,7 @@ void MeshComponent::Update()
 {
 	if (mesh != nullptr)
 	{
-		RecalculateBox();
+		//RecalculateBox();
 	}			
 }
 
@@ -58,14 +58,15 @@ void MeshComponent::SetResourceMesh(ResourceMesh * resourse_mesh)
 void MeshComponent::RecalculateLocalbox()
 {
 	local_box.Enclose((float3*)mesh->mesh->vertices, mesh->mesh->num_vertices);
-	RecalculateBox();
+	//RecalculateBox();
 }
 
 
 void MeshComponent::RecalculateBox()
 {
 	TransformComponent* t = (TransformComponent*)parent->GetComponent(COMPONENT_TRANSFORM);
-	math::OBB obb = local_box.Transform(t->GetLocalTransform().Transposed());
+	math::OBB obb = local_box.Transform(t->GetGlobalTranform());
+	LOG("LOcalbox %s", obb.ToString().data());
 	global_box = obb.MinimalEnclosingAABB();
 	parent->aabb = global_box;
 }

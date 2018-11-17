@@ -426,12 +426,6 @@ void ModuleGOManager::ClearScene()
 
 	all_gameobjects.clear();
 	dynamic_objects.clear();
-
-	//provisinal smaller quadtree to check if works
-	float3 min, max;
-	min.x = -20; min.y = -20; min.z = -20;
-	max.x = 20; max.y = 20; max.z = 20;
-	quadtree = new Quadtree(min, max);
 }
 
 void ModuleGOManager::SaveSceneOnPlay()
