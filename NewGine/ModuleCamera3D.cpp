@@ -201,9 +201,9 @@ void ModuleCamera3D::UpdateEditorCam()
 			float3 world_y = t->GetGlobalTranform().WorldY();
 			float3 world_z = t->GetGlobalTranform().WorldZ();
 			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-				new_pos += world_y * speed;
+				new_pos += world_z * speed;
 			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-				new_pos -= world_y * speed;
+				new_pos -= world_z * speed;
 
 			float3 world_x = t->GetGlobalTranform().WorldX();
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
@@ -215,7 +215,7 @@ void ModuleCamera3D::UpdateEditorCam()
 			// Mouse motion ---------------------------------------------------------
 			if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 			{
-				float Sensitivity = 0.5f;
+				float Sensitivity = 0.025f;
 
 				int dx = -App->input->GetMouseXMotion();
 				int dy = -App->input->GetMouseYMotion();
