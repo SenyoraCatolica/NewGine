@@ -162,7 +162,7 @@ void CameraComponent::Load(JSONWrapper& file)
 	horizontal_fov = file.ReadeFloat("Horizontal FOV");
 	vertical_fov = file.ReadeFloat("Vertical FOV");
 	culling = file.ReadBool("Culling");
-	culling = true;
+	culling = false;
 
 	//Init frustum
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);

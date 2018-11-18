@@ -409,6 +409,7 @@ void ModuleEditor::HandleGuizmo()
 
 		float4x4 matrix = t->GetLocalTransform().Transposed();
 
+
 		if(parent_t != nullptr)
 		{
 			matrix = parent_t->GetGlobalTranform() * t->GetLocalTransform();
@@ -423,17 +424,15 @@ void ModuleEditor::HandleGuizmo()
 		{
 			matrix.Transpose();
 
-
 			if (selected_object->parent != nullptr)
 			{
 				matrix = parent_t->GetGlobalTranform().Inverted() * matrix;
+				LOG("MATRIX %s", matrix.ToString().data());
 			}
-
-			t->UpdateGlobalTransform();
 
 			float3 position, scale;
 			Quat rotation;
-			t->local_tranformation.Decompose(position, rotation, scale);
+			matrix.Decompose(position, rotation, scale);
 
 			t->SetTranslation(position);
 			t->SetRotation(rotation);

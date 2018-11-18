@@ -154,7 +154,7 @@ update_status ModuleRenderer3D::PostUpdate()
 
 		if (camera)
 		{
-			if (camera->culling)
+			/*if (camera->culling)
 			{
 				if ((*it)->GetComponent(COMPONENT_MESH))
 				{
@@ -167,7 +167,7 @@ update_status ModuleRenderer3D::PostUpdate()
 
 			}
 
-			else
+			else*/
 			{
 				DrawGameObject(*it);
 			}
