@@ -409,7 +409,7 @@ void ModuleRenderer3D::DrawGameObject(GameObject* go)
 					}
 				}
 
-				//if (go->boundingbox_active)
+				if ((*mesh)->bb_active)
 				{
 					DrawBox((*mesh)->local_box, Yellow);
 				}

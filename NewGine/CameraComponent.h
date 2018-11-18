@@ -35,7 +35,7 @@ public:
 
 	math::Frustum frustum;
 
-	bool culling;
+	bool culling = false;
 	bool main_camera;
 
 private:

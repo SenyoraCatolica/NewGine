@@ -404,7 +404,10 @@ void ModuleEditor::HandleGuizmo()
 		}
 
 		TransformComponent* t = (TransformComponent*)selected_object->GetComponent(COMPONENT_TRANSFORM);
-		TransformComponent* parent_t = (TransformComponent*)selected_object->parent->GetComponent(COMPONENT_TRANSFORM);
+		TransformComponent* parent_t = nullptr;
+		if (selected_object->parent != nullptr)
+			parent_t = (TransformComponent*)selected_object->parent->GetComponent(COMPONENT_TRANSFORM);
+
 		CameraComponent* camera = App->camera->GetCurrentCam();
 
 		float4x4 matrix = t->GetLocalTransform().Transposed();

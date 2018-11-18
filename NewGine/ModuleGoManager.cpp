@@ -159,8 +159,9 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 {
 	GameObject* cam = new GameObject(name);
-	CameraComponent* camera = (CameraComponent*)cam->AddComponent(COMPONENT_TRANSFORM);
-	cam->AddComponent(COMPONENT_CAMERA);
+	cam->AddComponent(COMPONENT_TRANSFORM);
+	CameraComponent* camera = (CameraComponent*)cam->AddComponent(COMPONENT_CAMERA);
+
 
 	if (is_editor_cam)
 	{
@@ -173,6 +174,8 @@ GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 			cam->parent = root;
 			root->childs.push_back(cam);
 			camera_objects.push_back(camera);
+			camera->main_camera = true;
+			camera->culling = false;
 		}
 
 	all_gameobjects.push_back(cam);
@@ -276,8 +279,8 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 			MeshComponent* m = (MeshComponent*)mapit->second->GetComponent(COMPONENT_MESH);
 			const uint num_indices = m->mesh->mesh->num_indices;
 
-			uint u1, u2, u3;
-			float3 v1, v2, v3;
+			uint point1, point2, point3;
+			float3 vec1, vec2, vec3;
 			Triangle triangle;
 			float distance;
 			float3 hitpoint;
@@ -286,13 +289,13 @@ GameObject* ModuleGOManager::Raycast(const Ray& ray)const
 			//now create triangles and check them
 			for (uint i = 0; i < num_indices/3; i++)
 			{
-				u1 = m->mesh->mesh->indices[i * 3];
-				u2 = m->mesh->mesh->indices[i * 3 + 1];
-				u3 = m->mesh->mesh->indices[i * 3 + 2];
-				v1 = float3(&m->mesh->mesh->vertices[u1]);
-				v2 = float3(&m->mesh->mesh->vertices[u2]);
-				v3 = float3(&m->mesh->mesh->vertices[u3]);
-				triangle = Triangle(v1, v2, v3);
+				point1 = m->mesh->mesh->indices[i * 3];
+				point2 = m->mesh->mesh->indices[i * 3 + 1];
+				point3 = m->mesh->mesh->indices[i * 3 + 2];
+				vec1 = float3(&m->mesh->mesh->vertices[point1]);
+				vec2 = float3(&m->mesh->mesh->vertices[point2]);
+				vec3 = float3(&m->mesh->mesh->vertices[point3]);
+				triangle = Triangle(vec1, vec2, vec3);
 
 				if (triangle.Intersects(transposed_ray, &distance, &hitpoint) == true)
 				{
@@ -317,7 +320,7 @@ void ModuleGOManager::SelectObject()
 {
 	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_UP)
 	{
-		CameraComponent* cam = App->camera->GetCurrentCam();
+		CameraComponent* cam = App->camera->GetEditorCam();
 
 		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
 
@@ -439,6 +442,7 @@ void ModuleGOManager::ClearScene()
 
 	all_gameobjects.clear();
 	dynamic_objects.clear();
+	camera_objects.clear();
 }
 
 void ModuleGOManager::SaveSceneOnPlay()

@@ -1,0 +1,2656 @@
+{
+    "Scene": [
+        {
+            "Name": "RootNode",
+            "UUID": 4090781839,
+            "Active": true,
+            "static": false,
+            "Parent": 0,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Sky001_$AssimpFbx$_Translation",
+            "UUID": 1747971787,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        -0,
+                        0,
+                        18.153732299804688,
+                        0,
+                        -0.9999997615814209,
+                        0,
+                        0,
+                        -0,
+                        0,
+                        -0.9999997615814209,
+                        58.960910797119141,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 18.153732299804688,
+                    "PositionY": 0,
+                    "PositionZ": 58.960910797119141,
+                    "RotationX": -0.99999994039535522,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Sky001_$AssimpFbx$_PreRotation",
+            "UUID": 234107701,
+            "Active": true,
+            "static": false,
+            "Parent": 1747971787,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        -0,
+                        0,
+                        0,
+                        0,
+                        -0.9999997615814209,
+                        0,
+                        0,
+                        -0,
+                        0,
+                        -0.9999997615814209,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.99999994039535522,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Sky001_$AssimpFbx$_PostRotation",
+            "UUID": 292753441,
+            "Active": true,
+            "static": false,
+            "Parent": 234107701,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        -0,
+                        0,
+                        0,
+                        0,
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -0,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.70710676908493042,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Sky001",
+            "UUID": 848388944,
+            "Active": true,
+            "static": false,
+            "Parent": 292753441,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Dummy001_$AssimpFbx$_PreRotation",
+            "UUID": 1081245945,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        -0,
+                        0,
+                        0,
+                        0,
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -0,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.70710676908493042,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Dummy001_$AssimpFbx$_Rotation",
+            "UUID": 913451937,
+            "Active": true,
+            "static": false,
+            "Parent": 1081245945,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Dummy001",
+            "UUID": 3723110965,
+            "Active": true,
+            "static": false,
+            "Parent": 913451937,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "City_building_004",
+            "UUID": 198176777,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        -41.47589111328125,
+                        0,
+                        1,
+                        0,
+                        21.01409912109375,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -41.47589111328125,
+                    "PositionY": 21.01409912109375,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building03_c\/building03_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_001",
+            "UUID": 3684092565,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        17.707164764404297,
+                        0,
+                        1,
+                        0,
+                        20.053276062011719,
+                        0,
+                        0,
+                        1,
+                        2.1210729528320371e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 17.707164764404297,
+                    "PositionY": 20.053276062011719,
+                    "PositionZ": 2.1210729528320371e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V02_C\/Building_V02_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_007",
+            "UUID": 367795728,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        16.010492324829102,
+                        0,
+                        1,
+                        0,
+                        37.4932861328125,
+                        0,
+                        0,
+                        1,
+                        -1.5106878663573298e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 16.010492324829102,
+                    "PositionY": 37.4932861328125,
+                    "PositionZ": -1.5106878663573298e-06,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building_016_c\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_008",
+            "UUID": 2185315278,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        -0.99999994039535522,
+                        0,
+                        40.979995727539063,
+                        0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        18.270824432373047,
+                        0,
+                        0,
+                        1,
+                        -2.0522466002148576e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 40.979995727539063,
+                    "PositionY": 18.270824432373047,
+                    "PositionZ": -2.0522466002148576e-06,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building_025_c\/building_025_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Line002",
+            "UUID": 1973249532,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -2.1597719192504883,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        1.8538382053375244,
+                        -0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -2.1597719192504883,
+                    "PositionY": 1.8538382053375244,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                }
+            ]
+        },
+        {
+            "Name": "Plane001",
+            "UUID": 1146089371,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        0.99663525819778442,
+                        0,
+                        0,
+                        -0.02860260009765625,
+                        0,
+                        0.97061645984649658,
+                        0,
+                        0.026032090187072754,
+                        0,
+                        0,
+                        0.99663525819778442,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -0.02860260009765625,
+                    "PositionY": 0.026032090187072754,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 0.99663525819778442,
+                    "ScaleY": 0.97061645984649658,
+                    "ScaleZ": 0.99663525819778442
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_010",
+            "UUID": 1650268637,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        -0.99999994039535522,
+                        0,
+                        25.154010772705078,
+                        0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        -39.153720855712891,
+                        0,
+                        0,
+                        1,
+                        8.5538641769744572e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 25.154010772705078,
+                    "PositionY": -39.153720855712891,
+                    "PositionZ": 8.5538641769744572e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 01_c\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_011",
+            "UUID": 2304044870,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        30.134540557861328,
+                        0,
+                        1,
+                        0,
+                        37.4932861328125,
+                        0,
+                        0,
+                        1,
+                        -1.5106878663573298e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 30.134540557861328,
+                    "PositionY": 37.4932861328125,
+                    "PositionZ": -1.5106878663573298e-06,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building_016_c\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_013",
+            "UUID": 3965418784,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        -0.99999994039535522,
+                        0,
+                        -42.288055419921875,
+                        0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        33.201576232910156,
+                        0,
+                        0,
+                        1,
+                        5.0146070407208754e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -42.288055419921875,
+                    "PositionY": 33.201576232910156,
+                    "PositionZ": 5.0146070407208754e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 06_ c\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_014",
+            "UUID": 69335359,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        8.7422776573475858e-08,
+                        0,
+                        -19.439706802368164,
+                        -8.7422776573475858e-08,
+                        -1,
+                        0,
+                        32.061729431152344,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -19.439706802368164,
+                    "PositionY": 32.061729431152344,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": -4.3711388286737929e-08,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building03_c\/building03_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_016",
+            "UUID": 3658452889,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        8.7422776573475858e-08,
+                        0,
+                        34.270423889160156,
+                        -8.7422776573475858e-08,
+                        -1,
+                        0,
+                        -41.972747802734375,
+                        0,
+                        0,
+                        1,
+                        8.5538641769744572e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 34.270423889160156,
+                    "PositionY": -41.972747802734375,
+                    "PositionZ": 8.5538641769744572e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": -4.3711388286737929e-08,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 01_c\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_017",
+            "UUID": 2127834024,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        -0.99999994039535522,
+                        0,
+                        44.260082244873047,
+                        0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        -39.153720855712891,
+                        0,
+                        0,
+                        1,
+                        8.5538641769744572e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 44.260082244873047,
+                    "PositionY": -39.153720855712891,
+                    "PositionZ": 8.5538641769744572e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 01_c\/building 01_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_022",
+            "UUID": 1866587421,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        -3.8941436741879443e-07,
+                        0,
+                        -20.831323623657227,
+                        3.8941436741879443e-07,
+                        -1,
+                        0,
+                        -27.426488876342773,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -20.831323623657227,
+                    "PositionY": -27.426488876342773,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": 1.9470718370939721e-07,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building05 _c\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_023",
+            "UUID": 728290663,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        42.130641937255859,
+                        0,
+                        1,
+                        0,
+                        37.4932861328125,
+                        0,
+                        0,
+                        1,
+                        -1.5106878663573298e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 42.130641937255859,
+                    "PositionY": 37.4932861328125,
+                    "PositionZ": -1.5106878663573298e-06,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building_016_c\/building_016_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_024",
+            "UUID": 1059149191,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        -8.7422776573475858e-08,
+                        0,
+                        -20.572771072387695,
+                        8.7422776573475858e-08,
+                        -1,
+                        0,
+                        43.060829162597656,
+                        0,
+                        0,
+                        1,
+                        -0.069194458425045013,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -20.572771072387695,
+                    "PositionY": 43.060829162597656,
+                    "PositionZ": -0.069194458425045013,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": 4.3711388286737929e-08,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building_025_c\/building_025_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_026",
+            "UUID": 4089893429,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        -8.7422776573475858e-08,
+                        0,
+                        31.51188850402832,
+                        8.7422776573475858e-08,
+                        -1,
+                        0,
+                        -16.446016311645508,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 31.51188850402832,
+                    "PositionY": -16.446016311645508,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": 4.3711388286737929e-08,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building05 _c\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_028",
+            "UUID": 2144767953,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        13.38798999786377,
+                        0,
+                        1,
+                        0,
+                        -33.755039215087891,
+                        0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 13.38798999786377,
+                    "PositionY": -33.755039215087891,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Object010",
+            "UUID": 1297469869,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        -2.5033531188964844,
+                        0,
+                        1,
+                        0,
+                        15.800846099853516,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -2.5033531188964844,
+                    "PositionY": 15.800846099853516,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_030",
+            "UUID": 1418273823,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -42.807239532470703,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        -41.835563659667969,
+                        -0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -42.807239532470703,
+                    "PositionY": -41.835563659667969,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_031",
+            "UUID": 2147821921,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -34.679481506347656,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        -41.835563659667969,
+                        -0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -34.679481506347656,
+                    "PositionY": -41.835563659667969,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_032",
+            "UUID": 612006862,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        -29.478403091430664,
+                        0,
+                        1,
+                        0,
+                        21.01409912109375,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -29.478403091430664,
+                    "PositionY": 21.01409912109375,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building03_c\/building03_c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_033",
+            "UUID": 48669793,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        -32.361495971679688,
+                        0,
+                        1,
+                        0,
+                        42.37042236328125,
+                        0,
+                        0,
+                        1,
+                        5.0146070407208754e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -32.361495971679688,
+                    "PositionY": 42.37042236328125,
+                    "PositionZ": 5.0146070407208754e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 06_ c\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_034",
+            "UUID": 1670224139,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1.1920928955078125e-07,
+                        0.99999994039535522,
+                        0,
+                        16.049516677856445,
+                        -0.99999994039535522,
+                        -1.1920928955078125e-07,
+                        -0,
+                        -16.696884155273438,
+                        -0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 16.049516677856445,
+                    "PositionY": -16.696884155273438,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.7071068286895752,
+                    "RotationW": 0.70710670948028564,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building05 _c\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_035",
+            "UUID": 1027233236,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        13.38798999786377,
+                        0,
+                        1,
+                        0,
+                        -40.802516937255859,
+                        0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 13.38798999786377,
+                    "PositionY": -40.802516937255859,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_036",
+            "UUID": 1759343193,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -31.216331481933594,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        33.201576232910156,
+                        -0,
+                        0,
+                        1,
+                        5.0146070407208754e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -31.216331481933594,
+                    "PositionY": 33.201576232910156,
+                    "PositionZ": 5.0146070407208754e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building 06_ c\/building 06_ c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_037",
+            "UUID": 3849806853,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1,
+                        -3.8941436741879443e-07,
+                        0,
+                        -20.317693710327148,
+                        3.8941436741879443e-07,
+                        -1,
+                        0,
+                        -16.163608551025391,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -20.317693710327148,
+                    "PositionY": -16.163608551025391,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 1,
+                    "RotationW": 1.9470718370939721e-07,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building05 _c\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_038",
+            "UUID": 3075127083,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -1.1920928955078125e-07,
+                        0.99999994039535522,
+                        0,
+                        -41.649002075195313,
+                        -0.99999994039535522,
+                        -1.1920928955078125e-07,
+                        -0,
+                        -16.495393753051758,
+                        -0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -41.649002075195313,
+                    "PositionY": -16.495393753051758,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.7071068286895752,
+                    "RotationW": 0.70710670948028564,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/building05 _c\/building05 _c.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_039",
+            "UUID": 3353829741,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -42.807239532470703,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        -30.643888473510742,
+                        -0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -42.807239532470703,
+                    "PositionY": -30.643888473510742,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_040",
+            "UUID": 3641190636,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -34.679481506347656,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        -0,
+                        -30.643888473510742,
+                        -0,
+                        0,
+                        1,
+                        -9.3834518111179932e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -34.679481506347656,
+                    "PositionY": -30.643888473510742,
+                    "PositionZ": -9.3834518111179932e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": -0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V01_C\/Building_V01_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "City_building_041",
+            "UUID": 397414606,
+            "Active": true,
+            "static": false,
+            "Parent": 3723110965,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        -0.99999994039535522,
+                        0,
+                        30.695278167724609,
+                        0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        21.612646102905273,
+                        0,
+                        0,
+                        1,
+                        2.1210729528320371e-07,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 30.695278167724609,
+                    "PositionY": 21.612646102905273,
+                    "PositionZ": 2.1210729528320371e-07,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0.70710676908493042,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                },
+                {
+                    "Type": 1,
+                    "UUID": 1,
+                    "Enabled": true,
+                    "Path": "Library\/Meshes\/"
+                },
+                {
+                    "Type": 2,
+                    "UUID": 2,
+                    "Enabled": true,
+                    "Path": "Library\/Materials\/Building_V02_C\/Building_V02_C.dds"
+                }
+            ]
+        },
+        {
+            "Name": "Camera001_$AssimpFbx$_Translation",
+            "UUID": 590307987,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399539589881897,
+                        -0.6018221378326416,
+                        -78.312431335449219,
+                        1.4901161193847656e-08,
+                        0.95630472898483276,
+                        0.2923714816570282,
+                        45.251216888427734,
+                        0.62932044267654419,
+                        0.22721527516841888,
+                        -0.74318820238113403,
+                        -97.031112670898438,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -78.312431335449219,
+                    "PositionY": 45.251216888427734,
+                    "PositionZ": -97.031112670898438,
+                    "RotationX": 0.049339786171913147,
+                    "RotationY": 0.93228733539581299,
+                    "RotationZ": 0.13933119177818298,
+                    "RotationW": -0.33014035224914551,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 0.99999994039535522
+                }
+            ]
+        },
+        {
+            "Name": "Camera001_$AssimpFbx$_PreRotation",
+            "UUID": 1088601018,
+            "Active": true,
+            "static": false,
+            "Parent": 590307987,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399539589881897,
+                        -0.6018221378326416,
+                        0,
+                        1.4901161193847656e-08,
+                        0.95630472898483276,
+                        0.2923714816570282,
+                        0,
+                        0.62932044267654419,
+                        0.22721527516841888,
+                        -0.74318820238113403,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0.049339786171913147,
+                    "RotationY": 0.93228733539581299,
+                    "RotationZ": 0.13933119177818298,
+                    "RotationW": -0.33014035224914551,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 0.99999994039535522
+                }
+            ]
+        },
+        {
+            "Name": "Camera001_$AssimpFbx$_Rotation",
+            "UUID": 198193844,
+            "Active": true,
+            "static": false,
+            "Parent": 1088601018,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399538099765778,
+                        -0.60182219743728638,
+                        0,
+                        -0.62932050228118896,
+                        -0.22721515595912933,
+                        0.74318820238113403,
+                        0,
+                        0,
+                        0.95630472898483276,
+                        0.2923714816570282,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.19855600595474243,
+                    "RotationY": 0.56070470809936523,
+                    "RotationZ": 0.75774872303009033,
+                    "RotationW": -0.26833298802375793,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 0.99999994039535522
+                }
+            ]
+        },
+        {
+            "Name": "Camera001",
+            "UUID": 3113256616,
+            "Active": true,
+            "static": false,
+            "Parent": 198193844,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Camera001.Target_$AssimpFbx$_Translation",
+            "UUID": 4169196427,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399542570114136,
+                        -0.60182243585586548,
+                        -28.132621765136719,
+                        -1.4901161193847656e-08,
+                        0.95630472898483276,
+                        0.29237151145935059,
+                        20.873329162597656,
+                        0.62932068109512329,
+                        0.22721526026725769,
+                        -0.74318826198577881,
+                        -35.064212799072266,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -28.132621765136719,
+                    "PositionY": 20.873329162597656,
+                    "PositionZ": -35.064212799072266,
+                    "RotationX": 0.049339786171913147,
+                    "RotationY": 0.93228733539581299,
+                    "RotationZ": 0.13933119177818298,
+                    "RotationW": -0.33014047145843506,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Camera001.Target_$AssimpFbx$_PreRotation",
+            "UUID": 1339307778,
+            "Active": true,
+            "static": false,
+            "Parent": 4169196427,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399542570114136,
+                        -0.60182243585586548,
+                        0,
+                        -1.4901161193847656e-08,
+                        0.95630472898483276,
+                        0.29237151145935059,
+                        0,
+                        0.62932068109512329,
+                        0.22721526026725769,
+                        -0.74318826198577881,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0.049339786171913147,
+                    "RotationY": 0.93228733539581299,
+                    "RotationZ": 0.13933119177818298,
+                    "RotationW": -0.33014047145843506,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Camera001.Target_$AssimpFbx$_Rotation",
+            "UUID": 342298259,
+            "Active": true,
+            "static": false,
+            "Parent": 1339307778,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        -0.77714574337005615,
+                        0.18399539589881897,
+                        -0.60182243585586548,
+                        0,
+                        -0.62932068109512329,
+                        -0.22721527516841888,
+                        0.74318820238113403,
+                        0,
+                        0,
+                        0.95630478858947754,
+                        0.29237145185470581,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.19855606555938721,
+                    "RotationY": 0.56070470809936523,
+                    "RotationZ": 0.75774872303009033,
+                    "RotationW": -0.26833304762840271,
+                    "ScaleX": 1,
+                    "ScaleY": 0.99999994039535522,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Camera001.Target",
+            "UUID": 1995017394,
+            "Active": true,
+            "static": false,
+            "Parent": 342298259,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001_$AssimpFbx$_Translation",
+            "UUID": 332720271,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.42627441883087158,
+                        0.904593825340271,
+                        -66.721267700195313,
+                        -4.4703483581542969e-08,
+                        -0.904593825340271,
+                        0.42627441883087158,
+                        141.93412780761719,
+                        1,
+                        -4.4703483581542969e-08,
+                        5.9604644775390625e-08,
+                        6.2041376622801181e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": -66.721267700195313,
+                    "PositionY": 141.93412780761719,
+                    "PositionZ": 6.2041376622801181e-06,
+                    "RotationX": -0.69003510475158691,
+                    "RotationY": -0.15443938970565796,
+                    "RotationZ": -0.69003510475158691,
+                    "RotationW": 0.15443941950798035,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001_$AssimpFbx$_PreRotation",
+            "UUID": 2620950842,
+            "Active": true,
+            "static": false,
+            "Parent": 332720271,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        5.9604644775390625e-08,
+                        0.42627441883087158,
+                        0.904593825340271,
+                        0,
+                        -4.4703483581542969e-08,
+                        -0.904593825340271,
+                        0.42627441883087158,
+                        0,
+                        1,
+                        -4.4703483581542969e-08,
+                        5.9604644775390625e-08,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.69003510475158691,
+                    "RotationY": -0.15443938970565796,
+                    "RotationZ": -0.69003510475158691,
+                    "RotationW": 0.15443941950798035,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001_$AssimpFbx$_Rotation",
+            "UUID": 2387417630,
+            "Active": true,
+            "static": false,
+            "Parent": 2620950842,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1.1920928955078125e-07,
+                        0.42627441883087158,
+                        0.90459388494491577,
+                        0,
+                        -1,
+                        5.9604644775390625e-08,
+                        5.9604644775390625e-08,
+                        0,
+                        0,
+                        -0.90459388494491577,
+                        0.42627441883087158,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.3787233829498291,
+                    "RotationY": 0.37872335314750671,
+                    "RotationZ": -0.59713363647460938,
+                    "RotationW": 0.59713369607925415,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001_$AssimpFbx$_PostRotation",
+            "UUID": 2011482174,
+            "Active": true,
+            "static": false,
+            "Parent": 2387417630,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        -0,
+                        0,
+                        0,
+                        0,
+                        5.9604644775390625e-08,
+                        0.99999994039535522,
+                        0,
+                        -0,
+                        -0.99999994039535522,
+                        5.9604644775390625e-08,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": -0.70710676908493042,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.70710676908493042,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001",
+            "UUID": 1293550924,
+            "Active": true,
+            "static": false,
+            "Parent": 2011482174,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001.Target_$AssimpFbx$_Translation",
+            "UUID": 1440795793,
+            "Active": true,
+            "static": false,
+            "Parent": 4090781839,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        28.890945434570313,
+                        0,
+                        1,
+                        -1.1920928244535389e-07,
+                        -60.963882446289063,
+                        0,
+                        1.1920928244535389e-07,
+                        1,
+                        -2.6648158382158726e-06,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 28.890945434570313,
+                    "PositionY": -60.963882446289063,
+                    "PositionZ": -2.6648158382158726e-06,
+                    "RotationX": 5.9604644775390625e-08,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.99999994039535522,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001.Target_$AssimpFbx$_PreRotation",
+            "UUID": 2572687903,
+            "Active": true,
+            "static": false,
+            "Parent": 1440795793,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        -1.1920928244535389e-07,
+                        0,
+                        0,
+                        1.1920928244535389e-07,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 5.9604644775390625e-08,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.99999994039535522,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001.Target_$AssimpFbx$_Rotation",
+            "UUID": 3992636113,
+            "Active": true,
+            "static": false,
+            "Parent": 2572687903,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        -1.1920928955078125e-07,
+                        -0.99999994039535522,
+                        0,
+                        0,
+                        0.99999994039535522,
+                        -1.1920928955078125e-07,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0.7071068286895752,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 0.70710670948028564,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        },
+        {
+            "Name": "Spot001.Target",
+            "UUID": 2307762728,
+            "Active": true,
+            "static": false,
+            "Parent": 3992636113,
+            "Components": [
+                {
+                    "Type": 0,
+                    "UUID": 0,
+                    "Enabled": true,
+                    "Loacal Matrix": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        1
+                    ],
+                    "PositionX": 0,
+                    "PositionY": 0,
+                    "PositionZ": 0,
+                    "RotationX": 0,
+                    "RotationY": 0,
+                    "RotationZ": 0,
+                    "RotationW": 1,
+                    "ScaleX": 1,
+                    "ScaleY": 1,
+                    "ScaleZ": 1
+                }
+            ]
+        }
+    ]
+} 

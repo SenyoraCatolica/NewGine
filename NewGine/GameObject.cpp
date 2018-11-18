@@ -125,6 +125,15 @@ void GameObject::SetStatic(bool Stat)
 	if (is_static != Stat)
 		static_changed = true;
 	is_static = Stat;
+
+	if (parent->is_static == !Stat && parent->parent != nullptr)
+		parent->SetStatic(Stat);
+
+	for (std::vector<GameObject*>::iterator it = childs.begin(); it != childs.end(); it++)
+	{
+		(*it)->SetStatic(Stat);
+		
+	}
 }
 
 bool GameObject::IsStatic()
