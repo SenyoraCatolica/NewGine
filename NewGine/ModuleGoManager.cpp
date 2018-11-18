@@ -159,7 +159,7 @@ bool ModuleGOManager::DeleteGameObject(GameObject* to_delete)
 GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 {
 	GameObject* cam = new GameObject(name);
-	cam->AddComponent(COMPONENT_TRANSFORM);
+	CameraComponent* camera = (CameraComponent*)cam->AddComponent(COMPONENT_TRANSFORM);
 	cam->AddComponent(COMPONENT_CAMERA);
 
 	if (is_editor_cam)
@@ -172,7 +172,7 @@ GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 		}
 
 	all_gameobjects.push_back(cam);
-
+	App->camera->SetGameCam(camera);
 
 	return cam;
 }
@@ -184,12 +184,16 @@ GameObject* ModuleGOManager::GetCameraObjectInRoot(GameObject* root)
 
 	while (it != root->childs.end())
 	{
-		if ((*it)->GetComponent(COMPONENT_CAMERA) != nullptr)
+		CameraComponent* cam = (CameraComponent*)(*it)->GetComponent(COMPONENT_CAMERA);
+		if (cam != nullptr)
 		{
+			App->camera->SetGameCam(cam);
+
 			return (*it);
 		}
 		it++;
 	}
+
 
 	return nullptr;
 }

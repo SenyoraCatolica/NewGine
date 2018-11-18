@@ -145,10 +145,39 @@ update_status ModuleRenderer3D::PreUpdate()
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate()
 {
+	
+
 	std::list<GameObject*>::iterator it = App->go_manager->all_gameobjects.begin();
 	while (it != App->go_manager->all_gameobjects.end())
 	{
-		DrawGameObject(*it);
+		CameraComponent* camera = App->camera->GetGameCam();
+
+		if (camera)
+		{
+			if (camera->culling)
+			{
+				if ((*it)->GetComponent(COMPONENT_MESH))
+				{
+					if (camera->frustum.Intersects((*it)->aabb))
+						DrawGameObject(*it);
+				}
+
+				if((*it) = camera->parent)
+					DrawGameObject(*it);
+
+			}
+
+			else
+			{
+				DrawGameObject(*it);
+			}
+		}
+		
+		else
+		{
+			DrawGameObject(*it);
+		}
+		
 		it++;
 	}
 

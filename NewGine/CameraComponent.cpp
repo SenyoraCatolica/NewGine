@@ -63,6 +63,12 @@ void CameraComponent::ComponentEditor()
 	if (ImGui::DragFloat("Vertical FOV", &new_VFov, 0.2f))
 		SetVerticalFOV(new_VFov);
 
+	/*bool tmp = culling;
+	if(ImGui::Checkbox("Enable Culling", &tmp))
+	{
+		culling = tmp;
+	}*/
+
 	ImGui::Separator();
 
 	if (ImGui::Button("delete##camera"))
@@ -141,6 +147,7 @@ void CameraComponent::Save(JSONWrapper& file) const
 	array_value.WriteFloat("Far Plane", far_plane);
 	array_value.WriteFloat("Horizontal FOV", horizontal_fov);
 	array_value.WriteFloat("Veritcal FOV", vertical_fov);
+	array_value.WriteBool("Culling", culling);
 
 	file.WriteArrayValue(array_value);
 }
@@ -154,7 +161,8 @@ void CameraComponent::Load(JSONWrapper& file)
 	far_plane = file.ReadeFloat("Far Plane");
 	horizontal_fov = file.ReadeFloat("Horizontal FOV");
 	vertical_fov = file.ReadeFloat("Vertical FOV");
-
+	culling = file.ReadBool("Culling");
+	culling = true;
 
 	//Init frustum
 	frustum.SetKind(FrustumSpaceGL, FrustumRightHanded);

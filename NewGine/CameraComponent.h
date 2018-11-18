@@ -35,6 +35,8 @@ public:
 
 	math::Frustum frustum;
 
+	bool culling = true;
+
 private:
 
 	float near_plane;
