@@ -382,7 +382,7 @@ void ModuleEditor::HandleGuizmo()
 		ImGuiIO& io = ImGui::GetIO();
 		ImGuizmo::Enable(true);
 		static ImGuizmo::OPERATION operation(ImGuizmo::TRANSLATE);
-		ImGuizmo::SetRect(0, 0, 25, 100);
+		ImGuizmo::SetRect(App->window->GetWidth()/2, App->window->GetHeight()/3, 0, 50);
 		ImGuizmo::MODE transform_mode = ImGuizmo::LOCAL;
 
 

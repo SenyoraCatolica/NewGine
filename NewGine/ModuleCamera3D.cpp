@@ -125,44 +125,11 @@ void ModuleCamera3D::CalculateViewMatrix()
 
 void ModuleCamera3D::Rotate(float x, float y)
 {
-	int dx = -x;
-	int dy = -y;
+	int dx = x;
+	int dy = y;
 
-	float Sensitivity = 0.25f;
-
-	Position -= Reference;
-
-	if (dx != 0)
-	{
-		float DeltaX = (float)dx * Sensitivity;
-	
-		Quat quaternion;
-		quaternion.RotateAxisAngle(vec(0.0f, 1.0f, 0.0f), DeltaX);
-
-		X = quaternion * X;
-		Y = quaternion * Y;
-		Z = quaternion * Z;
-	}
-
-	if (dy != 0)
-	{
-		float DeltaY = (float)dy * Sensitivity;
-
-		Quat quaternion;
-		quaternion.RotateAxisAngle(X, DeltaY);
-		Y = quaternion * Y;
-		Z = quaternion * Z;
-
-		if (Y.y < 0.0f)
-		{
-			Z = vec(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-			Y = Z.Cross(X);
-		}
-	}
-
-	Position = Reference + Z * Position.Length();
-
-	CalculateViewMatrix();
+	float3 rotation_point = current_cam->frustum.Pos() + current_cam->frustum.Front() * 30.0f;
+	LookAt(rotation_point);
 }
 // -----------------------------------------------------------------
 
@@ -242,19 +209,29 @@ void ModuleCamera3D::UpdateEditorCam()
 		// Mouse motion ---------------------------------------------------------
 		if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 		{
+			float Sensitivity = 0.5f;
+
 			int dx = -App->input->GetMouseXMotion();
 			int dy = -App->input->GetMouseYMotion();
 
-			float Sensitivity = 0.025f;
+			Rotate(dx, dy);
+			
+			float delta_x = (float)dx * Sensitivity;
+			float delta_y = (float)dy * Sensitivity;
 
-			float3 pos = t->GetGlobalTranform().Transposed().TranslatePart();
-			pos += world_z.Normalized() * 10;
+			Quat quatX, quatY;
+			quatX = Quat(world_y, DegToRad(delta_x));
+			if (delta_y != 0)
+				quatY = Quat(world_x, DegToRad(-delta_y));
+			else
+				quatY = Quat::identity;
+			TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
+			Quat current_rot = t->GetQuatRotation();
+			Quat rot = quatX * quatY;
+			if (current_rot.x != 0 && current_rot.y != 0 && current_rot.z != 0)
+				rot = rot * current_rot;
 
-			pos += (float)dy * Sensitivity * world_y.Normalized();
-
-			pos += (float)dx * Sensitivity * world_x.Normalized();
-
-			LookAt(pos);
+			t->SetRotation(rot);
 		}
 
 		//Mouse wheel --------------------------------------------------------------

@@ -69,13 +69,6 @@ void GameObject::Update()
 	}
 }
 
-
-void GameObject::DrawLocator()
-{
-	//2DO implement locator
-}
-
-
 void GameObject::Select()
 {
 	selected = true;

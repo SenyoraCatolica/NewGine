@@ -23,7 +23,6 @@ public:
 	const uint32_t GetUID();
 	void SetUID(uint uuid);
 
-	void DrawLocator();
 	void Select();
 	void Unselect();
 
