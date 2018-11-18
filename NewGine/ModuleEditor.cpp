@@ -415,7 +415,6 @@ void ModuleEditor::HandleGuizmo()
 			matrix.Transpose();
 		}
 
-		LOG("MATRIX BEFORE %s", matrix.ToString().data());
 		// EDIT TRANSFORM QITH GUIZMO
 		ImGuizmo::Manipulate(camera->GetViewMatrix().ptr(), camera->GetProjectionMatrix().ptr(), operation, transform_mode, matrix.ptr());
 
@@ -423,7 +422,6 @@ void ModuleEditor::HandleGuizmo()
 		if (ImGuizmo::IsUsing())
 		{
 			matrix.Transpose();
-			LOG("MATRIX AFTER %s", matrix.ToString().data());
 
 
 			if (selected_object->parent != nullptr)

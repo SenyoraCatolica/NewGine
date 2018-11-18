@@ -30,6 +30,13 @@ void MaterialComponent::ComponentEditor()
 		ImGui::SameLine();
 		ImGui::Text("%d", material->texture->height);
 		ImGui::Image((ImTextureID)material->texture->id, ImVec2(250, 250));
+
+		ImGui::Separator();
+
+		if (ImGui::Button("delete##material"))
+		{
+			parent->DeleteComponent(this);
+		}
 	}	
 }
 

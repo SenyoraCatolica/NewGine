@@ -219,7 +219,17 @@ bool GameObject::DeleteComponent(Component* ComponentToDelete)
 {
 	bool ret = false;
 
-	//2DO
+	std::list<Component*>::iterator it = components.begin();
+
+	for (it; it != components.end(); ++it)
+	{
+		if ((*it) == ComponentToDelete)
+		{
+			components.erase(it);
+			delete (ComponentToDelete);
+			break;
+		}
+	}
 
 	return ret;
 }

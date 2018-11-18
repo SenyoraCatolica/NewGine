@@ -34,6 +34,12 @@ void MeshComponent::ComponentEditor()
 		ImGui::Text("Num indices: %i", mesh->mesh->num_indices);
 		ImGui::Separator();
 		ImGui::Checkbox("Bounding Box", &bb_active);
+		ImGui::Separator();
+
+		if (ImGui::Button("delete##mesh"))
+		{
+			parent->DeleteComponent(this);
+		}
 	}
 }
 

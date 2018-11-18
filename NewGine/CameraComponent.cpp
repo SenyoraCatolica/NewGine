@@ -62,6 +62,13 @@ void CameraComponent::ComponentEditor()
 	float new_VFov = vertical_fov;
 	if (ImGui::DragFloat("Vertical FOV", &new_VFov, 0.2f))
 		SetVerticalFOV(new_VFov);
+
+	ImGui::Separator();
+
+	if (ImGui::Button("delete##camera"))
+	{
+		parent->DeleteComponent(this);
+	}
 }
 
 
