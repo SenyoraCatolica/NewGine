@@ -48,7 +48,7 @@ void WindowAssets::DrawOnEditor()
 			size_t size = (*it).find_last_of(".");
 			string prefab_extension = (*it).substr(size + 1);
 
-			if (prefab_extension == "fbx")
+			if (prefab_extension == "fbx" || prefab_extension == "FBX")
 				ImGui::MenuItem((*it).data());
 		}
 
@@ -61,7 +61,7 @@ void WindowAssets::DrawOnEditor()
 		{
 			size_t size = (*it).find_last_of(".");
 			string material_extension = (*it).substr(size + 1);
-			if (material_extension == "png")
+			if (material_extension == "png" || material_extension == "PNG" || material_extension == "tga" || material_extension == "TGA")
 				ImGui::MenuItem((*it).data());
 		}
 

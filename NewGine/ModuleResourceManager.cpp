@@ -147,8 +147,8 @@ FILE_TYPE TryGetTypeByName(const char* file)
 
 	if (file != nullptr)
 	{
-		char* mesh_extensions[] = { "fbx", "FBX", "obj", "OBJ" };
-		char* material_extensions[] = { "png", "PNG", "tga", "TGA" };
+		char* mesh_extensions[] = { "fbx", "FBX", "obj", "OBJ", "mex" };
+		char* material_extensions[] = { "png", "PNG", "tga", "TGA", "dds" };
 
 		std::string name = file;
 		std::string extension = name.substr(name.find_last_of(".") + 1);
