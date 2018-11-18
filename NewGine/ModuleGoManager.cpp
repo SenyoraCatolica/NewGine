@@ -163,16 +163,20 @@ GameObject* ModuleGOManager::CreateCamera(const char* name, bool is_editor_cam)
 	cam->AddComponent(COMPONENT_CAMERA);
 
 	if (is_editor_cam)
+	{
 		cam->parent = nullptr;
+	}
+
 	else
 		if (root)
 		{
 			cam->parent = root;
 			root->childs.push_back(cam);
+			camera_objects.push_back(camera);
 		}
 
 	all_gameobjects.push_back(cam);
-	App->camera->SetGameCam(camera);
+
 
 	return cam;
 }
@@ -379,6 +383,11 @@ void ModuleGOManager::LoadScene(const char* name)
 
 			if (HasCameraObjectInRoot(this->root) == false)
 				CreateCamera("Camera", false);
+			else
+			{
+				CameraComponent* cam = (CameraComponent*)GetCameraObjectInRoot(this->root)->GetComponent(COMPONENT_CAMERA);
+				camera_objects.push_back(cam);
+			}
 		}
 	}
 

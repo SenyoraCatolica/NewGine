@@ -427,7 +427,6 @@ void ModuleEditor::HandleGuizmo()
 			if (selected_object->parent != nullptr)
 			{
 				matrix = parent_t->GetGlobalTranform().Inverted() * matrix;
-				LOG("MATRIX %s", matrix.ToString().data());
 			}
 
 			float3 position, scale;

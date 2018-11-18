@@ -49,6 +49,7 @@ public:
 	void From3Dto2D(vec point, int& x, int& y); 
 
 	void UpdateEditorCam();
+	void UpdateGameCam();
 	void  ChangeCurrentCam(CameraComponent* cam);
 	void CleanCameras();
 

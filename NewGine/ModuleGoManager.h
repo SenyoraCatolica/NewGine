@@ -58,6 +58,7 @@ public:
 	std::list<GameObject*> objects_to_draw;
 	std::list<GameObject*> dynamic_objects;
 	std::list<GameObject*> todelete_objects;
+	std::list<CameraComponent*> camera_objects;
 
 
 	Quadtree* quadtree;

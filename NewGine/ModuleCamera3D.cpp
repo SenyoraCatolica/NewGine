@@ -43,6 +43,8 @@ update_status ModuleCamera3D::Update()
 {
 	UpdateEditorCam();
 
+	UpdateGameCam();
+
 	return UPDATE_CONTINUE;
 }
 
@@ -266,6 +268,21 @@ void ModuleCamera3D::UpdateEditorCam()
 	}		
 }
 
+void ModuleCamera3D::UpdateGameCam()
+{
+	std::list<CameraComponent*>::iterator it = App->go_manager->camera_objects.begin();
+	while (it != App->go_manager->camera_objects.end())
+	{
+		if ((*it)->main_camera == true)
+		{
+			SetGameCam(*it);
+			break;
+		}
+		it++;
+	}
+}
+
+
 void  ModuleCamera3D::ChangeCurrentCam(CameraComponent* cam) 
 {
 	if (cam != nullptr)
@@ -279,6 +296,8 @@ void ModuleCamera3D::CreateEditorCam()
 {
 	editor_cam_go = App->go_manager->CreateCamera("EditorCam", true);
 	editor_cam = (CameraComponent*)editor_cam_go->GetComponent(COMPONENT_CAMERA);
+	editor_cam->culling = false;
+	editor_cam->main_camera = false;
 	editor_cam->SetFar(200);
 	current_cam = editor_cam;
 }
