@@ -350,7 +350,7 @@ GameObject* ModuleGOManager::GetRoot()
 
 void ModuleGOManager::LoadScene(const char* name)
 {
-	string scene_path = SCENE_FOLDER;
+	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
 	scene_path += ".scn";
 
@@ -399,7 +399,7 @@ void ModuleGOManager::SaveScene(const char* name)
 
 	char* buf;
 	size_t size = root_node.SerializeBuffer(&buf);
-	string scene_path = SCENE_FOLDER;
+	string scene_path = ASSETS_FOLDER;
 	scene_path += name;
 	scene_path += ".scn";
 

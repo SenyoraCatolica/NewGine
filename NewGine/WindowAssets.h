@@ -2,16 +2,7 @@
 #include "Window.h"
 #include "Globals.h"
 #include <vector>
-#include "ModuleResourceManager.h"
 
-
-struct AssetFile
-{
-	const char* directory_name = nullptr;
-	const char* directory_name_next = nullptr;
-	char* file_name = nullptr;
-	FILE_TYPE type;
-};
 
 class WindowAssets : public Window
 {
@@ -27,12 +18,11 @@ public:
 	void SetAssetsDirectory(const char* dir);
 
 private:
-
-	std::vector<AssetFile> assets;
 	const char* assets_dir = nullptr;
-	int size = 50;
 
-	//images
-	uint mesh_icon;
-	uint mat_icon;
+	std::vector<std::string> scenes;
+	std::vector<std::string> prefabs;
+	std::vector<std::string> materials;
+
+
 };
