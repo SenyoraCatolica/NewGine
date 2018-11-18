@@ -23,6 +23,9 @@ void WindowAtributeEditor::DrawOnEditor()
 	ImGui::SetWindowSize(ImVec2(400, 500));
 	ImGui::SetWindowPos(ImVec2(1000, 25));
 
+	ImGui::SetWindowPos(ImVec2(App->window->screen_surface->w / 4 * 3, 19));
+	ImGui::SetWindowSize(ImVec2(App->window->screen_surface->w / 4, App->window->screen_surface->h / 3 * 2));
+
 	if (App->editor->selected_object == nullptr)
 		ImGui::Text("No GameObject Selected.");
 

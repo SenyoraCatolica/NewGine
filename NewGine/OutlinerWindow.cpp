@@ -14,8 +14,8 @@ void OutlinerWindow::DrawOnEditor()
 
 	ImGui::Begin("Outliner", 0);
 
-	ImGui::SetWindowSize(ImVec2(300, 400));
-	ImGui::SetWindowPos(ImVec2(10, 25));
+	ImGui::SetWindowPos(ImVec2(0, 19));
+	ImGui::SetWindowSize(ImVec2(App->window->screen_surface->w / 4, App->window->screen_surface->h / 3 * 2));
 
 
 	if (App->go_manager->GetRoot() == NULL)

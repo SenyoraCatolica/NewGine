@@ -37,6 +37,7 @@ update_status ModuleEditor::Update()
 	HandleScenesMenu();
 	GamePanel();
 
+	App->window->screen_surface = SDL_GetWindowSurface(App->window->window);
 	vector<Window*>::iterator it = windows.begin();
 	while (it != windows.end())
 	{

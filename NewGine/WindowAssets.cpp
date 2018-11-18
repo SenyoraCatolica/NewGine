@@ -23,6 +23,8 @@ void WindowAssets::DrawOnEditor()
 	if (active)
 	{
 		ImGui::Begin("Assets", &active);
+		ImGui::SetWindowSize(ImVec2(App->window->screen_surface->w / 4 * 3, App->window->screen_surface->h / 3));
+		ImGui::SetWindowPos(ImVec2((0), App->window->screen_surface->h/3 * 2 + 19));
 
 		ImGui::TextColored({ Green.r, Green.g,Green.b,Green.a }, "Scenes");
 

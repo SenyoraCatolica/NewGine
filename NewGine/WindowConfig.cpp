@@ -54,8 +54,8 @@ void WindowConfig::DrawOnEditor()
 
 		ImGui::Begin("Configuration", &active);
 
-		ImGui::SetWindowSize(ImVec2(400, 300));
-		ImGui::SetWindowPos(ImVec2(1000, 550));
+		ImGui::SetWindowSize(ImVec2(App->window->screen_surface->w / 4, App->window->screen_surface->h / 3));
+		ImGui::SetWindowPos(ImVec2((App->window->screen_surface->w / 4) * 3, App->window->screen_surface->h / 3 * 2 + 19));
 
 		ApplicationUI();
 		Hardware();

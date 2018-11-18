@@ -324,7 +324,7 @@ void ModuleGOManager::SelectObject()
 
 		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
 
-		if (pos.x > 300 && pos.x < 1000 && pos.y > 25 && pos.y < 550)
+		if (pos.x > 350 && pos.x < 1050 && pos.y > 25 && pos.y < 600)
 		{
 			pos.x = 2.0f * pos.x / (float)App->window->GetWidth() - 1.0f;
 			pos.y = 1.0f - 2.0f * pos.y / (float)App->window->GetHeight();

@@ -191,7 +191,7 @@ void ModuleCamera3D::UpdateEditorCam()
 	if (current_cam == editor_cam)
 	{	
 		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
-		if (pos.x > 300 && pos.x < 1000 && pos.y > 25 && pos.y < 550)
+		if (pos.x > 350 && pos.x < 1050 && pos.y > 25 && pos.y < 600)
 		{
 			//Keys Movement   --------------------------------------------------------------------------------
 			TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
@@ -215,7 +215,7 @@ void ModuleCamera3D::UpdateEditorCam()
 			// Mouse motion ---------------------------------------------------------
 			if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
 			{
-				float Sensitivity = 0.025f;
+				float Sensitivity = 0.5f;
 
 				int dx = -App->input->GetMouseXMotion();
 				int dy = -App->input->GetMouseYMotion();
