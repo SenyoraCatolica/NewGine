@@ -382,7 +382,7 @@ void ModuleEditor::HandleGuizmo()
 		ImGuiIO& io = ImGui::GetIO();
 		ImGuizmo::Enable(true);
 		static ImGuizmo::OPERATION operation(ImGuizmo::TRANSLATE);
-		ImGuizmo::SetRect(App->window->GetWidth()/2, App->window->GetHeight()/3, 0, 50);
+		ImGuizmo::SetRect(300, 25, 550, 1000);
 		ImGuizmo::MODE transform_mode = ImGuizmo::LOCAL;
 
 
@@ -404,15 +404,42 @@ void ModuleEditor::HandleGuizmo()
 		}
 
 		TransformComponent* t = (TransformComponent*)selected_object->GetComponent(COMPONENT_TRANSFORM);
+		TransformComponent* parent_t = (TransformComponent*)selected_object->parent->GetComponent(COMPONENT_TRANSFORM);
+		CameraComponent* camera = App->camera->GetCurrentCam();
 
+		float4x4 matrix = t->GetLocalTransform().Transposed();
+
+		if(parent_t != nullptr)
+		{
+			matrix = parent_t->GetGlobalTranform() * t->GetLocalTransform();
+			matrix.Transpose();
+		}
+
+		LOG("MATRIX BEFORE %s", matrix.ToString().data());
 		// EDIT TRANSFORM QITH GUIZMO
-		ImGuizmo::Manipulate(*App->camera->GetViewMatrix().v, *App->camera->GetCurrentCam()->GetProjectionMatrix().v, operation,
-			transform_mode, *t->GetGlobalTranform().v);
+		ImGuizmo::Manipulate(camera->GetViewMatrix().ptr(), camera->GetProjectionMatrix().ptr(), operation, transform_mode, matrix.ptr());
 
 		// Only edit transforms with guizmo if it's selected first
-		if (ImGuizmo::IsUsing() && App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT)
+		if (ImGuizmo::IsUsing())
 		{
+			matrix.Transpose();
+			LOG("MATRIX AFTER %s", matrix.ToString().data());
+
+
+			if (selected_object->parent != nullptr)
+			{
+				matrix = parent_t->GetGlobalTranform().Inverted() * matrix;
+			}
+
 			t->UpdateGlobalTransform();
+
+			float3 position, scale;
+			Quat rotation;
+			t->local_tranformation.Decompose(position, rotation, scale);
+
+			t->SetTranslation(position);
+			t->SetRotation(rotation);
+			t->SetScale(scale);
 		}
 	}
 }

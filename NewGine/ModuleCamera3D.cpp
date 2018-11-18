@@ -187,78 +187,83 @@ void ModuleCamera3D::SetPosition(float3 pos)
 void ModuleCamera3D::UpdateEditorCam()
 {
 	if (current_cam == editor_cam)
-	{		//Keys Movement   --------------------------------------------------------------------------------
-		TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
-
-		float3 new_pos = float3::zero;
-
-		float3 world_y = t->GetGlobalTranform().WorldY();
-		float3 world_z = t->GetGlobalTranform().WorldZ();
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
-			new_pos += world_y * speed;
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
-			new_pos -= world_y * speed;
-
-		float3 world_x = t->GetGlobalTranform().WorldX();
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			new_pos += world_x * speed;
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-			new_pos -= world_x * speed;
-
-
-		// Mouse motion ---------------------------------------------------------
-		if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+	{	
+		float2 pos(App->input->GetMouseX(), App->input->GetMouseY());
+		if (pos.x > 300 && pos.x < 1000 && pos.y > 25 && pos.y < 550)
 		{
-			float Sensitivity = 0.5f;
-
-			int dx = -App->input->GetMouseXMotion();
-			int dy = -App->input->GetMouseYMotion();
-
-			Rotate(dx, dy);
-			
-			float delta_x = (float)dx * Sensitivity;
-			float delta_y = (float)dy * Sensitivity;
-
-			Quat quatX, quatY;
-			quatX = Quat(world_y, DegToRad(delta_x));
-			if (delta_y != 0)
-				quatY = Quat(world_x, DegToRad(-delta_y));
-			else
-				quatY = Quat::identity;
+			//Keys Movement   --------------------------------------------------------------------------------
 			TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
-			Quat current_rot = t->GetQuatRotation();
-			Quat rot = quatX * quatY;
-			if (current_rot.x != 0 && current_rot.y != 0 && current_rot.z != 0)
-				rot = rot * current_rot;
 
-			t->SetRotation(rot);
+			float3 new_pos = float3::zero;
+
+			float3 world_y = t->GetGlobalTranform().WorldY();
+			float3 world_z = t->GetGlobalTranform().WorldZ();
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+				new_pos += world_y * speed;
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+				new_pos -= world_y * speed;
+
+			float3 world_x = t->GetGlobalTranform().WorldX();
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+				new_pos += world_x * speed;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+				new_pos -= world_x * speed;
+
+
+			// Mouse motion ---------------------------------------------------------
+			if (App->input->GetMouseButton(SDL_BUTTON_RIGHT) == KEY_REPEAT)
+			{
+				float Sensitivity = 0.5f;
+
+				int dx = -App->input->GetMouseXMotion();
+				int dy = -App->input->GetMouseYMotion();
+
+				Rotate(dx, dy);
+
+				float delta_x = (float)dx * Sensitivity;
+				float delta_y = (float)dy * Sensitivity;
+
+				Quat quatX, quatY;
+				quatX = Quat(world_y, DegToRad(delta_x));
+				if (delta_y != 0)
+					quatY = Quat(world_x, DegToRad(-delta_y));
+				else
+					quatY = Quat::identity;
+				TransformComponent* t = (TransformComponent*)current_cam->parent->GetComponent(COMPONENT_TRANSFORM);
+				Quat current_rot = t->GetQuatRotation();
+				Quat rot = quatX * quatY;
+				if (current_rot.x != 0 && current_rot.y != 0 && current_rot.z != 0)
+					rot = rot * current_rot;
+
+				t->SetRotation(rot);
+			}
+
+			//Mouse wheel --------------------------------------------------------------
+			float wheel_speed = 2.0f;
+
+			if (App->input->GetMouseZ() > 0) new_pos += world_z * speed * wheel_speed;
+			if (App->input->GetMouseZ() < 0) new_pos -= world_z * speed * wheel_speed;
+
+
+			//Middle mouse button movement
+			if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)
+			{
+				int dx = App->input->GetMouseXMotion();
+				int dy = App->input->GetMouseYMotion();
+
+				new_pos += world_x * speed * dx;
+				new_pos += world_y * speed * dy;
+			}
+
+			if (new_pos.x != 0 || new_pos.y != 0 || new_pos.z != 0)
+			{
+				//Set final position;
+				float3 pos = t->GetTranslation();
+				pos += new_pos;
+				t->SetTranslation(pos);
+			}
 		}
-
-		//Mouse wheel --------------------------------------------------------------
-		float wheel_speed = 2.0f;
-
-		if (App->input->GetMouseZ() > 0) new_pos += world_z * speed * wheel_speed;
-		if (App->input->GetMouseZ() < 0) new_pos -= world_z * speed * wheel_speed;
-
-
-		//Middle mouse button movement
-		if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)
-		{
-			int dx = App->input->GetMouseXMotion();
-			int dy = App->input->GetMouseYMotion();
-
-			new_pos += world_x * speed * dx;
-			new_pos += world_y * speed * dy;
-		}
-
-		if (new_pos.x != 0 || new_pos.y != 0 || new_pos.z != 0)
-		{
-			//Set final position;
-			float3 pos = t->GetTranslation();
-			pos += new_pos;
-			t->SetTranslation(pos);
-		}		
-	}
+	}		
 }
 
 void  ModuleCamera3D::ChangeCurrentCam(CameraComponent* cam) 
