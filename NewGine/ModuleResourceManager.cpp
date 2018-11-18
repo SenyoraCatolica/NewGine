@@ -32,7 +32,6 @@ bool ModuleResourceManager::Start()
 {
 	App->file_system->CreateDir("Library");
 	App->file_system->CreateDir("Library/Meshes");
-	App->file_system->CreateDir("Library/Textures");
 	App->file_system->CreateDir("Library/Materials");
 	App->file_system->CreateDir("Library/Meta");
 	App->file_system->CreateDir("Assets/Scenes");
@@ -249,7 +248,9 @@ void ModuleResourceManager::CreateFileMeta(uint uuid, FILE_TYPE type, const char
 	final_path = final_path.substr(0, final_path.length() - 4);
 	final_path += ".meta";
 
-	App->file_system->Save(final_path.data(), buff, size);
+	string meta_path = META_FOLDER + App->file_system->GetNameFromDirectory(final_path.data());
+
+	App->file_system->Save(meta_path.data(), buff, size);
 
 	if(buff)
 		delete[] buff;
