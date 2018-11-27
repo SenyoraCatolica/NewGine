@@ -29,5 +29,6 @@ private:
 public:
 	std::list<Module*> collision_listeners;
 	btRigidBody* body = nullptr;
+	bool is_sensor = false;
 
 };
