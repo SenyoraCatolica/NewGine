@@ -177,6 +177,7 @@
     <ClInclude Include="MyResource.h" />
     <ClInclude Include="OutlinerWindow.h" />
     <ClInclude Include="p2Point.h" />
+    <ClInclude Include="PhysicBody3D.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="ModuleEditor.h" />
     <ClInclude Include="Quadtree.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="MyResource.cpp" />
     <ClCompile Include="OutlinerWindow.cpp" />
+    <ClCompile Include="PhysicBody3D.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Quadtree.cpp" />
     <ClCompile Include="Random.cpp" />

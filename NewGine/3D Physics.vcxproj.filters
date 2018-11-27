@@ -390,6 +390,9 @@
     <ClInclude Include="ModulePhysics.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="PhysicBody3D.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -643,6 +646,9 @@
     </ClCompile>
     <ClCompile Include="ModulePhysics.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicBody3D.cpp">
+      <Filter>Sources\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
